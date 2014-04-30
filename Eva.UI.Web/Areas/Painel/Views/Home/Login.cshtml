@@ -1,4 +1,4 @@
-﻿
+﻿@model Eva.UI.Web.Areas.Painel.Controllers.LoginViewModel
 @{
     ViewBag.Title = "Login";
     Layout = null;
@@ -43,26 +43,18 @@
                     <em class="text-danger">Erro</em>
                 </div>
                 <div class="user-login-info">
-                    <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Usuário" value="" autofocus>
+                    <input type="text" class="form-control" name="Login" id="Login" placeholder="Usuário" value="@Model.Login" autofocus>
 
-                    <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" value="">
+                    <input type="password" class="form-control" name="Senha" id="Senha" placeholder="Senha" value="@Model.Senha">
 
                 </div>
                 <label class="checkbox">
-                    <input type="checkbox" value="remember-me"> Remember me
+                    <input type="checkbox" name="Lembrar" id="Lembrar" value="true" @(Model.Lembrar ? "checked" : "")> Lembrar?
                     <span class="pull-right">
-                        <a data-toggle="modal" href="#myModal"> Forgot Password?</a>
-
+                        <a data-toggle="modal" href="#myModal"> Recuperar Senha?</a>
                     </span>
                 </label>
-                <button class="btn btn-lg btn-login btn-block" type="submit">Sign in</button>
-
-                <div class="registration">
-                    Don't have an account yet?
-                    <a class="" href="registration.html">
-                        Create an account
-                    </a>
-                </div>
+                <button class="btn btn-lg btn-login btn-block" type="submit">Entrar</button>
 
             </div>
 
@@ -91,7 +83,6 @@
         </form>
 
     </div>
-
 
 
     <!-- Placed js at the end of the document so the pages load faster -->
