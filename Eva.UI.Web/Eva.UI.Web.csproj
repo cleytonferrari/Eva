@@ -440,6 +440,7 @@
     <Content Include="Content\Painel\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\Painel\fonts\FontAwesome.otf" />
     <Content Include="Content\Painel\img\spotlight-poi.png&amp;scale=1" />
+    <Content Include="App_Code\Flash.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\advanced-form.js" />
     <Content Include="Scripts\bootstrap-colorpicker.js" />
@@ -573,6 +574,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\FlashHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

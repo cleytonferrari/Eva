@@ -29,6 +29,12 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+    
+    <!-- Placed js at the end of the document so the pages load faster -->
+    <!--Core js-->
+    <script src="~/Scripts/jquery.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    
 </head>
 
 <body class="login-body">
@@ -39,8 +45,7 @@
             <h2 class="form-signin-heading">sign in now</h2>
             <div class="login-wrap">
                 <div style="margin-bottom:40px;">
-                    AQUI VAI A MENSAGE DE ERRO
-                    <em class="text-danger">Erro</em>
+                    @Flash.FlashMessage(TempData)
                 </div>
                 <div class="user-login-info">
                     <input type="text" class="form-control" name="Login" id="Login" placeholder="Usuário" value="@Model.Login" autofocus>
@@ -83,12 +88,6 @@
         </form>
 
     </div>
-
-
-    <!-- Placed js at the end of the document so the pages load faster -->
-    <!--Core js-->
-    <script src="~/Scripts/jquery.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
 
 </body>
 </html>

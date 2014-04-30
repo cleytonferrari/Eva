@@ -1,0 +1,21 @@
+﻿@helper FlashMessage(System.Web.Mvc.TempDataDictionary tempData)
+{
+    var flash = tempData.Where(item => item.Key.StartsWith("alert-"))
+        .Select(item => new { Message = item.Value, ClassName = item.Key }).FirstOrDefault();
+        
+    if (flash != null)
+    {
+        <script type="text/javascript">
+        $(function () {
+            var $flash = $('<div id="flash" class="alert  fade in" style="display:none;">');
+            $flash.html('<button data-dismiss="alert" class="close close-sm" type="button"><i class="fa fa-times"></i></button>' + '@flash.Message');
+            $flash.toggleClass('flash');
+            $flash.toggleClass('@flash.ClassName');
+            $('#msg').prepend($flash);
+            $flash.slideDown('slow');
+            $flash.click(function () { $(this).slideToggle('highlight'); });
+        });
+        </script>
+    }
+    <span id="msg"></span>
+}
