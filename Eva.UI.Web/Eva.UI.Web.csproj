@@ -114,6 +114,16 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Eva.Aplicacao\Eva.Aplicacao.csproj">
+      <Project>{1ce3d42c-2cd5-4197-9e5c-70c2d29b4c12}</Project>
+      <Name>Eva.Aplicacao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eva.Dominio\Eva.Dominio.csproj">
+      <Project>{42130e0f-4b60-402b-9249-f3816a9c4c0c}</Project>
+      <Name>Eva.Dominio</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

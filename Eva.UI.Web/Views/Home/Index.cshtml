@@ -1,7 +1,14 @@
-﻿
+﻿@using Eva.Dominio
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
-
+<ul>
+    
+    @foreach (var usuario in (List<Usuario>)ViewBag.usuarios)
+    {
+        <li>@usuario.Nome</li>
+    }
+</ul>

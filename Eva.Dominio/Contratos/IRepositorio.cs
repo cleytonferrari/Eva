@@ -3,18 +3,17 @@ using System.Collections.Generic;
 
 namespace Eva.Dominio.Contratos
 {
-    public interface IRepositorio<T> where T : class
+    public interface IRepository<T> where T : class
     {
-        T Salvar(T entidade);
 
-        T Alterar(T entidade);
+        void Save(T entity);
 
-        void Excluir(T entidade);
+        void Remove(string id);
 
-        T Buscar(string id);
+        T Get(string id);
 
-        IEnumerable<T> BuscarTodos();
+        IEnumerable<T> GetAll();
 
-        IEnumerable<T> BuscarPorFiltro(Func<T, bool> filtro);
+        IEnumerable<T> GetByFilter(Func<T, bool> filter);
     }
 }

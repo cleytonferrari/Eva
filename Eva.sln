@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eva.Repositorio.MongoDb", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eva.Dominio", "Eva.Dominio\Eva.Dominio.csproj", "{42130E0F-4B60-402B-9249-F3816A9C4C0C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eva.Aplicacao", "Eva.Aplicacao\Eva.Aplicacao.csproj", "{1CE3D42C-2CD5-4197-9E5C-70C2D29B4C12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{42130E0F-4B60-402B-9249-F3816A9C4C0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42130E0F-4B60-402B-9249-F3816A9C4C0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42130E0F-4B60-402B-9249-F3816A9C4C0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CE3D42C-2CD5-4197-9E5C-70C2D29B4C12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CE3D42C-2CD5-4197-9E5C-70C2D29B4C12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CE3D42C-2CD5-4197-9E5C-70C2D29B4C12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CE3D42C-2CD5-4197-9E5C-70C2D29B4C12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

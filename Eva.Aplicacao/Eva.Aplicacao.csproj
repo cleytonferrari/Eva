@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A0952FBC-9063-47AA-9830-8C56C93744F5}</ProjectGuid>
+    <ProjectGuid>{1CE3D42C-2CD5-4197-9E5C-70C2D29B4C12}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Eva.Repositorio.MongoDb</RootNamespace>
-    <AssemblyName>Eva.Repositorio.MongoDb</AssemblyName>
+    <RootNamespace>Eva.Aplicacao</RootNamespace>
+    <AssemblyName>Eva.Aplicacao</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,14 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MongoDB.Bson">
-      <HintPath>..\packages\mongocsharpdriver.1.9.0\lib\net35\MongoDB.Bson.dll</HintPath>
-    </Reference>
-    <Reference Include="MongoDB.Driver">
-      <HintPath>..\packages\mongocsharpdriver.1.9.0\lib\net35\MongoDB.Driver.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,17 +39,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contexto.cs" />
+    <Compile Include="Fabrica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositorio.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <Compile Include="UsuarioAplicacao.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Eva.Dominio\Eva.Dominio.csproj">
       <Project>{42130e0f-4b60-402b-9249-f3816a9c4c0c}</Project>
       <Name>Eva.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eva.Repositorio.MongoDb\Eva.Repositorio.MongoDb.csproj">
+      <Project>{a0952fbc-9063-47aa-9830-8c56c93744f5}</Project>
+      <Name>Eva.Repositorio.MongoDb</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
