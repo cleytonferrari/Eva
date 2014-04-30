@@ -1,14 +1,1670 @@
-﻿@using Eva.Dominio
-
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-<ul>
-    
-    @foreach (var usuario in (List<Usuario>)ViewBag.usuarios)
-    {
-        <li>@usuario.Nome</li>
-    }
-</ul>
+﻿
+<div class="categorias mgn-left-10px left">
+    <h2>Categorias</h2>
+    <ul class="oculto">
+        <li>
+            <a href="#" title="Cultura">
+                <span class="barra" style="background-color:#159F85"></span>
+                Cultura
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Esportes">
+                <span class="barra" style="background-color:#2DB200"></span>
+                Esportes
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Geral">
+                <span class="barra" style="background-color:#95A5A5"></span>
+                Geral
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Mundo">
+                <span class="barra" style="background-color:#0080FF"></span>
+                Mundo
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Polícia">
+                <span class="barra" style="background-color:#2B3D4F"></span>
+                Polícia
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Política">
+                <span class="barra" style="background-color:#F39B11"></span>
+                Política
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Saúde">
+                <span class="barra" style="background-color:#BF392B"></span>
+                Saúde
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Social">
+                <span class="barra" style="background-color:#D35300"></span>
+                Social
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Tecnologia">
+                <span class="barra" style="background-color:#8D43AD"></span>
+                Tecnologia
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="banner-1024px right mgn-right-10px">
+    <div class="banner-728px left">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="~/Content/Site/img/banners/728x90px/img1.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+    <div class="banner-230px right">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="~/Content/Site/img/banners/230x90px/img1.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+</div>
+<div class="banner-vertical left mgn-left-10px mgn-top-20px">
+    <div class="texto-vertical left"></div>
+    <div class="banner right">
+        <figure>
+            <a href="#" title="Título do banner">
+                <img src="~/Content/Site/img/banners/120x600px/img1.png" alt="">
+            </a>
+        </figure>
+    </div>
+</div>
+<article class="destaques right mgn-right-10px mgn-top-20px">
+    <section class="noticia-urgente">
+        <a class="fui-time" href="noticia.html" title="Título da notícia" style="background-color:#E74B3B;">
+            Nam nibh sem, eleifend vel, volutpat a, sagittis commodo, libero. Sed pede orci, volutpat sed, congue vel, gravida non, lacus. Vivam
+        </a>
+        <p class="fui-time" style="color:#E74B3B;">00h00</p>
+        <p class="fui-location" style="color:#E74B3B;">Machadinho D’Oeste, RO</p>
+    </section>
+    <section class="destaques-atual">
+        <h2 class="titulo fui-menu">DESTAQUES</h2>
+        <ul class="slideshow">
+            <li>
+                <a href="noticia.html" title="Política">
+                    <p class="categ" style="background-color:#F39B11;">Política</p>
+                    <figure>
+                        <img src="~/Content/Site/img/noticia/img1.jpg" alt="" width="500" height="281">
+                    </figure>
+                    <p class="hora fui-time left" style="color:#F39B11;">00h00</p>
+                    <p class="local fui-location right" style="color:#F39B11;">Alta Floresta, RO</p>
+                    <h2 class="desc" style="color:#F39B11;">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis</h2>
+                </a>
+            </li>
+            <li>
+                <a href="noticia.html" title="Esportes">
+                    <p class="categ" style="background-color:#2DB200;">Esportes</p>
+                    <figure>
+                        <img src="~/Content/Site/img/noticia/img2.jpg" alt="" width="500" height="281">
+                    </figure>
+                    <p class="hora fui-time left" style="color:#2DB200;">00h00</p>
+                    <p class="local fui-location right" style="color:#2DB200;">Ariquemes, RO</p>
+                    <h2 class="desc" style="color:#2DB200;">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis lorem ipsum dolor.</h2>
+                </a>
+            </li>
+            <li>
+                <a href="noticia.html" title="Saúde">
+                    <p class="categ" style="background-color:#BF392B;">Saúde</p>
+                    <figure>
+                        <img src="~/Content/Site/img/noticia/img3.jpg" alt="" width="500" height="281">
+                    </figure>
+                    <p class="hora fui-time left" style="color:#BF392B;">00h00</p>
+                    <p class="local fui-location right" style="color:#BF392B;">Alta Floresta, RO</p>
+                    <h2 class="desc" style="color:#BF392B;">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis</h2>
+                </a>
+            </li>
+            <li>
+                <a href="noticia.html" title="Tecnologia">
+                    <p class="categ" style="background-color:#8D43AD;">Tecnologia</p>
+                    <figure>
+                        <img src="~/Content/Site/img/noticia/img4.jpg" alt="" width="500" height="281">
+                    </figure>
+                    <p class="hora fui-time left" style="color:#8D43AD;">00h00</p>
+                    <p class="local fui-location right" style="color:#8D43AD;">Alta Floresta, RO</p>
+                    <h2 class="desc" style="color:#8D43AD;">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis</h2>
+                </a>
+            </li>
+            <li>
+                <a href="noticia.html" title="Polícia">
+                    <p class="categ" style="background-color:#2B3D4F;">Polícia</p>
+                    <figure>
+                        <img src="~/Content/Site/img/noticia/img5.jpg" alt="" width="500" height="281">
+                    </figure>
+                    <p class="hora fui-time left" style="color:#2B3D4F;">00h00</p>
+                    <p class="local fui-location right" style="color:#2B3D4F;">Alta Floresta, RO</p>
+                    <h2 class="desc" style="color:#2B3D4F;">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis</h2>
+                </a>
+            </li>
+        </ul>
+        <ul class="miniatura">
+            <li>
+                <a href="#" title="">
+                    <span class="molde"></span>
+                    <figure>
+                        <span style="background-color:#F39B11;"></span>
+                        <img src="~/Content/Site/img/miniatura/img1.jpg" alt="" width="70" height="39">
+                    </figure>
+                </a>
+            </li>
+            <li>
+                <a href="#" title="">
+                    <span class="molde"></span>
+                    <figure>
+                        <span style="background-color:#2DB200;"></span>
+                        <img src="~/Content/Site/img/miniatura/img2.jpg" alt="" width="70" height="39">
+                    </figure>
+                </a>
+            </li>
+            <li>
+                <a href="#" title="">
+                    <span class="molde"></span>
+                    <figure>
+                        <span style="background-color:#BF392B;"></span>
+                        <img src="~/Content/Site/img/miniatura/img3.jpg" alt="" width="70" height="39">
+                    </figure>
+                </a>
+            </li>
+            <li>
+                <a href="#" title="">
+                    <span class="molde"></span>
+                    <figure>
+                        <span style="background-color:#8D43AD;"></span>
+                        <img src="~/Content/Site/img/miniatura/img4.jpg" alt="" width="70" height="39">
+                    </figure>
+                </a>
+            </li>
+            <li>
+                <a href="#" title="">
+                    <span class="molde"></span>
+                    <figure>
+                        <span style="background-color:#2B3D4F;"></span>
+                        <img src="~/Content/Site/img/miniatura/img5.jpg" alt="" width="70" height="39">
+                    </figure>
+                </a>
+            </li>
+        </ul>
+    </section>
+    <div class="bloco-largura right">
+        <section class="noticia left largura-240px mgn-left-20px">
+            <h2 class="chamada mgn-bottom-10px" style="background-color:#2DB200;">sed VESTIBULUM</h2>
+            <a href="" title="Esportes">
+                <h3 class="categoria" style="color:#2DB200;">Esportes</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#2DB200;">00h00</p>
+            <p class="local right fui-location" style="color:#2DB200;">Alto Alegre, RO</p>
+            <a href="noticia.html" title="título da notícia">
+                <p class="desc left desc-14px mgn-top-5px" style="color:#2DB200;">Sed quis turpis vitae lectus vehicula tincidunt. Morbi accumsan dignissim</p>
+            </a>
+        </section>
+        <section class="noticia right largura-240px mgn-left-20px">
+            <h2 class="chamada mgn-bottom-10px" style="background-color:#2B3D4F;">ETIAM AUCTOR DIGNISSIM</h2>
+            <a href="" title="Polícia">
+                <h3 class="categoria" style="color:#2B3D4F;">Polícia</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#2B3D4F;">00h00</p>
+            <p class="local right fui-location" style="color:#2B3D4F;">Alto Paraíso, RO</p>
+            <a href="noticia.html" title="título da notícia">
+                <p class="desc left desc-14px mgn-top-5px" style="color:#2B3D4F;">Vivamus urna. Maecenas sodales elit. Fusce non lectus. Nunc urna. Suspendisse aliquam lacus vitae</p>
+            </a>
+        </section>
+    </div>
+    <div class="bloco-largura mgn-top-10px right">
+        <section class="noticia left largura-240px mgn-left-20px">
+            <h2 class="chamada" style="background-color:#149F85;">NAM EST</h2>
+            <a href="" title="Cultura">
+                <h3 class="categoria" style="color:#149F85;">Cultura</h3>
+            </a>
+            <a href="" title="título da notícia">
+                <figure>
+                    <img src="~/Content/Site/img/noticia/240x135px/img1.jpg" alt="">
+                </figure>
+            </a>
+            <p class="hora left fui-time" style="color:#149F85;">00h00</p>
+            <p class="local right fui-location" style="color:#149F85;">Alvorada, RO</p>
+            <a href="noticia.html" title="título da notícia">
+                <p class="desc left desc-14px mgn-top-5px" style="color:#149F85;">Aliquam tortor. Maecenas tempus gravida lorem. Fusce non lectus</p>
+            </a>
+        </section>
+        <section class="noticia right largura-240px mgn-left-20px">
+            <h2 class="chamada" style="background-color:#BF392B;">NUNC PLACERAT</h2>
+            <a href="" title="Saúde">
+                <h3 class="categoria" style="color:#BF392B;">Saúde</h3>
+            </a>
+            <a href="" title="título da notícia">
+                <figure>
+                    <img src="~/Content/Site/img/noticia/240x135px/img2.jpg" alt="">
+                </figure>
+            </a>
+            <p class="hora left fui-time" style="color:#BF392B;">00h00</p>
+            <p class="local right fui-location" style="color:#BF392B;">Monte Negro, RO</p>
+            <a href="noticia.html" title="título da notícia">
+                <p class="desc left desc-14px mgn-top-5px" style="color:#BF392B;">Maecenas et lorem ac nibh blandit eleifend. Donec elementum</p>
+            </a>
+        </section>
+    </div>
+</article>
+<div class="banner-1024px right mgn-right-10px mgn-top-10px">
+    <div class="banner-728px left">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="~/Content/Site/img/banners/728x90px/img2.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+    <div class="banner-230px right">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="~/Content/Site/img/banners/230x90px/img2.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+</div>
+<div class="bloco-largura mgn-top-20px left">
+    <section class="noticia left largura-220px mgn-esq-dir-10px">
+        <h2 class="chamada" style="background-color:#149F85;">ALIQUAM</h2>
+        <a href="" title="Cultura">
+            <h3 class="categoria" style="color:#149F85;">Cultura</h3>
+        </a>
+        <a href="" title="título da notícia">
+            <figure>
+                <img src="~/Content/Site/img/noticia/220x124px/img1.jpg" alt="">
+            </figure>
+        </a>
+        <p class="hora left fui-time" style="color:#149F85;">00h00</p>
+        <p class="local right fui-location" style="color:#149F85;">Cabixi, RO</p>
+        <a href="noticia.html" title="título da notícia">
+            <p class="desc left mgn-top-5px" style="color:#149F85;">Nunc et neque vel justo dictum tristique. In sed justo. Curabitur</p>
+        </a>
+    </section>
+    <section class="noticia left largura-220px mgn-esq-dir-10px">
+        <h2 class="chamada" style="background-color:#2DB200;">CURABITUR</h2>
+        <a href="" title="Esportes">
+            <h3 class="categoria" style="color:#2DB200;">Esportes</h3>
+        </a>
+        <a href="" title="título da notícia">
+            <figure>
+                <img src="~/Content/Site/img/noticia/220x124px/img2.jpg" alt="">
+            </figure>
+        </a>
+        <p class="hora left fui-time" style="color:#2DB200;">00h00</p>
+        <p class="local right fui-location" style="color:#2DB200;">Monte Negro, RO</p>
+        <a href="noticia.html" title="título da notícia">
+            <p class="desc left mgn-top-5px" style="color:#2DB200;">Duis viverra malesuada mi. In luctus, turpis quis dignissim placerat, mi</p>
+        </a>
+    </section>
+    <section class="noticia left largura-220px mgn-esq-dir-10px">
+        <h2 class="chamada" style="background-color:#95A5A5;">AENEAN</h2>
+        <a href="" title="Geral">
+            <h3 class="categoria" style="color:#95A5A5;">Geral</h3>
+        </a>
+        <a href="" title="título da notícia">
+            <figure>
+                <img src="~/Content/Site/img/noticia/220x124px/img3.jpg" alt="">
+            </figure>
+        </a>
+        <p class="hora left fui-time" style="color:#95A5A5;">00h00</p>
+        <p class="local right fui-location" style="color:#95A5A5;">Cacoal, RO</p>
+        <a href="noticia.html" title="título da notícia">
+            <p class="desc left mgn-top-5px" style="color:#95A5A5;">Nullam ac velit. Nullam et urna eget arcu iaculis venenatis. Vivamus</p>
+        </a>
+    </section>
+    <section class="noticia left largura-220px mgn-esq-dir-10px">
+        <h2 class="chamada" style="background-color:#0080FF;">PELLENTESQUE</h2>
+        <a href="" title="Mundo">
+            <h3 class="categoria" style="color:#0080FF;">Mundo</h3>
+        </a>
+        <a href="" title="título da notícia">
+            <figure>
+                <img src="~/Content/Site/img/noticia/220x124px/img4.jpg" alt="">
+            </figure>
+        </a>
+        <p class="hora left fui-time" style="color:#0080FF;">00h00</p>
+        <p class="local right fui-location" style="color:#0080FF;">Itália</p>
+        <a href="noticia.html" title="título da notícia">
+            <p class="desc left mgn-top-5px" style="color:#0080FF;">Mauris varius, erat eu consectetuer tempor, tortor nibh dictum velit, vel</p>
+        </a>
+    </section>
+    <section class="noticia left largura-220px mgn-esq-dir-10px">
+        <h2 class="chamada" style="background-color:#F39B11;">NULLA</h2>
+        <a href="" title="Política">
+            <h3 class="categoria" style="color:#F39B11;">Política</h3>
+        </a>
+        <a href="" title="título da notícia">
+            <figure>
+                <img src="~/Content/Site/img/noticia/220x124px/img5.jpg" alt="">
+            </figure>
+        </a>
+        <p class="hora left fui-time" style="color:#F39B11;">00h00</p>
+        <p class="local right fui-location" style="color:#F39B11;">Candeias, RO</p>
+        <a href="noticia.html" title="título da notícia">
+            <p class="desc left mgn-top-5px" style="color:#F39B11;">Quisque vel ante quis massa tristique iaculis. Proin egestas. Vivamus vel</p>
+        </a>
+    </section>
+</div>
+<div class="banner-1184px right mgn-right-10px mgn-top-20px">
+    <div class="banner-728px left">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="~/Content/Site/img/banners/728x90px/img3.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+    <div class="banner-417px right">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="~/Content/Site/img/banners/394x90px/img2.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+</div>
+<div class="bloco-largura-800px mgn-top-20px left">
+    <div class="bloco-largura">
+        <section class="noticia left largura-380px mgn-esq-dir-10px">
+            <h2 class="chamada" style="background-color:#149F85;">ALIQUAM SIT AMET</h2>
+            <a href="" title="Cultura">
+                <h3 class="categoria" style="color:#149F85;">Cultura</h3>
+            </a>
+            <a href="" title="título da notícia">
+                <figure>
+                    <img src="~/Content/Site/img/noticia/380x214px/img1.jpg" alt="">
+                </figure>
+            </a>
+            <p class="hora left fui-time" style="color:#149F85;">00h00</p>
+            <p class="local right fui-location" style="color:#149F85;">Jaru, RO</p>
+            <a href="noticia.html" title="título da notícia">
+                <p class="desc desc-18px left mgn-top-5px" style="color:#149F85;">In hac habitasse platea dictumst. Nullam facilisis tincidunt elit. Phasellus rhoncus odio. Praesent </p>
+            </a>
+        </section>
+        <section class="noticia left largura-380px mgn-esq-dir-10px">
+            <h2 class="chamada" style="background-color:#2DB200;">CURABITUR</h2>
+            <a href="" title="Esportes">
+                <h3 class="categoria" style="color:#2DB200;">Esportes</h3>
+            </a>
+            <a href="" title="título da notícia">
+                <figure>
+                    <img src="~/Content/Site/img/noticia/380x214px/img2.jpg" alt="">
+                </figure>
+            </a>
+            <p class="hora left fui-time" style="color:#2DB200;">00h00</p>
+            <p class="local right fui-location" style="color:#2DB200;">Monte Negro, RO</p>
+            <a href="noticia.html" title="título da notícia">
+                <p class="desc desc-18px left mgn-top-5px" style="color:#2DB200;">Duis viverra malesuada mi. In luctus, turpis quis dignissim placerat, mi</p>
+            </a>
+        </section>
+    </div>
+    <div class="bloco-largura mgn-top-20px">
+        <section class="noticia left largura-380px mgn-esq-dir-10px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#8D43AD;">CURABITUR EU</h2>
+            <a href="" title="Tecnologia">
+                <h3 class="categoria" style="color:#8D43AD;">Tecnologia</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#8D43AD;">00h00</p>
+            <p class="local right fui-location" style="color:#8D43AD;">Ji-Paraná, RO</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="" title="título da notícia">
+                    <figure class="left mgn-right-10px">
+                        <img class="left" src="~/Content/Site/img/noticia/150x85px/img1.jpg" alt="" width="150" height="85">
+                    </figure>
+                </a>
+                <a href="noticia.html" title="título da notícia">
+                    <p class="desc desc-14px" style="color:#8D43AD;">Suspendisse ultrices ipsum non nisi. Proin nec odio. Quisque orci neque, pellentesque</p>
+                </a>
+            </div>
+        </section>
+        <section class="noticia left largura-380px mgn-esq-dir-10px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#95A5A5;">IN ERAT</h2>
+            <a href="" title="Geral">
+                <h3 class="categoria" style="color:#95A5A5;">Geral</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#95A5A5;">00h00</p>
+            <p class="local right fui-location" style="color:#95A5A5;">Nova Brasilândia, RO</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="" title="título da notícia">
+                    <figure class="left mgn-right-10px">
+                        <img class="left" src="~/Content/Site/img/noticia/150x85px/img2.jpg" alt="" width="150" height="85">
+                    </figure>
+                </a>
+                <a href="noticia.html" title="título da notícia">
+                    <p class="desc desc-14px" style="color:#95A5A5;">Morbi elementum, elit facilisis commodo dictum, magna erat aliquet quam, non molestie</p>
+                </a>
+            </div>
+        </section>
+    </div>
+    <div class="bloco-largura mgn-top-20px">
+        <section class="noticia left largura-380px mgn-esq-dir-10px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#D35300;">FUSCE SED</h2>
+            <a href="" title="Social">
+                <h3 class="categoria" style="color:#D35300;">Social</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#D35300;">00h00</p>
+            <p class="local right fui-location" style="color:#D35300;">Machadinho, RO</p>
+            <a href="noticia.html" title="título da notícia">
+                <p class="desc left mgn-top-5px" style="color:#D35300;">Donec suscipit est eu nulla. Ut semper mattis elit. Vestibulum ante ipsum</p>
+            </a>
+        </section>
+        <section class="noticia left largura-380px mgn-esq-dir-10px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#2DB200;">FUSCE MATTIS</h2>
+            <a href="" title="Esportes">
+                <h3 class="categoria" style="color:#2DB200;">Esportes</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#2DB200;">00h00</p>
+            <p class="local right fui-location" style="color:#2DB200;">Nova Mamoré, RO</p>
+            <a href="noticia.html" title="título da notícia">
+                <p class="desc left mgn-top-5px" style="color:#2DB200;">Maecenas vehicula magna quis pede. Nam elit risus, sodales quis, pulvinar et, consequat et</p>
+            </a>
+        </section>
+    </div>
+</div>
+<section class="mais-lidas mgn-top-20px mgn-right-10px right">
+    <div class="topo">
+        <h2 class="titulo">Notícias mais lidas</h2>
+        <ul class='tabs left'>
+            <li><a href='#tab1'>Do dia</a></li>
+            <li><a href='#tab2'>Da semana</a></li>
+            <li><a href='#tab3'>Do mês</a></li>
+            <li><a href='#tab4'>Todos os tempos</a></li>
+        </ul>
+    </div>
+    <div id='tab1'>
+        <section class="noticia left largura-380px mgn-top-10px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#F39B11;">NULLA CURSUS</h2>
+            <a href="" title="Política">
+                <h3 class="categoria" style="color:#F39B11;">Política</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#F39B11;">00h00</p>
+            <p class="local right fui-location" style="color:#F39B11;">S. Francisco do Guaporé, RO</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="" title="título da notícia">
+                    <figure class="left mgn-right-10px">
+                        <img class="left" src="~/Content/Site/img/noticia/150x85px/img3.jpg" alt="" width="150" height="85">
+                    </figure>
+                </a>
+                <a href="noticia.html" title="título da notícia">
+                    <p class="desc desc-14px" style="color:#F39B11;">Donec imperdiet nisl. Curabitur id quam a odio malesuada euismod. Suspendisse</p>
+                </a>
+            </div>
+        </section>
+        <section class="noticia left largura-380px mgn-top-20px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#0080FF;">CRAS TEMPOR ULTRICIES URNA</h2>
+            <a href="" title="Mundo">
+                <h3 class="categoria" style="color:#0080FF;">Mundo</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#0080FF;">00h00</p>
+            <p class="local right fui-location" style="color:#0080FF;">Internacional</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="" title="título da notícia">
+                    <figure class="left mgn-right-10px">
+                        <img class="left" src="~/Content/Site/img/noticia/150x85px/img4.jpg" alt="" width="150" height="85">
+                    </figure>
+                </a>
+                <a href="noticia.html" title="título da notícia">
+                    <p class="desc desc-14px" style="color:#0080FF;">Donec imperdiet nisl. Curabitur id quam a odio malesuada euismod. Suspendisse</p>
+                </a>
+            </div>
+        </section>
+        <section class="noticia left largura-380px mgn-top-20px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#2B3D4F;">NULLA CURSUS</h2>
+            <a href="" title="Polícia">
+                <h3 class="categoria" style="color:#2B3D4F;">Polícia</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#2B3D4F;">00h00</p>
+            <p class="local right fui-location" style="color:#2B3D4F;">P. de Rondônia, RO</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="" title="título da notícia">
+                    <figure class="left mgn-right-10px">
+                        <img class="left" src="~/Content/Site/img/noticia/150x85px/img5.jpg" alt="" width="150" height="85">
+                    </figure>
+                </a>
+                <a href="noticia.html" title="título da notícia">
+                    <p class="desc desc-14px" style="color:#2B3D4F;">Donec imperdiet nisl. Curabitur id quam a odio malesuada euismod. Suspendisse</p>
+                </a>
+            </div>
+        </section>
+        <section class="noticia left largura-380px mgn-top-20px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#95A5A5;">ALIQUAM ENIM</h2>
+            <a href="" title="Geral">
+                <h3 class="categoria" style="color:#95A5A5;">Geral</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#95A5A5;">00h00</p>
+            <p class="local right fui-location" style="color:#95A5A5;">Pimenta Bueno, RO</p>
+            <a href="noticia.html" title="título da notícia">
+                <p class="desc left mgn-top-5px" style="color:#95A5A5;">Aliquam erat volutpat. Donec eget ligula. Aliquam erat volutpat. Aliquam</p>
+            </a>
+        </section>
+    </div>
+    <div id='tab2'>
+        <section class="noticia left largura-380px mgn-top-10px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#2B3D4F;">NULLA CURSUS</h2>
+            <a href="" title="Polícia">
+                <h3 class="categoria" style="color:#2B3D4F;">Polícia</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#2B3D4F;">00h00</p>
+            <p class="local right fui-location" style="color:#2B3D4F;">P. de Rondônia, RO</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="" title="título da notícia">
+                    <figure class="left mgn-right-10px">
+                        <img class="left" src="~/Content/Site/img/noticia/150x85px/img5.jpg" alt="" width="150" height="85">
+                    </figure>
+                </a>
+                <a href="noticia.html" title="título da notícia">
+                    <p class="desc desc-14px" style="color:#2B3D4F;">Donec imperdiet nisl. Curabitur id quam a odio malesuada euismod. Suspendisse</p>
+                </a>
+            </div>
+        </section>
+        <section class="noticia left largura-380px mgn-top-20px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#F39B11;">NULLA CURSUS</h2>
+            <a href="" title="Política">
+                <h3 class="categoria" style="color:#F39B11;">Política</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#F39B11;">00h00</p>
+            <p class="local right fui-location" style="color:#F39B11;">S. Francisco do Guaporé, RO</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="" title="título da notícia">
+                    <figure class="left mgn-right-10px">
+                        <img class="left" src="~/Content/Site/img/noticia/150x85px/img3.jpg" alt="" width="150" height="85">
+                    </figure>
+                </a>
+                <a href="noticia.html" title="título da notícia">
+                    <p class="desc desc-14px" style="color:#F39B11;">Donec imperdiet nisl. Curabitur id quam a odio malesuada euismod. Suspendisse</p>
+                </a>
+            </div>
+        </section>
+        <section class="noticia left largura-380px mgn-top-20px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#0080FF;">CRAS TEMPOR ULTRICIES URNA</h2>
+            <a href="" title="Mundo">
+                <h3 class="categoria" style="color:#0080FF;">Mundo</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#0080FF;">00h00</p>
+            <p class="local right fui-location" style="color:#0080FF;">Internacional</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="" title="título da notícia">
+                    <figure class="left mgn-right-10px">
+                        <img class="left" src="~/Content/Site/img/noticia/150x85px/img4.jpg" alt="" width="150" height="85">
+                    </figure>
+                </a>
+                <a href="noticia.html" title="título da notícia">
+                    <p class="desc desc-14px" style="color:#0080FF;">Donec imperdiet nisl. Curabitur id quam a odio malesuada euismod. Suspendisse</p>
+                </a>
+            </div>
+        </section>
+        <section class="noticia left largura-380px mgn-top-20px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#2B3D4F;">NULLA CURSUS</h2>
+            <a href="" title="Polícia">
+                <h3 class="categoria" style="color:#2B3D4F;">Polícia</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#2B3D4F;">00h00</p>
+            <p class="local right fui-location" style="color:#2B3D4F;">P. de Rondônia, RO</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="" title="título da notícia">
+                    <figure class="left mgn-right-10px">
+                        <img class="left" src="~/Content/Site/img/noticia/150x85px/img5.jpg" alt="" width="150" height="85">
+                    </figure>
+                </a>
+                <a href="noticia.html" title="título da notícia">
+                    <p class="desc desc-14px" style="color:#2B3D4F;">Donec imperdiet nisl. Curabitur id quam a odio malesuada euismod. Suspendisse</p>
+                </a>
+            </div>
+        </section>
+    </div>
+    <div id='tab3'>
+        <section class="noticia left largura-380px mgn-top-10px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#F39B11;">NULLA CURSUS</h2>
+            <a href="" title="Política">
+                <h3 class="categoria" style="color:#F39B11;">Política</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#F39B11;">00h00</p>
+            <p class="local right fui-location" style="color:#F39B11;">S. Francisco do Guaporé, RO</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="" title="título da notícia">
+                    <figure class="left mgn-right-10px">
+                        <img class="left" src="~/Content/Site/img/noticia/150x85px/img3.jpg" alt="" width="150" height="85">
+                    </figure>
+                </a>
+                <a href="noticia.html" title="título da notícia">
+                    <p class="desc desc-14px" style="color:#F39B11;">Donec imperdiet nisl. Curabitur id quam a odio malesuada euismod. Suspendisse</p>
+                </a>
+            </div>
+        </section>
+        <section class="noticia left largura-380px mgn-top-20px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#0080FF;">CRAS TEMPOR ULTRICIES URNA</h2>
+            <a href="" title="Mundo">
+                <h3 class="categoria" style="color:#0080FF;">Mundo</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#0080FF;">00h00</p>
+            <p class="local right fui-location" style="color:#0080FF;">Internacional</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="" title="título da notícia">
+                    <figure class="left mgn-right-10px">
+                        <img class="left" src="~/Content/Site/img/noticia/150x85px/img4.jpg" alt="" width="150" height="85">
+                    </figure>
+                </a>
+                <a href="noticia.html" title="título da notícia">
+                    <p class="desc desc-14px" style="color:#0080FF;">Donec imperdiet nisl. Curabitur id quam a odio malesuada euismod. Suspendisse</p>
+                </a>
+            </div>
+        </section>
+        <section class="noticia left largura-380px mgn-top-20px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#2B3D4F;">NULLA CURSUS</h2>
+            <a href="" title="Polícia">
+                <h3 class="categoria" style="color:#2B3D4F;">Polícia</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#2B3D4F;">00h00</p>
+            <p class="local right fui-location" style="color:#2B3D4F;">P. de Rondônia, RO</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="" title="título da notícia">
+                    <figure class="left mgn-right-10px">
+                        <img class="left" src="~/Content/Site/img/noticia/150x85px/img5.jpg" alt="" width="150" height="85">
+                    </figure>
+                </a>
+                <a href="noticia.html" title="título da notícia">
+                    <p class="desc desc-14px" style="color:#2B3D4F;">Donec imperdiet nisl. Curabitur id quam a odio malesuada euismod. Suspendisse</p>
+                </a>
+            </div>
+        </section>
+        <section class="noticia left largura-380px mgn-top-20px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#95A5A5;">ALIQUAM ENIM</h2>
+            <a href="" title="Geral">
+                <h3 class="categoria" style="color:#95A5A5;">Geral</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#95A5A5;">00h00</p>
+            <p class="local right fui-location" style="color:#95A5A5;">Pimenta Bueno, RO</p>
+            <a href="noticia.html" title="título da notícia">
+                <p class="desc left mgn-top-5px" style="color:#95A5A5;">Aliquam erat volutpat. Donec eget ligula. Aliquam erat volutpat. Aliquam</p>
+            </a>
+        </section>
+    </div>
+    <div id='tab4'>
+        <section class="noticia left largura-380px mgn-top-10px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#0080FF;">CRAS TEMPOR ULTRICIES URNA</h2>
+            <a href="" title="Mundo">
+                <h3 class="categoria" style="color:#0080FF;">Mundo</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#0080FF;">00h00</p>
+            <p class="local right fui-location" style="color:#0080FF;">Internacional</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="" title="título da notícia">
+                    <figure class="left mgn-right-10px">
+                        <img class="left" src="~/Content/Site/img/noticia/150x85px/img4.jpg" alt="" width="150" height="85">
+                    </figure>
+                </a>
+                <a href="noticia.html" title="título da notícia">
+                    <p class="desc desc-14px" style="color:#0080FF;">Donec imperdiet nisl. Curabitur id quam a odio malesuada euismod. Suspendisse</p>
+                </a>
+            </div>
+        </section>
+        <section class="noticia left largura-380px mgn-top-20px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#F39B11;">NULLA CURSUS</h2>
+            <a href="" title="Política">
+                <h3 class="categoria" style="color:#F39B11;">Política</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#F39B11;">00h00</p>
+            <p class="local right fui-location" style="color:#F39B11;">S. Francisco do Guaporé, RO</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="" title="título da notícia">
+                    <figure class="left mgn-right-10px">
+                        <img class="left" src="~/Content/Site/img/noticia/150x85px/img3.jpg" alt="" width="150" height="85">
+                    </figure>
+                </a>
+                <a href="noticia.html" title="título da notícia">
+                    <p class="desc desc-14px" style="color:#F39B11;">Donec imperdiet nisl. Curabitur id quam a odio malesuada euismod. Suspendisse</p>
+                </a>
+            </div>
+        </section>
+        <section class="noticia left largura-380px mgn-top-20px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#2B3D4F;">NULLA CURSUS</h2>
+            <a href="" title="Polícia">
+                <h3 class="categoria" style="color:#2B3D4F;">Polícia</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#2B3D4F;">00h00</p>
+            <p class="local right fui-location" style="color:#2B3D4F;">P. de Rondônia, RO</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="" title="título da notícia">
+                    <figure class="left mgn-right-10px">
+                        <img class="left" src="~/Content/Site/img/noticia/150x85px/img5.jpg" alt="" width="150" height="85">
+                    </figure>
+                </a>
+                <a href="noticia.html" title="título da notícia">
+                    <p class="desc desc-14px" style="color:#2B3D4F;">Donec imperdiet nisl. Curabitur id quam a odio malesuada euismod. Suspendisse</p>
+                </a>
+            </div>
+        </section>
+        <section class="noticia left largura-380px mgn-top-20px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#95A5A5;">ALIQUAM ENIM</h2>
+            <a href="" title="Geral">
+                <h3 class="categoria" style="color:#95A5A5;">Geral</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#95A5A5;">00h00</p>
+            <p class="local right fui-location" style="color:#95A5A5;">Pimenta Bueno, RO</p>
+            <a href="noticia.html" title="título da notícia">
+                <p class="desc left mgn-top-5px" style="color:#95A5A5;">Aliquam erat volutpat. Donec eget ligula. Aliquam erat volutpat. Aliquam</p>
+            </a>
+        </section>
+    </div>
+</section>
+<div class="banner-1184px right mgn-right-10px mgn-top-20px">
+    <div class="banner-728px left">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="~/Content/Site/img/banners/728x90px/img4.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+    <div class="banner-417px right">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="~/Content/Site/img/banners/394x90px/img3.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+</div>
+<section class="colunistas mgn-top-20px">
+    <a href="#" title="COLUNISTAS">
+        <h2 class="titulo mgn-left-10px fui-man">COLUNISTAS</h2>
+    </a>
+    <ul class="lista-colunistas">
+        <li>
+            <a href="#" title="Nome do colunista">
+                <figure>
+                    <img src="~/Content/Site/img/colunistas/img1.jpg" alt="">
+                </figure>
+                <h2 class="nome">Donec Suscipit</h2>
+                <p class="desc">Aliquam magna tortor, interdum</p>
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Nome do colunista">
+                <figure>
+                    <img src="~/Content/Site/img/colunistas/img2.jpg" alt="">
+                </figure>
+                <h2 class="nome">Aenean Est Massa</h2>
+                <p class="desc">Proin nunc. Cum sociis natoque</p>
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Nome do colunista">
+                <figure>
+                    <img src="~/Content/Site/img/colunistas/img3.jpg" alt="">
+                </figure>
+                <h2 class="nome">Nulla Cursus Metus </h2>
+                <p class="desc">Aliquam magna tortor, interdum</p>
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Nome do colunista">
+                <figure>
+                    <img src="~/Content/Site/img/colunistas/img4.jpg" alt="">
+                </figure>
+                <h2 class="nome">Class Aptent Taciti</h2>
+                <p class="desc">Nunc aliquam est non</p>
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Nome do colunista">
+                <figure>
+                    <img src="~/Content/Site/img/colunistas/img5.jpg" alt="">
+                </figure>
+                <h2 class="nome">Nunc Accumsan</h2>
+                <p class="desc">Aliquam sit amet nibh</p>
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Nome do colunista">
+                <figure>
+                    <img src="~/Content/Site/img/colunistas/img6.jpg" alt="">
+                </figure>
+                <h2 class="nome">Maecenas Mattis</h2>
+                <p class="desc">Suspendisse potenti. Morbi ut</p>
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Nome do colunista">
+                <figure>
+                    <img src="~/Content/Site/img/colunistas/img7.jpg" alt="">
+                </figure>
+                <h2 class="nome">Ut Vitae</h2>
+                <p class="desc">Fusce eleifend. Aliquam at</p>
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Nome do colunista">
+                <figure>
+                    <img src="~/Content/Site/img/colunistas/img8.jpg" alt="">
+                </figure>
+                <h2 class="nome">Etiam Vitae</h2>
+                <p class="desc">Sed turpis arcu, luctus</p>
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Nome do colunista">
+                <figure>
+                    <img src="~/Content/Site/img/colunistas/img9.jpg" alt="">
+                </figure>
+                <h2 class="nome">Ut Egestas Dolor</h2>
+                <p class="desc">Praesent at lectus. Maecenas</p>
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Nome do colunista">
+                <figure>
+                    <img src="~/Content/Site/img/colunistas/img10.jpg" alt="">
+                </figure>
+                <h2 class="nome">Nam Fringilla</h2>
+                <p class="desc">Suspendisse augue. Aenean sit</p>
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Nome do colunista">
+                <figure>
+                    <img src="~/Content/Site/img/colunistas/img11.jpg" alt="">
+                </figure>
+                <h2 class="nome">Nulla Facilisi</h2>
+                <p class="desc">Praesent lectus dui, facilisis</p>
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Nome do colunista">
+                <figure>
+                    <img src="~/Content/Site/img/colunistas/img12.jpg" alt="">
+                </figure>
+                <h2 class="nome">Suspendisse Vitae</h2>
+                <p class="desc">Fusce quis nisl ac</p>
+            </a>
+        </li>
+    </ul>
+</section>
+<div class="banner-323px right mgn-top-20px mgn-right-10px">
+    <div class="texto-vertical left"></div>
+    <div class="banner right">
+        <figure>
+            <a href="#" title="Título do banner">
+                <img src="~/Content/Site/img/banners/300x250px/img1.png" alt="">
+            </a>
+        </figure>
+    </div>
+</div>
+<div class="banner-1184px right mgn-right-10px mgn-top-20px">
+    <div class="banner-728px left">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="~/Content/Site/img/banners/728x90px/img5.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+    <div class="banner-417px right">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="~/Content/Site/img/banners/394x90px/img4.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+</div>
+<section class="eventos mgn-top-20px">
+    <a href="eventos.html" title="EVENTOS">
+        <h2 class="titulo mgn-left-10px fui-camera">EVENTOS</h2>
+    </a>
+    <ul class="lista-eventos mgn-left-10px">
+        <li>
+            <div class="topo-eventos">
+                <p class="data left">00/00/0000</p>
+                <p class="quant-fotos right fui-camera">0000 fotos</p>
+            </div>
+            <a href="#" title="Duis eget libero non nisi lobortis suscipit">
+                <figure>
+                    <img src="~/Content/Site/img/eventos/180x102px/img1.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Chupinguaia, RO</p>
+                <p class="desc left">Duis eget libero non nisi lobortis suscipit...</p>
+            </a>
+        </li>
+        <li>
+            <div class="topo-eventos">
+                <p class="data left">00/00/0000</p>
+                <p class="quant-fotos right fui-camera">0000 fotos</p>
+            </div>
+            <a href="#" title="Quisque faucibus. Fusce eros">
+                <figure>
+                    <img src="~/Content/Site/img/eventos/180x102px/img2.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Colorado, RO</p>
+                <p class="desc left">Quisque faucibus. Fusce eros</p>
+            </a>
+        </li>
+        <li>
+            <div class="topo-eventos">
+                <p class="data left">00/00/0000</p>
+                <p class="quant-fotos right fui-camera">0000 fotos</p>
+            </div>
+            <a href="#" title="In a enim in metus ultrices tristique">
+                <figure>
+                    <img src="~/Content/Site/img/eventos/180x102px/img3.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Corumbiara, RO</p>
+                <p class="desc left">In a enim in metus ultrices tristique</p>
+            </a>
+        </li>
+        <li>
+            <div class="topo-eventos">
+                <p class="data left">00/00/0000</p>
+                <p class="quant-fotos right fui-camera">0000 fotos</p>
+            </div>
+            <a href="#" title="Aenean porta. Nam dictum laoreet lectus">
+                <figure>
+                    <img src="~/Content/Site/img/eventos/180x102px/img4.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Espigão D’Oeste, RO</p>
+                <p class="desc left">Aenean porta. Nam dictum laoreet lectus</p>
+            </a>
+        </li>
+        <li>
+            <div class="topo-eventos">
+                <p class="data left">00/00/0000</p>
+                <p class="quant-fotos right fui-camera">0000 fotos</p>
+            </div>
+            <a href="#" title="Duis eget libero non nisi lobortis suscipit">
+                <figure>
+                    <img src="~/Content/Site/img/eventos/180x102px/img5.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Chupinguaia, RO</p>
+                <p class="desc left">Duis eget libero non nisi lobortis suscipit...</p>
+            </a>
+        </li>
+        <li>
+            <div class="topo-eventos">
+                <p class="data left">00/00/0000</p>
+                <p class="quant-fotos right fui-camera">0000 fotos</p>
+            </div>
+            <a href="#" title="Duis eget libero non nisi lobortis suscipit">
+                <figure>
+                    <img src="~/Content/Site/img/eventos/180x102px/img6.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Chupinguaia, RO</p>
+                <p class="desc left">Duis eget libero non nisi lobortis suscipit...</p>
+            </a>
+        </li>
+        <li>
+            <div class="topo-eventos">
+                <p class="data left">00/00/0000</p>
+                <p class="quant-fotos right fui-camera">0000 fotos</p>
+            </div>
+            <a href="#" title="Duis eget libero non nisi lobortis suscipit">
+                <figure>
+                    <img src="~/Content/Site/img/eventos/180x102px/img7.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Chupinguaia, RO</p>
+                <p class="desc left">Duis eget libero non nisi lobortis suscipit...</p>
+            </a>
+        </li>
+        <li>
+            <div class="topo-eventos">
+                <p class="data left">00/00/0000</p>
+                <p class="quant-fotos right fui-camera">0000 fotos</p>
+            </div>
+            <a href="#" title="Duis eget libero non nisi lobortis suscipit">
+                <figure>
+                    <img src="~/Content/Site/img/eventos/180x102px/img8.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Chupinguaia, RO</p>
+                <p class="desc left">Duis eget libero non nisi lobortis suscipit...</p>
+            </a>
+        </li>
+        <li>
+            <div class="topo-eventos">
+                <p class="data left">00/00/0000</p>
+                <p class="quant-fotos right fui-camera">0000 fotos</p>
+            </div>
+            <a href="#" title="Duis eget libero non nisi lobortis suscipit">
+                <figure>
+                    <img src="~/Content/Site/img/eventos/180x102px/img9.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Chupinguaia, RO</p>
+                <p class="desc left">Duis eget libero non nisi lobortis suscipit...</p>
+            </a>
+        </li>
+        <li>
+            <div class="topo-eventos">
+                <p class="data left">00/00/0000</p>
+                <p class="quant-fotos right fui-camera">0000 fotos</p>
+            </div>
+            <a href="#" title="Duis eget libero non nisi lobortis suscipit">
+                <figure>
+                    <img src="~/Content/Site/img/eventos/180x102px/img10.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Chupinguaia, RO</p>
+                <p class="desc left">Duis eget libero non nisi lobortis suscipit...</p>
+            </a>
+        </li>
+        <li>
+            <div class="topo-eventos">
+                <p class="data left">00/00/0000</p>
+                <p class="quant-fotos right fui-camera">0000 fotos</p>
+            </div>
+            <a href="#" title="Duis eget libero non nisi lobortis suscipit">
+                <figure>
+                    <img src="~/Content/Site/img/eventos/180x102px/img11.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Chupinguaia, RO</p>
+                <p class="desc left">Duis eget libero non nisi lobortis suscipit...</p>
+            </a>
+        </li>
+        <li>
+            <div class="topo-eventos">
+                <p class="data left">00/00/0000</p>
+                <p class="quant-fotos right fui-camera">0000 fotos</p>
+            </div>
+            <a href="#" title="Duis eget libero non nisi lobortis suscipit">
+                <figure>
+                    <img src="~/Content/Site/img/eventos/180x102px/img12.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Chupinguaia, RO</p>
+                <p class="desc left">Duis eget libero non nisi lobortis suscipit...</p>
+            </a>
+        </li>
+        <li>
+            <div class="topo-eventos">
+                <p class="data left">00/00/0000</p>
+                <p class="quant-fotos right fui-camera">0000 fotos</p>
+            </div>
+            <a href="#" title="Duis eget libero non nisi lobortis suscipit">
+                <figure>
+                    <img src="~/Content/Site/img/eventos/180x102px/img13.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Chupinguaia, RO</p>
+                <p class="desc left">Duis eget libero non nisi lobortis suscipit...</p>
+            </a>
+        </li>
+        <li>
+            <div class="topo-eventos">
+                <p class="data left">00/00/0000</p>
+                <p class="quant-fotos right fui-camera">0000 fotos</p>
+            </div>
+            <a href="#" title="Duis eget libero non nisi lobortis suscipit">
+                <figure>
+                    <img src="~/Content/Site/img/eventos/180x102px/img14.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Chupinguaia, RO</p>
+                <p class="desc left">Duis eget libero non nisi lobortis suscipit...</p>
+            </a>
+        </li>
+        <li>
+            <div class="topo-eventos">
+                <p class="data left">00/00/0000</p>
+                <p class="quant-fotos right fui-camera">0000 fotos</p>
+            </div>
+            <a href="#" title="Duis eget libero non nisi lobortis suscipit">
+                <figure>
+                    <img src="~/Content/Site/img/eventos/180x102px/img15.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Chupinguaia, RO</p>
+                <p class="desc left">Duis eget libero non nisi lobortis suscipit...</p>
+            </a>
+        </li>
+    </ul>
+</section>
+<div class="banner-vertical right mgn-right-10px mgn-top-56px">
+    <div class="texto-vertical left"></div>
+    <div class="banner right">
+        <figure>
+            <a href="#" title="Título do banner">
+                <img src="~/Content/Site/img/banners/120x600px/img2.png" alt="">
+            </a>
+        </figure>
+    </div>
+</div>
+<div class="banner-1184px right mgn-right-10px mgn-top-20px">
+    <div class="banner-728px left">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="~/Content/Site/img/banners/728x90px/img6.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+    <div class="banner-417px right">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="~/Content/Site/img/banners/394x90px/img5.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+</div>
+<section class="bloco-largura largura-380px left mgn-left-10px mgn-top-20px">
+    <a href="noticias.html" title="Esportes">
+        <h2 class="fui-menu titulo-secao" style="color:#2DB200;">Esportes</h2>
+    </a>
+    <section class="noticia left largura-380px">
+        <h2 class="chamada" style="background-color:#2DB200;">VESTIBULUM AC RISUS NEC</h2>
+        <a href="noticias.html" title="Esportes">
+            <h3 class="categoria" style="color:#2DB200;">Esportes</h3>
+        </a>
+        <a href="" title="título da notícia">
+            <figure>
+                <img src="~/Content/Site/img/noticia/380x214px/img5.jpg" alt="">
+            </figure>
+        </a>
+        <p class="hora left fui-time" style="color:#2DB200;">00h00</p>
+        <p class="local right fui-location" style="color:#2DB200;">Ariquemes, RO</p>
+        <a href="noticia.html" title="título da notícia">
+            <p class="desc desc-18px left mgn-top-5px" style="color:#2DB200;">Integer euismod tellus euismod arcu. Donec quis dolor. Cras pharetra mauris id nisi. Nulla mollis</p>
+        </a>
+    </section>
+    <section class="noticia left largura-380px mgn-top-20px">
+        <h2 class="chamada mgn-bottom-5px" style="background-color:#2DB200;">IN ERAT</h2>
+        <a href="noticias.html" title="Esportes">
+            <h3 class="categoria" style="color:#2DB200;">Esportes</h3>
+        </a>
+        <p class="hora left fui-time" style="color:#2DB200;">00h00</p>
+        <p class="local right fui-location" style="color:#2DB200;">Nova Brasilândia, RO</p>
+        <div class="bloco-largura left mgn-top-10px">
+            <a href="" title="título da notícia">
+                <figure class="left mgn-right-10px">
+                    <img class="left" src="~/Content/Site/img/noticia/150x85px/img1.jpg" alt="" width="150" height="85">
+                </figure>
+            </a>
+            <a href="noticia.html" title="título da notícia">
+                <p class="desc desc-14px" style="color:#2DB200;">Morbi elementum, elit facilisis commodo dictum, magna erat aliquet quam, non molestie</p>
+            </a>
+        </div>
+    </section>
+    <section class="noticia left largura-380px mgn-top-20px">
+        <h2 class="chamada mgn-bottom-5px" style="background-color:#2DB200;">FUSCE SED</h2>
+        <a href="noticias.html" title="Esportes">
+            <h3 class="categoria" style="color:#2DB200;">Esportes</h3>
+        </a>
+        <p class="hora left fui-time" style="color:#2DB200;">00h00</p>
+        <p class="local right fui-location" style="color:#2DB200;">Machadinho, RO</p>
+        <a href="noticia.html" title="título da notícia">
+            <p class="desc left mgn-top-5px" style="color:#2DB200;">Donec suscipit est eu nulla. Ut semper mattis elit. Vestibulum ante ipsum</p>
+        </a>
+    </section>
+</section>
+<section class="bloco-largura largura-380px left mgn-left-20px mgn-top-20px">
+    <a href="noticias.html" title="Polícia">
+        <h2 class="fui-menu  titulo-secao" style="color:#2B3D4E;">Polícia</h2>
+    </a>
+    <section class="noticia left largura-380px">
+        <h2 class="chamada" style="background-color:#2B3D4E;">VESTIBULUM AC RISUS NEC</h2>
+        <a href="noticias.html" title="Polícia">
+            <h3 class="categoria" style="color:#2B3D4E;">Polícia</h3>
+        </a>
+        <a href="" title="título da notícia">
+            <figure>
+                <img src="~/Content/Site/img/noticia/380x214px/img2.jpg" alt="">
+            </figure>
+        </a>
+        <p class="hora left fui-time" style="color:#2B3D4E;">00h00</p>
+        <p class="local right fui-location" style="color:#2B3D4E;">Ariquemes, RO</p>
+        <a href="noticia.html" title="título da notícia">
+            <p class="desc desc-18px left mgn-top-5px" style="color:#2B3D4E;">Integer euismod tellus euismod arcu. Donec quis dolor. Cras pharetra mauris id nisi. Nulla mollis</p>
+        </a>
+    </section>
+    <section class="noticia left largura-380px mgn-top-20px">
+        <h2 class="chamada mgn-bottom-5px" style="background-color:#2B3D4E;">IN ERAT</h2>
+        <a href="noticias.html" title="Polícia">
+            <h3 class="categoria" style="color:#2B3D4E;">Polícia</h3>
+        </a>
+        <p class="hora left fui-time" style="color:#2B3D4E;">00h00</p>
+        <p class="local right fui-location" style="color:#2B3D4E;">Nova Brasilândia, RO</p>
+        <div class="bloco-largura left mgn-top-10px">
+            <a href="" title="título da notícia">
+                <figure class="left mgn-right-10px">
+                    <img class="left" src="~/Content/Site/img/noticia/150x85px/img4.jpg" alt="" width="150" height="85">
+                </figure>
+            </a>
+            <a href="noticia.html" title="título da notícia">
+                <p class="desc desc-14px" style="color:#2B3D4E;">Morbi elementum, elit facilisis commodo dictum, magna erat aliquet quam, non molestie</p>
+            </a>
+        </div>
+    </section>
+    <section class="noticia left largura-380px mgn-top-20px">
+        <h2 class="chamada mgn-bottom-5px" style="background-color:#2B3D4E;">FUSCE SED</h2>
+        <a href="noticias.html" title="Polícia">
+            <h3 class="categoria" style="color:#2B3D4E;">Polícia</h3>
+        </a>
+        <p class="hora left fui-time" style="color:#2B3D4E;">00h00</p>
+        <p class="local right fui-location" style="color:#2B3D4E;">Machadinho, RO</p>
+        <a href="noticia.html" title="título da notícia">
+            <p class="desc left mgn-top-5px" style="color:#2B3D4E;">Donec suscipit est eu nulla. Ut semper mattis elit. Vestibulum ante ipsum</p>
+        </a>
+    </section>
+</section>
+<section class="bloco-largura largura-380px left mgn-left-20px mgn-top-20px">
+    <a href="noticias.html" title="Política">
+        <h2 class="fui-menu  titulo-secao" style="color:#F39B11;">Política</h2>
+    </a>
+    <section class="noticia left largura-380px">
+        <h2 class="chamada" style="background-color:#F39B11;">DONEC JUSTO NIBH</h2>
+        <a href="noticias.html" title="Política">
+            <h3 class="categoria" style="color:#F39B11;">Política</h3>
+        </a>
+        <a href="" title="título da notícia">
+            <figure>
+                <img src="~/Content/Site/img/noticia/380x214px/img4.jpg" alt="">
+            </figure>
+        </a>
+        <p class="hora left fui-time" style="color:#F39B11;">00h00</p>
+        <p class="local right fui-location" style="color:#F39B11;">São Felipe, RO</p>
+        <a href="noticia.html" title="título da notícia">
+            <p class="desc desc-18px left mgn-top-5px" style="color:#F39B11;">Nunc massa urna, imperdiet nec, suscipit in, semper nec, sem. Sed at tortor. Aliquam quis </p>
+        </a>
+    </section>
+    <section class="noticia left largura-380px mgn-top-20px">
+        <h2 class="chamada mgn-bottom-5px" style="background-color:#F39B11;">IN ERAT</h2>
+        <a href="noticias.html" title="Política">
+            <h3 class="categoria" style="color:#F39B11;">Política</h3>
+        </a>
+        <p class="hora left fui-time" style="color:#F39B11;">00h00</p>
+        <p class="local right fui-location" style="color:#F39B11;">Nova Brasilândia, RO</p>
+        <div class="bloco-largura left mgn-top-10px">
+            <a href="" title="título da notícia">
+                <figure class="left mgn-right-10px">
+                    <img class="left" src="~/Content/Site/img/noticia/150x85px/img2.jpg" alt="" width="150" height="85">
+                </figure>
+            </a>
+            <a href="noticia.html" title="título da notícia">
+                <p class="desc desc-14px" style="color:#F39B11;">Morbi elementum, elit facilisis commodo dictum, magna erat aliquet quam, non molestie</p>
+            </a>
+        </div>
+    </section>
+    <section class="noticia left largura-380px mgn-top-20px">
+        <h2 class="chamada mgn-bottom-5px" style="background-color:#F39B11;">FUSCE SED</h2>
+        <a href="noticias.html" title="Política">
+            <h3 class="categoria" style="color:#F39B11;">Política</h3>
+        </a>
+        <p class="hora left fui-time" style="color:#F39B11;">00h00</p>
+        <p class="local right fui-location" style="color:#F39B11;">Machadinho, RO</p>
+        <a href="noticia.html" title="título da notícia">
+            <p class="desc left mgn-top-5px" style="color:#F39B11;">Donec suscipit est eu nulla. Ut semper mattis elit. Vestibulum ante ipsum</p>
+        </a>
+    </section>
+</section>
+<div class="banner-1184px right mgn-right-10px mgn-top-20px">
+    <div class="banner-728px left">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="~/Content/Site/img/banners/728x90px/img7.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+    <div class="banner-417px right">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="~/Content/Site/img/banners/394x90px/img1.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+</div>
+<section class="slide-classificados mgn-top-20px">
+    <a href="classificados.html" title="CLASSIFICADOS">
+        <h2 class="titulo fui-calendar">CLASSIFICADOS</h2>
+    </a>
+    <span class="anter rpl">Anterior</span>
+    <span class="prox rpl">Próximo</span>
+    <span class="barra-left"></span>
+    <span class="barra-right"></span>
+    <ul class="lista-classificados mgn-left-10px">
+        <li>
+            <a href="#" title="Veículos">
+                <span class="categ" style="background-color: #7F8B8D;">Veículos</span>
+            </a>
+            <a href="classificado.html" title="Curabitur elementum placerat diam. Ut sodales sem scelerisque sem. Sed">
+                <figure>
+                    <img src="~/Content/Site/img/classificados/212x119px/img1.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Chupinguaia, RO</p>
+                <p class="desc left mgn-top-10px">Curabitur elementum placerat diam. Ut sodales sem scelerisque sem. Sed</p>
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Eletrônicos">
+                <span class="categ" style="background-color: #3398DA;">Eletrônicos</span>
+            </a>
+            <a href="classificado.html" title="Integer id justo ut diam suscipit laoreet. Suspendisse commodo">
+                <figure>
+                    <img src="~/Content/Site/img/classificados/212x119px/img2.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Colorado, RO</p>
+                <p class="desc left">Integer id justo ut diam suscipit laoreet. Suspendisse commodo</p>
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Informática">
+                <span class="categ" style="background-color: #2B3D4F;">Informática</span>
+            </a>
+            <a href="classificado.html" title="Curabitur enim lacus, gravida nec, varius nec, blandit id, libero">
+                <figure>
+                    <img src="~/Content/Site/img/classificados/212x119px/img3.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Corumbiara, RO</p>
+                <p class="desc left">Curabitur enim lacus, gravida nec, varius nec, blandit id, libero</p>
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Imóveis">
+                <span class="categ" style="background-color: #8D43AD;">Imóveis</span>
+            </a>
+            <a href="classificado.html" title="Nunc aliquam. Fusce justo eros, dictum gravida, lacinia quis, aliquet">
+                <figure>
+                    <img src="~/Content/Site/img/classificados/212x119px/img4.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Espigão D’Oeste, RO</p>
+                <p class="desc left">Nunc aliquam. Fusce justo eros, dictum gravida, lacinia quis, aliquet</p>
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Informática">
+                <span class="categ" style="background-color: #2B3D4F;">Informática</span>
+            </a>
+            <a href="classificado.html" title="Fusce tellus risus, tincidunt at, gravida id, vestibulum quis, nibh">
+                <figure>
+                    <img src="~/Content/Site/img/classificados/212x119px/img5.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Chupinguaia, RO</p>
+                <p class="desc left">Fusce tellus risus, tincidunt at, gravida id, vestibulum quis, nibh</p>
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Veículos">
+                <span class="categ" style="background-color: #7F8B8D;">Veículos</span>
+            </a>
+            <a href="classificado.html" title="Curabitur elementum placerat diam. Ut sodales sem scelerisque sem. Sed">
+                <figure>
+                    <img src="~/Content/Site/img/classificados/212x119px/img1.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Chupinguaia, RO</p>
+                <p class="desc left mgn-top-10px">Curabitur elementum placerat diam. Ut sodales sem scelerisque sem. Sed</p>
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Eletrônicos">
+                <span class="categ" style="background-color: #3398DA;">Eletrônicos</span>
+            </a>
+            <a href="classificado.html" title="Integer id justo ut diam suscipit laoreet. Suspendisse commodo">
+                <figure>
+                    <img src="~/Content/Site/img/classificados/212x119px/img2.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Colorado, RO</p>
+                <p class="desc left">Integer id justo ut diam suscipit laoreet. Suspendisse commodo</p>
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Informática">
+                <span class="categ" style="background-color: #2B3D4F;">Informática</span>
+            </a>
+            <a href="classificado.html" title="Curabitur enim lacus, gravida nec, varius nec, blandit id, libero">
+                <figure>
+                    <img src="~/Content/Site/img/classificados/212x119px/img3.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Corumbiara, RO</p>
+                <p class="desc left">Curabitur enim lacus, gravida nec, varius nec, blandit id, libero</p>
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Imóveis">
+                <span class="categ" style="background-color: #8D43AD;">Imóveis</span>
+            </a>
+            <a href="classificado.html" title="Nunc aliquam. Fusce justo eros, dictum gravida, lacinia quis, aliquet">
+                <figure>
+                    <img src="~/Content/Site/img/classificados/212x119px/img4.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Espigão D’Oeste, RO</p>
+                <p class="desc left">Nunc aliquam. Fusce justo eros, dictum gravida, lacinia quis, aliquet</p>
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Informática">
+                <span class="categ" style="background-color: #2B3D4F;">Informática</span>
+            </a>
+            <a href="classificado.html" title="Fusce tellus risus, tincidunt at, gravida id, vestibulum quis, nibh">
+                <figure>
+                    <img src="~/Content/Site/img/classificados/212x119px/img5.jpg" alt="">
+                </figure>
+                <p class="hora left fui-time">00h00</p>
+                <p class="local right fui-location">Chupinguaia, RO</p>
+                <p class="desc left">Fusce tellus risus, tincidunt at, gravida id, vestibulum quis, nibh</p>
+            </a>
+        </li>
+    </ul>
+</section>
+<div id="featured" class="chamada-rotativa mgn-left-10px mgn-top-20px">
+    <ul class="lista-rotativa">
+        <li>
+            <a href="" title="">
+                <figure>
+                    <img src="~/Content/Site/img/eventos/444x250px/img1.jpg" alt="">
+                </figure>
+            </a>
+        </li>
+        <li>
+            <a href="" title="">
+                <figure>
+                    <img src="~/Content/Site/img/eventos/444x250px/img2.jpg" alt="">
+                </figure>
+            </a>
+        </li>
+        <li>
+            <a href="" title="">
+                <figure>
+                    <img src="~/Content/Site/img/eventos/444x250px/img3.jpg" alt="">
+                </figure>
+            </a>
+        </li>
+        <li>
+            <a href="" title="">
+                <figure>
+                    <img src="~/Content/Site/img/eventos/444x250px/img4.jpg" alt="">
+                </figure>
+            </a>
+        </li>
+        <li>
+            <a href="" title="">
+                <figure>
+                    <img src="~/Content/Site/img/eventos/444x250px/img5.jpg" alt="">
+                </figure>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="banner-323px left mgn-top-20px mgn-left-20px">
+    <div class="texto-vertical left"></div>
+    <div class="banner right">
+        <figure>
+            <a href="#" title="Título do banner">
+                <img src="~/Content/Site/img/banners/300x250px/img2.png" alt="">
+            </a>
+        </figure>
+    </div>
+</div>
+<section class="area-guia right mgn-top-20px mgn-right-10px">
+    <a href="guiacomercial.html" title="GUIA COMERCIAL">
+        <h2 class="titulo fui-eye">GUIA COMERCIAL</h2>
+    </a>
+    <a class="link-cadastro fui-new" href="guiacomercial-cadastrar" title="Cadastrar empresa">Cadastrar empresa</a>
+    <form class="form-guia" action="" method="">
+        <input placeholder="Busca" type="text" value="">
+        <button title="Buscar" type="submit"></button>
+    </form>
+</section>
+<div class="banner-377px right mgn-top-20px mgn-right-10px">
+    <div class="texto-vertical left"></div>
+    <div class="banner right">
+        <figure>
+            <a href="#" title="Título do banner">
+                <img src="~/Content/Site/img/banners/357x134px/img1.png" alt="">
+            </a>
+        </figure>
+    </div>
+</div>
+<div class="bloco-largura left mgn-top-20px">
+    <a href="noticias.html" title="Brasil e mundo">
+        <h2 class="titulo-secao fui-menu mgn-left-10px" style="color:#00668C;">Brasil e mundo</h2>
+    </a>
+    <section class="noticia left largura-380px mgn-esq-dir-10px">
+        <h2 class="chamada mgn-bottom-5px" style="background-color:#00668C;">CURABITUR EU</h2>
+        <a href="noticias.html" title="Brasil e mundo">
+            <h3 class="categoria" style="color:#00668C;">Brasil e mundo</h3>
+        </a>
+        <p class="hora left fui-time" style="color:#00668C;">00h00</p>
+        <p class="local right fui-location" style="color:#00668C;">Ji-Paraná, RO</p>
+        <div class="bloco-largura left mgn-top-10px">
+            <a href="" title="título da notícia">
+                <figure class="left mgn-right-10px">
+                    <img class="left" src="~/Content/Site/img/noticia/150x85px/img1.jpg" alt="" width="150" height="85">
+                </figure>
+            </a>
+            <a href="noticia.html" title="título da notícia">
+                <p class="desc desc-14px" style="color:#00668C;">Suspendisse ultrices ipsum non nisi. Proin nec odio. Quisque orci neque, pellentesque</p>
+            </a>
+        </div>
+    </section>
+    <section class="noticia left largura-380px mgn-esq-dir-10px">
+        <h2 class="chamada mgn-bottom-5px" style="background-color:#00668C;">IN ERAT</h2>
+        <a href="noticias.html" title="Brasil e mundo">
+            <h3 class="categoria" style="color:#00668C;">Brasil e mundo</h3>
+        </a>
+        <p class="hora left fui-time" style="color:#00668C;">00h00</p>
+        <p class="local right fui-location" style="color:#00668C;">Nova Brasilândia, RO</p>
+        <div class="bloco-largura left mgn-top-10px">
+            <a href="" title="título da notícia">
+                <figure class="left mgn-right-10px">
+                    <img class="left" src="~/Content/Site/img/noticia/150x85px/img2.jpg" alt="" width="150" height="85">
+                </figure>
+            </a>
+            <a href="noticia.html" title="título da notícia">
+                <p class="desc desc-14px" style="color:#00668C;">Morbi elementum, elit facilisis commodo dictum, magna erat aliquet quam, non molestie</p>
+            </a>
+        </div>
+    </section>
+    <section class="noticia left largura-380px mgn-esq-dir-10px">
+        <h2 class="chamada mgn-bottom-5px" style="background-color:#00668C;">IN ERAT</h2>
+        <a href="noticias.html" title="Brasil e mundo">
+            <h3 class="categoria" style="color:#00668C;">Brasil e mundo</h3>
+        </a>
+        <p class="hora left fui-time" style="color:#00668C;">00h00</p>
+        <p class="local right fui-location" style="color:#00668C;">Nova Brasilândia, RO</p>
+        <div class="bloco-largura left mgn-top-10px">
+            <a href="" title="título da notícia">
+                <figure class="left mgn-right-10px">
+                    <img class="left" src="~/Content/Site/img/noticia/150x85px/img3.jpg" alt="" width="150" height="85">
+                </figure>
+            </a>
+            <a href="noticia.html" title="título da notícia">
+                <p class="desc desc-14px" style="color:#00668C;">Morbi elementum, elit facilisis commodo dictum, magna erat aliquet quam, non molestie</p>
+            </a>
+        </div>
+    </section>
+</div>
+<div class="bloco-largura left mgn-top-20px">
+    <section class="noticia left largura-380px mgn-esq-dir-10px">
+        <h2 class="chamada mgn-bottom-5px" style="background-color:#00668C;">FUSCE SED</h2>
+        <a href="noticias.html" title="Brasil e mundo">
+            <h3 class="categoria" style="color:#00668C;">Brasil e mundo</h3>
+        </a>
+        <p class="hora left fui-time" style="color:#00668C;">00h00</p>
+        <p class="local right fui-location" style="color:#00668C;">Machadinho, RO</p>
+        <a href="noticia.html" title="título da notícia">
+            <p class="desc left mgn-top-5px" style="color:#00668C;">Donec suscipit est eu nulla. Ut semper mattis elit. Vestibulum ante ipsum</p>
+        </a>
+    </section>
+    <section class="noticia left largura-380px mgn-esq-dir-10px">
+        <h2 class="chamada mgn-bottom-5px" style="background-color:#00668C;">FUSCE MATTIS</h2>
+        <a href="noticias.html" title="Brasil e mundo">
+            <h3 class="categoria" style="color:#00668C;">Brasil e mundo</h3>
+        </a>
+        <p class="hora left fui-time" style="color:#00668C;">00h00</p>
+        <p class="local right fui-location" style="color:#00668C;">Nova Mamoré, RO</p>
+        <a href="noticia.html" title="título da notícia">
+            <p class="desc left mgn-top-5px" style="color:#00668C;">Maecenas vehicula magna quis pede. Nam elit risus, sodales quis, pulvinar et, consequat et</p>
+        </a>
+    </section>
+    <section class="noticia left largura-380px mgn-esq-dir-10px">
+        <h2 class="chamada mgn-bottom-5px" style="background-color:#00668C;">FUSCE MATTIS</h2>
+        <a href="noticias.html" title="Brasil e mundo">
+            <h3 class="categoria" style="color:#00668C;">Brasil e mundo</h3>
+        </a>
+        <p class="hora left fui-time" style="color:#00668C;">00h00</p>
+        <p class="local right fui-location" style="color:#00668C;">Nova Mamoré, RO</p>
+        <a href="noticia.html" title="título da notícia">
+            <p class="desc left mgn-top-5px" style="color:#00668C;">Maecenas vehicula magna quis pede. Nam elit risus, sodales quis, pulvinar et, consequat et</p>
+        </a>
+    </section>
+</div>
