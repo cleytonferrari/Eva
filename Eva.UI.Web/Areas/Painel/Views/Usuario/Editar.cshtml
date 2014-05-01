@@ -1,0 +1,133 @@
+﻿@model Eva.Dominio.Usuario
+
+<div class="col-md-12">
+    <!--breadcrumbs start -->
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home", new { Area = "Painel" })"><i class="fa fa-home"></i> Inicio</a></li>
+        <li><a href="@Url.Action("Index", "Usuario", new { Area = "Painel" })"><i class="fa fa-home"></i> Usuários</a></li>
+        <li class="active">Editar</li>
+    </ul>
+    <!--breadcrumbs end -->
+</div>
+
+<div class="col-lg-12">
+    <section class="panel">
+        <header class="panel-heading">
+            @(string.IsNullOrEmpty(Model.Id)?"Cadastrar novo usuário":"Editar usuário: "+Model.Nome)
+        </header>
+        <div class="panel-body">
+            <div class="form">
+                <form class="cmxform form-horizontal " id="usuarioForm" method="POST" action="" novalidate="novalidate" enctype="multipart/form-data">
+
+                    <div class="form-group ">
+                        <label for="nome" class="control-label col-lg-3">Nome:</label>
+                        <div class="col-lg-6">
+                            <input class=" form-control" id="nome" name="nome" minlength="2" type="text" required="" value="@Model.Nome">
+                            <label for="nome" class="error">Erro</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="email" class="control-label col-lg-3">Email:</label>
+                        <div class="col-lg-6">
+                            <input class="form-control " id="email" type="email" name="email" required="" value="@Model.Email">
+                            <label for="email" class="error">Erro</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="email" class="control-label col-lg-3">Grupo:</label>
+                        <div class="col-lg-6">
+                            <select name="grupo_id" class="form-control">
+                                <option value='grupo' selected>Meu Grupo</option>";
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="senha" class="control-label col-lg-3">Senha:</label>
+                        <div class="col-lg-6">
+                            <input class="form-control " id="senha" type="password" name="senha" required="">
+                            <label for="senha" class="error">Erro</label>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="confsenha" class="control-label col-lg-3">Confirmar Senha:</label>
+                        <div class="col-lg-6">
+                            <input class="form-control " id="confsenha" type="password" name="confsenha" required="">
+                            <label for="confsenha" class="error">Erro</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group last">
+                        <label class="control-label col-md-3">Foto:</label>
+                        <div class="col-md-9">
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <input type="hidden" value="" name="">
+                                
+                                @{ var foto = (string.IsNullOrEmpty(Model.Foto)) ? "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=Sem+Foto" : Model.Foto;}
+                                <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                    <img src="@foto" alt="">
+                                </div>
+                                <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 10px;"></div>
+                                <div>
+                                    <span class="btn btn-white btn-file">
+                                        <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Selecionar Foto</span>
+                                        <span class="fileupload-exists"><i class="fa fa-undo"></i> Alterar</span>
+                                        <input type="file" class="default" name="foto" id="foto">
+                                    </span>
+                                    <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remover</a>
+
+                                </div>
+                                <label for="confsenha" class="error">Erro</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-offset-3 col-lg-6">
+                            <button class="btn btn-primary" type="submit">Salvar</button>
+                            <a href="@Url.Action("Index")" class="btn btn-default">Cancelar</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script type="text/javascript" src="~/Scripts/bootstrap-fileupload.js"></script>
+
+<script type="text/javascript">
+    // $("#usuarioForm").validate({
+    //     rules:{
+    //         nome:{
+    //             required: true,
+    //             minlength: 3
+    //         },
+    //         confsenha:{
+    //             required: true,
+    //             equalTo: "#senha"
+    //         },
+    //     },
+    //     messages:{
+    //         nome:{
+    //             required: "O campo nome é obrigatorio.",
+    //             minlength: "O campo nome deve conter no mínimo 3 caracteres."
+    //         },
+    //         email: {
+    //             required: "O campo email é obrigatorio.",
+    //             email: "O campo email deve conter um email válido."
+    //         },
+    //         senha: {
+    //             required: "O campo senha é obrigatorio."
+    //         },
+    //         confsenha:{
+    //             required: "O campo confirmação de senha é obrigatorio.",
+    //             equalTo: "O campo confirmação de senha deve ser identico ao campo senha."
+    //         },
+    //     }
+
+    // });
+</script>

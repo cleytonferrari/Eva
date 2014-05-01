@@ -441,6 +441,8 @@
     <Content Include="Content\Painel\fonts\FontAwesome.otf" />
     <Content Include="Content\Painel\img\spotlight-poi.png&amp;scale=1" />
     <Content Include="App_Code\Flash.cshtml" />
+    <Content Include="Areas\Painel\Views\Usuario\Index.cshtml" />
+    <Content Include="Areas\Painel\Views\Usuario\Editar.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\advanced-form.js" />
     <Content Include="Scripts\bootstrap-colorpicker.js" />
@@ -569,6 +571,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Painel\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Painel\Controllers\UsuarioController.cs" />
     <Compile Include="Areas\Painel\PainelAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">

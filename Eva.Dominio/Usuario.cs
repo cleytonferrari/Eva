@@ -12,6 +12,8 @@ namespace Eva.Dominio
         public string Nome { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }
+        public string Foto { get; set; }
+        public string Grupo { get; set; }
 
     }
 }

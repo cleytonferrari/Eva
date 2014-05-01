@@ -26,7 +26,6 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                 if (usuario.Login == "cleyton")
                 {
                     
-
                     var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, "Cleyton"),
