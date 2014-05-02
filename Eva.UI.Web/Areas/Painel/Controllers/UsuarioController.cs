@@ -53,40 +53,39 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
         [HttpPost]
         public ActionResult Editar(UsuarioViewModel usuario)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) 
+                return View(usuario);
+
+            var senha = usuario.Senha;
+            if (string.IsNullOrEmpty(usuario.Id))
             {
-                var senha = usuario.Senha;
-                if (string.IsNullOrEmpty(usuario.Id))
+                if (string.IsNullOrEmpty(senha))
                 {
-                    if (string.IsNullOrEmpty(senha))
-                    {
-                        ModelState.AddModelError("Senha", "O campo senha é obrigatório!");
-                        return View(usuario);
-                    }
+                    ModelState.AddModelError("Senha", "O campo senha é obrigatório!");
+                    return View(usuario);
                 }
-                else if (string.IsNullOrEmpty(senha))
-                {
-                    var usuarioBanco = usuarioApp.ListarPorId(usuario.Id);
-                    senha = usuarioBanco.Senha;
-                }
-
-                var user = new Usuario()
-                {
-                    Id = usuario.Id,
-                    Nome = usuario.Nome,
-                    Email = usuario.Email,
-                    Grupo = usuario.Grupo,
-                    Senha = senha
-                };
-
-                user.Foto = (usuario.Foto != null) ? Imagem.Upload(usuario.Foto, "Usuario") : usuario.PathFoto;
-
-
-                usuarioApp.Salvar(user);
-                this.Flash("Usuário Salvo com Sucesso!");
-                return RedirectToAction("Index");
             }
-            return View(usuario);
+            else if (string.IsNullOrEmpty(senha))
+            {
+                var usuarioBanco = usuarioApp.ListarPorId(usuario.Id);
+                senha = usuarioBanco.Senha;
+            }
+
+            var user = new Usuario()
+            {
+                Id = usuario.Id,
+                Nome = usuario.Nome,
+                Email = usuario.Email,
+                Grupo = usuario.Grupo,
+                Senha = senha
+            };
+
+            user.Foto = (usuario.Foto != null) ? Imagem.Upload(usuario.Foto, "Usuario") : usuario.PathFoto;
+
+
+            usuarioApp.Salvar(user);
+            this.Flash("Usuário Salvo com Sucesso!");
+            return RedirectToAction("Index");
         }
 
 

@@ -444,6 +444,8 @@
     <Content Include="Areas\Painel\Views\Usuario\Index.cshtml" />
     <Content Include="Areas\Painel\Views\Usuario\Editar.cshtml" />
     <Content Include="App_Code\Foto.cshtml" />
+    <Content Include="Areas\Painel\Views\GrupoDeUsuario\Index.cshtml" />
+    <Content Include="Areas\Painel\Views\GrupoDeUsuario\Editar.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\advanced-form.js" />
     <Content Include="Scripts\bootstrap-colorpicker.js" />
@@ -571,6 +573,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Painel\Controllers\GrupoController.cs" />
     <Compile Include="Areas\Painel\Controllers\HomeController.cs" />
     <Compile Include="Areas\Painel\Controllers\UsuarioController.cs" />
     <Compile Include="Areas\Painel\PainelAreaRegistration.cs" />
