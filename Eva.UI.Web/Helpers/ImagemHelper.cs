@@ -11,6 +11,7 @@ namespace Eva.UI.Web.Helpers
     {
         public static string Upload(HttpPostedFileBase arquivo, string diretorio)
         {
+            //Todo: implementar um retorno para os erros do upload
             var erros = new List<string>();
             var fileName = "";
             if (arquivo != null)

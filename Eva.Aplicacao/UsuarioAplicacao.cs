@@ -11,8 +11,8 @@ namespace Eva.Aplicacao
     public class UsuarioAplicacao
     {
         private readonly IRepository<Usuario> contexto;
-        
-        public UsuarioAplicacao(IRepository<Usuario> repositorio )
+
+        public UsuarioAplicacao(IRepository<Usuario> repositorio)
         {
             contexto = repositorio;
         }
@@ -24,7 +24,12 @@ namespace Eva.Aplicacao
 
         public IEnumerable<Usuario> ListarTodos()
         {
-            return contexto.GetAll();
+            return contexto.GetAll().OrderBy(x => x.Nome);
+        }
+
+        public Usuario ListarPorId(string id)
+        {
+            return contexto.Get(id);
         }
 
         public Usuario Login(string email, string senha)

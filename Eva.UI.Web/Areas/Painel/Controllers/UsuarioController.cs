@@ -12,6 +12,7 @@ using Eva.UI.Web.Helpers;
 
 namespace Eva.UI.Web.Areas.Painel.Controllers
 {
+    [Authorize]
     public class UsuarioController : Controller
     {
         private readonly UsuarioAplicacao usuarioApp;
@@ -25,9 +26,28 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             return View(usuarioApp.ListarTodos().ToList());
         }
 
-        public ActionResult Editar()
+        public ActionResult Editar(string id)
         {
-            return View(new UsuarioViewModel());
+            if (string.IsNullOrEmpty(id))
+                return View(new UsuarioViewModel());
+
+            var usuario = usuarioApp.ListarPorId(id);
+            if (usuario == null)
+            {
+                this.Flash("Usuário não encontrado!", FlashEnum.Error);
+                return View(new UsuarioViewModel());
+            }
+
+            var user = new UsuarioViewModel()
+            {
+                Id = usuario.Id,
+                Email = usuario.Email,
+                Nome = usuario.Nome,
+                Grupo = usuario.Grupo,
+                PathFoto = usuario.Foto
+            };
+
+            return View(user);
         }
 
         [HttpPost]
@@ -35,6 +55,20 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
         {
             if (ModelState.IsValid)
             {
+                var senha = usuario.Senha;
+                if (string.IsNullOrEmpty(usuario.Id))
+                {
+                    if (string.IsNullOrEmpty(senha))
+                    {
+                        ModelState.AddModelError("Senha", "O campo senha é obrigatório!");
+                        return View(usuario);
+                    }
+                }
+                else if (string.IsNullOrEmpty(senha))
+                {
+                    var usuarioBanco = usuarioApp.ListarPorId(usuario.Id);
+                    senha = usuarioBanco.Senha;
+                }
 
                 var user = new Usuario()
                 {
@@ -42,14 +76,10 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                     Nome = usuario.Nome,
                     Email = usuario.Email,
                     Grupo = usuario.Grupo,
-                    Senha = usuario.Senha
+                    Senha = senha
                 };
 
-                //------------------
-
-                user.Foto = Imagem.Upload(usuario.Foto, "Usuario");
-
-                //------------------
+                user.Foto = (usuario.Foto != null) ? Imagem.Upload(usuario.Foto, "Usuario") : usuario.PathFoto;
 
 
                 usuarioApp.Salvar(user);
@@ -71,7 +101,6 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
         [Required]
         public string Email { get; set; }
 
-        [Required]
         public string Senha { get; set; }
 
         [System.ComponentModel.DataAnnotations.Compare("Senha", ErrorMessage = "As senhas não conferem")]
@@ -79,6 +108,8 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 
         //[FileExtensions(Extensions = "jpg,gif,png,jpeg", ErrorMessage = "Extensões suportadas *.jpg, *.jpeg, *.png, *.gif")]
         public HttpPostedFileBase Foto { get; set; }
+
+        public string PathFoto { get; set; }
 
         public string Grupo { get; set; }
     }
