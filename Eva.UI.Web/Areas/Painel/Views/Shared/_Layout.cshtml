@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Eva.UI.Web.Helpers
+<!DOCTYPE html>
 <html lang="pt-Br">
 <head>
     <meta charset="utf-8">
@@ -195,9 +196,16 @@
                     </li>
                     <!-- user login dropdown start-->
                     <li class="dropdown">
+                        @{
+                            var usuario = Seguranca.Usuario();
+                            if (string.IsNullOrEmpty(usuario.Foto))
+                            {
+                                usuario.Foto = "http://www.placehold.it/40x40/767676/FFFFFF&amp;text=W";
+                            }
+                        }
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <img alt="" src="">
-                            <span class="username">Cleyton Ferrari</span>
+                            <img alt="" src="@usuario.Foto">
+                            <span class="username">@usuario.Nome</span>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">

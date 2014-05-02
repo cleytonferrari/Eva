@@ -15,6 +15,7 @@
         <header class="panel-heading">
             @(string.IsNullOrEmpty(Model.Id) ? "Cadastrar novo usuário" : "Editar usuário: " + Model.Nome)
         </header>
+        @Html.ValidationSummary()
         <div class="panel-body">
             <div class="form">
                 <form class="cmxform form-horizontal " id="usuarioForm" method="POST" action="" novalidate="novalidate" enctype="multipart/form-data">
@@ -38,8 +39,8 @@
                     <div class="form-group ">
                         <label for="email" class="control-label col-lg-3">Grupo:</label>
                         <div class="col-lg-6">
-                            <select name="grupo_id" class="form-control">
-                                <option value='grupo' selected>Meu Grupo</option>";
+                            <select name="Grupo" id="Grupo" class="form-control">
+                                <option value='meugrupo' selected>Meu Grupo</option>";
                             </select>
                         </div>
                     </div>
@@ -53,8 +54,8 @@
                     <div class="form-group ">
                         <label for="confsenha" class="control-label col-lg-3">Confirmar Senha:</label>
                         <div class="col-lg-6">
-                            <input class="form-control " id="confsenha" type="password" name="confsenha" required="">
-                            <label for="confsenha" class="error">Erro</label>
+                            <input class="form-control " id="ConfirmarSenha" type="password" name="ConfirmarSenha" required="">
+                            <label for="ConfirmarSenha" class="error">Erro</label>
                         </div>
                     </div>
 

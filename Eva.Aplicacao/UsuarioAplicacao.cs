@@ -26,5 +26,10 @@ namespace Eva.Aplicacao
         {
             return contexto.GetAll();
         }
+
+        public Usuario Login(string email, string senha)
+        {
+            return contexto.GetByFilter(x => x.Email == email && x.Senha == senha).FirstOrDefault();
+        }
     }
 }

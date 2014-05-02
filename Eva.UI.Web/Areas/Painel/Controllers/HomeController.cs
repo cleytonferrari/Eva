@@ -5,6 +5,9 @@ using System.Security.Claims;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using Eva.Aplicacao;
+using Eva.Dominio;
+using Eva.UI.Web.Helpers;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
@@ -13,9 +16,15 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
     [Authorize]
     public class HomeController : Controller
     {
+        private readonly UsuarioAplicacao usuarioApp;
+
+        public HomeController()
+        {
+            usuarioApp = Fabrica.UsuarioAplicacaoMongo();
+        }
         public ActionResult Index()
         {
-            this.Flash("Aqui vai as mensagem de usuario sem permissoa",FlashEnum.Info);
+            this.Flash("Aqui vai as mensagem de usuario sem permissoa", FlashEnum.Info);
             return View();
         }
 
@@ -24,23 +33,10 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
         {
             if (Request.HttpMethod == "POST")
             {
-                if (usuario.Login == "cleyton")
+                var usuarioLogado = usuarioApp.Login(usuario.Login, usuario.Senha);
+                if (usuarioLogado != null)
                 {
-                    
-                    var claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Name, "Cleyton"),
-                        new Claim(ClaimTypes.Email, "cleyton@email.com"),
-                        new Claim(ClaimTypes.Role, "Admin"),
-                        new Claim(ClaimTypes.Role, "Master")
-                    };
-
-                    var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
-
-                    var ctx = Request.GetOwinContext();
-                    var authenticationManager = ctx.Authentication;
-                    authenticationManager.SignIn(new AuthenticationProperties {IsPersistent = usuario.Lembrar}, identity);
-
+                    Seguranca.GerearSessaoDeUsuario(usuarioLogado);
                     return RedirectToAction("Index");
                 }
 
@@ -50,13 +46,14 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             return View(usuario);
         }
 
+       
+
         public ActionResult Sair()
         {
-            var ctx = Request.GetOwinContext();
-            var authenticationManager = ctx.Authentication;
-            authenticationManager.SignOut();
+            Seguranca.DestruirSessaoDeUsuario();
             return RedirectToAction("Login");
         }
+
     }
 
     public class LoginViewModel
