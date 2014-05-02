@@ -21,7 +21,7 @@ namespace Eva.UI.Web.Helpers
                 new Claim("Foto", usuarioLogado.Foto ?? ""),
                 new Claim(ClaimTypes.Name, usuarioLogado.Nome),
                 new Claim(ClaimTypes.Email, usuarioLogado.Email),
-                new Claim(ClaimTypes.Role, usuarioLogado.Grupo ?? ""),
+                new Claim(ClaimTypes.Role, usuarioLogado.Grupo.Nome ?? ""),
             };
 
             var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);

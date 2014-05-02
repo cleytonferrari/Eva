@@ -1,4 +1,5 @@
-﻿@model Eva.UI.Web.Areas.Painel.Controllers.UsuarioViewModel
+﻿@using Eva.Dominio
+@model Eva.UI.Web.Areas.Painel.Controllers.UsuarioViewModel
 
 <div class="col-md-12">
     <!--breadcrumbs start -->
@@ -39,8 +40,18 @@
                     <div class="form-group ">
                         <label for="email" class="control-label col-lg-3">Grupo:</label>
                         <div class="col-lg-6">
-                            <select name="Grupo" id="Grupo" class="form-control">
-                                <option value='meugrupo' selected>Meu Grupo</option>";
+                            <select name="GrupoId" id="GrupoId" class="form-control">
+                                @foreach (var grupo in (List<GrupoDeUsuario>) ViewBag.Grupos)
+                                {
+                                    var selected = "";
+                                    if (grupo.Id == Model.GrupoId)
+                                    {
+                                        selected = "selected";
+                                    }
+
+                                    <option value='@grupo.Id' @selected>@grupo.Nome</option>
+                                    
+                                }
                             </select>
                         </div>
                     </div>
