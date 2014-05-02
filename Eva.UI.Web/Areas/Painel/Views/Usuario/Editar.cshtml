@@ -1,4 +1,4 @@
-﻿@model Eva.Dominio.Usuario
+﻿@model Eva.UI.Web.Areas.Painel.Controllers.UsuarioViewModel
 
 <div class="col-md-12">
     <!--breadcrumbs start -->
@@ -65,16 +65,15 @@
                             <div class="fileupload fileupload-new" data-provides="fileupload">
                                 <input type="hidden" value="" name="">
 
-                                @{ var foto = (string.IsNullOrEmpty(Model.Foto)) ? "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=Sem+Foto" : Model.Foto;}
                                 <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                                    <img src="@foto" alt="">
+                                    <img src="" alt="">
                                 </div>
                                 <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 10px;"></div>
                                 <div>
                                     <span class="btn btn-white btn-file">
                                         <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Selecionar Foto</span>
                                         <span class="fileupload-exists"><i class="fa fa-undo"></i> Alterar</span>
-                                        <input type="file" class="default" name="foto" id="foto">
+                                        <input type="file" class="default" name="Foto" id="Foto">
                                     </span>
                                     <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remover</a>
 

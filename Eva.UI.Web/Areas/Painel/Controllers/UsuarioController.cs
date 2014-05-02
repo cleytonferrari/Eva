@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -24,7 +25,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 
         public ActionResult Editar()
         {
-            return View(new Usuario());
+            return View(new UsuarioViewModel());
         }
 
         [HttpPost]
@@ -32,12 +33,19 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
         {
             if (ModelState.IsValid)
             {
+                var caminhoSalvar = "";
+                if (usuario.Foto != null)
+                {
+                   caminhoSalvar = Path.Combine(Server.MapPath("~/App_Data/Arquivos/Usuario/"), Path.GetFileName(usuario.Foto.FileName));
+                    usuario.Foto.SaveAs(caminhoSalvar);
+                }
+
                 var user = new Usuario()
                 {
                     Id = usuario.Id,
                     Nome = usuario.Nome,
                     Email = usuario.Email,
-                    Foto = usuario.Foto,
+                    Foto = caminhoSalvar,
                     Grupo = usuario.Grupo,
                     Senha = usuario.Senha
 
@@ -46,7 +54,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                 this.Flash("Usuário Salvo com Sucesso!");
                 return RedirectToAction("Index");
             }
-            return View(new Usuario());
+            return View(usuario);
         }
     }
 
@@ -64,8 +72,9 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 
         [System.ComponentModel.DataAnnotations.Compare("Senha", ErrorMessage = "As senhas não conferem")]
         public string ConfirmarSenha { get; set; }
-        
-        public string Foto { get; set; }
+
+        //[FileExtensions(Extensions = "jpg,gif,png,jpeg", ErrorMessage = "Extensões suportadas *.jpg, *.jpeg, *.png, *.gif")]
+        public HttpPostedFileBase Foto { get; set; }
         
         public string Grupo { get; set; }
     }
