@@ -15,6 +15,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
     {
         public ActionResult Index()
         {
+            this.Flash("Aqui vai as mensagem de usuario sem permissoa",FlashEnum.Info);
             return View();
         }
 
