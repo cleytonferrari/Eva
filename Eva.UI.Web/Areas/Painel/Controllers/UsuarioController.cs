@@ -4,9 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using Eva.Aplicacao;
 using Eva.Dominio;
+using Eva.UI.Web.Helpers;
 
 namespace Eva.UI.Web.Areas.Painel.Controllers
 {
@@ -33,29 +35,31 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
         {
             if (ModelState.IsValid)
             {
-                var caminhoSalvar = "";
-                if (usuario.Foto != null)
-                {
-                   caminhoSalvar = Path.Combine(Server.MapPath("~/App_Data/Arquivos/Usuario/"), Path.GetFileName(usuario.Foto.FileName));
-                    usuario.Foto.SaveAs(caminhoSalvar);
-                }
 
                 var user = new Usuario()
                 {
                     Id = usuario.Id,
                     Nome = usuario.Nome,
                     Email = usuario.Email,
-                    Foto = caminhoSalvar,
                     Grupo = usuario.Grupo,
                     Senha = usuario.Senha
-
                 };
+
+                //------------------
+
+                user.Foto = Imagem.Upload(usuario.Foto, "Usuario");
+
+                //------------------
+
+
                 usuarioApp.Salvar(user);
                 this.Flash("Usuário Salvo com Sucesso!");
                 return RedirectToAction("Index");
             }
             return View(usuario);
         }
+
+
     }
 
     public class UsuarioViewModel
@@ -63,10 +67,10 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
         public string Id { get; set; }
         [Required]
         public string Nome { get; set; }
-        
+
         [Required]
         public string Email { get; set; }
-        
+
         [Required]
         public string Senha { get; set; }
 
@@ -75,7 +79,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 
         //[FileExtensions(Extensions = "jpg,gif,png,jpeg", ErrorMessage = "Extensões suportadas *.jpg, *.jpeg, *.png, *.gif")]
         public HttpPostedFileBase Foto { get; set; }
-        
+
         public string Grupo { get; set; }
     }
 }
