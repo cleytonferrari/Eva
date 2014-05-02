@@ -198,13 +198,10 @@
                     <li class="dropdown">
                         @{
                             var usuario = Seguranca.Usuario();
-                            if (string.IsNullOrEmpty(usuario.Foto))
-                            {
-                                usuario.Foto = "http://www.placehold.it/40x40/767676/FFFFFF&amp;text=W";
-                            }
                         }
+
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <img alt="" src="@usuario.Foto">
+                            <img alt="" src="@Foto.Placehold(usuario.Foto, "40x40", "../../Content/Uploads/Usuario/")">
                             <span class="username">@usuario.Nome</span>
                             <b class="caret"></b>
                         </a>
@@ -222,6 +219,7 @@
                         </div>
                     </li>
                 </ul>
+
                 <!--search & user info end-->
             </div>
         </header>

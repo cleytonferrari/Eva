@@ -72,9 +72,7 @@
                                 {
                                     <tr>
                                         <td>
-                                            @{ var foto = (string.IsNullOrEmpty(usuario.Foto)) ? "http://www.placehold.it/40x40/767676/FFFFFF&amp;text=W7" : "../../Content/Uploads/Usuario/"+usuario.Foto;}
-
-                                            <img src="@foto" alt="" width="40" height="40">
+                                            <img src="@Foto.Placehold(usuario.Foto, "40x40", "../../Content/Uploads/Usuario/")" alt="" width="40" height="40">
                                         </td>
                                         <td>@usuario.Nome</td>
                                         <td>@usuario.Email</td>

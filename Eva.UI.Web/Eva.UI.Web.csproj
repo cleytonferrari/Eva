@@ -443,6 +443,7 @@
     <Content Include="App_Code\Flash.cshtml" />
     <Content Include="Areas\Painel\Views\Usuario\Index.cshtml" />
     <Content Include="Areas\Painel\Views\Usuario\Editar.cshtml" />
+    <Content Include="App_Code\Foto.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\advanced-form.js" />
     <Content Include="Scripts\bootstrap-colorpicker.js" />

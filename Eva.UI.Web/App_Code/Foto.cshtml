@@ -1,0 +1,5 @@
+﻿@helper Placehold(string foto, string tamanho, string path)
+{
+     var f = (string.IsNullOrEmpty(foto)) ? "http://www.placehold.it/"+tamanho+"/767676/FFFFFF&amp;text=W7" : path + foto;
+     @f
+}
