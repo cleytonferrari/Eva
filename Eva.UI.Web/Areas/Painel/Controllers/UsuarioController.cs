@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Eva.Aplicacao;
 using Eva.Dominio;
 using Eva.UI.Web.Helpers;
+using PagedList;
 
 namespace Eva.UI.Web.Areas.Painel.Controllers
 {
@@ -23,9 +24,12 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             usuarioApp = Fabrica.UsuarioAplicacaoMongo();
             grupoDeUsuarioApp = Fabrica.GrupoDeUsuarioAplicacaoMongo();
         }
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(usuarioApp.ListarTodos().ToList());
+            var numeroDaPagina = page ?? 1;
+            var listaPaginada = usuarioApp.ListarTodos().ToPagedList(numeroDaPagina, 10);
+
+            return View(listaPaginada);
         }
 
         public ActionResult Editar(string id)
