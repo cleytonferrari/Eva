@@ -16,16 +16,15 @@
         <header class="panel-heading">
             @(string.IsNullOrEmpty(Model.Id) ? "Cadastrar novo usuário" : "Editar usuário: " + Model.Nome)
         </header>
-        @Html.ValidationSummary()
         <div class="panel-body">
-            <div class="form">
+            <div>
                 <form class="cmxform form-horizontal " id="usuarioForm" method="POST" action="" novalidate="novalidate" enctype="multipart/form-data">
 
                     <div class="form-group ">
                         <label for="Nome" class="control-label col-lg-3">Nome:</label>
                         <div class="col-lg-6">
                             <input class=" form-control" id="Nome" name="Nome" type="text" value="@Model.Nome" required="">
-                            <label for="nome" class="error"></label>
+                            <label for="Nome" class="error">@Html.ValidationMessageFor(x => x.Nome)</label>
                         </div>
                     </div>
 
@@ -33,12 +32,12 @@
                         <label for="Email" class="control-label col-lg-3">Email:</label>
                         <div class="col-lg-6">
                             <input class="form-control " id="Email" type="email" name="Email"  value="@Model.Email" required="">
-                            <label for="email" class="error"></label>
+                            <label for="Email" class="error">@Html.ValidationMessageFor(x => x.Email)</label>
                         </div>
                     </div>
 
                     <div class="form-group ">
-                        <label for="email" class="control-label col-lg-3">Grupo:</label>
+                        <label for="GrupoId" class="control-label col-lg-3">Grupo:</label>
                         <div class="col-lg-6">
                             <select name="GrupoId" id="GrupoId" class="form-control">
                                 @foreach (var grupo in (List<GrupoDeUsuario>) ViewBag.Grupos)
@@ -59,14 +58,14 @@
                         <label for="Senha" class="control-label col-lg-3">Senha:</label>
                         <div class="col-lg-6">
                             <input class="form-control " id="Senha" type="password" name="Senha" >
-                            <label for="senha" class="error"></label>
+                            <label for="Senha" class="error">@Html.ValidationMessageFor(x => x.Senha)</label>
                         </div>
                     </div>
                     <div class="form-group ">
                         <label for="ConfirmarSenha" class="control-label col-lg-3">Confirmar Senha:</label>
                         <div class="col-lg-6">
                             <input class="form-control " id="ConfirmarSenha" type="password" name="ConfirmarSenha" >
-                            <label for="ConfirmarSenha" class="error"></label>
+                            <label for="ConfirmarSenha" class="error">@Html.ValidationMessageFor(x => x.ConfirmarSenha)</label>
                         </div>
                     </div>
 
@@ -90,7 +89,7 @@
                                     <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remover</a>
 
                                 </div>
-                                <label for="Foto" class="error"></label>
+                                <label for="PathFoto" class="error">@Html.ValidationMessageFor(x => x.PathFoto)</label>
                             </div>
                         </div>
                     </div>

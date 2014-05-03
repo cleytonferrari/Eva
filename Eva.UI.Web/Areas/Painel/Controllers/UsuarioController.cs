@@ -73,6 +73,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                 if (string.IsNullOrEmpty(senha))
                 {
                     ModelState.AddModelError("Senha", "O campo senha é obrigatório!");
+                    ViewBag.Grupos = grupoDeUsuarioApp.ListarTodos().ToList();
                     return View(usuario);
                 }
             }
