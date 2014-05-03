@@ -453,7 +453,6 @@
     <Content Include="App_Code\Foto.cshtml" />
     <Content Include="Areas\Painel\Views\GrupoDeUsuario\Index.cshtml" />
     <Content Include="Areas\Painel\Views\GrupoDeUsuario\Editar.cshtml" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\advanced-form.js" />
     <Content Include="Scripts\bootstrap-colorpicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
@@ -489,10 +488,10 @@
     <Content Include="Scripts\icheck-init.js" />
     <Content Include="Scripts\ion.rangeSlider.min.js" />
     <Content Include="Scripts\jplayer.init.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery-1.8.3.min.js" />
+    <None Include="Scripts\jquery-2.1.0.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.0.js" />
+    <Content Include="Scripts\jquery-2.1.0.min.js" />
+    <Content Include="Scripts\jquery-2.1.0.min.map" />
     <Content Include="Scripts\jquery-jvectormap-1.2.2.min.js" />
     <Content Include="Scripts\jquery-jvectormap-us-lcc-en.js" />
     <Content Include="Scripts\jquery-ui-1.10.1.custom.min.js" />
@@ -524,7 +523,6 @@
     <Content Include="Scripts\jquery.iframe-transport.js" />
     <Content Include="Scripts\jquery.isotope.js" />
     <Content Include="Scripts\jquery.jplayer.min.js" />
-    <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\jquery.knob.js" />
     <Content Include="Scripts\jquery.multi-select.js" />
     <Content Include="Scripts\jquery.nestable.js" />
@@ -537,6 +535,7 @@
     <Content Include="Scripts\jquery.steps.js" />
     <Content Include="Scripts\jquery.tagsinput.js" />
     <Content Include="Scripts\jquery.ui.widget.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -573,7 +572,6 @@
     <Content Include="Scripts\validation-init.js" />
     <Content Include="Scripts\wysihtml5-0.3.0.js" />
     <Content Include="Web.config" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />

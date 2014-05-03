@@ -22,18 +22,18 @@
                 <form class="cmxform form-horizontal " id="usuarioForm" method="POST" action="" novalidate="novalidate" enctype="multipart/form-data">
 
                     <div class="form-group ">
-                        <label for="nome" class="control-label col-lg-3">Nome:</label>
+                        <label for="Nome" class="control-label col-lg-3">Nome:</label>
                         <div class="col-lg-6">
-                            <input class=" form-control" id="nome" name="nome" minlength="2" type="text" required="" value="@Model.Nome">
-                            <label for="nome" class="error">Erro</label>
+                            <input class=" form-control" id="Nome" name="Nome" type="text" value="@Model.Nome" required="">
+                            <label for="nome" class="error"></label>
                         </div>
                     </div>
 
                     <div class="form-group ">
-                        <label for="email" class="control-label col-lg-3">Email:</label>
+                        <label for="Email" class="control-label col-lg-3">Email:</label>
                         <div class="col-lg-6">
-                            <input class="form-control " id="email" type="email" name="email" required="" value="@Model.Email">
-                            <label for="email" class="error">Erro</label>
+                            <input class="form-control " id="Email" type="email" name="Email"  value="@Model.Email" required="">
+                            <label for="email" class="error"></label>
                         </div>
                     </div>
 
@@ -56,17 +56,17 @@
                         </div>
                     </div>
                     <div class="form-group ">
-                        <label for="senha" class="control-label col-lg-3">Senha:</label>
+                        <label for="Senha" class="control-label col-lg-3">Senha:</label>
                         <div class="col-lg-6">
-                            <input class="form-control " id="senha" type="password" name="senha" required="">
-                            <label for="senha" class="error">Erro</label>
+                            <input class="form-control " id="Senha" type="password" name="Senha" >
+                            <label for="senha" class="error"></label>
                         </div>
                     </div>
                     <div class="form-group ">
-                        <label for="confsenha" class="control-label col-lg-3">Confirmar Senha:</label>
+                        <label for="ConfirmarSenha" class="control-label col-lg-3">Confirmar Senha:</label>
                         <div class="col-lg-6">
-                            <input class="form-control " id="ConfirmarSenha" type="password" name="ConfirmarSenha" required="">
-                            <label for="ConfirmarSenha" class="error">Erro</label>
+                            <input class="form-control " id="ConfirmarSenha" type="password" name="ConfirmarSenha" >
+                            <label for="ConfirmarSenha" class="error"></label>
                         </div>
                     </div>
 
@@ -90,7 +90,7 @@
                                     <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remover</a>
 
                                 </div>
-                                <label for="confsenha" class="error">Erro</label>
+                                <label for="Foto" class="error"></label>
                             </div>
                         </div>
                     </div>
@@ -112,34 +112,33 @@
 <script type="text/javascript" src="~/Scripts/bootstrap-fileupload.js"></script>
 
 <script type="text/javascript">
-    // $("#usuarioForm").validate({
-    //     rules:{
-    //         nome:{
-    //             required: true,
-    //             minlength: 3
-    //         },
-    //         confsenha:{
-    //             required: true,
-    //             equalTo: "#senha"
-    //         },
-    //     },
-    //     messages:{
-    //         nome:{
-    //             required: "O campo nome é obrigatorio.",
-    //             minlength: "O campo nome deve conter no mínimo 3 caracteres."
-    //         },
-    //         email: {
-    //             required: "O campo email é obrigatorio.",
-    //             email: "O campo email deve conter um email válido."
-    //         },
-    //         senha: {
-    //             required: "O campo senha é obrigatorio."
-    //         },
-    //         confsenha:{
-    //             required: "O campo confirmação de senha é obrigatorio.",
-    //             equalTo: "O campo confirmação de senha deve ser identico ao campo senha."
-    //         },
-    //     }
+     $("#usuarioForm").validate({
+         rules:{
+             Nome:{
+                 required: true,
+                 minlength: 3
+             },
+             ConfirmarSenha: {
+                 equalTo: "#Senha"
+             },
+         },
+         messages:{
+             Nome:{
+                 required: "O campo nome é obrigatorio.",
+                 minlength: "O campo nome deve conter no mínimo 3 caracteres."
+             },
+             Email: {
+                 required: "O campo email é obrigatorio.",
+                 email: "O campo email deve conter um email válido."
+             },
+             Senha: {
+                 required: "O campo senha é obrigatorio."
+             },
+             ConfirmarSenha: {
+                 required: "O campo confirmação de senha é obrigatorio.",
+                 equalTo: "O campo confirmação de senha deve ser identico ao campo senha."
+             },
+         }
 
-    // });
+     });
 </script>

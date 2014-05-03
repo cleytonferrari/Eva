@@ -15,7 +15,6 @@
         <header class="panel-heading">
             @(string.IsNullOrEmpty(Model.Id) ? "Cadastrar novo grupo" : "Editar grupo: " + Model.Nome)
         </header>
-        @Html.ValidationSummary()
         <div class="panel-body">
             <div class="form">
                 <form class="cmxform form-horizontal " id="usuarioForm" method="POST" action="" novalidate="novalidate" enctype="multipart/form-data">
@@ -24,7 +23,7 @@
                         <label for="nome" class="control-label col-lg-3">Nome:</label>
                         <div class="col-lg-6">
                             <input class=" form-control" id="nome" name="nome" type="text" value="@Model.Nome">
-                            <label for="nome" class="error">Erro</label>
+                            <label for="nome" class="error">@Html.ValidationMessageFor(x=>x.Nome)</label>
                         </div>
                     </div>
 
