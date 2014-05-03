@@ -9,5 +9,7 @@ namespace Eva.Dominio
     public class GrupoDeUsuario : Entidade
     {
         public string Nome { get; set; }
+
+        public IEnumerable<string> Permissoes { get; set; }
     }
 }

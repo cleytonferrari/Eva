@@ -37,7 +37,8 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             var grupo = new GrupoViewModel()
             {
                 Id = usuario.Id,
-                Nome = usuario.Nome
+                Nome = usuario.Nome,
+                Permissoes = usuario.Permissoes
             };
 
             return View(grupo);
@@ -53,6 +54,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             {
                 Id = grupo.Id,
                 Nome = grupo.Nome,
+                Permissoes = grupo.Permissoes
             };
 
             grupoDeUsuarioApp.Salvar(grupoSalvar);
@@ -63,9 +65,15 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 
     public class GrupoViewModel
     {
+        public GrupoViewModel()
+        {
+            Permissoes = new[] {""};
+        }
         public string Id { get; set; }
         [Required]
         public string Nome { get; set; }
+
+        public IEnumerable<string> Permissoes { get; set; }
 
     }
 }
