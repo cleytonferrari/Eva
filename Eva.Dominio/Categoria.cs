@@ -10,11 +10,8 @@ namespace Eva.Dominio
     {
         public string Nome { get; set; }
 
-        public string Slug
-        {
-            get { return Nome.ToSlug(); }
-        }
-        
+        public string Slug { get { return Nome.ToSlug(); } }
+
         public string CorTexto { get; set; }
         public string CorFundo { get; set; }
     }

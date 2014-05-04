@@ -40,13 +40,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Categoria.cs" />
+    <Compile Include="Comentario.cs" />
     <Compile Include="Contratos\IRepositorio.cs" />
     <Compile Include="Entidade.cs" />
     <Compile Include="Extensions\RegexUtils.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Fonte.cs" />
     <Compile Include="GrupoDeUsuario.cs" />
+    <Compile Include="Noticia.cs" />
+    <Compile Include="NoticiaComentarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Usuario.cs" />
+    <Compile Include="ZonaNoticia.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
