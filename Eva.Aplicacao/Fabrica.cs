@@ -13,5 +13,10 @@ namespace Eva.Aplicacao
         {
             return new GrupoDeUsuarioAplicacao(new Repositorio.MongoDb.Repositorio<GrupoDeUsuario>());
         }
+
+        public static CategoriaAplicacao CategoriaAplicacaoMongo()
+        {
+            return new CategoriaAplicacao(new Repositorio.MongoDb.Repositorio<Categoria>());
+        }
     }
 }

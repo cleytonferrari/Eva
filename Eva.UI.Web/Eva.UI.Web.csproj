@@ -490,6 +490,8 @@
     <Content Include="Scripts\icheck-init.js" />
     <Content Include="Scripts\ion.rangeSlider.min.js" />
     <Content Include="Scripts\jplayer.init.js" />
+    <Content Include="Areas\Painel\Views\Categoria\Index.cshtml" />
+    <Content Include="Areas\Painel\Views\Categoria\Editar.cshtml" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />
@@ -580,6 +582,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Painel\Controllers\CategoriaController.cs" />
     <Compile Include="Areas\Painel\Controllers\GrupoController.cs" />
     <Compile Include="Areas\Painel\Controllers\HomeController.cs" />
     <Compile Include="Areas\Painel\Controllers\UsuarioController.cs" />

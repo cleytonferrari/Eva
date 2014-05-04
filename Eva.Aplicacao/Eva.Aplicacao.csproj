@@ -42,6 +42,7 @@
     <Compile Include="Fabrica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GrupoDeUsuarioAplicacao.cs" />
+    <Compile Include="CategoriaAplicacao.cs" />
     <Compile Include="UsuarioAplicacao.cs" />
   </ItemGroup>
   <ItemGroup>

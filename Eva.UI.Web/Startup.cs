@@ -18,6 +18,7 @@ namespace Eva.UI.Web
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Painel/Home/Login")
             });
+            
         }
     }
 }
