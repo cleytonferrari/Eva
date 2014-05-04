@@ -99,12 +99,9 @@
                                 new PagedListRenderOptions
                                 {
                                     UlElementClasses = Enumerable.Empty<string>(),
-                                    DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
-                                    DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
-                                    DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded,
-                                    DisplayLinkToNextPage = PagedListDisplayMode.IfNeeded,
-                                    ItemSliceAndTotalFormat = "Exibindo de {0} até {1} de um total de {2}",
-                                    DisplayItemSliceAndTotal = true
+                                    DisplayPageCountAndCurrentLocation = true,
+                                    PageCountAndCurrentLocationFormat = "Página {0} de {1}"
+                                    
                                 })
                             </div>
                         </div>
