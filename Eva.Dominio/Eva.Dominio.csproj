@@ -43,6 +43,7 @@
     <Compile Include="Comentario.cs" />
     <Compile Include="Contratos\IRepositorio.cs" />
     <Compile Include="Entidade.cs" />
+    <Compile Include="Evento.cs" />
     <Compile Include="Extensions\RegexUtils.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Fonte.cs" />

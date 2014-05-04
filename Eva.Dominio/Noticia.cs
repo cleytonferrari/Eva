@@ -5,8 +5,17 @@ namespace Eva.Dominio
 {
     public class Noticia : Entidade
     {
-        public string Titulo { get; set; }
-        public string Slug { get { return Titulo.ToSlug(); } }
+        private string titulo;
+        public string Titulo
+        {
+            get { return titulo; }
+            set
+            {
+                Slug = value.ToSlug();
+                titulo = value;
+            }
+        }
+        public string Slug { get; set; }
         public Categoria Categoria { get; set; }
         public ZonaNoticia Zona { get; set; }
         public string Antetitulo { get; set; }
