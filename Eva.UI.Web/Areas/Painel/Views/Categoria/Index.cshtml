@@ -95,7 +95,17 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="dataTables_paginate paging_bootstrap pagination pull-left">
-                                @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                                @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }),
+                                new PagedListRenderOptions
+                                {
+                                    UlElementClasses = Enumerable.Empty<string>(),
+                                    DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                                    DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+                                    DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded,
+                                    DisplayLinkToNextPage = PagedListDisplayMode.IfNeeded,
+                                    ItemSliceAndTotalFormat = "Exibindo de {0} até {1} de um total de {2}",
+                                    DisplayItemSliceAndTotal = true
+                                })
                             </div>
                         </div>
                     </div>
@@ -103,4 +113,5 @@
             </div>
         </div>
     </section>
+
 </div>
