@@ -1,7 +1,7 @@
 ﻿
 namespace Eva.Dominio
 {
-    public class ZonaNoticia : Entidade
+    public class NoticiaZona : Entidade
     {
         public string Nome { get; set; }
     }

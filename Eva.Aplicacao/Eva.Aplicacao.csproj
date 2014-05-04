@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NoticiaZonaAplicacao.cs" />
+    <Compile Include="FonteAplicacao.cs" />
     <Compile Include="Fabrica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GrupoDeUsuarioAplicacao.cs" />
