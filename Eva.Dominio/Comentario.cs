@@ -2,7 +2,7 @@
 
 namespace Eva.Dominio
 {
-    public abstract class Comentario : Entidade
+    public class Comentario
     {
         public string Autor { get; set; }
         public string Email { get; set; }

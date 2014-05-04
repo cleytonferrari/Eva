@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Eva.Dominio
 {
@@ -15,7 +16,8 @@ namespace Eva.Dominio
         public Fonte Fonte { get; set; }
         public bool Publicado { get; set; }
         public int Hits { get; set; }
-        public bool Comentarios { get; set; }
+        public bool ExibirComentarios { get; set; }
+        public IEnumerable<Comentario> Comentarios { get; set; }
     }
 
     
