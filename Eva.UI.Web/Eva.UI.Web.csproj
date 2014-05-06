@@ -506,7 +506,6 @@
     <Content Include="Scripts\jquery-jvectormap-1.2.2.min.js" />
     <Content Include="Scripts\jquery-jvectormap-us-lcc-en.js" />
     <Content Include="Scripts\jquery-ui-1.10.1.custom.min.js" />
-    <Content Include="Scripts\jquery-ui-1.9.2.custom.min.js" />
     <Content Include="Scripts\jquery.blueimp-gallery.min.js" />
     <Content Include="Scripts\jquery.customSelect.min.js" />
     <Content Include="Scripts\jquery.dataTables.js" />
