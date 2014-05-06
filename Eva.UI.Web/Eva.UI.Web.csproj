@@ -498,6 +498,7 @@
     <Content Include="Areas\Painel\Views\NoticiaZona\Editar.cshtml" />
     <Content Include="Areas\Painel\Views\Noticia\Index.cshtml" />
     <Content Include="Areas\Painel\Views\Noticia\Editar.cshtml" />
+    <Content Include="Areas\Painel\Views\Arquivos\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />
@@ -588,6 +589,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Painel\Controllers\ArquivosController.cs" />
     <Compile Include="Areas\Painel\Controllers\NoticiaController.cs" />
     <Compile Include="Areas\Painel\Controllers\NoticiaZonaController.cs" />
     <Compile Include="Areas\Painel\Controllers\FonteController.cs" />

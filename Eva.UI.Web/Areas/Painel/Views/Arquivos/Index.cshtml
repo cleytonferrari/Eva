@@ -1,0 +1,185 @@
+﻿@using Eva.Dominio
+@using PagedList
+@using PagedList.Mvc
+@model IPagedList<Eva.Dominio.Categoria>
+<div class="col-md-12">
+    <!--breadcrumbs start -->
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home", new { Area = "Painel" })"><i class="fa fa-home"></i> Inicio</a></li>
+        <li class="active">Arquivos</li>
+    </ul>
+    <!--breadcrumbs end -->
+</div>
+
+<div class="col-md-12">
+    @Flash.FlashMessage(TempData)
+</div>
+
+<div class="col-sm-12">
+    <section class="panel">
+        <header class="panel-heading">
+            Gerenciar Arquivos
+        </header>
+        <div class="panel-body">
+
+            <ul id="filters" class="media-filter">
+                <li><a href="#" data-filter="*"> Todas</a></li>
+            </ul>
+
+            <div class="btn-group pull-right">
+                <button type="button" class="btn btn-white btn-sm" id="todos"><i class="fa fa-check-square-o"></i> Selecionar Todas</button>
+                <button type="button" class="btn btn-white btn-sm"><i class="fa fa-trash-o"></i> Excluir</button>
+            </div>
+            <a href="#" type="button" class="btn btn-primary pull-right btn-sm"><i class="fa fa-upload"></i> Enviar Novos Arquivos</a>
+
+
+
+            <ul id="galeria" class="media-gal">
+                <li id="id_01" class="images item ">
+                    <input type="checkbox" value="false" name="id[]" style="position: absolute; margin: 15px">
+                    <a href="#myModal" data-toggle="modal" class="handler">
+                        <img src="Content/img/galeria/image1.jpg" alt="" />
+                    </a>
+                    <p>img01.jpg </p>
+                </li>
+
+                <li id="id_02" class=" audio item ">
+                    <input type="checkbox" value="false" name="id[]" style="position: absolute; margin: 15px">
+                    <a href="#myModal" data-toggle="modal" class="handler">
+                        <img src="Content/img/galeria/image2.jpg" alt="" />
+                    </a>
+                    <p>img02.jpg </p>
+                </li>
+
+                <li id="id_03" class=" video item ">
+                    <input type="checkbox" value="false" name="id[]" style="position: absolute; margin: 15px">
+                    <a href="#myModal" data-toggle="modal" class="handler">
+                        <img src="Content/img/galeria/image3.jpg" alt="" />
+                    </a>
+                    <p>img03.jpg </p>
+                </li>
+
+
+                <li id="id_04" class=" video item ">
+                    <input type="checkbox" value="false" name="id[]" style="position: absolute; margin: 15px">
+                    <a href="#myModal" data-toggle="modal" class="handler">
+                        <img src="Content/img/galeria/image3.jpg" alt="" />
+                    </a>
+                    <p>img03.jpg </p>
+                </li>
+
+                <li id="id_05" class=" video item ">
+                    <input type="checkbox" value="false" name="id[]" style="position: absolute; margin: 15px">
+                    <a href="#myModal" data-toggle="modal" class="handler">
+                        <img src="Content/img/galeria/image3.jpg" alt="" />
+                    </a>
+                    <p>img03.jpg </p>
+                </li>
+
+                <li id="id_06" class=" video item ">
+                    <input type="checkbox" value="false" name="id[]" style="position: absolute; margin: 15px">
+                    <a href="#myModal" data-toggle="modal" class="handler">
+                        <img src="Content/img/galeria/image3.jpg" alt="" />
+                    </a>
+                    <p>img03.jpg </p>
+                </li>
+
+            </ul>
+
+            <div class="col-md-12 text-center clearfix">
+                <ul class="pagination">
+                    <li><a href="#">«</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">»</a></li>
+                </ul>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Edit Media galeria</h4>
+                        </div>
+
+                        <div class="modal-body row">
+
+                            <div class="col-md-5 img-modal">
+                                <img src="Content/img/galeria/image1.jpg" alt="">
+                                <a href="#" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit Image</a>
+                                <a href="#" class="btn btn-white btn-sm"><i class="fa fa-eye"></i> View Full Size</a>
+
+                                <p class="mtop10"><strong>File Name:</strong> img01.jpg</p>
+                                <p><strong>File Type:</strong> jpg</p>
+                                <p><strong>Resolution:</strong> 300x200</p>
+                                <p><strong>Uploaded By:</strong> <a href="#">ThemeBucket</a></p>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <label> Name</label>
+                                    <input id="name" value="img01.jpg" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label> Tittle Text</label>
+                                    <input id="title" value="awesome image" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label> Description</label>
+                                    <textarea rows="2" class="form-control"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label> Link URL</label>
+                                    <input id="link" value="Content/img/galeria/img01.jpg" class="form-control">
+                                </div>
+                                <div class="pull-right">
+                                    <button class="btn btn-danger" type="button">Delete</button>
+                                    <button class="btn btn-primary" type="button">Save changes</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- modal -->
+
+        </div>
+    </section>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#galeria li:first").css("border", "1px solid #1fb5ad");
+        $("#galeria").sortable({
+            handle: ".handler",
+            update: function () {
+                var order = $("#galeria").sortable("serialize");
+                //$("#info").load("ordenar.php?parametro=' . $_GET['parametro'] . '&" + order);
+                console.log("-->", order);
+                $("#galeria li").css("border", "#cccccc solid 1px");
+                $("#galeria li:first").css("border", "1px solid #1fb5ad");
+            }
+        });
+
+        var checked = true;
+        $("#todos").click(function () {
+            if (checked == true) {
+                $("input[type=checkbox]").each(function () {
+                    this.checked = true;
+                    checked = false;
+                });
+            } else {
+                $("input[type=checkbox]").each(function () {
+                    this.checked = false;
+                    checked = true;
+                });
+            }
+        });
+    });
+</script>
