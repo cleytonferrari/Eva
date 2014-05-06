@@ -201,7 +201,7 @@
                         }
 
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <img alt="" src="@Foto.Placehold(usuario.Foto, "40x40", "../../Content/Uploads/Usuario/")">
+                            <img alt="" src="@Foto.Placehold(usuario.Foto, "40x40", "Usuario/")">
                             <span class="username">@usuario.Nome</span>
                             <b class="caret"></b>
                         </a>
@@ -238,7 +238,7 @@
                         </li>
 
                         <li>
-                            <a href="javascript:;">
+                            <a href="@Url.Action("Index","Noticia",new { Area = "Painel"})">
                                 <i class="fa fa-bullhorn"></i>
                                 <span>Notícias </span>
                             </a>

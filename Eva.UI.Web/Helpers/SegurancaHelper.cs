@@ -21,6 +21,7 @@ namespace Eva.UI.Web.Helpers
                 new Claim("Foto", usuarioLogado.Foto ?? ""),
                 new Claim(ClaimTypes.Name, usuarioLogado.Nome),
                 new Claim(ClaimTypes.Email, usuarioLogado.Email),
+                //Todo: Adicionar todas as roles
                 new Claim(ClaimTypes.Role, usuarioLogado.Grupo.Nome ?? ""),
             };
 

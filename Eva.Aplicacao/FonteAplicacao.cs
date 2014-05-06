@@ -24,6 +24,11 @@ namespace Eva.Aplicacao
             return contexto.GetAll().OrderBy(x => x.Nome);
         }
 
+        public Fonte ListarPorNome(string nome)
+        {
+            return contexto.GetByFilter(x => x.Nome.ToLower() == nome.ToLower()).FirstOrDefault();
+        }
+
         public Fonte ListarPorId(string id)
         {
             return contexto.Get(id);

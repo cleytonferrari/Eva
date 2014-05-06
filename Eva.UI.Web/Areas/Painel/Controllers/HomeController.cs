@@ -46,8 +46,6 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             return View(usuario);
         }
 
-       
-
         public ActionResult Sair()
         {
             Seguranca.DestruirSessaoDeUsuario();
