@@ -48,7 +48,7 @@
                                 <th>Zona</th>
                                 <th>Data</th>
                                 <th>Publicado</th>
-                                <th>Opções</th>
+                                <th style="width: 105px">Opções</th>
                             </tr>
                         </thead>
 
@@ -60,7 +60,7 @@
                                     <td class=" "><input type="text" class="form-control small" id="email" name="email" type="text" value=""></td>
                                     <td class=" "><input type="text" class="form-control small" id="grupo" name="grupo" type="text" value=""></td>
                                     <td></td>
-                                    <td></td>
+                                    <td></td> 
                                     <td class=" ">
                                         <button class="btn btn-primary" type="submit" class="btn btn-white active tooltips" data-original-title="Filtrar" data-toggle="tooltip">
                                             <i class="fa fa-search"></i>
@@ -82,7 +82,7 @@
                                         <td>@noticia.Titulo</td>
                                         <td>@noticia.Categoria.Nome</td>
                                         <td>@noticia.Zona.Nome</td>
-                                        <td>@noticia.Data</td>
+                                        <td>@noticia.Data.ToShortDateString()</td>
                                         <td>@noticia.Publicado</td>
 
 
