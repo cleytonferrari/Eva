@@ -52,6 +52,31 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             return RedirectToAction("Login");
         }
 
+        //Todo: Instalacao inicial pros Devs
+        public string Instalar()
+        {
+            if (Fabrica.UsuarioAplicacaoMongo().Login("eva@eva.com.br", "eva") == null)
+            {
+                var grupo = new GrupoDeUsuario()
+                {
+                    Nome = "Admin",
+                    Permissoes = new[] {"usuarios,noticias"} //nao ta funcionando ainda
+                };
+                Fabrica.GrupoDeUsuarioAplicacaoMongo().Salvar(grupo);
+                var usuario = new Usuario()
+                {
+                    Nome = "Eva",
+                    Email = "eva@eva.com.br",
+                    Grupo = grupo,
+                    Senha = "eva"
+                };
+                Fabrica.UsuarioAplicacaoMongo().Salvar(usuario);
+
+                return "Usuario: eva@eva.com.br --- Senha: eva";
+            }
+            return "O sistema já foi instalado";
+        }
+
     }
 
     public class LoginViewModel
