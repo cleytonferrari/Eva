@@ -5,6 +5,10 @@ namespace Eva.Dominio
 {
     public class Noticia : Entidade
     {
+        public Noticia()
+        {
+            Arquivos = new List<Arquivo>();
+        }
         private string titulo;
         public string Titulo
         {
@@ -27,7 +31,7 @@ namespace Eva.Dominio
         public int Hits { get; set; }
         public bool ExibirComentarios { get; set; }
         public IEnumerable<Comentario> Comentarios { get; set; }
-        public IEnumerable<Arquivo> Arquivos { get; set; }
+        public List<Arquivo> Arquivos { get; set; }
     }
 
     
