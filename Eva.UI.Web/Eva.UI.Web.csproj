@@ -499,6 +499,7 @@
     <Content Include="Areas\Painel\Views\Noticia\Index.cshtml" />
     <Content Include="Areas\Painel\Views\Noticia\Editar.cshtml" />
     <Content Include="Areas\Painel\Views\Arquivos\Index.cshtml" />
+    <Content Include="Areas\Painel\Views\Arquivos\Enviar.cshtml" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />

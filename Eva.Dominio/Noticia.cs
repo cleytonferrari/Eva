@@ -27,6 +27,7 @@ namespace Eva.Dominio
         public int Hits { get; set; }
         public bool ExibirComentarios { get; set; }
         public IEnumerable<Comentario> Comentarios { get; set; }
+        public IEnumerable<Arquivo> Arquivos { get; set; }
     }
 
     

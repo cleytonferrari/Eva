@@ -1,89 +1,52 @@
 ﻿@using Eva.Dominio
 @using PagedList
 @using PagedList.Mvc
-@model IPagedList<Eva.Dominio.Categoria>
-<div class="col-md-12">
-    <!--breadcrumbs start -->
-    <ul class="breadcrumb">
-        <li><a href="@Url.Action("Index", "Home", new { Area = "Painel" })"><i class="fa fa-home"></i> Inicio</a></li>
-        <li class="active">Arquivos</li>
-    </ul>
-    <!--breadcrumbs end -->
-</div>
+@model Eva.UI.Web.Areas.Painel.Controllers.ArquivoViewModel
+    <div class="col-md-12">
+        <!--breadcrumbs start -->
+        <ul class="breadcrumb">
+            <li><a href="@Url.Action("Index", "Home", new { Area = "Painel" })"><i class="fa fa-home"></i> Inicio</a></li>
+            <li class="active">Arquivos</li>
+        </ul>
+        <!--breadcrumbs end -->
+    </div>
 
-<div class="col-md-12">
-    @Flash.FlashMessage(TempData)
-</div>
+    <div class="col-md-12">
+        @Flash.FlashMessage(TempData)
+    </div>
 
-<div class="col-sm-12">
-    <section class="panel">
-        <header class="panel-heading">
-            Gerenciar Arquivos
-        </header>
-        <div class="panel-body">
+    <div class="col-sm-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Gerenciar Arquivos: @Model.Titulo
+            </header>
+            <div class="panel-body">
 
-            <ul id="filters" class="media-filter">
-                <li><a href="#" data-filter="*"> Todas</a></li>
-            </ul>
+                <ul id="filters" class="media-filter">
+                    <li><a href="#" data-filter="*"> Todas</a></li>
+                </ul>
 
-            <div class="btn-group pull-right">
-                <button type="button" class="btn btn-white btn-sm" id="todos"><i class="fa fa-check-square-o"></i> Selecionar Todas</button>
-                <button type="button" class="btn btn-white btn-sm"><i class="fa fa-trash-o"></i> Excluir</button>
-            </div>
-            <a href="#" type="button" class="btn btn-primary pull-right btn-sm"><i class="fa fa-upload"></i> Enviar Novos Arquivos</a>
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-white btn-sm" id="todos"><i class="fa fa-check-square-o"></i> Selecionar Todas</button>
+                    <button type="button" class="btn btn-white btn-sm"><i class="fa fa-trash-o"></i> Excluir</button>
+                </div>
+                <a href="@Url.Action("Enviar", new { id = Model.Id, plugin = Model.Plugin })" type="button" class="btn btn-primary pull-right btn-sm"><i class="fa fa-upload"></i> Enviar Novos Arquivos</a>
 
 
 
             <ul id="galeria" class="media-gal">
-                <li id="id_01" class="images item ">
-                    <input type="checkbox" value="false" name="id[]" style="position: absolute; margin: 15px">
-                    <a href="#myModal" data-toggle="modal" class="handler">
-                        <img src="Content/img/galeria/image1.jpg" alt="" />
-                    </a>
-                    <p>img01.jpg </p>
-                </li>
 
-                <li id="id_02" class=" audio item ">
-                    <input type="checkbox" value="false" name="id[]" style="position: absolute; margin: 15px">
-                    <a href="#myModal" data-toggle="modal" class="handler">
-                        <img src="Content/img/galeria/image2.jpg" alt="" />
-                    </a>
-                    <p>img02.jpg </p>
-                </li>
+                @foreach (var arquivo in Model.Arquivos)
+                {
 
-                <li id="id_03" class=" video item ">
-                    <input type="checkbox" value="false" name="id[]" style="position: absolute; margin: 15px">
-                    <a href="#myModal" data-toggle="modal" class="handler">
-                        <img src="Content/img/galeria/image3.jpg" alt="" />
-                    </a>
-                    <p>img03.jpg </p>
-                </li>
-
-
-                <li id="id_04" class=" video item ">
-                    <input type="checkbox" value="false" name="id[]" style="position: absolute; margin: 15px">
-                    <a href="#myModal" data-toggle="modal" class="handler">
-                        <img src="Content/img/galeria/image3.jpg" alt="" />
-                    </a>
-                    <p>img03.jpg </p>
-                </li>
-
-                <li id="id_05" class=" video item ">
-                    <input type="checkbox" value="false" name="id[]" style="position: absolute; margin: 15px">
-                    <a href="#myModal" data-toggle="modal" class="handler">
-                        <img src="Content/img/galeria/image3.jpg" alt="" />
-                    </a>
-                    <p>img03.jpg </p>
-                </li>
-
-                <li id="id_06" class=" video item ">
-                    <input type="checkbox" value="false" name="id[]" style="position: absolute; margin: 15px">
-                    <a href="#myModal" data-toggle="modal" class="handler">
-                        <img src="Content/img/galeria/image3.jpg" alt="" />
-                    </a>
-                    <p>img03.jpg </p>
-                </li>
-
+                    <li id="id_01" class="images item ">
+                        <input type="checkbox" value="false" name="id[]" style="position: absolute; margin: 15px">
+                        <a href="#myModal" data-toggle="modal" class="handler">
+                            <img src="Content/img/galeria/image1.jpg" alt="" />
+                        </a>
+                        <p>img01.jpg </p>
+                    </li>
+                }
             </ul>
 
             <div class="col-md-12 text-center clearfix">
