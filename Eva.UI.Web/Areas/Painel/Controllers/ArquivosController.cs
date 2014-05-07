@@ -53,11 +53,9 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             return View(arquivoViewModel);
         }
 
-        /*Action usada pelo plupload para enviar os arquivos*/
         [HttpPost]
         public ActionResult Upload(int? chunk, int? chunks, string name, string plugin, string id)
         {
-            //Arquivo que o PlUpload envia.
             var fileUpload = Request.Files[0];
 
             if (Imagem.Upload(fileUpload, "Noticia", name, chunk, chunks))
@@ -70,8 +68,11 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 
                         var ordem = (noticia.Arquivos.Any()) ? noticia.Arquivos.Max(x => x.Ordem) + 1 : 1;
 
-                        noticia.Arquivos.Add(new Arquivo() {Nome = name, Legenda = noticia.Titulo, Ordem = ordem});
+                        noticia.Arquivos.Add(new Arquivo() { Nome = name, Legenda = noticia.Titulo, Ordem = ordem });
                         Fabrica.NoticiaAplicacaoMongo().Salvar(noticia);
+                        
+                        if (ordem == 1)//foto da capa
+                            Imagem.CropFile(name, "Noticia", ImagensLayout.Noticias);
 
                         break;
                 }
