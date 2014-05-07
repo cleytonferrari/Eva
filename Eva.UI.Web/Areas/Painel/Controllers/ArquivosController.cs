@@ -71,7 +71,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                         noticia.Arquivos.Add(new Arquivo() { Nome = name, Legenda = noticia.Titulo, Ordem = ordem });
                         Fabrica.NoticiaAplicacaoMongo().Salvar(noticia);
                         
-                        if (ordem == 1)//foto da capa
+                        if (ordem == 1)//foto da capa Todo: Ao trocar foto da capa, excluir as anteriores, e gerar novas
                             Imagem.CropFile(name, "Noticia", ImagensLayout.Noticias);
 
                         break;
