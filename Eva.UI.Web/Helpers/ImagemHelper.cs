@@ -12,13 +12,14 @@ namespace Eva.UI.Web.Helpers
         public static string Upload(HttpPostedFileBase arquivo, string diretorio)
         {
             //Todo: implementar um retorno para os erros do upload
+            //Todo: criar diretorio se não existir
             var erros = new List<string>();
             var fileName = "";
             if (arquivo != null)
             {
                 var supportedTypes = new[] { "jpg", "jpeg", "png" };
                 var fileExt = Path.GetExtension(arquivo.FileName).Substring(1);
-                 fileName = Guid.NewGuid() + "." + fileExt;
+                fileName = Guid.NewGuid() + "." + fileExt;
 
                 if (arquivo.ContentLength > ((1024 * 1024) * 4))
                 {
@@ -33,7 +34,7 @@ namespace Eva.UI.Web.Helpers
                 var path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Uploads/" + diretorio), fileName);
 
                 var imagem = new WebImage(arquivo.InputStream);
-                imagem.Resize(350, 350);
+                //imagem.Resize(350, 350);
                 //imagem.AddTextWatermark("Cleyton Ferrari");
                 //imagem.AddImageWatermark("Content/Uploads/logo.png", 50, 50, "Right", "Bottom", 50, 2);
                 //imagem.Crop(100, 100, 100, 100);
@@ -42,6 +43,36 @@ namespace Eva.UI.Web.Helpers
             }
 
             return fileName;
+        }
+
+        /// <summary>
+        /// Envia um arquivo dividido em várias partes
+        /// </summary>
+        /// <param name="arquivo"></param>
+        /// <param name="diretorio"></param>
+        /// <param name="fileName"></param>
+        /// <param name="chunk"></param>
+        /// <param name="chunks"></param>
+        /// <returns></returns>
+        public static bool Upload(HttpPostedFileBase arquivo, string diretorio, string fileName, int? chunk, int? chunks)
+        {
+            if (arquivo == null) 
+                return false;
+
+            var path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Uploads/" + diretorio), fileName);
+
+            //Checa se é arquivo em partes
+            chunk = chunk ?? 0;
+
+            //checa se é um arquivo, ou uma parte de um arquivo
+            using (var fs = new FileStream(path, chunk == 0 ? FileMode.Create : FileMode.Append))
+            {
+                var buffer = new byte[arquivo.InputStream.Length];
+                arquivo.InputStream.Read(buffer, 0, buffer.Length);
+                fs.Write(buffer, 0, buffer.Length);
+            }
+
+            return chunk + 1 == chunks;
         }
     }
 }

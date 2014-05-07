@@ -15,33 +15,38 @@
 <div class="col-sm-12">
     <section class="panel">
         <header class="panel-heading">
-            Gerenciar Arquivos:
+            Gerenciar Arquivos: @Model.Titulo
         </header>
         <div class="panel-body">
-
+            <div class="btn-group">
+                <a href="@Url.Action("Index", new { id = Model.Id, plugin = Model.Plugin })" type="button" class="btn btn-primary btn-sm"><i class="fa fa-camera"></i> Configurar Logo</a>    
+                <a href="@Url.Action("Index", new { id = Model.Id, plugin = Model.Plugin })" type="button" class="btn btn-sm"><i class="fa fa-camera"></i> Retornar (Lista de Arquivos)</a>    
+            </div>
+            <br />
+            <br />
 
             <link href="@Url.Content("~/Scripts/plupload/jquery.plupload.queue/css/jquery.plupload.queue.css")" rel="stylesheet" type="text/css" />
-            <!--Load plupload and all its runtime scripts-->
+            
             <script src="@Url.Content("~/Scripts/plupload/plupload.full.min.js")" type="text/javascript"></script>
             <script type="text/javascript" src="@Url.Content("~/Scripts/plupload/jquery.plupload.queue/jquery.plupload.queue.js")"></script>
             <script type="text/javascript">
-                // Convert divs to queue widgets when the DOM is ready
+                
                 $(function () {
                     $("#uploader").pluploadQueue({
                         // General settings
-                        runtimes: 'flash,silverlight,browserplus,html5',
+                        runtimes: 'html5,flash,silverlight',
 
                         max_file_size: '10mb',
                         chunk_size: '1mb',
+                        max_retries: 5,
                         unique_names: true,
 
                         // Resize images on clientside if we can
-                        resize: { width: 320, height: 240, quality: 90 },
+                        resize: { width: 1600, height: 1200, quality: 90 },
 
                         // Specify what files to browse for
                         filters: [
-                            { title: "Image files", extensions: "jpg,gif,png" },
-                            { title: "Zip files", extensions: "zip" }
+                            { title: "Image files", extensions: "jpg,gif,png,jpeg" }
                         ],
                         url: '@Url.Action("upload", "Arquivos", new{id=Model.Id, plugin=Model.Plugin})',
                         flash_swf_url: '../../../Scripts/plupload/Moxie.swf',
@@ -61,10 +66,7 @@
                             });
 
                             uploader.start();
-                        } else {
-                            alert('You must queue at least one file.');
-                        }
-
+                        } 
                         return false;
                     });
                 });
