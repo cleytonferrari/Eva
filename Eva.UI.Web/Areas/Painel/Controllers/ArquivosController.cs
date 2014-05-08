@@ -53,6 +53,12 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             return View(arquivoViewModel);
         }
 
+        public JsonResult ConfigurarLogo(LogoAplicarViewModel logos)
+        {
+            Session["logos"] = logos;
+            return Json("", JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public ActionResult Upload(int? chunk, int? chunks, string name, string plugin, string id)
         {
@@ -88,5 +94,19 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
         public string Titulo { get; set; }
         public string Plugin { get; set; }
         public IEnumerable<Arquivo> Arquivos { get; set; }
+    }
+
+    public class LogoAplicarViewModel
+    {
+        public string Logo1 { get; set; }
+        public string Logo2 { get; set; }
+        public string Logo3 { get; set; }
+        public string Logo4 { get; set; }
+        public string Logo5 { get; set; }
+        public string Logo6 { get; set; }
+        public string Logo7 { get; set; }
+        public string Logo8 { get; set; }
+        public string Logo9 { get; set; }
+
     }
 }

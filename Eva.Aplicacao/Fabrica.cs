@@ -33,5 +33,10 @@ namespace Eva.Aplicacao
         {
             return new NoticiaAplicacao(new Repositorio.MongoDb.Repositorio<Noticia>());
         }
+
+        public static LogoAplicacao LogoAplicacaoMongo()
+        {
+            return new LogoAplicacao(new Repositorio.MongoDb.Repositorio<Logo>());
+        }
     }
 }

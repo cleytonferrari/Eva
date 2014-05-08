@@ -92,7 +92,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             };
 
             user.Grupo = grupoDeUsuarioApp.ListarPorId(usuario.GrupoId);
-            user.Foto = (usuario.Foto != null) ? Imagem.Upload(usuario.Foto, "Usuario") : usuario.PathFoto;
+            user.Foto = (usuario.Foto != null) ? Imagem.Upload(usuario.Foto, "Logo") : usuario.PathFoto;
 
 
             usuarioApp.Salvar(user);

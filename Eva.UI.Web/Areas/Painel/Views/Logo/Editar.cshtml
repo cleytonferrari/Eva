@@ -1,0 +1,90 @@
+﻿@using Eva.Dominio
+@model Eva.UI.Web.Areas.Painel.Controllers.LogoViewModel
+
+<div class="col-md-12">
+    <!--breadcrumbs start -->
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home", new { Area = "Painel" })"><i class="fa fa-home"></i> Inicio</a></li>
+        <li><a href="@Url.Action("Index", "Logo", new { Area = "Painel" })"><i class="fa fa-home"></i> Logos</a></li>
+        <li class="active">Editar</li>
+    </ul>
+    <!--breadcrumbs end -->
+</div>
+
+<div class="col-lg-12">
+    <section class="panel">
+        <header class="panel-heading">
+            @(string.IsNullOrEmpty(Model.Id) ? "Cadastrar novo logo" : "Editar logo: " + Model.Nome)
+        </header>
+        <div class="panel-body">
+            <div>
+                <form class="cmxform form-horizontal " id="usuarioForm" method="POST" action="" novalidate="novalidate" enctype="multipart/form-data">
+
+                    <div class="form-group ">
+                        <label for="Nome" class="control-label col-lg-3">Nome:</label>
+                        <div class="col-lg-6">
+                            <input class=" form-control" id="Nome" name="Nome" type="text" value="@Model.Nome" required="">
+                            <label for="Nome" class="error">@Html.ValidationMessageFor(x => x.Nome)</label>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="control-label col-lg-3">Logo:</label>
+                        <div class="col-md-9">
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <input type="hidden" value="" name="">
+
+                                <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                    <img src="@Foto.Placehold(Model.PathImagem, "200x150", "Usuario/")" alt="">
+                                    <input type="hidden" value="@Model.PathImagem" name="PathImagem" id="PathImagem" />
+                                </div>
+                                <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 10px;"></div>
+                                <div>
+                                    <span class="btn btn-white btn-file">
+                                        <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Selecionar Foto</span>
+                                        <span class="fileupload-exists"><i class="fa fa-undo"></i> Alterar</span>
+                                        <input type="file" class="default" name="Imagem" id="Imagem">
+                                    </span>
+                                    <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remover</a>
+
+                                </div>
+                                <label for="PathFoto" class="error">@Html.ValidationMessageFor(x => x.PathImagem)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-offset-3 col-lg-6">
+                            <button class="btn btn-primary" type="submit">Salvar</button>
+                            <a href="@Url.Action("Index")" class="btn btn-default">Cancelar</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script type="text/javascript" src="~/Scripts/bootstrap-fileupload.js"></script>
+
+<script type="text/javascript">
+    $("#usuarioForm").validate({
+        rules: {
+            Nome: {
+                required: true,
+                minlength: 3
+            },
+            
+        },
+        messages: {
+            Nome: {
+                required: "O campo nome é obrigatorio.",
+                minlength: "O campo nome deve conter no mínimo 3 caracteres."
+            },
+        }
+
+    });
+</script>

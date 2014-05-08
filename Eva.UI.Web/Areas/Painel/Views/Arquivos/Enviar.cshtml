@@ -69,6 +69,31 @@
                         }
                         return false;
                     });
+
+                    $('#btnSalvar').click(function () {
+                        var dados = $('#logoForm').serialize();
+                        console.log(JSON.stringify(dados));
+                        $.ajax({
+                            url: "@Url.Action("ConfigurarLogo")",
+                            type: "POST",
+                            dataType: "json",
+                            contentType: "json",
+                            data: JSON.stringify( dados),
+
+                            complete: function () {
+                                //called when complete
+                            },
+
+                            success: function () {
+                                //called when successful
+                            },
+
+                            error: function () {
+                                //called when there is an error
+                            },
+                        });
+                    });
+
                 });
             </script>
             <div id="uploader">
@@ -88,104 +113,102 @@
                         </div>
 
                         <div class="modal-body row">
-                            <form class="cmxform form-horizontal " id="grupoForm" method="POST" action="" novalidate="novalidate" enctype="multipart/form-data">
+                            <form class="cmxform form-horizontal " id="logoForm" name="logoForm" method="POST" action="" novalidate="novalidate">
 
                                 <div class="form-group ">
                                     <label for="logo1" class="control-label col-lg-3">Topo Esquerdo:</label>
                                     <div class="col-lg-6">
-                                        <select class="form-control" name="logo1" id="logo1">
+                                        <select class="form-control" name="Logo1" id="Logo1">
                                             <option value=""></option>
-                                            <option value="">Logo 01</option>
+                                            <option value="Logo01">Logo 01</option>
                                         </select>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group ">
                                     <label for="logo1" class="control-label col-lg-3">Topo Centro:</label>
                                     <div class="col-lg-6">
-                                        <select class="form-control" name="logo1" id="logo1">
+                                        <select class="form-control" name="Logo2" id="Logo2">
                                             <option value=""></option>
-                                            <option value="">Logo 01</option>
+                                            <option value="Logo01">Logo 01</option>
                                         </select>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group ">
                                     <label for="logo1" class="control-label col-lg-3">Topo Direito:</label>
                                     <div class="col-lg-6">
-                                        <select class="form-control" name="logo1" id="logo1">
+                                        <select class="form-control" name="Logo3" id="Logo3">
                                             <option value=""></option>
-                                            <option value="">Logo 01</option>
+                                            <option value="Logo01">Logo 01</option>
                                         </select>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group ">
                                     <label for="logo1" class="control-label col-lg-3">Centro Esquerdo:</label>
                                     <div class="col-lg-6">
-                                        <select class="form-control" name="logo1" id="logo1">
+                                        <select class="form-control" name="Logo4" id="Logo4">
                                             <option value=""></option>
-                                            <option value="">Logo 01</option>
+                                            <option value="Logo01">Logo 01</option>
                                         </select>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group ">
                                     <label for="logo1" class="control-label col-lg-3">Centro Centro:</label>
                                     <div class="col-lg-6">
-                                        <select class="form-control" name="logo1" id="logo1">
+                                        <select class="form-control" name="Logo5" id="Logo5">
                                             <option value=""></option>
-                                            <option value="">Logo 01</option>
+                                            <option value="Logo01">Logo 01</option>
                                         </select>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group ">
                                     <label for="logo1" class="control-label col-lg-3">Centro Direito:</label>
                                     <div class="col-lg-6">
-                                        <select class="form-control" name="logo1" id="logo1">
+                                        <select class="form-control" name="Logo6" id="Logo6">
                                             <option value=""></option>
-                                            <option value="">Logo 01</option>
+                                            <option value="Logo01">Logo 01</option>
                                         </select>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group ">
                                     <label for="logo1" class="control-label col-lg-3">Baixo Esquerdo:</label>
                                     <div class="col-lg-6">
-                                        <select class="form-control" name="logo1" id="logo1">
+                                        <select class="form-control" name="Logo7" id="Logo7">
                                             <option value=""></option>
-                                            <option value="">Logo 01</option>
+                                            <option value="Logo01">Logo 01</option>
                                         </select>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group ">
                                     <label for="logo1" class="control-label col-lg-3">Baixo Centro:</label>
                                     <div class="col-lg-6">
-                                        <select class="form-control" name="logo1" id="logo1">
+                                        <select class="form-control" name="Logo8" id="Logo8">
                                             <option value=""></option>
-                                            <option value="">Logo 01</option>
+                                            <option value="Logo01">Logo 01</option>
                                         </select>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group ">
                                     <label for="logo1" class="control-label col-lg-3">Baixo Direito:</label>
                                     <div class="col-lg-6">
-                                        <select class="form-control" name="logo1" id="logo1">
+                                        <select class="form-control" name="Logo9" id="Logo9">
                                             <option value=""></option>
-                                            <option value="">Logo 01</option>
+                                            <option value="Logo01">Logo 01</option>
                                         </select>
                                     </div>
                                 </div>
-                                
-                             
 
                                 <div class="form-group">
                                     <div class="col-lg-offset-3 col-lg-6">
-                                        <button class="btn btn-primary" type="submit">Salvar</button>
-                                        <a href="@Url.Action("Index")" class="btn btn-default">Cancelar</a>
+                                        <button class="btn btn-primary" type="submit" id="btnSalvar">Salvar</button>
+                                        <a href="@Url.Action("Index")" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancelar</a>
                                     </div>
                                 </div>
                             </form>

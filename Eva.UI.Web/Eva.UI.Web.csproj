@@ -500,6 +500,8 @@
     <Content Include="Areas\Painel\Views\Noticia\Editar.cshtml" />
     <Content Include="Areas\Painel\Views\Arquivos\Index.cshtml" />
     <Content Include="Areas\Painel\Views\Arquivos\Enviar.cshtml" />
+    <Content Include="Areas\Painel\Views\Logo\Index.cshtml" />
+    <Content Include="Areas\Painel\Views\Logo\Editar.cshtml" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />
@@ -658,6 +660,7 @@
     <Compile Include="Areas\Painel\Controllers\CategoriaController.cs" />
     <Compile Include="Areas\Painel\Controllers\GrupoController.cs" />
     <Compile Include="Areas\Painel\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Painel\Controllers\LogoController.cs" />
     <Compile Include="Areas\Painel\Controllers\UsuarioController.cs" />
     <Compile Include="Areas\Painel\PainelAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
