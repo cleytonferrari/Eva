@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
+using Eva.Aplicacao;
 
 namespace Eva.UI.Web.Helpers
 {
@@ -80,10 +81,10 @@ namespace Eva.UI.Web.Helpers
         {
             var path = MontaPath(diretorio, name);
 
-            
+
             foreach (var item in tamanhos)
             {
-                if (item.Nome == "Original") 
+                if (item.Nome == "Original")
                     continue;
 
                 var imagem = new WebImage(path);
@@ -98,6 +99,34 @@ namespace Eva.UI.Web.Helpers
             return Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Uploads/" + diretorio), fileName);
         }
 
+        public static void Logo(string name, string diretorio, List<PosicaoLogo> posicaoLogo)
+        {
+            if (posicaoLogo.Any())
+            {
+                var pathImagem = MontaPath(diretorio, name);
+                var imagem = new WebImage(pathImagem);
+
+                foreach (var pLogo in posicaoLogo)
+                {
+                    //Todo: Tirar o acesso ao bando daqui
+                    var nomeLogo = Fabrica.LogoAplicacaoMongo().ListarPorId(pLogo.IdLogo).Imagem;
+                    
+                    //Carrega o logo e redimenciona para 33% do tamanho da imagem
+                    var logo = new WebImage(MontaPath("Logo", nomeLogo)).Resize(imagem.Width / 3, imagem.Height / 3);
+                    imagem.AddImageWatermark(logo, logo.Width, logo.Height, pLogo.PosicaoHorizontal, pLogo.PosicaoVertical, 90, 0);
+                }
+
+                imagem.Save(pathImagem);
+
+            }
+        }
+    }
+
+    public class PosicaoLogo
+    {
+        public string PosicaoHorizontal { get; set; }//"Left", "Right", or "Center".
+        public string PosicaoVertical { get; set; } //"Top", "Middle", or "Bottom"
+        public string IdLogo { get; set; }
     }
 
     public struct ImagensLayout

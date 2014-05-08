@@ -1,4 +1,5 @@
-﻿@model Eva.UI.Web.Areas.Painel.Controllers.ArquivoViewModel
+﻿@using Eva.Dominio
+@model Eva.UI.Web.Areas.Painel.Controllers.ArquivoViewModel
 <div class="col-md-12">
     <!--breadcrumbs start -->
     <ul class="breadcrumb">
@@ -72,26 +73,11 @@
 
                     $('#btnSalvar').click(function () {
                         var dados = $('#logoForm').serialize();
-                        console.log(JSON.stringify(dados));
-                        $.ajax({
-                            url: "@Url.Action("ConfigurarLogo")",
-                            type: "POST",
-                            dataType: "json",
-                            contentType: "json",
-                            data: JSON.stringify( dados),
+                        $.post('@Url.Action("ConfigurarLogo")', dados, function (data) {
 
-                            complete: function () {
-                                //called when complete
-                            },
-
-                            success: function () {
-                                //called when successful
-                            },
-
-                            error: function () {
-                                //called when there is an error
-                            },
-                        });
+                            $('#myModal').modal('hide');
+                            
+                        },'json');
                     });
 
                 });
@@ -120,7 +106,15 @@
                                     <div class="col-lg-6">
                                         <select class="form-control" name="Logo1" id="Logo1">
                                             <option value=""></option>
-                                            <option value="Logo01">Logo 01</option>
+                                            @foreach (var logo in (List<Logo>)ViewBag.Logos)
+                                            {
+                                                var selected = "";
+                                                if (logo.Id == Model.Id)
+                                                {
+                                                    selected = "selected";
+                                                }
+                                                <option value='@logo.Id' @selected>@logo.Nome</option>
+                                            }
                                         </select>
                                     </div>
                                 </div>
@@ -130,7 +124,15 @@
                                     <div class="col-lg-6">
                                         <select class="form-control" name="Logo2" id="Logo2">
                                             <option value=""></option>
-                                            <option value="Logo01">Logo 01</option>
+                                            @foreach (var logo in (List<Logo>)ViewBag.Logos)
+                                            {
+                                                var selected = "";
+                                                if (logo.Id == Model.Id)
+                                                {
+                                                    selected = "selected";
+                                                }
+                                                <option value='@logo.Id' @selected>@logo.Nome</option>
+                                            }
                                         </select>
                                     </div>
                                 </div>
@@ -140,7 +142,15 @@
                                     <div class="col-lg-6">
                                         <select class="form-control" name="Logo3" id="Logo3">
                                             <option value=""></option>
-                                            <option value="Logo01">Logo 01</option>
+                                            @foreach (var logo in (List<Logo>)ViewBag.Logos)
+                                            {
+                                                var selected = "";
+                                                if (logo.Id == Model.Id)
+                                                {
+                                                    selected = "selected";
+                                                }
+                                                <option value='@logo.Id' @selected>@logo.Nome</option>
+                                            }
                                         </select>
                                     </div>
                                 </div>
@@ -150,7 +160,15 @@
                                     <div class="col-lg-6">
                                         <select class="form-control" name="Logo4" id="Logo4">
                                             <option value=""></option>
-                                            <option value="Logo01">Logo 01</option>
+                                            @foreach (var logo in (List<Logo>)ViewBag.Logos)
+                                            {
+                                                var selected = "";
+                                                if (logo.Id == Model.Id)
+                                                {
+                                                    selected = "selected";
+                                                }
+                                                <option value='@logo.Id' @selected>@logo.Nome</option>
+                                            }
                                         </select>
                                     </div>
                                 </div>
@@ -160,7 +178,15 @@
                                     <div class="col-lg-6">
                                         <select class="form-control" name="Logo5" id="Logo5">
                                             <option value=""></option>
-                                            <option value="Logo01">Logo 01</option>
+                                            @foreach (var logo in (List<Logo>)ViewBag.Logos)
+                                            {
+                                                var selected = "";
+                                                if (logo.Id == Model.Id)
+                                                {
+                                                    selected = "selected";
+                                                }
+                                                <option value='@logo.Id' @selected>@logo.Nome</option>
+                                            }
                                         </select>
                                     </div>
                                 </div>
@@ -170,7 +196,15 @@
                                     <div class="col-lg-6">
                                         <select class="form-control" name="Logo6" id="Logo6">
                                             <option value=""></option>
-                                            <option value="Logo01">Logo 01</option>
+                                            @foreach (var logo in (List<Logo>)ViewBag.Logos)
+                                            {
+                                                var selected = "";
+                                                if (logo.Id == Model.Id)
+                                                {
+                                                    selected = "selected";
+                                                }
+                                                <option value='@logo.Id' @selected>@logo.Nome</option>
+                                            }
                                         </select>
                                     </div>
                                 </div>
@@ -180,7 +214,15 @@
                                     <div class="col-lg-6">
                                         <select class="form-control" name="Logo7" id="Logo7">
                                             <option value=""></option>
-                                            <option value="Logo01">Logo 01</option>
+                                            @foreach (var logo in (List<Logo>)ViewBag.Logos)
+                                            {
+                                                var selected = "";
+                                                if (logo.Id == Model.Id)
+                                                {
+                                                    selected = "selected";
+                                                }
+                                                <option value='@logo.Id' @selected>@logo.Nome</option>
+                                            }
                                         </select>
                                     </div>
                                 </div>
@@ -190,7 +232,15 @@
                                     <div class="col-lg-6">
                                         <select class="form-control" name="Logo8" id="Logo8">
                                             <option value=""></option>
-                                            <option value="Logo01">Logo 01</option>
+                                            @foreach (var logo in (List<Logo>)ViewBag.Logos)
+                                            {
+                                                var selected = "";
+                                                if (logo.Id == Model.Id)
+                                                {
+                                                    selected = "selected";
+                                                }
+                                                <option value='@logo.Id' @selected>@logo.Nome</option>
+                                            }
                                         </select>
                                     </div>
                                 </div>
@@ -200,7 +250,15 @@
                                     <div class="col-lg-6">
                                         <select class="form-control" name="Logo9" id="Logo9">
                                             <option value=""></option>
-                                            <option value="Logo01">Logo 01</option>
+                                            @foreach (var logo in (List<Logo>)ViewBag.Logos)
+                                            {
+                                                var selected = "";
+                                                if (logo.Id == Model.Id)
+                                                {
+                                                    selected = "selected";
+                                                }
+                                                <option value='@logo.Id' @selected>@logo.Nome</option>
+                                            }
                                         </select>
                                     </div>
                                 </div>

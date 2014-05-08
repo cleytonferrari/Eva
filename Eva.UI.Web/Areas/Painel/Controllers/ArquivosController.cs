@@ -35,6 +35,8 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 
         public ActionResult Enviar(string id, string plugin)
         {
+            Session["logos"] = null;
+
             if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(plugin))
                 return RedirectToAction("Index", "Home", new { area = "Painel" });
 
@@ -50,6 +52,9 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                     arquivoViewModel.Plugin = plugin;
                     break;
             }
+
+            ViewBag.Logos = Fabrica.LogoAplicacaoMongo().ListarTodos().ToList();
+
             return View(arquivoViewModel);
         }
 
@@ -66,7 +71,6 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 
             if (Imagem.Upload(fileUpload, "Noticia", name, chunk, chunks))
             {
-                //Aplico o logo, ou redimensiona, salva
                 switch (plugin.ToLower())
                 {
                     case "noticia":
@@ -76,12 +80,112 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 
                         noticia.Arquivos.Add(new Arquivo() { Nome = name, Legenda = noticia.Titulo, Ordem = ordem });
                         Fabrica.NoticiaAplicacaoMongo().Salvar(noticia);
-                        
+
                         if (ordem == 1)//foto da capa Todo: Ao trocar foto da capa, excluir as anteriores, e gerar novas
                             Imagem.CropFile(name, "Noticia", ImagensLayout.Noticias);
 
                         break;
                 }
+
+                //Aplico o logo, ou redimensiona, salva
+                var posicaoLogo = (LogoAplicarViewModel)Session["logos"] ?? new LogoAplicarViewModel();
+
+                var pLogo = new List<PosicaoLogo>();
+
+                #region Todo: Refatorar isso
+
+                if (posicaoLogo.Logo1 != null)
+                {
+                    pLogo.Add(new PosicaoLogo()
+                    {
+                        IdLogo = posicaoLogo.Logo1,
+                        PosicaoHorizontal = "Left", //"Left", "Right", or "Center".
+                        PosicaoVertical = "Top" //"Top", "Middle", or "Bottom"
+                    });
+                }
+                if (posicaoLogo.Logo2 != null)
+                {
+                    pLogo.Add(new PosicaoLogo()
+                    {
+                        IdLogo = posicaoLogo.Logo2,
+                        PosicaoHorizontal = "Center",
+                        PosicaoVertical = "Top"
+                    });
+                }
+
+                if (posicaoLogo.Logo3 != null)
+                {
+                    pLogo.Add(new PosicaoLogo()
+                    {
+                        IdLogo = posicaoLogo.Logo3,
+                        PosicaoHorizontal = "Right",
+                        PosicaoVertical = "Top"
+                    });
+                }
+
+                if (posicaoLogo.Logo4 != null)
+                {
+                    pLogo.Add(new PosicaoLogo()
+                    {
+                        IdLogo = posicaoLogo.Logo4,
+                        PosicaoHorizontal = "Left",
+                        PosicaoVertical = "Middle"
+                    });
+                }
+
+                if (posicaoLogo.Logo5 != null)
+                {
+                    pLogo.Add(new PosicaoLogo()
+                    {
+                        IdLogo = posicaoLogo.Logo5,
+                        PosicaoHorizontal = "Center",
+                        PosicaoVertical = "Middle"
+                    });
+                }
+
+                if (posicaoLogo.Logo6 != null)
+                {
+                    pLogo.Add(new PosicaoLogo()
+                    {
+                        IdLogo = posicaoLogo.Logo6,
+                        PosicaoHorizontal = "Right",
+                        PosicaoVertical = "Middle"
+                    });
+                }
+
+                if (posicaoLogo.Logo7 != null)
+                {
+                    pLogo.Add(new PosicaoLogo()
+                    {
+                        IdLogo = posicaoLogo.Logo7,
+                        PosicaoHorizontal = "Left",
+                        PosicaoVertical = "Bottom"
+                    });
+                }
+
+                if (posicaoLogo.Logo8 != null)
+                {
+                    pLogo.Add(new PosicaoLogo()
+                    {
+                        IdLogo = posicaoLogo.Logo8,
+                        PosicaoHorizontal = "Center",
+                        PosicaoVertical = "Bottom"
+                    });
+                }
+
+                if (posicaoLogo.Logo9 != null)
+                {
+                    pLogo.Add(new PosicaoLogo()
+                    {
+                        IdLogo = posicaoLogo.Logo9,
+                        PosicaoHorizontal = "Right",
+                        PosicaoVertical = "Bottom"
+                    });
+                }
+                #endregion
+
+                Imagem.Logo(name, "Noticia", pLogo);
+
             }
 
             return Content("Success", "text/plain");
