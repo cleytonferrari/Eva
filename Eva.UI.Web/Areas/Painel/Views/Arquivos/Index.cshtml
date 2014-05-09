@@ -2,64 +2,47 @@
 @using PagedList
 @using PagedList.Mvc
 @model Eva.UI.Web.Areas.Painel.Controllers.ArquivoViewModel
-    <div class="col-md-12">
-        <!--breadcrumbs start -->
-        <ul class="breadcrumb">
-            <li><a href="@Url.Action("Index", "Home", new { Area = "Painel" })"><i class="fa fa-home"></i> Inicio</a></li>
-            <li class="active">Arquivos</li>
-        </ul>
-        <!--breadcrumbs end -->
-    </div>
+<div class="col-md-12">
+    <!--breadcrumbs start -->
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home", new { Area = "Painel" })"><i class="fa fa-home"></i> Inicio</a></li>
+        <li class="active">Arquivos</li>
+    </ul>
+    <!--breadcrumbs end -->
+</div>
 
-    <div class="col-md-12">
-        @Flash.FlashMessage(TempData)
-    </div>
+<div class="col-md-12">
+    @Flash.FlashMessage(TempData)
+</div>
 
-    <div class="col-sm-12">
-        <section class="panel">
-            <header class="panel-heading">
-                Gerenciar Arquivos: @Model.Titulo
-            </header>
-            <div class="panel-body">
+<div class="col-sm-12">
+    <section class="panel">
+        <header class="panel-heading">
+            Gerenciar Arquivos: @Model.Titulo
+        </header>
+        <div class="panel-body">
 
-                <ul id="filters" class="media-filter">
-                    <li><a href="#" data-filter="*"> Todas</a></li>
-                </ul>
-
-                <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-white btn-sm" id="todos"><i class="fa fa-check-square-o"></i> Selecionar Todas</button>
-                    <button type="button" class="btn btn-white btn-sm"><i class="fa fa-trash-o"></i> Excluir</button>
-                </div>
-                <a href="@Url.Action("Enviar", new { id = Model.Id, plugin = Model.Plugin })" type="button" class="btn btn-primary pull-right btn-sm"><i class="fa fa-upload"></i> Enviar Novos Arquivos</a>
-
-
-
+            <a href="@Url.Action("Enviar", new { id = Model.Id, plugin = Model.Plugin })" type="button" class="btn btn-primary  btn-sm"><i class="fa fa-upload"></i> Enviar Novos Arquivos</a>
+            <em class="pull-right">Clique nas imagens e arraste para ordena-las</em>
             <ul id="galeria" class="media-gal">
 
                 @foreach (var arquivo in Model.Arquivos)
                 {
 
-                    <li id="id_01" class="images item ">
-                        <input type="checkbox" value="false" name="id[]" style="position: absolute; margin: 15px">
-                        <a href="#myModal" data-toggle="modal" class="handler">
-                            <img src="@Foto.Placehold(arquivo.Nome,"250x250","Noticia/")" alt="" />
-                        </a>
-                        <p>img01.jpg </p>
+                    <li id="id_ @arquivo.Ordem" class="images item" style="background-color: #ffffff">
+                        <img src="@Foto.Placehold(arquivo.Nome,"210x200","Noticia/")" alt="" class="handler" />
+                        <p>@arquivo.Legenda.Substring(0, 25) ...</p>
+
+                        <div class="row prd-row menuimagem">
+                            <div class="action" style="right: 23px; bottom: 35px;">
+                                <a data-pathimg="@Foto.Placehold(arquivo.Nome,"250x250","Noticia/")" data-nome="@arquivo.Nome" data-legenda="@arquivo.Legenda" data-toggle="modal" data-target="#myModal" href="#" class="part1"><i class="fa fa-pencil"></i></a>
+                                <a data-pathimg="@Foto.Placehold(arquivo.Nome,"250x250","Noticia/")" data-nome="@arquivo.Nome" data-legenda="@arquivo.Legenda" data-href="arquivo.php?plugin=noticia#" data-toggle="modal" data-target="#confirm-delete" href="#" class="part1 yellow-bg-prd"><i class="fa fa-trash-o"></i></a>
+                            </div>
+                        </div>
+
                     </li>
                 }
             </ul>
-
-            <div class="col-md-12 text-center clearfix">
-                <ul class="pagination">
-                    <li><a href="#">«</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">»</a></li>
-                </ul>
-            </div>
 
             <!-- Modal -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -71,46 +54,68 @@
                         </div>
 
                         <div class="modal-body row">
-
                             <div class="col-md-5 img-modal">
-                                <img src="Content/img/galeria/image1.jpg" alt="">
-                                <a href="#" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit Image</a>
-                                <a href="#" class="btn btn-white btn-sm"><i class="fa fa-eye"></i> View Full Size</a>
-
-                                <p class="mtop10"><strong>File Name:</strong> img01.jpg</p>
-                                <p><strong>File Type:</strong> jpg</p>
-                                <p><strong>Resolution:</strong> 300x200</p>
-                                <p><strong>Uploaded By:</strong> <a href="#">ThemeBucket</a></p>
+                                <img class="imgModal" src="" alt="">
                             </div>
                             <div class="col-md-7">
                                 <div class="form-group">
-                                    <label> Name</label>
-                                    <input id="name" value="img01.jpg" class="form-control">
+                                    <label> Nome</label>
+                                    <input disabled="" id="Nome" value="" class="form-control editNome">
                                 </div>
                                 <div class="form-group">
-                                    <label> Tittle Text</label>
-                                    <input id="title" value="awesome image" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label> Description</label>
-                                    <textarea rows="2" class="form-control"></textarea>
+                                    <label> Legenda</label>
+                                    <input id="Legenda" value="" class="form-control editLegenda">
                                 </div>
                                 <div class="form-group">
                                     <label> Link URL</label>
-                                    <input id="link" value="Content/img/galeria/img01.jpg" class="form-control">
+                                    <input id="Link" value="" class="form-control editLink">
                                 </div>
-                                <div class="pull-right">
-                                    <button class="btn btn-danger" type="button">Delete</button>
-                                    <button class="btn btn-primary" type="button">Save changes</button>
-                                </div>
+
                             </div>
 
                         </div>
-
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="button">Salvar</button>
+                            <button data-dismiss="modal" aria-hidden="true" class="btn" type="button">Cancelar</button>
+                        </div>
                     </div>
                 </div>
             </div>
             <!-- modal -->
+            <!-- Modal Excluir Arquivos -->
+            <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Confirmar exclusão</h4>
+                        </div>
+
+                        <div class="modal-body row">
+
+                            <div class="col-md-5 img-modal">
+                                <img class="imgModal" src="" alt="">
+                            </div>
+                            <div class="col-md-7">
+                                <h4 class="modal-title" id="myModalLabel">Deseja realmente excluir este arquivo?</h4>
+                                <br/>
+                                <p>Arquivo: <b class="editNome"></b></p>
+                                <p>Legenda: <em class="editLegenda"></em></p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+
+                            <button class="btn btn-danger" type="button">Excluir</button>
+                            <button data-dismiss="modal" aria-hidden="true" class="btn" type="button">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal-->
+
+
+
 
         </div>
     </section>
@@ -130,19 +135,30 @@
             }
         });
 
-        var checked = true;
-        $("#todos").click(function () {
-            if (checked == true) {
-                $("input[type=checkbox]").each(function () {
-                    this.checked = true;
-                    checked = false;
-                });
-            } else {
-                $("input[type=checkbox]").each(function () {
-                    this.checked = false;
-                    checked = true;
-                });
-            }
+        $('#confirm-delete').on('show.bs.modal', function (e) {
+            $(this).find('.imgModal').attr('src', $(e.relatedTarget).data('pathimg'));
+            $(this).find('.danger').attr('href', $(e.relatedTarget).data('href'));
+
+            $('.editLegenda').text($(e.relatedTarget).data('legenda'));
+            $('.editNome').text($(e.relatedTarget).data('nome'));
+        });
+
+        $('#myModal').on('show.bs.modal', function (e) {
+            $(this).find('.imgModal').attr('src', $(e.relatedTarget).data('pathimg'));
+
+            $('.editLink').val($(e.relatedTarget).data('pathimg'));
+            $('.editLegenda').val($(e.relatedTarget).data('legenda'));
+            $('.editNome').val($(e.relatedTarget).data('nome'));
+        });
+
+
+        $('.menuimagem').hide();
+        $(".images").mouseleave(function () {
+            $(this).children('.menuimagem').hide();
+        });
+        $(".images").mouseenter(function () {
+            $(this).children('.menuimagem').show();
         });
     });
+
 </script>

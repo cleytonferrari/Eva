@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using Eva.Aplicacao;
 using Eva.Dominio;
@@ -56,6 +57,11 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             ViewBag.Logos = Fabrica.LogoAplicacaoMongo().ListarTodos().ToList();
 
             return View(arquivoViewModel);
+        }
+
+        public JsonResult Excluir(string id, string plugin)
+        {
+            return Json("", JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult ConfigurarLogo(LogoAplicarViewModel logos)
