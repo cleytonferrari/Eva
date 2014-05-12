@@ -59,7 +59,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             return View(arquivoViewModel);
         }
 
-        public JsonResult Excluir(string id, string plugin)
+        public JsonResult Excluir(string id, string plugin, string idArquivo)
         {
             return Json("", JsonRequestBehavior.AllowGet);
         }

@@ -28,7 +28,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
         public ActionResult Index(int? page)
         {
             var numeroDaPagina = page ?? 1;
-            var listaPaginada = noticiaApp.ListarTodos().ToPagedList(numeroDaPagina, 10);
+            var listaPaginada = noticiaApp.ListarTodos().OrderByDescending(x=>x.Data).ToPagedList(numeroDaPagina, 10);
 
             return View(listaPaginada);
         }
