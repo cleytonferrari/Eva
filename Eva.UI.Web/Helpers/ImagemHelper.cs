@@ -120,6 +120,17 @@ namespace Eva.UI.Web.Helpers
 
             }
         }
+
+        public static void LimparMiniaturaCapa(string nome, string diretorio)
+        {
+            //Todo: Não testei a performance deste metodo
+            var arquivos = Directory.GetFiles(MontaPath(diretorio, ""));
+
+            foreach (var fi in arquivos.Select(arquivo => new FileInfo(arquivo)).Where(fi => fi.Name.Contains(nome) && fi.Name != nome))
+            {
+                fi.Delete();
+            }
+        }
     }
 
     public class PosicaoLogo

@@ -87,7 +87,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                         noticia.Arquivos.Add(new Arquivo() { Nome = name, Legenda = noticia.Titulo, Ordem = ordem });
                         Fabrica.NoticiaAplicacaoMongo().Salvar(noticia);
 
-                        if (ordem == 1)//foto da capa Todo: Ao trocar foto da capa, excluir as anteriores, e gerar novas
+                        if (ordem == 1)
                             Imagem.CropFile(name, "Noticia", ImagensLayout.Noticias);
 
                         break;
@@ -205,14 +205,19 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                     var noticia = Fabrica.NoticiaAplicacaoMongo().ListarPorId(id);
                     var arquivos = new List<Arquivo>();
                     var i = 0;
+                    //todo: Limpar miniatura da foto da capa, antiga
+                    var arquivoCapa = noticia.Arquivos.FirstOrDefault(x => x.Ordem == 1);
+                    Imagem.LimparMiniaturaCapa(arquivoCapa.Nome, "Noticia");
                     foreach (var item in items)
                     {
                         i++;
                         var arquivo = noticia.Arquivos.FirstOrDefault(x => x.Id == item);
                         arquivo.Ordem = i;
                         arquivos.Add(arquivo);
-                    }
 
+                        if (arquivo.Ordem == 1)
+                            Imagem.CropFile(arquivo.Nome, "Noticia", ImagensLayout.Noticias);
+                    }
                     noticia.Arquivos = arquivos;
                     Fabrica.NoticiaAplicacaoMongo().Salvar(noticia);
                     break;
