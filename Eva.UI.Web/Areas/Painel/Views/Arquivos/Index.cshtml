@@ -29,7 +29,7 @@
                 @foreach (var arquivo in Model.Arquivos)
                 {
 
-                    <li id="id_@arquivo.Ordem" class="images item" style="background-color: #ffffff">
+                    <li id="@arquivo.Ordem" class="images item" style="background-color: #ffffff">
                         <img src="@Foto.Placehold(arquivo.Nome,"210x200","Noticia/")" alt="" class="handler" />
                         <p id="legenda_@arquivo.Ordem">@arquivo.Legenda.Substring(0, arquivo.Legenda.Length > 25 ? 25 : arquivo.Legenda.Length) ...</p>
 
@@ -128,11 +128,21 @@
         $("#galeria").sortable({
             handle: ".handler",
             update: function () {
-                var order = $("#galeria").sortable("serialize");
-                //$("#info").load("ordenar.php?parametro=' . $_GET['parametro'] . '&" + order);
-                console.log("-->", order);
+                var order = $("#galeria").sortable("toArray");
+
+               
+                console.log(order);
+
                 $("#galeria li").css("border", "#cccccc solid 1px");
                 $("#galeria li:first").css("border", "1px solid #1fb5ad");
+                
+
+                $.ajax({
+                    url: "@Url.Action("Ordenar")",
+                    type: "POST",
+                    data: JSON.stringify({ items: order }),
+                    contentType: 'application/json'
+                });
             }
         });
         //FIM organiza a ordem das imagens

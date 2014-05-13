@@ -196,6 +196,11 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 
             return Content("Success", "text/plain");
         }
+
+        public JsonResult Ordenar(string[] items)
+        {
+            return Json("", JsonRequestBehavior.AllowGet);
+        }
     }
 
     public class ArquivoViewModel
