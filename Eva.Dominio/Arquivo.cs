@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Eva.Dominio
 {
-    public class Arquivo
+    public class Arquivo : Entidade
     {
         public string Nome { get; set; }
         public string Legenda { get; set; }

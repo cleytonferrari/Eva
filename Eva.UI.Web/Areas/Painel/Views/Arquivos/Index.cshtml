@@ -29,7 +29,7 @@
                 @foreach (var arquivo in Model.Arquivos)
                 {
 
-                    <li id="@arquivo.Ordem" class="images item" style="background-color: #ffffff">
+                    <li id="@arquivo.Id" class="images item" style="background-color: #ffffff">
                         <img src="@Foto.Placehold(arquivo.Nome,"210x200","Noticia/")" alt="" class="handler" />
                         <p id="legenda_@arquivo.Ordem">@arquivo.Legenda.Substring(0, arquivo.Legenda.Length > 25 ? 25 : arquivo.Legenda.Length) ...</p>
 
@@ -130,23 +130,19 @@
             update: function () {
                 var order = $("#galeria").sortable("toArray");
 
-               
-                console.log(order);
-
                 $("#galeria li").css("border", "#cccccc solid 1px");
                 $("#galeria li:first").css("border", "1px solid #1fb5ad");
-                
 
                 $.ajax({
                     url: "@Url.Action("Ordenar")",
                     type: "POST",
-                    data: JSON.stringify({ items: order }),
+                    data: JSON.stringify({ items: order, id: '@Model.Id', plugin: '@Model.Plugin' }),
                     contentType: 'application/json'
                 });
             }
         });
         //FIM organiza a ordem das imagens
-       
+
         //INICIO exibe os menus de opções
         $('.menuimagem').hide();
         $(".images").mouseleave(function () {
@@ -169,7 +165,7 @@
             imagemAtual.legenda = $(e.relatedTarget).data('legenda');
             imagemAtual.nome = $(e.relatedTarget).data('nome');
             imagemAtual.ordem = $(e.relatedTarget).data('ordem');
-            
+
 
             $(this).find('.imgModal').attr('src', imagemAtual.pathimg);
             $('.editLegenda').text(imagemAtual.legenda);
@@ -187,15 +183,15 @@
             $('.editLegenda').val(imagemAtual.legenda);
             $('.editNome').val(imagemAtual.nome);
             $('.editLink').val(imagemAtual.pathimg);
-            
+
         });
 
         $('#btnExcluirModal').click(function () {
             $('#id_' + imagemAtual.ordem).remove();
-    
+
             $('#confimarExclusao').modal('hide');
         });
-        
+
         $('#btnSalvarModal').click(function () {
             imagemAtual.legenda = $('.editLegenda').val();
             $('#legenda_' + imagemAtual.ordem).text(imagemAtual.legenda);

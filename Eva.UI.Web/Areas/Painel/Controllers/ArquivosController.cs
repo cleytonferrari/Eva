@@ -197,8 +197,29 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             return Content("Success", "text/plain");
         }
 
-        public JsonResult Ordenar(string[] items)
+        public JsonResult Ordenar(string id, string plugin, string[] items)
         {
+            switch (plugin.ToLower())
+            {
+                case "noticia":
+                    var noticia = Fabrica.NoticiaAplicacaoMongo().ListarPorId(id);
+                    var arquivos = new List<Arquivo>();
+                    var i = 0;
+                    foreach (var item in items)
+                    {
+                        i++;
+                        var arquivo = noticia.Arquivos.FirstOrDefault(x => x.Id == item);
+                        arquivo.Ordem = i;
+                        arquivos.Add(arquivo);
+                    }
+
+                    noticia.Arquivos = arquivos;
+                    Fabrica.NoticiaAplicacaoMongo().Salvar(noticia);
+                    break;
+            }
+
+
+
             return Json("", JsonRequestBehavior.AllowGet);
         }
     }
