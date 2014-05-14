@@ -142,30 +142,16 @@
 <script type="text/javascript">
     $("#usuarioForm").validate({
         rules: {
-            Nome: {
+            Titulo: {
                 required: true,
                 minlength: 3
-            },
-            ConfirmarSenha: {
-                equalTo: "#Senha"
-            },
+            }
         },
         messages: {
-            Nome: {
-                required: "O campo nome é obrigatorio.",
-                minlength: "O campo nome deve conter no mínimo 3 caracteres."
-            },
-            Email: {
-                required: "O campo email é obrigatorio.",
-                email: "O campo email deve conter um email válido."
-            },
-            Senha: {
-                required: "O campo senha é obrigatorio."
-            },
-            ConfirmarSenha: {
-                required: "O campo confirmação de senha é obrigatorio.",
-                equalTo: "O campo confirmação de senha deve ser identico ao campo senha."
-            },
+            Titulo: {
+                required: "O campo titulo é obrigatorio.",
+                minlength: "O campo titulo deve conter no mínimo 3 caracteres."
+            }
         }
 
     });

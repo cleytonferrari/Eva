@@ -1,17 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Eva.Dominio
 {
     public class Evento : Entidade
     {
-        private string nome;
-        public string Nome
+         public Evento()
         {
-            get { return nome; }
+            Arquivos = new List<Arquivo>();
+        }
+        private string titulo;
+        public string Titulo
+        {
+            get { return titulo; }
             set
             {
                 Slug = value.ToSlug();
-                nome = value;
+                titulo = value;
             }
         }
         public string Slug { get; set; }
@@ -21,6 +26,7 @@ namespace Eva.Dominio
         public string Creditos { get; set; }
         public int Hits { get; set; }
         public bool Publicado { get; set; }
+        public List<Arquivo> Arquivos { get; set; }
 
     }
 }

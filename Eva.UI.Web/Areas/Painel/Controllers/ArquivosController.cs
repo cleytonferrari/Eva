@@ -29,6 +29,14 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                     arquivoViewModel.Titulo = noticia.Titulo;
                     arquivoViewModel.Plugin = plugin;
                     break;
+
+                case "evento":
+                    var evento = Fabrica.EventoAplicacaoMongo().ListarPorId(id);
+                    arquivoViewModel.Arquivos = evento.Arquivos ?? new List<Arquivo>();
+                    arquivoViewModel.Id = evento.Id;
+                    arquivoViewModel.Titulo = evento.Titulo;
+                    arquivoViewModel.Plugin = plugin;
+                    break;
             }
 
             return View(arquivoViewModel);
@@ -52,6 +60,13 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                     arquivoViewModel.Titulo = noticia.Titulo;
                     arquivoViewModel.Plugin = plugin;
                     break;
+                case "evento":
+                    var evento = Fabrica.EventoAplicacaoMongo().ListarPorId(id);
+                    arquivoViewModel.Arquivos = evento.Arquivos ?? new List<Arquivo>();
+                    arquivoViewModel.Id = evento.Id;
+                    arquivoViewModel.Titulo = evento.Titulo;
+                    arquivoViewModel.Plugin = plugin;
+                    break;
             }
 
             ViewBag.Logos = Fabrica.LogoAplicacaoMongo().ListarTodos().ToList();
@@ -61,25 +76,40 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 
         public JsonResult Excluir(string id, string plugin, string idArquivo)
         {
-
+            Arquivo arquivo, arquivoCapa;
             switch (plugin.ToLower())
             {
                 case "noticia":
                     var noticia = Fabrica.NoticiaAplicacaoMongo().ListarPorId(id);
-                    var arquivo = noticia.Arquivos.FirstOrDefault(x => x.Id == idArquivo);
+                     arquivo = noticia.Arquivos.FirstOrDefault(x => x.Id == idArquivo);
+                    
                     noticia.Arquivos.Remove(arquivo);
+                    Imagem.ExcluirArquivo(arquivo.Nome, plugin);
 
-                    var arquivos = Imagem.OrdenarArquivos(noticia.Arquivos.OrderBy(x => x.Ordem).Select(x => x.Id), noticia.Arquivos);
-                    noticia.Arquivos = arquivos;
+                    noticia.Arquivos = Imagem.OrdenarArquivos(noticia.Arquivos.OrderBy(x => x.Ordem).Select(x => x.Id), noticia.Arquivos);
 
-                    var arquivoCapa = arquivos.FirstOrDefault(x => x.Ordem == 1);
+                     arquivoCapa = noticia.Arquivos.FirstOrDefault(x => x.Ordem == 1);
                     if (arquivoCapa != null)
-                        Imagem.CropFile(arquivoCapa.Nome, "Noticia", ImagensLayout.Noticias);
-
+                        Imagem.CropFile(arquivoCapa.Nome, plugin, ImagensLayout.Noticias);
 
                     Fabrica.NoticiaAplicacaoMongo().Salvar(noticia);
-                    Imagem.ExcluirArquivo(arquivo.Nome, "noticia");
                     break;
+                case "evento":
+                    var evento = Fabrica.EventoAplicacaoMongo().ListarPorId(id);
+                     arquivo = evento.Arquivos.FirstOrDefault(x => x.Id == idArquivo);
+
+                    evento.Arquivos.Remove(arquivo);
+                    Imagem.ExcluirArquivo(arquivo.Nome, plugin);
+
+                    evento.Arquivos = Imagem.OrdenarArquivos(evento.Arquivos.OrderBy(x => x.Ordem).Select(x => x.Id), evento.Arquivos);
+
+                     arquivoCapa = evento.Arquivos.FirstOrDefault(x => x.Ordem == 1);
+                    if (arquivoCapa != null)
+                        Imagem.CropFile(arquivoCapa.Nome, plugin, ImagensLayout.Eventos);
+
+                    Fabrica.EventoAplicacaoMongo().Salvar(evento);
+                    break;
+
             }
 
             return Json("", JsonRequestBehavior.AllowGet);
@@ -95,21 +125,35 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
         public ActionResult Upload(int? chunk, int? chunks, string name, string plugin, string id)
         {
             var fileUpload = Request.Files[0];
+            int ordem;
 
-            if (Imagem.Upload(fileUpload, "Noticia", name, chunk, chunks))
+            if (Imagem.Upload(fileUpload, plugin, name, chunk, chunks))
             {
                 switch (plugin.ToLower())
                 {
                     case "noticia":
                         var noticia = Fabrica.NoticiaAplicacaoMongo().ListarPorId(id);
 
-                        var ordem = (noticia.Arquivos.Any()) ? noticia.Arquivos.Max(x => x.Ordem) + 1 : 1;
+                         ordem = (noticia.Arquivos.Any()) ? noticia.Arquivos.Max(x => x.Ordem) + 1 : 1;
 
                         noticia.Arquivos.Add(new Arquivo() { Nome = name, Legenda = noticia.Titulo, Ordem = ordem });
                         Fabrica.NoticiaAplicacaoMongo().Salvar(noticia);
 
                         if (ordem == 1)
-                            Imagem.CropFile(name, "Noticia", ImagensLayout.Noticias);
+                            Imagem.CropFile(name, plugin, ImagensLayout.Noticias);
+
+                        break;
+
+                    case "evento":
+                        var evento = Fabrica.EventoAplicacaoMongo().ListarPorId(id);
+
+                         ordem = (evento.Arquivos.Any()) ? evento.Arquivos.Max(x => x.Ordem) + 1 : 1;
+
+                        evento.Arquivos.Add(new Arquivo() { Nome = name, Legenda = evento.Titulo, Ordem = ordem });
+                        Fabrica.EventoAplicacaoMongo().Salvar(evento);
+
+                        if (ordem == 1)
+                            Imagem.CropFile(name, plugin, ImagensLayout.Eventos);
 
                         break;
                 }
@@ -211,7 +255,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                 }
                 #endregion
 
-                Imagem.Logo(name, "Noticia", pLogo);
+                Imagem.Logo(name, plugin, pLogo);
 
             }
 
@@ -220,23 +264,39 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 
         public JsonResult Ordenar(string id, string plugin, string[] items)
         {
+            Arquivo arquivoCapa;
             switch (plugin.ToLower())
             {
                 case "noticia":
                     var noticia = Fabrica.NoticiaAplicacaoMongo().ListarPorId(id);
 
-                    var arquivoCapa = noticia.Arquivos.FirstOrDefault(x => x.Ordem == 1);
+                    arquivoCapa = noticia.Arquivos.FirstOrDefault(x => x.Ordem == 1);
                     if (arquivoCapa != null)
-                        Imagem.LimparMiniaturaCapa(arquivoCapa.Nome, "Noticia");
+                        Imagem.LimparMiniaturaCapa(arquivoCapa.Nome, plugin);
 
-                    var arquivos = Imagem.OrdenarArquivos(items, noticia.Arquivos);
-                    noticia.Arquivos = arquivos;
+                    noticia.Arquivos = Imagem.OrdenarArquivos(items, noticia.Arquivos);
 
-                    arquivoCapa = arquivos.FirstOrDefault(x => x.Ordem == 1);
+                    arquivoCapa = noticia.Arquivos.FirstOrDefault(x => x.Ordem == 1);
                     if (arquivoCapa != null)
-                        Imagem.CropFile(arquivoCapa.Nome, "Noticia", ImagensLayout.Noticias);
+                        Imagem.CropFile(arquivoCapa.Nome, plugin, ImagensLayout.Noticias);
 
                     Fabrica.NoticiaAplicacaoMongo().Salvar(noticia);
+                    break;
+
+                case "evento":
+                    var evento = Fabrica.EventoAplicacaoMongo().ListarPorId(id);
+
+                    arquivoCapa = evento.Arquivos.FirstOrDefault(x => x.Ordem == 1);
+                    if (arquivoCapa != null)
+                        Imagem.LimparMiniaturaCapa(arquivoCapa.Nome, plugin);
+
+                    evento.Arquivos = Imagem.OrdenarArquivos(items, evento.Arquivos);
+
+                    arquivoCapa = evento.Arquivos.FirstOrDefault(x => x.Ordem == 1);
+                    if (arquivoCapa != null)
+                        Imagem.CropFile(arquivoCapa.Nome, plugin, ImagensLayout.Eventos);
+
+                    Fabrica.EventoAplicacaoMongo().Salvar(evento);
                     break;
             }
 

@@ -29,8 +29,8 @@
                 @foreach (var arquivo in Model.Arquivos)
                 {
 
-                    <li id="@arquivo.Id" data-pathimg="@Foto.Placehold(arquivo.Nome,"250x250","Noticia/")" data-nome="@arquivo.Nome" data-legenda="@arquivo.Legenda" data-ordem="@arquivo.Ordem" class="images item" style="background-color: #ffffff">
-                        <img src="@Foto.Placehold(arquivo.Nome,"210x200","Noticia/")" alt="" class="handler" />
+                    <li id="@arquivo.Id" data-pathimg="@Foto.Placehold(arquivo.Nome,"250x250",Model.Plugin)" data-nome="@arquivo.Nome" data-legenda="@arquivo.Legenda" data-ordem="@arquivo.Ordem" class="images item" style="background-color: #ffffff">
+                        <img src="@Foto.Placehold(arquivo.Nome,"210x200",Model.Plugin)" alt="" class="handler" />
                         <p id="legenda_@arquivo.Ordem">@arquivo.Legenda.Substring(0, arquivo.Legenda.Length > 25 ? 25 : arquivo.Legenda.Length) ...</p>
 
                         <div class="row prd-row menuimagem">

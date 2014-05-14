@@ -110,8 +110,12 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             }
 
             if (!string.IsNullOrEmpty(noticia.Id))
-                noticiaSalvar.Arquivos = noticiaApp.ListarPorId(noticia.Id).Arquivos;
-            
+            {
+                var noticiaBanco = noticiaApp.ListarPorId(noticia.Id);
+                noticiaSalvar.Arquivos = noticiaBanco.Arquivos;
+                noticiaSalvar.Hits = noticiaBanco.Hits;
+            }
+
 
             noticiaApp.Salvar(noticiaSalvar);
             this.Flash("Noticia Salva com Sucesso!");
