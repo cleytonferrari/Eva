@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Helpers;
 using Eva.Aplicacao;
+using Eva.Dominio;
 
 namespace Eva.UI.Web.Helpers
 {
@@ -124,12 +125,36 @@ namespace Eva.UI.Web.Helpers
         public static void LimparMiniaturaCapa(string nome, string diretorio)
         {
             //Todo: Não testei a performance deste metodo
+
             var arquivos = Directory.GetFiles(MontaPath(diretorio, ""));
 
             foreach (var fi in arquivos.Select(arquivo => new FileInfo(arquivo)).Where(fi => fi.Name.Contains(nome) && fi.Name != nome))
             {
                 fi.Delete();
             }
+        }
+
+        public static void ExcluirArquivo(string nome, string diretorio)
+        {
+            var arquivos = Directory.GetFiles(MontaPath(diretorio, ""));
+            foreach (var fi in arquivos.Select(arquivo => new FileInfo(arquivo)).Where(fi => fi.Name.Contains(nome)))
+            {
+                fi.Delete();
+            }
+        }
+
+        public static List<Arquivo> OrdenarArquivos(IEnumerable<string> items, List<Arquivo> arquivos)
+        {
+            var arquivosRetorno = new List<Arquivo>();
+            var i = 0;
+            foreach (var item in items)
+            {
+                i++;
+                var arquivo = arquivos.FirstOrDefault(x => x.Id == item);
+                arquivo.Ordem = i;
+                arquivosRetorno.Add(arquivo);
+            }
+            return arquivosRetorno;
         }
     }
 

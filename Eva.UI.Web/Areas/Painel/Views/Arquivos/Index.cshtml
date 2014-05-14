@@ -166,7 +166,7 @@
 
         $('#editarImagem').on('show.bs.modal', function (e) {
             carregaImagemAtual(e.relatedTarget);
-            
+
             $(this).find('.imgModal').attr('src', imagemAtual.pathimg);
             $('.editLegenda').val(imagemAtual.legenda);
             $('.editNome').val(imagemAtual.nome);
@@ -176,6 +176,13 @@
 
         $('#btnExcluirModal').click(function () {
             $('#' + imagemAtual.id).remove();
+
+            $.ajax({
+                url: "@Url.Action("Excluir")",
+                type: "POST",
+                data: JSON.stringify({ id: '@Model.Id', plugin: '@Model.Plugin', idArquivo: imagemAtual.id }),
+                contentType: 'application/json'
+            });
 
             $('#confimarExclusao').modal('hide');
         });

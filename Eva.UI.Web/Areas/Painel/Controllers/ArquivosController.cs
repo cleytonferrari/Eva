@@ -61,6 +61,27 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 
         public JsonResult Excluir(string id, string plugin, string idArquivo)
         {
+
+            switch (plugin.ToLower())
+            {
+                case "noticia":
+                    var noticia = Fabrica.NoticiaAplicacaoMongo().ListarPorId(id);
+                    var arquivo = noticia.Arquivos.FirstOrDefault(x => x.Id == idArquivo);
+                    noticia.Arquivos.Remove(arquivo);
+
+                    var arquivos = Imagem.OrdenarArquivos(noticia.Arquivos.OrderBy(x => x.Ordem).Select(x => x.Id), noticia.Arquivos);
+                    noticia.Arquivos = arquivos;
+
+                    var arquivoCapa = arquivos.FirstOrDefault(x => x.Ordem == 1);
+                    if (arquivoCapa != null)
+                        Imagem.CropFile(arquivoCapa.Nome, "Noticia", ImagensLayout.Noticias);
+
+
+                    Fabrica.NoticiaAplicacaoMongo().Salvar(noticia);
+                    Imagem.ExcluirArquivo(arquivo.Nome, "noticia");
+                    break;
+            }
+
             return Json("", JsonRequestBehavior.AllowGet);
         }
 
@@ -203,22 +224,18 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             {
                 case "noticia":
                     var noticia = Fabrica.NoticiaAplicacaoMongo().ListarPorId(id);
-                    var arquivos = new List<Arquivo>();
-                    var i = 0;
-                    //todo: Limpar miniatura da foto da capa, antiga
-                    var arquivoCapa = noticia.Arquivos.FirstOrDefault(x => x.Ordem == 1);
-                    Imagem.LimparMiniaturaCapa(arquivoCapa.Nome, "Noticia");
-                    foreach (var item in items)
-                    {
-                        i++;
-                        var arquivo = noticia.Arquivos.FirstOrDefault(x => x.Id == item);
-                        arquivo.Ordem = i;
-                        arquivos.Add(arquivo);
 
-                        if (arquivo.Ordem == 1)
-                            Imagem.CropFile(arquivo.Nome, "Noticia", ImagensLayout.Noticias);
-                    }
+                    var arquivoCapa = noticia.Arquivos.FirstOrDefault(x => x.Ordem == 1);
+                    if (arquivoCapa != null)
+                        Imagem.LimparMiniaturaCapa(arquivoCapa.Nome, "Noticia");
+
+                    var arquivos = Imagem.OrdenarArquivos(items, noticia.Arquivos);
                     noticia.Arquivos = arquivos;
+
+                    arquivoCapa = arquivos.FirstOrDefault(x => x.Ordem == 1);
+                    if (arquivoCapa != null)
+                        Imagem.CropFile(arquivoCapa.Nome, "Noticia", ImagensLayout.Noticias);
+
                     Fabrica.NoticiaAplicacaoMongo().Salvar(noticia);
                     break;
             }
