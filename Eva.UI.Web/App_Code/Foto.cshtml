@@ -1,8 +1,8 @@
-﻿@helper Placehold(string foto, string tamanho, string path)
+﻿@helper Placehold(string foto, string tamanho, string path, string prefixo = "")
 {
     //todo: checar se path vem com / se não vier adicionar
-     var pathFoto = (string.IsNullOrEmpty(foto)) ? "http://www.placehold.it/"+tamanho+"/767676/FFFFFF&amp;text=W7" :  VirtualPathUtility.ToAbsolute("~/Content/Uploads/"+path + foto);
-     @pathFoto
-    
+    var pathFoto = (string.IsNullOrEmpty(foto)) ? "http://www.placehold.it/" + tamanho + "/767676/FFFFFF&amp;text=W7" : VirtualPathUtility.ToAbsolute("~/Content/Uploads/" + path + prefixo + foto);
+    @pathFoto
+
 }
 

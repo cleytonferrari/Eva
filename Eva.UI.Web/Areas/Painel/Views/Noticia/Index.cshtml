@@ -81,7 +81,7 @@
                                             @{
                                                 var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
                                             }
-                                            <img src="@Foto.Placehold(arquivo.Nome,"40x40","Noticia/")" width="40" height="40" />
+                                            <img src="@Foto.Placehold(arquivo.Nome, "40x40", "Noticia/", "150x85_")" width="40" height="40" />
                                         </td>
                                         <td>@noticia.Titulo</td>
                                         <td>@noticia.Categoria.Nome</td>

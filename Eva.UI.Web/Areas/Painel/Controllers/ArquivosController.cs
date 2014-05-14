@@ -223,8 +223,6 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                     break;
             }
 
-
-
             return Json("", JsonRequestBehavior.AllowGet);
         }
     }

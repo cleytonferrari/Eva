@@ -79,7 +79,6 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                 return View(noticia);
             }
 
-
             var noticiaSalvar = new Noticia
             {
                 Id = noticia.Id,
@@ -109,6 +108,10 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                 fonteApp.Salvar(fonteNova);
                 noticiaSalvar.Fonte = fonteNova;
             }
+
+            if (!string.IsNullOrEmpty(noticia.Id))
+                noticiaSalvar.Arquivos = noticiaApp.ListarPorId(noticia.Id).Arquivos;
+            
 
             noticiaApp.Salvar(noticiaSalvar);
             this.Flash("Noticia Salva com Sucesso!");

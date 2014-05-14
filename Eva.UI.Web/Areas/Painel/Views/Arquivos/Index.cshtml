@@ -29,14 +29,14 @@
                 @foreach (var arquivo in Model.Arquivos)
                 {
 
-                    <li id="@arquivo.Id" class="images item" style="background-color: #ffffff">
+                    <li id="@arquivo.Id" data-pathimg="@Foto.Placehold(arquivo.Nome,"250x250","Noticia/")" data-nome="@arquivo.Nome" data-legenda="@arquivo.Legenda" data-ordem="@arquivo.Ordem" class="images item" style="background-color: #ffffff">
                         <img src="@Foto.Placehold(arquivo.Nome,"210x200","Noticia/")" alt="" class="handler" />
                         <p id="legenda_@arquivo.Ordem">@arquivo.Legenda.Substring(0, arquivo.Legenda.Length > 25 ? 25 : arquivo.Legenda.Length) ...</p>
 
                         <div class="row prd-row menuimagem">
                             <div class="action" style="right: 23px; bottom: 35px;">
-                                <a data-pathimg="@Foto.Placehold(arquivo.Nome,"250x250","Noticia/")" data-nome="@arquivo.Nome" data-legenda="@arquivo.Legenda" data-ordem="@arquivo.Ordem" data-toggle="modal" data-target="#editarImagem" href="#" class="part1"><i class="fa fa-pencil"></i></a>
-                                <a data-pathimg="@Foto.Placehold(arquivo.Nome,"250x250","Noticia/")" data-nome="@arquivo.Nome" data-legenda="@arquivo.Legenda" data-ordem="@arquivo.Ordem" data-toggle="modal" data-target="#confimarExclusao" href="#" class="part1 yellow-bg-prd"><i class="fa fa-trash-o"></i></a>
+                                <a data-id="@arquivo.Id" data-toggle="modal" data-target="#editarImagem" href="#" class="part1"><i class="fa fa-pencil"></i></a>
+                                <a data-id="@arquivo.Id" data-toggle="modal" data-target="#confimarExclusao" href="#" class="part1 yellow-bg-prd"><i class="fa fa-trash-o"></i></a>
                             </div>
                         </div>
 
@@ -153,19 +153,10 @@
         });
         //FIM exibe os menus opções
 
-        var imagemAtual = {
-            pathimg: '',
-            legenda: '',
-            nome: '',
-            ordem: ''
-        };
+        var imagemAtual = {};
 
         $('#confimarExclusao').on('show.bs.modal', function (e) {
-            imagemAtual.pathimg = $(e.relatedTarget).data('pathimg');
-            imagemAtual.legenda = $(e.relatedTarget).data('legenda');
-            imagemAtual.nome = $(e.relatedTarget).data('nome');
-            imagemAtual.ordem = $(e.relatedTarget).data('ordem');
-
+            carregaImagemAtual(e.relatedTarget);
 
             $(this).find('.imgModal').attr('src', imagemAtual.pathimg);
             $('.editLegenda').text(imagemAtual.legenda);
@@ -174,11 +165,8 @@
         });
 
         $('#editarImagem').on('show.bs.modal', function (e) {
-            imagemAtual.pathimg = $(e.relatedTarget).data('pathimg');
-            imagemAtual.legenda = $(e.relatedTarget).data('legenda');
-            imagemAtual.nome = $(e.relatedTarget).data('nome');
-            imagemAtual.ordem = $(e.relatedTarget).data('ordem');
-
+            carregaImagemAtual(e.relatedTarget);
+            
             $(this).find('.imgModal').attr('src', imagemAtual.pathimg);
             $('.editLegenda').val(imagemAtual.legenda);
             $('.editNome').val(imagemAtual.nome);
@@ -187,7 +175,7 @@
         });
 
         $('#btnExcluirModal').click(function () {
-            $('#id_' + imagemAtual.ordem).remove();
+            $('#' + imagemAtual.id).remove();
 
             $('#confimarExclusao').modal('hide');
         });
@@ -199,6 +187,13 @@
             $('#editarImagem').modal('hide');
         });
 
+        function carregaImagemAtual(target) {
+            imagemAtual.id = $(target).data('id');
+            imagemAtual.pathimg = $('#' + imagemAtual.id).data('pathimg');
+            imagemAtual.legenda = $('#' + imagemAtual.id).data('legenda');
+            imagemAtual.nome = $('#' + imagemAtual.id).data('nome');
+            imagemAtual.ordem = $('#' + imagemAtual.id).data('ordem');
+        }
     });
 
 </script>
