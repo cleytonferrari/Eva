@@ -22,6 +22,11 @@ namespace Eva.Aplicacao
             contexto.Save(entidade);
         }
 
+        public void Excluir(string id)
+        {
+            contexto.Remove(id);
+        }
+
         public IEnumerable<Usuario> ListarTodos()
         {
             return contexto.GetAll().OrderBy(x => x.Nome);

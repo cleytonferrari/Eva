@@ -18,7 +18,7 @@ namespace Eva.UI.Web.Helpers
             if (arquivo == null) return nomeUnico;
 
             var extensaoDoArquivo = Path.GetExtension(arquivo.FileName).Substring(1);
-            
+
             nomeUnico = Guid.NewGuid() + "." + extensaoDoArquivo;
 
             var path = MontaPath(diretorio, nomeUnico);
@@ -62,7 +62,7 @@ namespace Eva.UI.Web.Helpers
         public static void CropFile(string name, string diretorio, List<ImagensLayout.Tamanho> tamanhos)
         {
             var path = MontaPath(diretorio, name);
-            
+
             if (!File.Exists(path)) return;
 
             foreach (var item in tamanhos)
@@ -131,6 +131,12 @@ namespace Eva.UI.Web.Helpers
             }
         }
 
+        public static void ExcluirArquivo(List<Arquivo> arquivos, string diretorio)
+        {
+            foreach (var arquivo in arquivos)
+                ExcluirArquivo(arquivo.Nome, diretorio);
+        }
+
         public static List<Arquivo> OrdenarArquivos(IEnumerable<string> items, List<Arquivo> arquivos)
         {
             var arquivosRetorno = new List<Arquivo>();
@@ -144,6 +150,8 @@ namespace Eva.UI.Web.Helpers
             }
             return arquivosRetorno;
         }
+
+
     }
 
     public class PosicaoLogo

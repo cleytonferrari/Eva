@@ -13,6 +13,10 @@ namespace Eva.Aplicacao
         {
             contexto = repositorio;
         }
+        public void Excluir(string id)
+        {
+            contexto.Remove(id);
+        }
 
         public void Salvar(NoticiaZona entidade)
         {

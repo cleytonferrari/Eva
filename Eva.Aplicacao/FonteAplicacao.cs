@@ -18,6 +18,10 @@ namespace Eva.Aplicacao
         {
             contexto.Save(entidade);
         }
+        public void Excluir(string id)
+        {
+            contexto.Remove(id);
+        }
 
         public IEnumerable<Fonte> ListarTodos()
         {
