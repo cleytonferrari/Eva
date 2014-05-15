@@ -14,38 +14,19 @@ namespace Eva.UI.Web.Helpers
     {
         public static string Upload(HttpPostedFileBase arquivo, string diretorio)
         {
-            //Todo: implementar um retorno para os erros do upload
-            //Todo: criar diretorio se não existir
-            var erros = new List<string>();
-            var fileName = "";
-            if (arquivo != null)
-            {
-                var supportedTypes = new[] { "jpg", "jpeg", "png" };
-                var fileExt = Path.GetExtension(arquivo.FileName).Substring(1);
-                fileName = Guid.NewGuid() + "." + fileExt;
+            var nomeUnico = "";
+            if (arquivo == null) return nomeUnico;
 
-                if (arquivo.ContentLength > ((1024 * 1024) * 4))
-                {
-                    erros.Add("O tamanho do arquivo não pode ser maior que 4Mb");
-                }
+            var extensaoDoArquivo = Path.GetExtension(arquivo.FileName).Substring(1);
+            
+            nomeUnico = Guid.NewGuid() + "." + extensaoDoArquivo;
 
-                if (!supportedTypes.Contains(fileExt.ToLower()))
-                {
-                    erros.Add("Tipo de arquivo invalido, use somente arquivos jpg, jpeg ou png");
-                }
+            var path = MontaPath(diretorio, nomeUnico);
 
-                var path = MontaPath(diretorio, fileName);
+            var imagem = new WebImage(arquivo.InputStream);
+            imagem.Save(path);
 
-                var imagem = new WebImage(arquivo.InputStream);
-                //imagem.Resize(350, 350);
-                //imagem.AddTextWatermark("Cleyton Ferrari");
-                //imagem.AddImageWatermark("Content/Uploads/logo.png", 50, 50, "Right", "Bottom", 50, 2);
-                //imagem.Crop(100, 100, 100, 100);
-                //imagem.FlipHorizontal();
-                imagem.Save(path);
-            }
-
-            return fileName;
+            return nomeUnico;
         }
 
         /// <summary>
@@ -81,7 +62,8 @@ namespace Eva.UI.Web.Helpers
         public static void CropFile(string name, string diretorio, List<ImagensLayout.Tamanho> tamanhos)
         {
             var path = MontaPath(diretorio, name);
-
+            
+            if (!File.Exists(path)) return;
 
             foreach (var item in tamanhos)
             {
@@ -97,7 +79,13 @@ namespace Eva.UI.Web.Helpers
 
         private static string MontaPath(string diretorio, string fileName)
         {
-            return Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Uploads/" + diretorio), fileName);
+            var pathDiretorio = HttpContext.Current.Server.MapPath("~/Content/Uploads/" + diretorio);
+            var dir = new DirectoryInfo(pathDiretorio);
+
+            if (!dir.Exists)
+                Directory.CreateDirectory(pathDiretorio);
+
+            return Path.Combine(pathDiretorio, fileName);
         }
 
         public static void Logo(string name, string diretorio, List<PosicaoLogo> posicaoLogo)
@@ -111,7 +99,7 @@ namespace Eva.UI.Web.Helpers
                 {
                     //Todo: Tirar o acesso ao bando daqui
                     var nomeLogo = Fabrica.LogoAplicacaoMongo().ListarPorId(pLogo.IdLogo).Imagem;
-                    
+
                     //Carrega o logo e redimenciona para 33% do tamanho da imagem
                     var logo = new WebImage(MontaPath("Logo", nomeLogo)).Resize(imagem.Width / 3, imagem.Height / 3);
                     imagem.AddImageWatermark(logo, logo.Width, logo.Height, pLogo.PosicaoHorizontal, pLogo.PosicaoVertical, 90, 0);

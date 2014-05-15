@@ -125,139 +125,137 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
         public ActionResult Upload(int? chunk, int? chunks, string name, string plugin, string id)
         {
             var fileUpload = Request.Files[0];
+
+            if (!Imagem.Upload(fileUpload, plugin, name, chunk, chunks)) return Content("Success", "text/plain");
+            
             int ordem;
-
-            if (Imagem.Upload(fileUpload, plugin, name, chunk, chunks))
+            switch (plugin.ToLower())
             {
-                switch (plugin.ToLower())
-                {
-                    case "noticia":
-                        var noticia = Fabrica.NoticiaAplicacaoMongo().ListarPorId(id);
+                case "noticia":
+                    var noticia = Fabrica.NoticiaAplicacaoMongo().ListarPorId(id);
 
-                         ordem = (noticia.Arquivos.Any()) ? noticia.Arquivos.Max(x => x.Ordem) + 1 : 1;
+                    ordem = (noticia.Arquivos.Any()) ? noticia.Arquivos.Max(x => x.Ordem) + 1 : 1;
 
-                        noticia.Arquivos.Add(new Arquivo() { Nome = name, Legenda = noticia.Titulo, Ordem = ordem });
-                        Fabrica.NoticiaAplicacaoMongo().Salvar(noticia);
+                    noticia.Arquivos.Add(new Arquivo() { Nome = name, Legenda = noticia.Titulo, Ordem = ordem });
+                    Fabrica.NoticiaAplicacaoMongo().Salvar(noticia);
 
-                        if (ordem == 1)
-                            Imagem.CropFile(name, plugin, ImagensLayout.Noticias);
+                    if (ordem == 1)
+                        Imagem.CropFile(name, plugin, ImagensLayout.Noticias);
 
-                        break;
+                    break;
 
-                    case "evento":
-                        var evento = Fabrica.EventoAplicacaoMongo().ListarPorId(id);
+                case "evento":
+                    var evento = Fabrica.EventoAplicacaoMongo().ListarPorId(id);
 
-                         ordem = (evento.Arquivos.Any()) ? evento.Arquivos.Max(x => x.Ordem) + 1 : 1;
+                    ordem = (evento.Arquivos.Any()) ? evento.Arquivos.Max(x => x.Ordem) + 1 : 1;
 
-                        evento.Arquivos.Add(new Arquivo() { Nome = name, Legenda = evento.Titulo, Ordem = ordem });
-                        Fabrica.EventoAplicacaoMongo().Salvar(evento);
+                    evento.Arquivos.Add(new Arquivo() { Nome = name, Legenda = evento.Titulo, Ordem = ordem });
+                    Fabrica.EventoAplicacaoMongo().Salvar(evento);
 
-                        if (ordem == 1)
-                            Imagem.CropFile(name, plugin, ImagensLayout.Eventos);
+                    if (ordem == 1)
+                        Imagem.CropFile(name, plugin, ImagensLayout.Eventos);
 
-                        break;
-                }
-
-                //Aplico o logo, ou redimensiona, salva
-                var posicaoLogo = (LogoAplicarViewModel)Session["logos"] ?? new LogoAplicarViewModel();
-
-                var pLogo = new List<PosicaoLogo>();
-
-                #region Todo: Refatorar isso
-
-                if (posicaoLogo.Logo1 != null)
-                {
-                    pLogo.Add(new PosicaoLogo()
-                    {
-                        IdLogo = posicaoLogo.Logo1,
-                        PosicaoHorizontal = "Left", //"Left", "Right", or "Center".
-                        PosicaoVertical = "Top" //"Top", "Middle", or "Bottom"
-                    });
-                }
-                if (posicaoLogo.Logo2 != null)
-                {
-                    pLogo.Add(new PosicaoLogo()
-                    {
-                        IdLogo = posicaoLogo.Logo2,
-                        PosicaoHorizontal = "Center",
-                        PosicaoVertical = "Top"
-                    });
-                }
-
-                if (posicaoLogo.Logo3 != null)
-                {
-                    pLogo.Add(new PosicaoLogo()
-                    {
-                        IdLogo = posicaoLogo.Logo3,
-                        PosicaoHorizontal = "Right",
-                        PosicaoVertical = "Top"
-                    });
-                }
-
-                if (posicaoLogo.Logo4 != null)
-                {
-                    pLogo.Add(new PosicaoLogo()
-                    {
-                        IdLogo = posicaoLogo.Logo4,
-                        PosicaoHorizontal = "Left",
-                        PosicaoVertical = "Middle"
-                    });
-                }
-
-                if (posicaoLogo.Logo5 != null)
-                {
-                    pLogo.Add(new PosicaoLogo()
-                    {
-                        IdLogo = posicaoLogo.Logo5,
-                        PosicaoHorizontal = "Center",
-                        PosicaoVertical = "Middle"
-                    });
-                }
-
-                if (posicaoLogo.Logo6 != null)
-                {
-                    pLogo.Add(new PosicaoLogo()
-                    {
-                        IdLogo = posicaoLogo.Logo6,
-                        PosicaoHorizontal = "Right",
-                        PosicaoVertical = "Middle"
-                    });
-                }
-
-                if (posicaoLogo.Logo7 != null)
-                {
-                    pLogo.Add(new PosicaoLogo()
-                    {
-                        IdLogo = posicaoLogo.Logo7,
-                        PosicaoHorizontal = "Left",
-                        PosicaoVertical = "Bottom"
-                    });
-                }
-
-                if (posicaoLogo.Logo8 != null)
-                {
-                    pLogo.Add(new PosicaoLogo()
-                    {
-                        IdLogo = posicaoLogo.Logo8,
-                        PosicaoHorizontal = "Center",
-                        PosicaoVertical = "Bottom"
-                    });
-                }
-
-                if (posicaoLogo.Logo9 != null)
-                {
-                    pLogo.Add(new PosicaoLogo()
-                    {
-                        IdLogo = posicaoLogo.Logo9,
-                        PosicaoHorizontal = "Right",
-                        PosicaoVertical = "Bottom"
-                    });
-                }
-                #endregion
-
-                Imagem.Logo(name, plugin, pLogo);
-
+                    break;
             }
+
+            //Aplico o logo, ou redimensiona, salva
+            var posicaoLogo = (LogoAplicarViewModel)Session["logos"] ?? new LogoAplicarViewModel();
+
+            var pLogo = new List<PosicaoLogo>();
+
+            #region Todo: Refatorar isso
+
+            if (posicaoLogo.Logo1 != null)
+            {
+                pLogo.Add(new PosicaoLogo()
+                {
+                    IdLogo = posicaoLogo.Logo1,
+                    PosicaoHorizontal = "Left", //"Left", "Right", or "Center".
+                    PosicaoVertical = "Top" //"Top", "Middle", or "Bottom"
+                });
+            }
+            if (posicaoLogo.Logo2 != null)
+            {
+                pLogo.Add(new PosicaoLogo()
+                {
+                    IdLogo = posicaoLogo.Logo2,
+                    PosicaoHorizontal = "Center",
+                    PosicaoVertical = "Top"
+                });
+            }
+
+            if (posicaoLogo.Logo3 != null)
+            {
+                pLogo.Add(new PosicaoLogo()
+                {
+                    IdLogo = posicaoLogo.Logo3,
+                    PosicaoHorizontal = "Right",
+                    PosicaoVertical = "Top"
+                });
+            }
+
+            if (posicaoLogo.Logo4 != null)
+            {
+                pLogo.Add(new PosicaoLogo()
+                {
+                    IdLogo = posicaoLogo.Logo4,
+                    PosicaoHorizontal = "Left",
+                    PosicaoVertical = "Middle"
+                });
+            }
+
+            if (posicaoLogo.Logo5 != null)
+            {
+                pLogo.Add(new PosicaoLogo()
+                {
+                    IdLogo = posicaoLogo.Logo5,
+                    PosicaoHorizontal = "Center",
+                    PosicaoVertical = "Middle"
+                });
+            }
+
+            if (posicaoLogo.Logo6 != null)
+            {
+                pLogo.Add(new PosicaoLogo()
+                {
+                    IdLogo = posicaoLogo.Logo6,
+                    PosicaoHorizontal = "Right",
+                    PosicaoVertical = "Middle"
+                });
+            }
+
+            if (posicaoLogo.Logo7 != null)
+            {
+                pLogo.Add(new PosicaoLogo()
+                {
+                    IdLogo = posicaoLogo.Logo7,
+                    PosicaoHorizontal = "Left",
+                    PosicaoVertical = "Bottom"
+                });
+            }
+
+            if (posicaoLogo.Logo8 != null)
+            {
+                pLogo.Add(new PosicaoLogo()
+                {
+                    IdLogo = posicaoLogo.Logo8,
+                    PosicaoHorizontal = "Center",
+                    PosicaoVertical = "Bottom"
+                });
+            }
+
+            if (posicaoLogo.Logo9 != null)
+            {
+                pLogo.Add(new PosicaoLogo()
+                {
+                    IdLogo = posicaoLogo.Logo9,
+                    PosicaoHorizontal = "Right",
+                    PosicaoVertical = "Bottom"
+                });
+            }
+            #endregion
+
+            Imagem.Logo(name, plugin, pLogo);
 
             return Content("Success", "text/plain");
         }
