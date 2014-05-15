@@ -64,6 +64,12 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             this.Flash("Zona da Notícia Salva com Sucesso!");
             return RedirectToAction("Index");
         }
+
+        public JsonResult Excluir(string id)
+        {
+            Fabrica.NoticiaZonaAplicacaoMongo().Excluir(id);
+            return Json("", JsonRequestBehavior.AllowGet);
+        }
 	}
 
     public class NoticiaZonaViewModel

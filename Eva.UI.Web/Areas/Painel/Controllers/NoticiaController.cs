@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Eva.Aplicacao;
 using Eva.Dominio;
 using System.ComponentModel.DataAnnotations;
+using Eva.UI.Web.Helpers;
 using PagedList;
 
 namespace Eva.UI.Web.Areas.Painel.Controllers
@@ -120,6 +121,18 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             noticiaApp.Salvar(noticiaSalvar);
             this.Flash("Noticia Salva com Sucesso!");
             return RedirectToAction("Index");
+        }
+
+        public JsonResult Excluir(string id)
+        {
+            var item = Fabrica.NoticiaAplicacaoMongo().ListarPorId(id);
+
+            if (item == null) return Json("", JsonRequestBehavior.AllowGet);
+
+            Imagem.ExcluirArquivo(item.Arquivos, "noticia");
+            Fabrica.NoticiaAplicacaoMongo().Excluir(id);
+
+            return Json("", JsonRequestBehavior.AllowGet);
         }
     }
 

@@ -79,7 +79,7 @@
                                             @{
                                     var arquivo = evento.Arquivos.FirstOrDefault() ?? new Arquivo();
                                             }
-                                            <img src="@Foto.Placehold(arquivo.Nome, "40x40", "Evento/", "150x85_")" width="40" height="40" id="@evento.Id" data-pathimg="@Foto.Placehold(arquivo.Nome,"250x250","evento")" data-nome="@evento.Titulo" />
+                                            <img src="@Foto.Placehold(arquivo.Nome, "40x40", "Evento", "150x85_")" width="40" height="40" id="@evento.Id" data-pathimg="@Foto.Placehold(arquivo.Nome,"250x250","evento")" data-nome="@evento.Titulo" />
                                         </td>
                                         <td>@evento.Titulo</td>
                                         <td>@evento.Local</td>
@@ -124,7 +124,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Modal Excluir Arquivos -->
             <div class="modal fade" id="confimarExclusao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -162,7 +162,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-       
+
         var itemAtual = {};
         $('#confimarExclusao').on('show.bs.modal', function (e) {
             carregaItemAtual(e.relatedTarget);

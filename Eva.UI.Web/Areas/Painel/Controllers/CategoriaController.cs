@@ -68,6 +68,13 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             this.Flash("Categoria Salva com Sucesso!");
             return RedirectToAction("Index");
         }
+
+        public JsonResult Excluir(string id)
+        {
+            //Todo: nâo excluir categoria que possua noticias, ou, setar uma categoria padrao para as noticias ao excluir a categoria dela
+            Fabrica.CategoriaAplicacaoMongo().Excluir(id);
+            return Json("", JsonRequestBehavior.AllowGet);
+        }
 	}
 
     public class CategoriaViewModel

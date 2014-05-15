@@ -75,6 +75,18 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             this.Flash("Logo Salvo com Sucesso!");
             return RedirectToAction("Index");
         }
+        public JsonResult Excluir(string id)
+        {
+            var item = Fabrica.LogoAplicacaoMongo().ListarPorId(id);
+
+            if (item == null) return Json("", JsonRequestBehavior.AllowGet);
+
+            Imagem.ExcluirArquivo(item.Imagem, "logo");
+            Fabrica.LogoAplicacaoMongo().Excluir(id);
+
+            return Json("", JsonRequestBehavior.AllowGet);
+        }
+
 
 
     }
