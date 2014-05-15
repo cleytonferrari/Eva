@@ -72,7 +72,7 @@
                                     <tr id="@categoria.Id" data-nome="@categoria.Nome">
 
                                         <td>@categoria.Nome</td>
-                                        <td>@categoria.CorFundo @categoria.CorTexto</td>
+                                        <td><i class="btn"style="background-color: @categoria.CorFundo; color: @categoria.CorTexto">@categoria.Nome</i></td>
                                         <td>
                                             <a href="@Url.Action("Editar", new { Id = categoria.Id })" class="btn btn-white active tooltips" data-original-title="Editar" data-toggle="tooltip">
                                                 <i class="fa fa-pencil"></i>
