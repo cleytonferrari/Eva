@@ -17,6 +17,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
         private readonly CategoriaAplicacao categoriaApp;
         private readonly NoticiaZonaAplicacao noticiaZonaApp;
         private readonly FonteAplicacao fonteApp;
+        private readonly LocalAplicacao localApp;
 
         public NoticiaController()
         {
@@ -24,6 +25,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             categoriaApp = Fabrica.CategoriaAplicacaoMongo();
             noticiaZonaApp = Fabrica.NoticiaZonaAplicacaoMongo();
             fonteApp = Fabrica.FonteAplicacaoMongo();
+            localApp = Fabrica.LocalAplicacaoMongo();
 
         }
         public ActionResult Index(int? page)
@@ -64,6 +66,8 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                 Publicado = noticia.Publicado,
                 Fonte = noticia.Fonte,
                 FonteNome = noticia.Fonte.Nome,
+                Local = noticia.Local,
+                LocalNome = noticia.Local.Nome,
                 Resumo = noticia.Resumo
             };
 
@@ -91,6 +95,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                 ExibirComentarios = noticia.ExibirComentarios,
                 Publicado = noticia.Publicado,
                 Fonte = noticia.Fonte,
+                Local = noticia.Local,
                 Resumo = noticia.Resumo,
                 Zona = noticia.Zona
             };
@@ -108,6 +113,18 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                 var fonteNova = new Fonte() {Nome = noticia.FonteNome};
                 fonteApp.Salvar(fonteNova);
                 noticiaSalvar.Fonte = fonteNova;
+            }
+
+            var local = localApp.ListarPorNome(noticia.LocalNome);
+            if (local != null)
+            {
+                noticiaSalvar.Local = local;
+            }
+            else
+            {
+                var localNova = new Local() { Nome = noticia.LocalNome };
+                localApp.Salvar(localNova);
+                noticiaSalvar.Local = localNova;
             }
 
             if (!string.IsNullOrEmpty(noticia.Id))
@@ -150,6 +167,8 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
         public DateTime Data { get; set; }
         public Fonte Fonte { get; set; }
         public string FonteNome { get; set; }
+        public Local Local { get; set; }
+        public string LocalNome { get; set; }
         public bool Publicado { get; set; }
         public bool ExibirComentarios { get; set; }
 

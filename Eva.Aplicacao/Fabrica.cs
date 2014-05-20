@@ -24,6 +24,11 @@ namespace Eva.Aplicacao
             return new FonteAplicacao(new Repositorio.MongoDb.Repositorio<Fonte>());
         }
 
+        public static LocalAplicacao LocalAplicacaoMongo()
+        {
+            return new LocalAplicacao(new Repositorio.MongoDb.Repositorio<Local>());
+        }
+
         public static NoticiaZonaAplicacao NoticiaZonaAplicacaoMongo()
         {
             return new NoticiaZonaAplicacao(new Repositorio.MongoDb.Repositorio<NoticiaZona>());

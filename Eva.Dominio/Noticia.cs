@@ -22,6 +22,7 @@ namespace Eva.Dominio
         public string Slug { get; set; }
         public Categoria Categoria { get; set; }
         public NoticiaZona Zona { get; set; }
+        public Local Local { get; set; }
         public string Antetitulo { get; set; }
         public string Resumo { get; set; }
         public string Conteudo { get; set; }

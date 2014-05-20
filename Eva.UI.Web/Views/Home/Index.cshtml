@@ -1,4 +1,4 @@
-﻿
+﻿@model Eva.UI.Web.Controllers.HomeViewModel
 <div class="categorias mgn-left-10px left">
     <h2>Categorias</h2>
     <ul class="oculto">
@@ -93,10 +93,10 @@
 <article class="destaques right mgn-right-10px mgn-top-20px">
     <section class="noticia-urgente">
         <a class="fui-time" href="noticia.html" title="Título da notícia" style="background-color:#E74B3B;">
-            Nam nibh sem, eleifend vel, volutpat a, sagittis commodo, libero. Sed pede orci, volutpat sed, congue vel, gravida non, lacus. Vivam
+            @Model.Noticias.Urgente.Titulo
         </a>
         <p class="fui-time" style="color:#E74B3B;">00h00</p>
-        <p class="fui-location" style="color:#E74B3B;">Machadinho D’Oeste, RO</p>
+        <p class="fui-location" style="color:#E74B3B;">@Model.Noticias.Urgente.Local.Nome</p>
     </section>
     <section class="destaques-atual">
         <h2 class="titulo fui-menu">DESTAQUES</h2>

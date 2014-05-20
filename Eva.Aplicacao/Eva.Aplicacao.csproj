@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LocalAplicacao.cs" />
     <Compile Include="LogoAplicacao.cs" />
     <Compile Include="EventoAplicacao.cs" />
     <Compile Include="NoticiaAplicacao.cs" />
