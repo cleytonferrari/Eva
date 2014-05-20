@@ -1,4 +1,5 @@
-﻿@model Eva.UI.Web.Controllers.HomeViewModel
+﻿@using Eva.Dominio
+@model Eva.UI.Web.Controllers.HomeViewModel
 <div class="categorias mgn-left-10px left">
     <h2>Categorias</h2>
     <ul class="oculto">
@@ -95,173 +96,87 @@
         <a class="fui-time" href="noticia.html" title="Título da notícia" style="background-color:#E74B3B;">
             @Model.Noticias.Urgente.Titulo
         </a>
-        <p class="fui-time" style="color:#E74B3B;">00h00</p>
+        <p class="fui-time" style="color:#E74B3B;">@Model.Noticias.Urgente.Data.ToString("dd/MM/yyyy HH:mm")</p>
         <p class="fui-location" style="color:#E74B3B;">@Model.Noticias.Urgente.Local.Nome</p>
     </section>
     <section class="destaques-atual">
         <h2 class="titulo fui-menu">DESTAQUES</h2>
         <ul class="slideshow">
-            <li>
-                <a href="noticia.html" title="Política">
-                    <p class="categ" style="background-color:#F39B11;">Política</p>
-                    <figure>
-                        <img src="~/Content/Site/img/noticia/img1.jpg" alt="" width="500" height="281">
-                    </figure>
-                    <p class="hora fui-time left" style="color:#F39B11;">00h00</p>
-                    <p class="local fui-location right" style="color:#F39B11;">Alta Floresta, RO</p>
-                    <h2 class="desc" style="color:#F39B11;">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis</h2>
-                </a>
-            </li>
-            <li>
-                <a href="noticia.html" title="Esportes">
-                    <p class="categ" style="background-color:#2DB200;">Esportes</p>
-                    <figure>
-                        <img src="~/Content/Site/img/noticia/img2.jpg" alt="" width="500" height="281">
-                    </figure>
-                    <p class="hora fui-time left" style="color:#2DB200;">00h00</p>
-                    <p class="local fui-location right" style="color:#2DB200;">Ariquemes, RO</p>
-                    <h2 class="desc" style="color:#2DB200;">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis lorem ipsum dolor.</h2>
-                </a>
-            </li>
-            <li>
-                <a href="noticia.html" title="Saúde">
-                    <p class="categ" style="background-color:#BF392B;">Saúde</p>
-                    <figure>
-                        <img src="~/Content/Site/img/noticia/img3.jpg" alt="" width="500" height="281">
-                    </figure>
-                    <p class="hora fui-time left" style="color:#BF392B;">00h00</p>
-                    <p class="local fui-location right" style="color:#BF392B;">Alta Floresta, RO</p>
-                    <h2 class="desc" style="color:#BF392B;">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis</h2>
-                </a>
-            </li>
-            <li>
-                <a href="noticia.html" title="Tecnologia">
-                    <p class="categ" style="background-color:#8D43AD;">Tecnologia</p>
-                    <figure>
-                        <img src="~/Content/Site/img/noticia/img4.jpg" alt="" width="500" height="281">
-                    </figure>
-                    <p class="hora fui-time left" style="color:#8D43AD;">00h00</p>
-                    <p class="local fui-location right" style="color:#8D43AD;">Alta Floresta, RO</p>
-                    <h2 class="desc" style="color:#8D43AD;">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis</h2>
-                </a>
-            </li>
-            <li>
-                <a href="noticia.html" title="Polícia">
-                    <p class="categ" style="background-color:#2B3D4F;">Polícia</p>
-                    <figure>
-                        <img src="~/Content/Site/img/noticia/img5.jpg" alt="" width="500" height="281">
-                    </figure>
-                    <p class="hora fui-time left" style="color:#2B3D4F;">00h00</p>
-                    <p class="local fui-location right" style="color:#2B3D4F;">Alta Floresta, RO</p>
-                    <h2 class="desc" style="color:#2B3D4F;">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis</h2>
-                </a>
-            </li>
+            @foreach (var noticia in Model.Noticias.Destaques)
+            {
+                <li>
+                    <a href="noticia.html" title="Política">
+                        <p class="categ" style="background-color:@noticia.Categoria.CorFundo;color:@noticia.Categoria.CorTexto">@noticia.Categoria.Nome</p>
+                        <figure>
+                            @{
+                var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
+                            }
+                            <img src="@Foto.Placehold(arquivo.Nome, " 500x281", "Noticia" , "500x281_" )" width="500" height="281" />
+                        </figure>
+                        <p class="hora fui-time left" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
+                        <p class="local fui-location right" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
+                        <h2 class="desc" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</h2>
+                    </a>
+                </li>
+            }
         </ul>
         <ul class="miniatura">
-            <li>
-                <a href="#" title="">
-                    <span class="molde"></span>
-                    <figure>
-                        <span style="background-color:#F39B11;"></span>
-                        <img src="~/Content/Site/img/miniatura/img1.jpg" alt="" width="70" height="39">
-                    </figure>
-                </a>
-            </li>
-            <li>
-                <a href="#" title="">
-                    <span class="molde"></span>
-                    <figure>
-                        <span style="background-color:#2DB200;"></span>
-                        <img src="~/Content/Site/img/miniatura/img2.jpg" alt="" width="70" height="39">
-                    </figure>
-                </a>
-            </li>
-            <li>
-                <a href="#" title="">
-                    <span class="molde"></span>
-                    <figure>
-                        <span style="background-color:#BF392B;"></span>
-                        <img src="~/Content/Site/img/miniatura/img3.jpg" alt="" width="70" height="39">
-                    </figure>
-                </a>
-            </li>
-            <li>
-                <a href="#" title="">
-                    <span class="molde"></span>
-                    <figure>
-                        <span style="background-color:#8D43AD;"></span>
-                        <img src="~/Content/Site/img/miniatura/img4.jpg" alt="" width="70" height="39">
-                    </figure>
-                </a>
-            </li>
-            <li>
-                <a href="#" title="">
-                    <span class="molde"></span>
-                    <figure>
-                        <span style="background-color:#2B3D4F;"></span>
-                        <img src="~/Content/Site/img/miniatura/img5.jpg" alt="" width="70" height="39">
-                    </figure>
-                </a>
-            </li>
+            @foreach (var noticia in Model.Noticias.Destaques)
+            {
+                <li>
+                    <a href="#" title="">
+                        <span class="molde"></span>
+                        <figure>
+                            <span style="background-color: @noticia.Categoria.CorFundo;"></span>
+                            @{
+                                var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
+                            }
+                            <img src="@Foto.Placehold(arquivo.Nome, " 150x85", "Noticia" , "150x85_" )" width="70" height="39" />
+                        </figure>
+                    </a>
+                </li>
+            }
         </ul>
     </section>
     <div class="bloco-largura right">
-        <section class="noticia left largura-240px mgn-left-20px">
-            <h2 class="chamada mgn-bottom-10px" style="background-color:#2DB200;">sed VESTIBULUM</h2>
-            <a href="" title="Esportes">
-                <h3 class="categoria" style="color:#2DB200;">Esportes</h3>
-            </a>
-            <p class="hora left fui-time" style="color:#2DB200;">00h00</p>
-            <p class="local right fui-location" style="color:#2DB200;">Alto Alegre, RO</p>
-            <a href="noticia.html" title="título da notícia">
-                <p class="desc left desc-14px mgn-top-5px" style="color:#2DB200;">Sed quis turpis vitae lectus vehicula tincidunt. Morbi accumsan dignissim</p>
-            </a>
-        </section>
-        <section class="noticia right largura-240px mgn-left-20px">
-            <h2 class="chamada mgn-bottom-10px" style="background-color:#2B3D4F;">ETIAM AUCTOR DIGNISSIM</h2>
-            <a href="" title="Polícia">
-                <h3 class="categoria" style="color:#2B3D4F;">Polícia</h3>
-            </a>
-            <p class="hora left fui-time" style="color:#2B3D4F;">00h00</p>
-            <p class="local right fui-location" style="color:#2B3D4F;">Alto Paraíso, RO</p>
-            <a href="noticia.html" title="título da notícia">
-                <p class="desc left desc-14px mgn-top-5px" style="color:#2B3D4F;">Vivamus urna. Maecenas sodales elit. Fusce non lectus. Nunc urna. Suspendisse aliquam lacus vitae</p>
-            </a>
-        </section>
+        @foreach (var noticia in Model.Noticias.AoLadoDoDestaque.Take(2))
+        {
+            <section class="noticia left largura-240px mgn-left-20px">
+                <h2 class="chamada mgn-bottom-10px" style="background-color: @noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
+                <a href="" title="Esportes">
+                    <h3 class="categoria" style="color: @noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
+                </a>
+                <p class="hora left fui-time" style="color: @noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
+                <p class="local right fui-location" style="color: @noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
+                <a href="noticia.html" title="título da notícia">
+                    <p class="desc left desc-14px mgn-top-5px" style="color: @noticia.Categoria.CorFundo;">@noticia.Titulo</p>
+                </a>
+            </section>
+        }
     </div>
     <div class="bloco-largura mgn-top-10px right">
+        @foreach (var noticia in Model.Noticias.AoLadoDoDestaque.Skip(2).Take(2))
+        {
         <section class="noticia left largura-240px mgn-left-20px">
-            <h2 class="chamada" style="background-color:#149F85;">NAM EST</h2>
+            <h2 class="chamada" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
             <a href="" title="Cultura">
-                <h3 class="categoria" style="color:#149F85;">Cultura</h3>
+                <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
             </a>
             <a href="" title="título da notícia">
                 <figure>
-                    <img src="~/Content/Site/img/noticia/240x135px/img1.jpg" alt="">
+                    @{
+                            var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
+                    }
+                    <img src="@Foto.Placehold(arquivo.Nome, " 380x214", "Noticia" , "380x214_" )" width="240" height="135" />
                 </figure>
             </a>
-            <p class="hora left fui-time" style="color:#149F85;">00h00</p>
-            <p class="local right fui-location" style="color:#149F85;">Alvorada, RO</p>
+            <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
+            <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
             <a href="noticia.html" title="título da notícia">
-                <p class="desc left desc-14px mgn-top-5px" style="color:#149F85;">Aliquam tortor. Maecenas tempus gravida lorem. Fusce non lectus</p>
+                <p class="desc left desc-14px mgn-top-5px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
             </a>
         </section>
-        <section class="noticia right largura-240px mgn-left-20px">
-            <h2 class="chamada" style="background-color:#BF392B;">NUNC PLACERAT</h2>
-            <a href="" title="Saúde">
-                <h3 class="categoria" style="color:#BF392B;">Saúde</h3>
-            </a>
-            <a href="" title="título da notícia">
-                <figure>
-                    <img src="~/Content/Site/img/noticia/240x135px/img2.jpg" alt="">
-                </figure>
-            </a>
-            <p class="hora left fui-time" style="color:#BF392B;">00h00</p>
-            <p class="local right fui-location" style="color:#BF392B;">Monte Negro, RO</p>
-            <a href="noticia.html" title="título da notícia">
-                <p class="desc left desc-14px mgn-top-5px" style="color:#BF392B;">Maecenas et lorem ac nibh blandit eleifend. Donec elementum</p>
-            </a>
-        </section>
+        }
     </div>
 </article>
 <div class="banner-1024px right mgn-right-10px mgn-top-10px">

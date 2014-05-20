@@ -7,7 +7,12 @@ namespace Eva.Dominio
     {
         public Noticia()
         {
+            Data = new DateTime();
             Arquivos = new List<Arquivo>();
+            Categoria = new Categoria();
+            Local = new Local();
+            Fonte = new Fonte();
+            Zona = new NoticiaZona();
         }
         private string titulo;
         public string Titulo

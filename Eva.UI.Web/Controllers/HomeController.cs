@@ -13,7 +13,9 @@ namespace Eva.UI.Web.Controllers
         public ActionResult Index()
         {
             var vm = new HomeViewModel();
-            vm.Noticias.Urgente = Fabrica.NoticiaAplicacaoMongo().ListarTodos().FirstOrDefault(x => x.Zona.Nome == "Urgente")?? new Noticia();
+            vm.Noticias.Urgente = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Urgente").FirstOrDefault()?? new Noticia();
+            vm.Noticias.Destaques = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Destaque").Take(5) ?? new List<Noticia>();
+            vm.Noticias.AoLadoDoDestaque = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Ao lado do destaque").Take(4) ?? new List<Noticia>();
             return View(vm);
         }
     }
@@ -31,5 +33,7 @@ namespace Eva.UI.Web.Controllers
     public class NoticiaViewModel
     {
         public Noticia Urgente { get; set; }
+        public IEnumerable<Noticia> Destaques { get; set; }
+        public IEnumerable<Noticia> AoLadoDoDestaque { get; set; }
     }
 }
