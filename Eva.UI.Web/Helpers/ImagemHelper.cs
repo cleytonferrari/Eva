@@ -71,7 +71,7 @@ namespace Eva.UI.Web.Helpers
                     continue;
 
                 var imagem = new WebImage(path);
-                var pathFotoCropada = MontaPath(diretorio, item.Altura + "x" + item.Largura + "_" + name);
+                var pathFotoCropada = MontaPath(diretorio, item.Largura + "x" + item.Altura + "_" + name);
                 imagem.Resize(item.Largura, item.Altura);
                 imagem.Save(pathFotoCropada);
             }
@@ -148,6 +148,16 @@ namespace Eva.UI.Web.Helpers
                 arquivo.Ordem = i;
                 arquivosRetorno.Add(arquivo);
             }
+
+            if (items.Count() == arquivos.Count()) return arquivosRetorno;
+
+            foreach (var arquivo in arquivos.Where(arquivo => arquivosRetorno.All(x => x.Id != arquivo.Id)))
+            {
+                i++;
+                arquivo.Ordem = i;
+                arquivosRetorno.Add(arquivo);
+            }
+
             return arquivosRetorno;
         }
 
@@ -165,17 +175,17 @@ namespace Eva.UI.Web.Helpers
     {
         public static List<Tamanho> Noticias = new List<Tamanho>()
         {
-            new Tamanho() {Nome = "Original", Altura = 940, Largura = 529},
-            new Tamanho() {Nome = "Foto01", Altura = 380, Largura = 214},
-            new Tamanho() {Nome = "Foto02", Altura = 150, Largura = 85},
-            new Tamanho() {Nome = "Foto03", Altura = 540, Largura = 304},
-            new Tamanho() {Nome = "Foto04", Altura = 500, Largura = 281}
+            new Tamanho() {Nome = "Original", Largura = 940, Altura = 529 },
+            new Tamanho() {Nome = "Foto01", Largura = 380, Altura = 214 },
+            new Tamanho() {Nome = "Foto02", Largura = 150, Altura = 85 },
+            new Tamanho() {Nome = "Foto03", Largura = 540, Altura = 304 },
+            new Tamanho() {Nome = "Foto04", Largura = 500, Altura = 282 }
         };
 
         public static List<Tamanho> Eventos = new List<Tamanho>()
         {
-            new Tamanho() {Nome = "Original", Altura = 940, Largura = 529},
-            new Tamanho() {Nome = "Foto01", Altura = 180, Largura = 102},
+            new Tamanho() {Nome = "Original", Largura = 600, Altura = 940 },
+            new Tamanho() {Nome = "Foto01", Largura = 180, Altura = 102 },
         };
 
         public struct Tamanho
