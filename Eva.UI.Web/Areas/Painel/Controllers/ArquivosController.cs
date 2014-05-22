@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
@@ -13,18 +14,22 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 {
     public class ArquivosController : Controller
     {
-        public ActionResult Index(string id, string plugin)
+        public ActionResult Index(string id, string plugin, int? pagina)
         {
             if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(plugin))
                 return RedirectToAction("Index", "Home", new { area = "Painel" });
 
             var arquivoViewModel = new ArquivoViewModel();
 
+            var page = pagina ?? 0;
+            const int registroPorPagina = 8;
+            var pularRegistros = page * registroPorPagina;
+
             switch (plugin.ToLower())
             {
                 case "noticia":
                     var noticia = Fabrica.NoticiaAplicacaoMongo().ListarPorId(id);
-                    arquivoViewModel.Arquivos = noticia.Arquivos ?? new List<Arquivo>();
+                    arquivoViewModel.Arquivos = noticia.Arquivos.Skip(pularRegistros).Take(registroPorPagina) ?? new List<Arquivo>();
                     arquivoViewModel.Id = noticia.Id;
                     arquivoViewModel.Titulo = noticia.Titulo;
                     arquivoViewModel.Plugin = plugin;
@@ -32,12 +37,15 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 
                 case "evento":
                     var evento = Fabrica.EventoAplicacaoMongo().ListarPorId(id);
-                    arquivoViewModel.Arquivos = evento.Arquivos ?? new List<Arquivo>();
+                    arquivoViewModel.Arquivos = evento.Arquivos.Skip(pularRegistros).Take(registroPorPagina) ?? new List<Arquivo>();
                     arquivoViewModel.Id = evento.Id;
                     arquivoViewModel.Titulo = evento.Titulo;
                     arquivoViewModel.Plugin = plugin;
                     break;
             }
+
+            if (Request.IsAjaxRequest())
+                return PartialView("listaImagens", arquivoViewModel);
 
             return View(arquivoViewModel);
         }
@@ -81,14 +89,14 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             {
                 case "noticia":
                     var noticia = Fabrica.NoticiaAplicacaoMongo().ListarPorId(id);
-                     arquivo = noticia.Arquivos.FirstOrDefault(x => x.Id == idArquivo);
-                    
+                    arquivo = noticia.Arquivos.FirstOrDefault(x => x.Id == idArquivo);
+
                     noticia.Arquivos.Remove(arquivo);
                     Imagem.ExcluirArquivo(arquivo.Nome, plugin);
 
                     noticia.Arquivos = Imagem.OrdenarArquivos(noticia.Arquivos.OrderBy(x => x.Ordem).Select(x => x.Id), noticia.Arquivos);
 
-                     arquivoCapa = noticia.Arquivos.FirstOrDefault(x => x.Ordem == 1);
+                    arquivoCapa = noticia.Arquivos.FirstOrDefault(x => x.Ordem == 1);
                     if (arquivoCapa != null)
                         Imagem.CropFile(arquivoCapa.Nome, plugin, ImagensLayout.Noticias);
 
@@ -96,14 +104,14 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                     break;
                 case "evento":
                     var evento = Fabrica.EventoAplicacaoMongo().ListarPorId(id);
-                     arquivo = evento.Arquivos.FirstOrDefault(x => x.Id == idArquivo);
+                    arquivo = evento.Arquivos.FirstOrDefault(x => x.Id == idArquivo);
 
                     evento.Arquivos.Remove(arquivo);
                     Imagem.ExcluirArquivo(arquivo.Nome, plugin);
 
                     evento.Arquivos = Imagem.OrdenarArquivos(evento.Arquivos.OrderBy(x => x.Ordem).Select(x => x.Id), evento.Arquivos);
 
-                     arquivoCapa = evento.Arquivos.FirstOrDefault(x => x.Ordem == 1);
+                    arquivoCapa = evento.Arquivos.FirstOrDefault(x => x.Ordem == 1);
                     if (arquivoCapa != null)
                         Imagem.CropFile(arquivoCapa.Nome, plugin, ImagensLayout.Eventos);
 
@@ -127,7 +135,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             var fileUpload = Request.Files[0];
 
             if (!Imagem.Upload(fileUpload, plugin, name, chunk, chunks)) return Content("Success", "text/plain");
-            
+
             int ordem;
             switch (plugin.ToLower())
             {

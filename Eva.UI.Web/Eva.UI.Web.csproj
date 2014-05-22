@@ -504,6 +504,7 @@
     <Content Include="Areas\Painel\Views\Logo\Editar.cshtml" />
     <Content Include="Areas\Painel\Views\Evento\Index.cshtml" />
     <Content Include="Areas\Painel\Views\Evento\Editar.cshtml" />
+    <Content Include="Areas\Painel\Views\Arquivos\listaImagens.cshtml" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />
