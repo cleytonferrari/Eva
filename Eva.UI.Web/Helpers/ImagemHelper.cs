@@ -72,7 +72,7 @@ namespace Eva.UI.Web.Helpers
 
                 var imagem = new WebImage(path);
                 var pathFotoCropada = MontaPath(diretorio, item.Largura + "x" + item.Altura + "_" + name);
-                imagem.Resize(item.Largura, item.Altura);
+                imagem.Resize(item.Largura+2, item.Altura+2).Crop(2,2);//crop(1,1) corrige o bug da borda
                 imagem.Save(pathFotoCropada);
             }
         }
