@@ -239,19 +239,19 @@
     <script type="text/javascript">
         jQuery.fn.toggleText = function (a, b) {
             return this.html(this.html().replace(new RegExp("(" + a + "|" + b + ")"), function (x) { return (x == a) ? b : a; }));
-        }
+        };
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('.oculto').before('<span class="expandir">Expandir</span>');
-            $('span', '.categorias').click(function () {
+            $('span', '.categorias').click(function() {
                 $(this).next().slideToggle('slow')
-                .siblings('.oculto:visible').slideToggle('slow');
+                    .siblings('.oculto:visible').slideToggle('slow');
                 // aqui começa o funcionamento do plugin
                 $(this).toggleText('Expandir', '<span class="recolhe">Recolher</span>')
-                .siblings('span').next('.oculto:visible').prev()
-                .toggleText('Expandir', 'Recolher')
+                    .siblings('span').next('.oculto:visible').prev()
+                    .toggleText('Expandir', 'Recolher');
             });
-        })
+        });
     </script>
 
     <script>
