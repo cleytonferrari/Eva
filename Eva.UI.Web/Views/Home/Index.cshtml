@@ -111,7 +111,7 @@
                             @{
                 var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
                             }
-                            <img src="@Foto.Placehold(arquivo.Nome, " 500x281", "Noticia" , "500x281_" )" width="500" height="281" />
+                            <img src="@Foto.Placehold(arquivo.Nome, "500x281", "Noticia" , "500x281_" )" width="500" height="281" />
                         </figure>
                         <p class="hora fui-time left" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
                         <p class="local fui-location right" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
@@ -167,7 +167,7 @@
                         @{
             var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
                         }
-                        <img src="@Foto.Placehold(arquivo.Nome, " 380x214", "Noticia" , "380x214_" )" width="240" height="135" />
+                        <img src="@Foto.Placehold(arquivo.Nome, "380x214", "Noticia" , "380x214_" )" width="240" height="135" />
                     </figure>
                 </a>
                 <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
@@ -202,28 +202,28 @@
     </div>
 </div>
 <div class="bloco-largura mgn-top-20px left">
-@foreach (var noticia in Model.Noticias.EmbaixoDoDestaque.Take(5))
-{
-    <section class="noticia left largura-220px mgn-esq-dir-10px">
-        <h2 class="chamada" style="background-color: @noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-        <a href="" title="Cultura">
-            <h3 class="categoria" style="color: @noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-        </a>
-        <a href="" title="título da notícia">
-            <figure>
-                @{
-                        var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
-                }
-                <img src="@Foto.Placehold(arquivo.Nome, " 220x124", "Noticia" , "380x214_" )" width="220" height="124" />
-            </figure>
-        </a>
-        <p class="hora left fui-time" style="color: @noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
-        <p class="local right fui-location" style="color: @noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-        <a href="noticia.html" title="@noticia.Titulo">
-            <p class="desc left mgn-top-5px" style="color: @noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-        </a>
-    </section>
-}
+    @foreach (var noticia in Model.Noticias.EmbaixoDoDestaque.Take(5))
+    {
+        <section class="noticia left largura-220px mgn-esq-dir-10px">
+            <h2 class="chamada" style="background-color: @noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
+            <a href="" title="Cultura">
+                <h3 class="categoria" style="color: @noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
+            </a>
+            <a href="" title="título da notícia">
+                <figure>
+                    @{
+        var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
+                    }
+                    <img src="@Foto.Placehold(arquivo.Nome, "220x124", "Noticia" , "380x214_" )" width="220" height="124" />
+                </figure>
+            </a>
+            <p class="hora left fui-time" style="color: @noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
+            <p class="local right fui-location" style="color: @noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
+            <a href="noticia.html" title="@noticia.Titulo">
+                <p class="desc left mgn-top-5px" style="color: @noticia.Categoria.CorFundo;">@noticia.Titulo</p>
+            </a>
+        </section>
+    }
 </div>
 <div class="banner-1184px right mgn-right-10px mgn-top-20px">
     <div class="banner-728px left">
@@ -259,9 +259,9 @@
                 <a href="" title="título da notícia">
                     <figure>
                         @{
-                                var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
+            var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
                         }
-                        <img src="@Foto.Placehold(arquivo.Nome, " 380x214", "Noticia" , "380x214_" )" width="380" height="214" />
+                        <img src="@Foto.Placehold(arquivo.Nome, "380x214", "Noticia" , "380x214_" )" width="380" height="214" />
                     </figure>
                 </a>
                 <p class="hora left fui-time" style="color: @noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
@@ -286,9 +286,9 @@
                     <a href="" title="título da notícia">
                         <figure class="left mgn-right-10px">
                             @{
-                                var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
+            var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
                             }
-                            <img src="@Foto.Placehold(arquivo.Nome, " 150x85", "Noticia" , "150x85_" )" width="150" height="85" />
+                            <img src="@Foto.Placehold(arquivo.Nome, "150x85", "Noticia" , "150x85_" )" width="150" height="85" />
                         </figure>
                     </a>
                     <a href="noticia.html" title="@noticia.Titulo">
@@ -707,216 +707,26 @@
         <h2 class="titulo mgn-left-10px fui-camera">EVENTOS</h2>
     </a>
     <ul class="lista-eventos mgn-left-10px">
-        <li>
-            <div class="topo-eventos">
-                <p class="data left">00/00/0000</p>
-                <p class="quant-fotos right fui-camera">0000 fotos</p>
-            </div>
-            <a href="#" title="Duis eget libero non nisi lobortis suscipit">
-                <figure>
-                    <img src="~/Content/Site/img/eventos/180x102px/img1.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Chupinguaia, RO</p>
-                <p class="desc left">Duis eget libero non nisi lobortis suscipit...</p>
-            </a>
-        </li>
-        <li>
-            <div class="topo-eventos">
-                <p class="data left">00/00/0000</p>
-                <p class="quant-fotos right fui-camera">0000 fotos</p>
-            </div>
-            <a href="#" title="Quisque faucibus. Fusce eros">
-                <figure>
-                    <img src="~/Content/Site/img/eventos/180x102px/img2.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Colorado, RO</p>
-                <p class="desc left">Quisque faucibus. Fusce eros</p>
-            </a>
-        </li>
-        <li>
-            <div class="topo-eventos">
-                <p class="data left">00/00/0000</p>
-                <p class="quant-fotos right fui-camera">0000 fotos</p>
-            </div>
-            <a href="#" title="In a enim in metus ultrices tristique">
-                <figure>
-                    <img src="~/Content/Site/img/eventos/180x102px/img3.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Corumbiara, RO</p>
-                <p class="desc left">In a enim in metus ultrices tristique</p>
-            </a>
-        </li>
-        <li>
-            <div class="topo-eventos">
-                <p class="data left">00/00/0000</p>
-                <p class="quant-fotos right fui-camera">0000 fotos</p>
-            </div>
-            <a href="#" title="Aenean porta. Nam dictum laoreet lectus">
-                <figure>
-                    <img src="~/Content/Site/img/eventos/180x102px/img4.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Espigão D’Oeste, RO</p>
-                <p class="desc left">Aenean porta. Nam dictum laoreet lectus</p>
-            </a>
-        </li>
-        <li>
-            <div class="topo-eventos">
-                <p class="data left">00/00/0000</p>
-                <p class="quant-fotos right fui-camera">0000 fotos</p>
-            </div>
-            <a href="#" title="Duis eget libero non nisi lobortis suscipit">
-                <figure>
-                    <img src="~/Content/Site/img/eventos/180x102px/img5.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Chupinguaia, RO</p>
-                <p class="desc left">Duis eget libero non nisi lobortis suscipit...</p>
-            </a>
-        </li>
-        <li>
-            <div class="topo-eventos">
-                <p class="data left">00/00/0000</p>
-                <p class="quant-fotos right fui-camera">0000 fotos</p>
-            </div>
-            <a href="#" title="Duis eget libero non nisi lobortis suscipit">
-                <figure>
-                    <img src="~/Content/Site/img/eventos/180x102px/img6.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Chupinguaia, RO</p>
-                <p class="desc left">Duis eget libero non nisi lobortis suscipit...</p>
-            </a>
-        </li>
-        <li>
-            <div class="topo-eventos">
-                <p class="data left">00/00/0000</p>
-                <p class="quant-fotos right fui-camera">0000 fotos</p>
-            </div>
-            <a href="#" title="Duis eget libero non nisi lobortis suscipit">
-                <figure>
-                    <img src="~/Content/Site/img/eventos/180x102px/img7.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Chupinguaia, RO</p>
-                <p class="desc left">Duis eget libero non nisi lobortis suscipit...</p>
-            </a>
-        </li>
-        <li>
-            <div class="topo-eventos">
-                <p class="data left">00/00/0000</p>
-                <p class="quant-fotos right fui-camera">0000 fotos</p>
-            </div>
-            <a href="#" title="Duis eget libero non nisi lobortis suscipit">
-                <figure>
-                    <img src="~/Content/Site/img/eventos/180x102px/img8.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Chupinguaia, RO</p>
-                <p class="desc left">Duis eget libero non nisi lobortis suscipit...</p>
-            </a>
-        </li>
-        <li>
-            <div class="topo-eventos">
-                <p class="data left">00/00/0000</p>
-                <p class="quant-fotos right fui-camera">0000 fotos</p>
-            </div>
-            <a href="#" title="Duis eget libero non nisi lobortis suscipit">
-                <figure>
-                    <img src="~/Content/Site/img/eventos/180x102px/img9.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Chupinguaia, RO</p>
-                <p class="desc left">Duis eget libero non nisi lobortis suscipit...</p>
-            </a>
-        </li>
-        <li>
-            <div class="topo-eventos">
-                <p class="data left">00/00/0000</p>
-                <p class="quant-fotos right fui-camera">0000 fotos</p>
-            </div>
-            <a href="#" title="Duis eget libero non nisi lobortis suscipit">
-                <figure>
-                    <img src="~/Content/Site/img/eventos/180x102px/img10.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Chupinguaia, RO</p>
-                <p class="desc left">Duis eget libero non nisi lobortis suscipit...</p>
-            </a>
-        </li>
-        <li>
-            <div class="topo-eventos">
-                <p class="data left">00/00/0000</p>
-                <p class="quant-fotos right fui-camera">0000 fotos</p>
-            </div>
-            <a href="#" title="Duis eget libero non nisi lobortis suscipit">
-                <figure>
-                    <img src="~/Content/Site/img/eventos/180x102px/img11.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Chupinguaia, RO</p>
-                <p class="desc left">Duis eget libero non nisi lobortis suscipit...</p>
-            </a>
-        </li>
-        <li>
-            <div class="topo-eventos">
-                <p class="data left">00/00/0000</p>
-                <p class="quant-fotos right fui-camera">0000 fotos</p>
-            </div>
-            <a href="#" title="Duis eget libero non nisi lobortis suscipit">
-                <figure>
-                    <img src="~/Content/Site/img/eventos/180x102px/img12.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Chupinguaia, RO</p>
-                <p class="desc left">Duis eget libero non nisi lobortis suscipit...</p>
-            </a>
-        </li>
-        <li>
-            <div class="topo-eventos">
-                <p class="data left">00/00/0000</p>
-                <p class="quant-fotos right fui-camera">0000 fotos</p>
-            </div>
-            <a href="#" title="Duis eget libero non nisi lobortis suscipit">
-                <figure>
-                    <img src="~/Content/Site/img/eventos/180x102px/img13.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Chupinguaia, RO</p>
-                <p class="desc left">Duis eget libero non nisi lobortis suscipit...</p>
-            </a>
-        </li>
-        <li>
-            <div class="topo-eventos">
-                <p class="data left">00/00/0000</p>
-                <p class="quant-fotos right fui-camera">0000 fotos</p>
-            </div>
-            <a href="#" title="Duis eget libero non nisi lobortis suscipit">
-                <figure>
-                    <img src="~/Content/Site/img/eventos/180x102px/img14.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Chupinguaia, RO</p>
-                <p class="desc left">Duis eget libero non nisi lobortis suscipit...</p>
-            </a>
-        </li>
-        <li>
-            <div class="topo-eventos">
-                <p class="data left">00/00/0000</p>
-                <p class="quant-fotos right fui-camera">0000 fotos</p>
-            </div>
-            <a href="#" title="Duis eget libero non nisi lobortis suscipit">
-                <figure>
-                    <img src="~/Content/Site/img/eventos/180x102px/img15.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Chupinguaia, RO</p>
-                <p class="desc left">Duis eget libero non nisi lobortis suscipit...</p>
-            </a>
-        </li>
+        @foreach (var evento in Model.Eventos.UltimosEventos)
+        {
+            <li>
+                <div class="topo-eventos">
+                    <p class="data left">@evento.Data.ToShortDateString()</p>
+                    <p class="quant-fotos right fui-camera">@evento.Arquivos.Count() fotos</p>
+                </div>
+                <a href="#" title="Duis eget libero non nisi lobortis suscipit">
+                    <figure>
+                        @{
+                                var arquivo = evento.Arquivos.FirstOrDefault() ?? new Arquivo();
+                        }
+                        <img src="@Foto.Placehold(arquivo.Nome, "180x102", "Evento" , "180x102_" )" width="180" height="102" />
+                    </figure>
+                    <p class="hora left fui-time">@evento.Data.ToShortTimeString()</p>
+                    <p class="local right fui-location">@evento.Local</p>
+                    <p class="desc left">@evento.Titulo</p>
+                </a>
+            </li>
+        }
     </ul>
 </section>
 <div class="banner-vertical right mgn-right-10px mgn-top-56px">
@@ -954,67 +764,67 @@
 <section class="bloco-largura largura-380px left mgn-left-10px mgn-top-20px">
     @foreach (var noticia in Model.Noticias.Categoria01.Take(1))
     {
-    <a href="noticias.html" title="Esportes">
-        <h2 class="fui-menu titulo-secao" style="color: @noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h2>
-    </a>
-    
-    <section class="noticia left largura-380px">
-        <h2 class="chamada" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
         <a href="noticias.html" title="Esportes">
-            <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
+            <h2 class="fui-menu titulo-secao" style="color: @noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h2>
         </a>
-        <a href="" title="título da notícia">
-            <figure>
-                @{
-                    var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
-                }
-                <img src="@Foto.Placehold(arquivo.Nome, " 380x214", "Noticia" , "380x214_" )" width="380" height="214" />
-            </figure>
-        </a>
-        <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
-        <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-        <a href="noticia.html" title="título da notícia">
-            <p class="desc desc-18px left mgn-top-5px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-        </a>
-    </section>
+
+        <section class="noticia left largura-380px">
+            <h2 class="chamada" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
+            <a href="noticias.html" title="Esportes">
+                <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
+            </a>
+            <a href="" title="título da notícia">
+                <figure>
+                    @{
+        var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
+                    }
+                    <img src="@Foto.Placehold(arquivo.Nome, "380x214", "Noticia" , "380x214_" )" width="380" height="214" />
+                </figure>
+            </a>
+            <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
+            <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
+            <a href="noticia.html" title="título da notícia">
+                <p class="desc desc-18px left mgn-top-5px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
+            </a>
+        </section>
     }
     @foreach (var noticia in Model.Noticias.Categoria01.Skip(1).Take(1))
     {
-    <section class="noticia left largura-380px mgn-top-20px">
-        <h2 class="chamada mgn-bottom-5px" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-        <a href="noticias.html" title="Esportes">
-            <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-        </a>
-        <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
-        <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-        <div class="bloco-largura left mgn-top-10px">
-            <a href="" title="título da notícia">
-                <figure class="left mgn-right-10px">
-                    @{
-                        var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
-                    }
-                    <img src="@Foto.Placehold(arquivo.Nome, " 150x85", "Noticia" , "150x85_" )" width="150" height="85" />
-                </figure>
+        <section class="noticia left largura-380px mgn-top-20px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
+            <a href="noticias.html" title="Esportes">
+                <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
             </a>
-            <a href="noticia.html" title="título da notícia">
-                <p class="desc desc-14px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-            </a>
-        </div>
-    </section>
+            <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
+            <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="" title="título da notícia">
+                    <figure class="left mgn-right-10px">
+                        @{
+        var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
+                        }
+                        <img src="@Foto.Placehold(arquivo.Nome, "150x85", "Noticia" , "150x85_" )" width="150" height="85" />
+                    </figure>
+                </a>
+                <a href="noticia.html" title="título da notícia">
+                    <p class="desc desc-14px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
+                </a>
+            </div>
+        </section>
     }
     @foreach (var noticia in Model.Noticias.Categoria01.Skip(2).Take(1))
     {
-    <section class="noticia left largura-380px mgn-top-20px">
-        <h2 class="chamada mgn-bottom-5px" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-        <a href="noticias.html" title="Esportes">
-            <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-        </a>
-        <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
-        <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-        <a href="noticia.html" title="título da notícia">
-            <p class="desc left mgn-top-5px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-        </a>
-    </section>
+        <section class="noticia left largura-380px mgn-top-20px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
+            <a href="noticias.html" title="Esportes">
+                <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
+            </a>
+            <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
+            <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
+            <a href="noticia.html" title="título da notícia">
+                <p class="desc left mgn-top-5px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
+            </a>
+        </section>
     }
 </section>
 <section class="bloco-largura largura-380px left mgn-left-20px mgn-top-20px">
@@ -1034,7 +844,7 @@
                     @{
         var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
                     }
-                    <img src="@Foto.Placehold(arquivo.Nome, " 380x214", "Noticia" , "380x214_" )" width="380" height="214" />
+                    <img src="@Foto.Placehold(arquivo.Nome, "380x214", "Noticia" , "380x214_" )" width="380" height="214" />
                 </figure>
             </a>
             <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
@@ -1059,7 +869,7 @@
                         @{
         var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
                         }
-                        <img src="@Foto.Placehold(arquivo.Nome, " 150x85", "Noticia" , "150x85_" )" width="150" height="85" />
+                        <img src="@Foto.Placehold(arquivo.Nome, "150x85", "Noticia" , "150x85_" )" width="150" height="85" />
                     </figure>
                 </a>
                 <a href="noticia.html" title="título da notícia">
@@ -1100,7 +910,7 @@
                     @{
         var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
                     }
-                    <img src="@Foto.Placehold(arquivo.Nome, " 380x214", "Noticia" , "380x214_" )" width="380" height="214" />
+                    <img src="@Foto.Placehold(arquivo.Nome, "380x214", "Noticia" , "380x214_" )" width="380" height="214" />
                 </figure>
             </a>
             <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
@@ -1125,7 +935,7 @@
                         @{
         var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
                         }
-                        <img src="@Foto.Placehold(arquivo.Nome, " 150x85", "Noticia" , "150x85_" )" width="150" height="85" />
+                        <img src="@Foto.Placehold(arquivo.Nome, "150x85", "Noticia" , "150x85_" )" width="150" height="85" />
                     </figure>
                 </a>
                 <a href="noticia.html" title="título da notícia">
@@ -1388,42 +1198,42 @@
 
     @foreach (var noticia in Model.Noticias.Rodape.Take(3))
     {
-    <section class="noticia left largura-380px mgn-esq-dir-10px">
-        <h2 class="chamada mgn-bottom-5px" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-        <a href="noticias.html" title="Brasil e mundo">
-            <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-        </a>
-        <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
-        <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-        <div class="bloco-largura left mgn-top-10px">
-            <a href="" title="título da notícia">
-                <figure class="left mgn-right-10px">
-                    @{
-                        var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
-                    }
-                    <img src="@Foto.Placehold(arquivo.Nome, " 150x85", "Noticia" , "150x85_" )" width="150" height="85" />
-                </figure>
+        <section class="noticia left largura-380px mgn-esq-dir-10px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
+            <a href="noticias.html" title="Brasil e mundo">
+                <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
             </a>
-            <a href="noticia.html" title="título da notícia">
-                <p class="desc desc-14px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-            </a>
-        </div>
-    </section>
+            <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
+            <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="" title="título da notícia">
+                    <figure class="left mgn-right-10px">
+                        @{
+        var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
+                        }
+                        <img src="@Foto.Placehold(arquivo.Nome, "150x85", "Noticia" , "150x85_" )" width="150" height="85" />
+                    </figure>
+                </a>
+                <a href="noticia.html" title="título da notícia">
+                    <p class="desc desc-14px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
+                </a>
+            </div>
+        </section>
     }
 </div>
 <div class="bloco-largura left mgn-top-20px">
-@foreach (var noticia in Model.Noticias.Rodape.Skip(3).Take(3))
+    @foreach (var noticia in Model.Noticias.Rodape.Skip(3).Take(3))
     {
-    <section class="noticia left largura-380px mgn-esq-dir-10px">
-        <h2 class="chamada mgn-bottom-5px" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-        <a href="noticias.html" title="@noticia.Categoria.Nome">
-            <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-        </a>
-        <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">00h00</p>
-        <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-        <a href="noticia.html" title="@noticia.Titulo">
-            <p class="desc left mgn-top-5px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-        </a>
-    </section>
-}
+        <section class="noticia left largura-380px mgn-esq-dir-10px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
+            <a href="noticias.html" title="@noticia.Categoria.Nome">
+                <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
+            </a>
+            <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">00h00</p>
+            <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
+            <a href="noticia.html" title="@noticia.Titulo">
+                <p class="desc left mgn-top-5px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
+            </a>
+        </section>
+    }
 </div>

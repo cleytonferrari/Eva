@@ -44,7 +44,9 @@ namespace Eva.UI.Web.Helpers
 
             var ctx = (OwinContext)HttpContext.Current.Request.GetOwinContext();
             var user = ctx.Authentication.User;
-            
+            if (user.FindFirst("Id") == null)
+                return new Usuario();
+
             return new Usuario()
             {
                 Id = user.FindFirst("Id").Value,

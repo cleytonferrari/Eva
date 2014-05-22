@@ -175,7 +175,7 @@ namespace Eva.UI.Web.Helpers
         public static List<Tamanho> Eventos = new List<Tamanho>()
         {
             new Tamanho() {Nome = "Original", Altura = 940, Largura = 529},
-            new Tamanho() {Nome = "Foto01", Altura = 150, Largura = 85},
+            new Tamanho() {Nome = "Foto01", Altura = 180, Largura = 102},
         };
 
         public struct Tamanho

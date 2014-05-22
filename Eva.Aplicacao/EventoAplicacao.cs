@@ -1,5 +1,6 @@
 ﻿using Eva.Dominio;
 using Eva.Dominio.Contratos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -33,5 +34,14 @@ namespace Eva.Aplicacao
         {
             return contexto.Get(id);
         }
+        public IEnumerable<Evento> ListarPublicadas()
+        {
+            //todo: Setar a GMT baseado em alguma configuração
+            var dataAtual = DateTime.Now;
+            var retorno = contexto.GetAll().Where(x => x.Data <= dataAtual && x.Publicado);
+
+            return retorno.OrderByDescending(x => x.Data);
+        }
+
     }
 }

@@ -1,4 +1,6 @@
-﻿using Eva.Dominio;
+﻿using System;
+using System.Collections.Generic;
+using Eva.Dominio;
 
 namespace Eva.Aplicacao
 {
@@ -48,5 +50,6 @@ namespace Eva.Aplicacao
         {
             return new EventoAplicacao(new Repositorio.MongoDb.Repositorio<Evento>());
         }
+
     }
 }

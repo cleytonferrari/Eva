@@ -23,6 +23,8 @@ namespace Eva.UI.Web.Controllers
             vm.Noticias.Categoria03 = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Categoria 03").Take(3) ?? new List<Noticia>();
             vm.Noticias.Rodape = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Rodapé").Take(6) ?? new List<Noticia>();
 
+            vm.Eventos.UltimosEventos = Fabrica.EventoAplicacaoMongo().ListarPublicadas().Take(16) ?? new List<Evento>();
+
             return View(vm);
         }
     }
@@ -32,8 +34,11 @@ namespace Eva.UI.Web.Controllers
         public HomeViewModel()
         {
             Noticias = new NoticiaViewModel();
+            Eventos = new EventoViewModel();
         }
         public NoticiaViewModel  Noticias { get; set; }
+
+        public EventoViewModel Eventos { get; set; }
 
     }
 
@@ -48,5 +53,10 @@ namespace Eva.UI.Web.Controllers
         public IEnumerable<Noticia> Categoria02 { get; set; }
         public IEnumerable<Noticia> Categoria03 { get; set; }
         public IEnumerable<Noticia> Rodape { get; set; }
+    }
+
+    public class EventoViewModel
+    {
+        public IEnumerable<Evento> UltimosEventos { get; set; }
     }
 }
