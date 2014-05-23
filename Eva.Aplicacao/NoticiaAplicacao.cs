@@ -42,6 +42,15 @@ namespace Eva.Aplicacao
             return retorno.OrderByDescending(x => x.Data);
         }
 
+        public IEnumerable<Noticia> MaisLidas()
+        {
+            //todo: Setar a GMT baseado em alguma configuração
+            var dataAtual = DateTime.Now;
+            var retorno = contexto.GetAll().Where(x => x.Data.Date == dataAtual.Date && x.Publicado);
+
+            return retorno.OrderByDescending(x => x.Hits);
+        }
+
         public Noticia ListarPorId(string id)
         {
             return contexto.Get(id);
