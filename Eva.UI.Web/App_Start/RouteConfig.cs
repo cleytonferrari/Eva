@@ -12,6 +12,13 @@ namespace Eva.UI.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            
+            routes.MapRoute(
+                name: "TodasNoticias",
+                url: "noticia/{categoria}/{page}",
+                defaults: new { controller = "Noticia", action = "Index", page = UrlParameter.Optional },
+                namespaces: new[] { "Eva.UI.Web.Controllers" }
+                );
 
             routes.MapRoute(
                 name: "Default",

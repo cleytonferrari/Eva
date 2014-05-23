@@ -44,7 +44,7 @@
     </script>
     <div id="container">
         <header id="cabecalho">
-            <h1><a class="logo rpl" href="." title="Página inicial Rondônia Vip">Rondônia Vip</a></h1>
+            <h1><a class="logo rpl" href="@Url.Action("Index","Home",new{Area=""})" title="Página inicial Rondônia Vip">Rondônia Vip</a></h1>
             <div class="social mgn-top-10px left">
                 <a href="contato.html" title="Contato">
                     <h2 class="fui-bubble-16px">Contato</h2>
@@ -60,19 +60,19 @@
                 <nav class="menu">
                     <ul>
                         <li>
-                            <a class="fui-calendar" href="classificados.html" title="CLASSIFICADOS">CLASSIFICADOS</a>
+                            <a class="fui-menu" href="@Url.Action("Index","Noticia",new{Area="",categoria="todas"})" title="NOTÍCIAS">NOTÍCIAS</a>
                         </li>
                         <li>
-                            <a class="fui-camera" href="eventos.html" title="EVENTOS">EVENTOS</a>
+                            <a class="fui-calendar" href="" title="CLASSIFICADOS">CLASSIFICADOS</a>
                         </li>
                         <li>
-                            <a class="fui-eye" href="guiacomercial.html" title="GUIA COMERCIAL">GUIA COMERCIAL</a>
+                            <a class="fui-camera" href="" title="EVENTOS">EVENTOS</a>
                         </li>
                         <li>
-                            <a class="fui-menu" href="noticias.html" title="NOTÍCIAS">NOTÍCIAS</a>
+                            <a class="fui-eye" href="" title="GUIA COMERCIAL">GUIA COMERCIAL</a>
                         </li>
                         <li>
-                            <a class="fui-video" href="videos.html" title="VÍDEOS">VÍDEOS</a>
+                            <a class="fui-video" href="" title="VÍDEOS">VÍDEOS</a>
                         </li>
                     </ul>
                 </nav>
@@ -98,7 +98,7 @@
             @RenderBody()
         </div>
         <footer id="rodape" class="mgn-left-10px">
-            <h1><a class="logo-rodape mgn-top-17px rpl" href="." title="Página inicial Rondônia Vip">Rondônia Vip</a></h1>
+            <h1><a class="logo-rodape mgn-top-17px rpl" href="@Url.Action("Index","Home",new{Area=""})" title="Página inicial Rondônia Vip">Rondônia Vip</a></h1>
             <div class="social-rodape mgn-top-17px left">
                 <a href="contato.html" title="Contato">
                     <h2 class="rodape fui-bubble-16px">Contato</h2>
@@ -114,19 +114,19 @@
                 <nav class="menu">
                     <ul>
                         <li>
-                            <a class="fui-calendar" href="classificados.html" title="CLASSIFICADOS">CLASSIFICADOS</a>
+                            <a class="fui-menu" href="@Url.Action("Index","Noticia",new{Area="",categoria="todas"})" title="NOTÍCIAS">NOTÍCIAS</a>
                         </li>
                         <li>
-                            <a class="fui-camera" href="eventos.html" title="EVENTOS">EVENTOS</a>
+                            <a class="fui-calendar" href="" title="CLASSIFICADOS">CLASSIFICADOS</a>
                         </li>
                         <li>
-                            <a class="fui-eye" href="guiacomercial.html" title="GUIA COMERCIAL">GUIA COMERCIAL</a>
+                            <a class="fui-camera" href="" title="EVENTOS">EVENTOS</a>
                         </li>
                         <li>
-                            <a class="fui-menu" href="noticias.html" title="NOTÍCIAS">NOTÍCIAS</a>
+                            <a class="fui-eye" href="" title="GUIA COMERCIAL">GUIA COMERCIAL</a>
                         </li>
                         <li>
-                            <a class="fui-video" href="videos.html" title="VÍDEOS">VÍDEOS</a>
+                            <a class="fui-video" href="" title="VÍDEOS">VÍDEOS</a>
                         </li>
                     </ul>
                 </nav>
@@ -145,63 +145,9 @@
                     </div>
                 </div>
                 <div class="categorias-rodape">
-                    <h2>Categorias</h2>
-                    <ul class="lista-categ">
-                        <li>
-                            <a href="#" title="Cultura">
-                                <span class="barra" style="background-color:#159F85"></span>
-                                Cultura
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" title="Esportes">
-                                <span class="barra" style="background-color:#0080FF"></span>
-                                Mundo
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" title="Geral">
-                                <span class="barra" style="background-color:#BF392B"></span>
-                                Saúde
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" title="Mundo">
-                                <span class="barra" style="background-color:#2DB200"></span>
-                                Esportes
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" title="Polícia">
-                                <span class="barra" style="background-color:#2B3D4F"></span>
-                                Polícia
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" title="Política">
-                                <span class="barra" style="background-color:#D35300"></span>
-                                Social
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" title="Saúde">
-                                <span class="barra" style="background-color:#95A5A5"></span>
-                                Geral
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" title="Social">
-                                <span class="barra" style="background-color:#F39B11"></span>
-                                Política
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" title="Tecnologia">
-                                <span class="barra" style="background-color:#8D43AD"></span>
-                                Tecnologia
-                            </a>
-                        </li>
-                    </ul>
+                    <div class="lista-categ">
+                        @Html.Action("CategoriasWidget", "Home", new { Area = "" })
+                    </div>
                 </div>
             </div>
             <div class="plugin-social right">

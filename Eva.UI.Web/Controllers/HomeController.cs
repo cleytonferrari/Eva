@@ -25,7 +25,7 @@ namespace Eva.UI.Web.Controllers
                     Categoria02 = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Categoria 02").Take(3) ?? new List<Noticia>(),
                     Categoria03 = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Categoria 03").Take(3) ?? new List<Noticia>(),
                     Rodape = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Rodapé").Take(6) ?? new List<Noticia>(),
-                    
+
                     //todo: implementar os metodos para as mais lidas na aplicacao
                     MaisLidaDoDia = Fabrica.NoticiaAplicacaoMongo().MaisLidas().Take(4) ?? new List<Noticia>(),
                     MaisLidaDaSemana = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas().Take(4) ?? new List<Noticia>(),
@@ -39,6 +39,14 @@ namespace Eva.UI.Web.Controllers
 
             return View(vm);
         }
+
+        [ChildActionOnly]
+        public PartialViewResult CategoriasWidget()
+        {
+            var categorias = Fabrica.CategoriaAplicacaoMongo().ListarTodos().ToList();
+            return PartialView(categorias);
+
+        }
     }
 
     public class HomeViewModel
@@ -51,6 +59,7 @@ namespace Eva.UI.Web.Controllers
         public NoticiaViewModel Noticias { get; set; }
 
         public EventoViewModel Eventos { get; set; }
+
 
     }
 
@@ -74,4 +83,5 @@ namespace Eva.UI.Web.Controllers
     {
         public IEnumerable<Evento> UltimosEventos { get; set; }
     }
+
 }
