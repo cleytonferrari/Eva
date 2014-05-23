@@ -15,6 +15,7 @@ Eva.UI.Web/Content/Uploads/
 *.suo
 *.user
 *.sln.docstates
+*.pubxml
 
 # Build results
 [Dd]ebug/
