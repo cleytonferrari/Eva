@@ -66,5 +66,11 @@ namespace Eva.Aplicacao
 
             return noticia;
         }
+
+
+        public IEnumerable<Noticia> ListarPorCategoria(string slugCategoria)
+        {
+            return contexto.GetAll().Where(x => x.Categoria.Slug == slugCategoria);
+        }
     }
 }

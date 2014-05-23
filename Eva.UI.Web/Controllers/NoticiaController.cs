@@ -35,7 +35,24 @@ namespace Eva.UI.Web.Controllers
             if (noticia == null)
                 return HttpNotFound();
 
-            return View(noticia);
+            var vm = new NoticiaLerViewModel
+            {
+                Noticia = noticia,
+                Ultimas = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas().Take(4),
+                Relacionadas = Fabrica.NoticiaAplicacaoMongo().ListarPorCategoria(slugCategoria).Take(4)
+            };
+
+            return View(vm);
         }
+    }
+
+    public class NoticiaLerViewModel
+    {
+        public Noticia Noticia { get; set; }
+
+        public IEnumerable<Noticia> Ultimas { get; set; }
+
+        public IEnumerable<Noticia> Relacionadas { get; set; }
+
     }
 }
