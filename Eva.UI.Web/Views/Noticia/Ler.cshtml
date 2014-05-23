@@ -1,0 +1,309 @@
+﻿@using Eva.Dominio
+@model Eva.Dominio.Noticia
+<div class="banner-1184px right mgn-right-10px mgn-top-20px">
+    <div class="banner-728px left">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="img/banners/728x90px/img1.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+    <div class="banner-417px right">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="img/banners/394x90px/img2.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+</div>
+<div class="bloco-largura-940px left mgn-left-10px mgn-top-20px">
+    <div class="banner-vertical left">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="img/banners/120x600px/img3.jpg" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+    <section class="bloco-largura-540px mgn-left-20px left">
+        <a href="noticias.html" title="NOTÍCIAS">
+            <p class="titulo-28px fui-menu">NOTÍCIAS</p>
+        </a>
+        <div class="barra-info">
+            <p class="data fui-time">@Model.Data.ToString("dd/MM/yyyy HH:mm")</p>
+            <p class="local fui-location">@Model.Local.Nome</p>
+            <p class="visualizado fui-eye">@Model.Hits visualizações</p>
+        </div>
+        <h1 class="titulo-32px">@Model.Titulo</h1>
+        <figure class="imagem-noticia">
+            <img src="img/noticia/540x304px/img1.jpg" alt="">
+            @{
+                var arquivo = Model.Arquivos.FirstOrDefault() ?? new Arquivo();
+            }
+            <img src="@Foto.Placehold(arquivo.Nome, "540x304", "Noticia" , "540x304_" )" width="540" height="304" />
+        </figure>
+        <div class="desc-noticia">
+            <p style="white-space: pre-line">@Model.Conteudo</p>
+        </div>
+    </section>
+    <div class="bloco-largura-223px right">
+        <h2 class="titulo-ultimas">Últimas notícias</h2>
+        <section class="noticia left bloco-largura-223px mgn-top-10px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#F39B11;">NULLA CURSUS</h2>
+            <a href="" title="Política">
+                <h3 class="categoria" style="color:#F39B11;">Política</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#F39B11;">00h00</p>
+            <p class="local right fui-location" style="color:#F39B11;">S. Francisco do Guaporé, RO</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="" title="título da notícia">
+                    <figure class="left mgn-right-10px">
+                        <img class="left" src="img/noticia/100x57px/img1.jpg" alt="" width="100" height="57">
+                    </figure>
+                </a>
+                <a href="noticia.html" title="Donec imperdiet nisl. Curabitur id quam a odio malesuada">
+                    <p class="desc desc-14px " style="color:#F39B11;">Donec imperdiet nisl. Curabitur id quam a odio</p>
+                </a>
+            </div>
+        </section>
+        <section class="noticia left bloco-largura-223px mgn-top-20px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#0080FF;">NULLA CURSUS</h2>
+            <a href="" title="Mundo">
+                <h3 class="categoria" style="color:#0080FF;">Mundo</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#0080FF;">00h00</p>
+            <p class="local right fui-location" style="color:#0080FF;">S. Francisco do Guaporé, RO</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="" title="título da notícia">
+                    <figure class="left mgn-right-10px">
+                        <img class="left" src="img/noticia/100x57px/img2.jpg" alt="" width="100" height="57">
+                    </figure>
+                </a>
+                <a href="noticia.html" title="Donec imperdiet nisl. Curabitur id quam a odio malesuada">
+                    <p class="desc desc-14px " style="color:#0080FF;">Donec imperdiet nisl. Curabitur id quam a odio</p>
+                </a>
+            </div>
+        </section>
+        <section class="noticia left bloco-largura-223px mgn-top-20px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#2B3D4D;">NULLA CURSUS</h2>
+            <a href="" title="Polícia">
+                <h3 class="categoria" style="color:#2B3D4D;">Polícia</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#2B3D4D;">00h00</p>
+            <p class="local right fui-location" style="color:#2B3D4D;">S. Francisco do Guaporé, RO</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="" title="título da notícia">
+                    <figure class="left mgn-right-10px">
+                        <img class="left" src="img/noticia/100x57px/img3.jpg" alt="" width="100" height="57">
+                    </figure>
+                </a>
+                <a href="noticia.html" title="Donec imperdiet nisl. Curabitur id quam a odio malesuada">
+                    <p class="desc desc-14px " style="color:#2B3D4D;">Donec imperdiet nisl. Curabitur id quam a odio</p>
+                </a>
+            </div>
+        </section>
+        <section class="noticia left bloco-largura-223px mgn-top-20px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#95A5A5;">NULLA CURSUS</h2>
+            <a href="" title="Geral">
+                <h3 class="categoria" style="color:#95A5A5;">Geral</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#95A5A5;">00h00</p>
+            <p class="local right fui-location" style="color:#95A5A5;">S. Francisco do Guaporé, RO</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="noticia.html" title="Donec imperdiet nisl. Curabitur id quam a odio malesuada">
+                    <p class="desc desc-14px " style="color:#95A5A5;">Donec imperdiet nisl. Curabitur id quam a odio</p>
+                </a>
+            </div>
+        </section>
+    </div>
+    <section class="mais-imagens-noticia left">
+        @foreach (var item in Model.Arquivos.Skip(1))
+        {
+            <figure>
+                <img src="@Foto.Placehold(item.Nome, "940x529", "Noticia" )" width="940" />
+            </figure>
+        }
+    </section>
+    <div class="comentarios-noticia">
+        <div class="fb-comments" data-href="http://example.com" data-width="940" data-num-posts="10"></div>
+    </div>
+    <div class="bloco-largura left mgn-top-20px">
+        <h2 class="titulo-noticia-relacionada">Notícias relacionadas</h2>
+        <section class="noticia left bloco-largura-453px mgn-top-20px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#2DB200;">CRAS TEMPOR ULTRICIES URNA</h2>
+            <a href="" title="Esportes">
+                <h3 class="categoria" style="color:#2DB200;">Esportes</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#2DB200;">00h00</p>
+            <p class="local right fui-location" style="color:#2DB200;">Internacional</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="" title="título da notícia">
+                    <figure class="left mgn-right-10px">
+                        <img class="left" src="img/noticia/150x85px/img4.jpg" alt="" width="150" height="85">
+                    </figure>
+                </a>
+                <a href="noticia.html" title="título da notícia">
+                    <p class="desc desc-14px" style="color:#2DB200;">Donec imperdiet nisl. Curabitur id quam a odio malesuada euismod. Suspendisse</p>
+                </a>
+            </div>
+        </section>
+        <section class="noticia right bloco-largura-453px mgn-top-20px mgn-left-20px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#2B3D4E;">CRAS TEMPOR ULTRICIES URNA</h2>
+            <a href="" title="Polícia">
+                <h3 class="categoria" style="color:#2B3D4E;">Polícia</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#2B3D4E;">00h00</p>
+            <p class="local right fui-location" style="color:#2B3D4E;">Internacional</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="" title="título da notícia">
+                    <figure class="left mgn-right-10px">
+                        <img class="left" src="img/noticia/150x85px/img4.jpg" alt="" width="150" height="85">
+                    </figure>
+                </a>
+                <a href="noticia.html" title="título da notícia">
+                    <p class="desc desc-14px" style="color:#2B3D4E;">Donec imperdiet nisl. Curabitur id quam a odio malesuada euismod. Suspendisse</p>
+                </a>
+            </div>
+        </section>
+    </div>
+    <div class="bloco-largura left">
+        <section class="noticia left bloco-largura-453px mgn-top-20px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#00698C;">CRAS TEMPOR ULTRICIES URNA</h2>
+            <a href="" title="Brasil e Mundo">
+                <h3 class="categoria" style="color:#00698C;">Brasil e Mundo</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#00698C;">00h00</p>
+            <p class="local right fui-location" style="color:#00698C;">Internacional</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="" title="título da notícia">
+                    <figure class="left mgn-right-10px">
+                        <img class="left" src="img/noticia/150x85px/img4.jpg" alt="" width="150" height="85">
+                    </figure>
+                </a>
+                <a href="noticia.html" title="título da notícia">
+                    <p class="desc desc-14px" style="color:#00698C;">Donec imperdiet nisl. Curabitur id quam a odio malesuada euismod. Suspendisse</p>
+                </a>
+            </div>
+        </section>
+        <section class="noticia right bloco-largura-453px mgn-top-20px mgn-left-20px">
+            <h2 class="chamada mgn-bottom-5px" style="background-color:#00698C;">CRAS TEMPOR ULTRICIES URNA</h2>
+            <a href="" title="Brasil e Mundo">
+                <h3 class="categoria" style="color:#00698C;">Brasil e Mundo</h3>
+            </a>
+            <p class="hora left fui-time" style="color:#00698C;">00h00</p>
+            <p class="local right fui-location" style="color:#00698C;">Internacional</p>
+            <div class="bloco-largura left mgn-top-10px">
+                <a href="" title="título da notícia">
+                    <figure class="left mgn-right-10px">
+                        <img class="left" src="img/noticia/150x85px/img4.jpg" alt="" width="150" height="85">
+                    </figure>
+                </a>
+                <a href="noticia.html" title="título da notícia">
+                    <p class="desc desc-14px" style="color:#00698C;">Donec imperdiet nisl. Curabitur id quam a odio malesuada euismod. Suspendisse</p>
+                </a>
+            </div>
+        </section>
+    </div>
+</div><!--fim bloco-largura-940px-->
+<div class="bloco-largura-223px right">
+    <div class="banner-223px right mgn-top-20px mgn-right-10px">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="img/banners/200x375px/img1.jpg" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+    <div class="banner-223px right mgn-top-20px mgn-right-10px">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="img/banners/200x375px/img2.jpg" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+    <div class="banner-223px right mgn-top-20px mgn-right-10px">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="img/banners/200x375px/img3.jpg" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+    <div class="banner-223px right mgn-top-20px mgn-right-10px">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="img/banners/200x375px/img1.jpg" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+    <div class="banner-223px right mgn-top-20px mgn-right-10px">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="img/banners/200x375px/img2.jpg" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+    <div class="banner-223px right mgn-top-20px mgn-right-10px">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="img/banners/200x375px/img3.jpg" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+    <div class="banner-223px right mgn-top-20px mgn-right-10px">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="img/banners/200x375px/img3.jpg" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+</div><!--fim bloco largura-->
+<div class="banner-1184px right mgn-right-10px mgn-top-20px">
+    <div class="banner-728px left">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="img/banners/728x90px/img4.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+    <div class="banner-417px right">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="img/banners/394x90px/img3.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+</div>

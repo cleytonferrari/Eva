@@ -55,5 +55,16 @@ namespace Eva.Aplicacao
         {
             return contexto.Get(id);
         }
+
+        public Noticia Ler(string slugNoticia, string slugCategoria)
+        {
+            var noticia = contexto.GetAll().FirstOrDefault(x => x.Slug == slugNoticia && x.Categoria.Slug == slugCategoria);
+            if (noticia == null) return noticia;
+
+            noticia.Hits = noticia.Hits + 1;
+            contexto.Save(noticia);
+
+            return noticia;
+        }
     }
 }

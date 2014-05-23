@@ -9,18 +9,30 @@ using PagedList;
 
 namespace Eva.UI.Web.Controllers
 {
+    [RoutePrefix("noticia")]
     public class NoticiaController : Controller
     {
-        public ActionResult Index(int? page, string categoria = "")
+        [Route("{categoria}/{page:int?}")]
+        public ActionResult Index(int? page, string categoria)
         {
             var numeroDaPagina = page ?? 1;
             var ultimas = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas();
 
-            if (!string.IsNullOrEmpty(categoria) && categoria != "todas")
+            if (categoria != "todas")
                 ultimas = ultimas.Where(x => x.Categoria.Slug == categoria);
 
             ultimas = ultimas.OrderByDescending(x => x.Data).ToPagedList(numeroDaPagina, 6);
             return View(ultimas);
+        }
+
+        [Route("{slugCategoria}/{slugNoticia}")]
+        public ActionResult Ler(string slugNoticia, string slugCategoria)
+        {
+            var noticia = Fabrica.NoticiaAplicacaoMongo().Ler(slugNoticia, slugCategoria);
+            if (noticia == null)
+                return HttpNotFound();
+
+            return View(noticia);
         }
     }
 }

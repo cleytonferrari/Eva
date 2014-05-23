@@ -692,6 +692,7 @@
     <Content Include="packages.config" />
     <Content Include="Views\Noticia\Index.cshtml" />
     <Content Include="Views\Home\CategoriasWidget.cshtml" />
+    <Content Include="Views\Noticia\Ler.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

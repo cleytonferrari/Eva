@@ -27,6 +27,7 @@
     <h2 class="titulo-28px left mgn-left-10px fui-menu">NOTÍCIAS</h2>
     <div class="secao-categ mgn-left-10px left">
         <div class="oculto">
+            <!-- todo: não expande as categorias -->
             @Html.Action("CategoriasWidget", "Home", new { Area = "" })
         </div>
     </div>
@@ -35,13 +36,13 @@
         {
             <section class="noticia left largura-380px mgn-esq-dir-10px">
                 <h2 class="chamada mgn-bottom-5px" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-                <a href="noticias.html" title="Esportes">
+                <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = noticia.Categoria.Slug })" title="@noticia.Categoria.Nome">
                     <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
                 </a>
                 <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToString("dd/MM/yyyy HH:mm")</p>
                 <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
                 <div class="bloco-largura left mgn-top-10px">
-                    <a href="" title="título da notícia">
+                    <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug })" title="@noticia.Titulo">
                         <figure class="left mgn-right-10px">
                             @{
             var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
@@ -49,7 +50,7 @@
                             <img src="@Foto.Placehold(arquivo.Nome, "150x85", "Noticia" , "150x85_" )" width="150" height="85" />
                         </figure>
                     </a>
-                    <a href="noticia.html" title="título da notícia">
+                    <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug })" title="@noticia.Titulo">
                         <p class="desc desc-14px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
                     </a>
                 </div>
@@ -61,12 +62,12 @@
         {
             <section class="noticia left largura-380px mgn-esq-dir-10px">
                 <h2 class="chamada mgn-bottom-5px" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-                <a href="noticias.html" title="Brasil e mundo">
+                <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = noticia.Categoria.Slug })" title="@noticia.Categoria.Nome">
                     <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
                 </a>
                 <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToString("dd/MM/yyyy HH:mm")</p>
                 <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-                <a href="noticia.html" title="título da notícia">
+                <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug })" title="@noticia.Titulo">
                     <p class="desc left mgn-top-5px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
                 </a>
             </section>
@@ -74,7 +75,7 @@
     </div>
 </section>
 <div class="paginacao mgn-top-20px">
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
 </div>
 <div class="banner-1184px right mgn-right-10px mgn-top-20px">
     <div class="banner-728px left">
