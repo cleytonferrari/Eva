@@ -15,6 +15,7 @@ namespace Eva.UI.Web.Controllers
         [Route("{categoria}/{page:int?}")]
         public ActionResult Index(int? page, string categoria)
         {
+            //todo: checar se categoria existe ou notFound
             var numeroDaPagina = page ?? 1;
             var ultimas = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas();
 
@@ -25,9 +26,11 @@ namespace Eva.UI.Web.Controllers
             return View(ultimas);
         }
 
-        [Route("{slugCategoria}/{slugNoticia}")]
-        public ActionResult Ler(string slugNoticia, string slugCategoria)
+        [Route("{slugCategoria}/{slugNoticia},{slugLocal}")]
+        public ActionResult Ler(string slugNoticia, string slugCategoria, string slugLocal)
         {
+            //slugLocal, so para uso de SEO
+            
             var noticia = Fabrica.NoticiaAplicacaoMongo().Ler(slugNoticia, slugCategoria);
             if (noticia == null)
                 return HttpNotFound();

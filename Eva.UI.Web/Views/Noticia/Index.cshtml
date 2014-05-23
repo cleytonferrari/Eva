@@ -42,7 +42,7 @@
                 <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToString("dd/MM/yyyy HH:mm")</p>
                 <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
                 <div class="bloco-largura left mgn-top-10px">
-                    <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug })" title="@noticia.Titulo">
+                    <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
                         <figure class="left mgn-right-10px">
                             @{
             var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
@@ -50,7 +50,7 @@
                             <img src="@Foto.Placehold(arquivo.Nome, "150x85", "Noticia" , "150x85_" )" width="150" height="85" />
                         </figure>
                     </a>
-                    <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug })" title="@noticia.Titulo">
+                    <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
                         <p class="desc desc-14px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
                     </a>
                 </div>
@@ -67,7 +67,7 @@
                 </a>
                 <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToString("dd/MM/yyyy HH:mm")</p>
                 <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-                <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug })" title="@noticia.Titulo">
+                <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
                     <p class="desc left mgn-top-5px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
                 </a>
             </section>
