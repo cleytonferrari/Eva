@@ -53,6 +53,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
         }
 
         //Todo: Instalacao inicial pros Devs
+        [AllowAnonymous]
         public string Instalar()
         {
             if (Fabrica.UsuarioAplicacaoMongo().Login("eva@eva.com.br", "eva") == null)
