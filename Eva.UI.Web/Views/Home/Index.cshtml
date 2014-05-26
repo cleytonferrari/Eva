@@ -530,16 +530,16 @@
                     <p class="data left">@evento.Data.ToShortDateString()</p>
                     <p class="quant-fotos right fui-camera">@evento.Arquivos.Count() fotos</p>
                 </div>
-                <a href="@Url.Action("Ler", "Evento", new { Area = "", slug = evento.Slug})" title="@evento.Titulo">
-                    <figure>
-                        @{
+                <a href="@Url.Action("Ler", "Evento", new { Area = "", slug = evento.Slug, ano = evento.Data.Year, mes = evento.Data.Month, dia = evento.Data.Day, page=1 })" title="@evento.Titulo">
+                <figure>
+                @{
             var arquivo = evento.Arquivos.FirstOrDefault() ?? new Arquivo();
-                        }
-                        <img src="@Foto.Placehold(arquivo.Nome, "180x102", "Evento" , "180x102_" )" width="180" height="102" />
-                    </figure>
-                    <p class="hora left fui-time">@evento.Data.ToShortTimeString()</p>
-                    <p class="local right fui-location">@evento.Local</p>
-                    <p class="desc left">@evento.Titulo</p>
+                }
+                <img src="@Foto.Placehold(arquivo.Nome, "180x102", "Evento", "180x102_")" width="180" height="102" />
+                </figure>
+                <p class="hora left fui-time">@evento.Data.ToShortTimeString()</p>
+                <p class="local right fui-location">@evento.Local</p>
+                <p class="desc left">@evento.Titulo</p>
                 </a>
             </li>
         }

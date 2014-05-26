@@ -44,9 +44,10 @@ namespace Eva.Aplicacao
         }
 
 
-        public Evento Ler(string slug)
+        public Evento Ler(string slug, DateTime data)
         {
-            return contexto.GetAll().FirstOrDefault(x => x.Slug == slug);
+            return contexto.GetAll().FirstOrDefault(x => x.Slug == slug && x.Data.ToShortDateString() == data.ToShortDateString());
         }
+
     }
 }

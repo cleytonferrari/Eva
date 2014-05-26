@@ -23,11 +23,11 @@ namespace Eva.UI.Web.Controllers
             return View(ultimas);
         }
 
-        [Route("{slug}/{page:int?}")]
-        public ActionResult Ler(string slug, int? page)
+        [Route("{ano}/{mes}/{dia}/{slug}/{page:int?}")]
+        public ActionResult Ler(string slug, int ano, int mes, int dia,int? page)
         {
-            
-            var evento = Fabrica.EventoAplicacaoMongo().Ler(slug);
+            var data = new DateTime(ano, mes, dia);
+            var evento = Fabrica.EventoAplicacaoMongo().Ler(slug,data);
             if (evento == null)
                 return HttpNotFound();
 
