@@ -530,7 +530,7 @@
                     <p class="data left">@evento.Data.ToShortDateString()</p>
                     <p class="quant-fotos right fui-camera">@evento.Arquivos.Count() fotos</p>
                 </div>
-                <a href="#" title="@evento.Titulo">
+                <a href="@Url.Action("Ler", "Evento", new { Area = "", slug = evento.Slug})" title="@evento.Titulo">
                     <figure>
                         @{
             var arquivo = evento.Arquivos.FirstOrDefault() ?? new Arquivo();

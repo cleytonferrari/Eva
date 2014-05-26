@@ -1197,6 +1197,7 @@ input:-moz-placeholder { color:#fff; }
 .paginacao li{
   float: left;
 }
+
 .paginacao li a{
   display: inline-block;
   width: 40px;
@@ -1206,14 +1207,11 @@ input:-moz-placeholder { color:#fff; }
   padding-top: 5px;
   text-align: center;
 }
-.paginacao li a:hover, .paginacao .pag-prev:hover, .paginacao .pag-next:hover{
+.paginacao li a:hover, .paginacao .pag-prev:hover, .paginacao .pag-next:hover, .paginacao .active a{
   background-color: #2DCB71;
   color: #fff;
 }
-.paginacao .active{
-  background-color: #26AC5F;
-  color: #fff;
-}
+
 .paginacao .pag-prev{
   background: #fff url(img/pag-prev.png) 0 0 no-repeat;
 }

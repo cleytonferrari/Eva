@@ -60,13 +60,13 @@
                 <nav class="menu">
                     <ul>
                         <li>
-                            <a class="fui-menu" href="@Url.Action("Index","Noticia",new{Area="",categoria="todas"})" title="NOTÍCIAS">NOTÍCIAS</a>
+                            <a class="fui-menu" href="@Url.Action("Index","Noticia",new{Area="",categoria="todas",page=1})" title="NOTÍCIAS">NOTÍCIAS</a>
                         </li>
                         <li>
                             <a class="fui-calendar" href="" title="CLASSIFICADOS">CLASSIFICADOS</a>
                         </li>
                         <li>
-                            <a class="fui-camera" href="" title="EVENTOS">EVENTOS</a>
+                            <a class="fui-camera" href="@Url.Action("Index","Evento",new{Area="",page=1})" title="EVENTOS">EVENTOS</a>
                         </li>
                         <li>
                             <a class="fui-eye" href="" title="GUIA COMERCIAL">GUIA COMERCIAL</a>
@@ -114,13 +114,13 @@
                 <nav class="menu">
                     <ul>
                         <li>
-                            <a class="fui-menu" href="@Url.Action("Index","Noticia",new{Area="",categoria="todas"})" title="NOTÍCIAS">NOTÍCIAS</a>
+                            <a class="fui-menu" href="@Url.Action("Index","Noticia",new{Area="",categoria="todas", page=1})" title="NOTÍCIAS">NOTÍCIAS</a>
                         </li>
                         <li>
                             <a class="fui-calendar" href="" title="CLASSIFICADOS">CLASSIFICADOS</a>
                         </li>
                         <li>
-                            <a class="fui-camera" href="" title="EVENTOS">EVENTOS</a>
+                            <a class="fui-camera" href="@Url.Action("Index","Evento",new{Area="", page=1})" title="EVENTOS">EVENTOS</a>
                         </li>
                         <li>
                             <a class="fui-eye" href="" title="GUIA COMERCIAL">GUIA COMERCIAL</a>
@@ -187,9 +187,9 @@
             return this.html(this.html().replace(new RegExp("(" + a + "|" + b + ")"), function (x) { return (x == a) ? b : a; }));
         };
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('.oculto').before('<span class="expandir">Expandir</span>');
-            $('span', '.categorias').click(function() {
+            $('span', '.categorias').click(function () {
                 $(this).next().slideToggle('slow')
                     .siblings('.oculto:visible').slideToggle('slow');
                 // aqui começa o funcionamento do plugin

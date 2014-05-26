@@ -677,6 +677,7 @@
     <Compile Include="Areas\Painel\Controllers\UsuarioController.cs" />
     <Compile Include="Areas\Painel\PainelAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\EventoController.cs" />
     <Compile Include="Controllers\NoticiaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -693,6 +694,8 @@
     <Content Include="Views\Noticia\Index.cshtml" />
     <Content Include="Views\Home\CategoriasWidget.cshtml" />
     <Content Include="Views\Noticia\Ler.cshtml" />
+    <Content Include="Views\Evento\Index.cshtml" />
+    <Content Include="Views\Evento\Ler.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,109 @@
+﻿@using PagedList.Mvc
+@model Eva.UI.Web.Controllers.EventoLerViewModel
+<div class="banner-1184px right mgn-right-10px mgn-top-20px">
+    <div class="banner-728px left">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="img/banners/728x90px/img1.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+    <div class="banner-417px right">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="img/banners/394x90px/img2.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+</div>
+<section class="bloco-largura-940px mgn-left-10px left mgn-top-20px">
+    <a href="eventos.html" title="EVENTOS">
+        <p class="titulo-28px fui-camera">EVENTOS</p>
+    </a>
+    <div class="barra-info">
+        <p class="data">@Model.Evento.Data.ToShortDateString()</p>
+        <p class="local fui-location">@Model.Evento.Local</p>
+        <p class="quant-fotos-autor fui-camera">@Model.Evento.Arquivos.Count fotos por @Model.Evento.Creditos</p>
+        <p class="visualizado fui-eye">@Model.Evento.Hits visualizações</p>
+    </div>
+    <h1 class="titulo-32px">@Model.Evento.Titulo</h1>
+    @foreach (var arquivo in Model.Arquivos)
+    {
+        <div class="barra-compartilhar">
+            <p class="left">Compartilhe a foto abaixo:</p>
+            <ul class="compartilhar">
+                <li><a class="face rpl" href="#" title="Compartilhar no Facebook">Facebook</a></li>
+                <li><a class="gplus rpl" href="#" title="Compartilhar no Google Plus">Google Plus</a></li>
+                <li><a class="twitter rpl" href="#" title="Compartilhar no Twitter">Twitter</a></li>
+            </ul>
+            <figure>
+                <img src="@Foto.Placehold(arquivo.Nome, "940x529", "Evento")" width="940" />
+            </figure>
+        </div>
+    }
+</section>
+<div class="bloco-largura-223px right">
+    <div class="banner-223px right mgn-top-20px mgn-right-10px">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="img/banners/200x375px/img1.jpg" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+    <div class="banner-223px right mgn-top-20px mgn-right-10px">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="img/banners/200x375px/img2.jpg" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+    <div class="banner-223px right mgn-top-20px mgn-right-10px">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="img/banners/200x375px/img3.jpg" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+</div><!--fim bloco largura-->
+<div class="paginacao left mgn-left-10px mgn-top-20px">
+    <ul>
+        @Html.PagedListPager(Model.Arquivos, page => Url.Action("Ler", new { page = page }))
+    </ul>
+</div>
+<div class="banner-1184px right mgn-right-10px mgn-top-20px">
+    <div class="banner-728px left">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="img/banners/728x90px/img4.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+    <div class="banner-417px right">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="img/banners/394x90px/img3.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+</div>

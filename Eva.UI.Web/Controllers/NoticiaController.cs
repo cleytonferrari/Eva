@@ -38,6 +38,7 @@ namespace Eva.UI.Web.Controllers
             var vm = new NoticiaLerViewModel
             {
                 Noticia = noticia,
+                //todo: ultimas noticias, e relacionadas, excluir a noticia atual, e excluir das relacionadas as ultimas
                 Ultimas = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas().Take(4),
                 Relacionadas = Fabrica.NoticiaAplicacaoMongo().ListarPorCategoria(slugCategoria).Take(4)
             };

@@ -43,5 +43,10 @@ namespace Eva.Aplicacao
             return retorno.OrderByDescending(x => x.Data);
         }
 
+
+        public Evento Ler(string slug)
+        {
+            return contexto.GetAll().FirstOrDefault(x => x.Slug == slug);
+        }
     }
 }

@@ -1,0 +1,75 @@
+﻿@using Eva.Dominio
+@using PagedList.Mvc
+@model PagedList.IPagedList<Eva.Dominio.Evento>
+<div class="banner-1184px right mgn-right-10px mgn-top-20px">
+    <div class="banner-728px left">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="img/banners/728x90px/img1.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+    <div class="banner-417px right">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="img/banners/394x90px/img2.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+</div>
+<section class="bloco-largura left mgn-top-20px">
+    <h2 class="titulo-28px mgn-left-10px fui-camera">EVENTOS</h2>
+    <ul class="eventos-lista left">
+        @foreach (var evento in Model.Take(10))
+        {
+            <li>
+                <div class="topo-eventos">
+                    <p class="data left">@evento.Data.ToShortDateString()</p>
+                    <p class="quant-fotos right fui-camera">@evento.Arquivos.Count() fotos</p>
+                </div>
+                <a href="@Url.Action("Ler", "Evento", new { Area = "", slug = evento.Slug})" title="@evento.Titulo">
+                    <figure>
+                        @{
+            var arquivo = evento.Arquivos.FirstOrDefault() ?? new Arquivo();
+                        }
+                        <img src="@Foto.Placehold(arquivo.Nome, "180x102", "Evento" , "180x102_" )" width="220" height="124" />
+                    </figure>
+                    <p class="hora left fui-time">@evento.Data.ToShortTimeString()</p>
+                    <p class="local right fui-location">@evento.Local</p>
+                    <p class="desc left">@evento.Titulo</p>
+                </a>
+            </li>
+        }
+    </ul>
+</section>
+<div class="paginacao left mgn-top-20px">
+   @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>
+<div class="banner-1184px right mgn-right-10px mgn-top-20px">
+    <div class="banner-728px left">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="img/banners/728x90px/img4.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+    <div class="banner-417px right">
+        <div class="texto-vertical left"></div>
+        <div class="banner right">
+            <figure>
+                <a href="#" title="Título do banner">
+                    <img src="img/banners/394x90px/img3.png" alt="">
+                </a>
+            </figure>
+        </div>
+    </div>
+</div>
