@@ -1,0 +1,87 @@
+﻿@model Eva.UI.Web.Areas.Painel.Controllers.AnuncianteViewModel
+
+<div class="col-md-12">
+    <!--breadcrumbs start -->
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home", new { Area = "Painel" })"><i class="fa fa-home"></i> Inicio</a></li>
+        <li><a href="@Url.Action("Index", "Anunciante", new { Area = "Painel" })"><i class="fa fa-home"></i> Anunciantes</a></li>
+        <li class="active">Editar</li>
+    </ul>
+    <!--breadcrumbs end -->
+</div>
+
+<div class="col-lg-12">
+    <section class="panel">
+        <header class="panel-heading">
+            @(string.IsNullOrEmpty(Model.Id) ? "Cadastrar novo anunciante" : "Editar anunciante: " + Model.Nome)
+        </header>
+        <div class="panel-body">
+            <div class="form">
+                <form class="cmxform form-horizontal " id="grupoForm" method="POST" action="" novalidate="novalidate" enctype="multipart/form-data">
+
+                    <div class="form-group ">
+                        <label for="Nome" class="control-label col-lg-3">Nome:</label>
+                        <div class="col-lg-6">
+                            <input class=" form-control" id="Nome" name="Nome" type="text" value="@Model.Nome" required="" minlength="3">
+                            <label for="Nome" class="error">@Html.ValidationMessageFor(x => x.Nome)</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group ">
+                        <label for="Nome" class="control-label col-lg-3">Telefones:</label>
+                        <div class="col-lg-6">
+                            <input class=" form-control" id="Telefone" name="Telefone" type="text" value="@Model.Telefone" required="">
+                            <label for="Telefone" class="error">@Html.ValidationMessageFor(x => x.Telefone)</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group ">
+                        <label for="Nome" class="control-label col-lg-3">Email:</label>
+                        <div class="col-lg-6">
+                            <input class=" form-control" id="Email" name="Email" type="text" value="@Model.Email" required="">
+                            <label for="Email" class="error">@Html.ValidationMessageFor(x => x.Email)</label>
+                        </div>
+                    </div>
+                   
+                    <div class="form-group ">
+                        <label for="Descricao" class="control-label col-lg-3">Observações:</label>
+                        <div class="col-lg-6">
+                            <textarea class="form-control" rows="3" id="Descricao" name="Descricao" required="">@Model.Descricao</textarea>
+                            <label for="Descricao" class="error">@Html.ValidationMessageFor(x => x.Descricao)</label>
+                        </div>
+                    </div>
+                   
+
+                    <div class="form-group">
+                        <div class="col-lg-offset-3 col-lg-6">
+                            <button class="btn btn-primary" type="submit">Salvar</button>
+                            <a href="@Url.Action("Index")" class="btn btn-default">Cancelar</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script type="text/javascript" src="~/Scripts/bootstrap-fileupload.js"></script>
+
+<script type="text/javascript">
+    $("#grupoForm").validate({
+        rules: {
+            Nome: {
+                required: true,
+                minlength: 3
+            }
+        },
+        messages: {
+            Nome: {
+                required: "O campo nome é obrigatorio.",
+                minlength: "O campo nome deve conter no mínimo 3 caracteres."
+            }
+        }
+
+    });
+</script>

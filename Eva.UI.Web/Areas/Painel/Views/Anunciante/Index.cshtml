@@ -1,12 +1,12 @@
 ﻿@using Eva.Dominio
 @using PagedList
 @using PagedList.Mvc
-@model IPagedList<Eva.Dominio.Categoria>
+@model IPagedList<Eva.Dominio.Anunciante>
 <div class="col-md-12">
     <!--breadcrumbs start -->
     <ul class="breadcrumb">
         <li><a href="@Url.Action("Index", "Home", new { Area = "Painel" })"><i class="fa fa-home"></i> Inicio</a></li>
-        <li class="active">Categoria</li>
+        <li class="active">Anunciante</li>
     </ul>
     <!--breadcrumbs end -->
 </div>
@@ -18,14 +18,14 @@
 <div class="col-sm-12">
     <section class="panel">
         <header class="panel-heading">
-            Categorias
+            Anunciantes
         </header>
         <div class="panel-body">
             <div class="adv-table editable-table ">
                 <div class="clearfix" style="margin-bottom: 15px;">
                     <div class="btn-group">
                         <a href="@Url.Action("Editar")" class="btn btn-primary">
-                            Nova categoria <i class="fa fa-plus"></i>
+                            Novo anunciante <i class="fa fa-plus"></i>
                         </a>
                     </div>
                     <div class="btn-group pull-right">
@@ -45,7 +45,7 @@
                         <thead>
                             <tr role="row">
                                 <th>Nome</th>
-                                <th>Cores</th>
+                                <th>Email</th>
                                 <th style="width: 105px">Opções</th>
                             </tr>
                         </thead>
@@ -67,17 +67,17 @@
                             </tr>
                             @if (Model.Any())
                             {
-                                foreach (var categoria in Model)
+                                foreach (var anunciante in Model)
                                 {
-                                    <tr id="@categoria.Id" data-nome="@categoria.Nome">
+                                    <tr id="@anunciante.Id" data-nome="@anunciante.Nome">
 
-                                        <td>@categoria.Nome</td>
-                                        <td><i class="btn"style="background-color: @categoria.CorFundo; color: @categoria.CorTexto">@categoria.Nome</i></td>
+                                        <td>@anunciante.Nome</td>
+                                        <td>@anunciante.Email</td>
                                         <td>
-                                            <a href="@Url.Action("Editar", new { Id = categoria.Id })" class="btn btn-white active tooltips" data-original-title="Editar" data-toggle="tooltip">
+                                            <a href="@Url.Action("Editar", new { Id = anunciante.Id })" class="btn btn-white active tooltips" data-original-title="Editar" data-toggle="tooltip">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
-                                            <a href="#" data-id="@categoria.Id" class="btn btn-white active" data-toggle="modal" data-target="#confimarExclusao">
+                                            <a href="#" data-id="@anunciante.Id" class="btn btn-white active" data-toggle="modal" data-target="#confimarExclusao">
                                                 <i class="fa fa-trash-o"></i>
                                             </a>
                                         </td>

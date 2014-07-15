@@ -51,5 +51,9 @@ namespace Eva.Aplicacao
             return new EventoAplicacao(new Repositorio.MongoDb.Repositorio<Evento>());
         }
 
+        public static AnuncianteAplicacao AnuncianteAplicacaoMongo()
+        {
+            return new AnuncianteAplicacao(new Repositorio.MongoDb.Repositorio<Anunciante>());
+        }
     }
 }

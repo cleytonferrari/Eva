@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Anunciante.cs" />
     <Compile Include="Arquivo.cs" />
     <Compile Include="Categoria.cs" />
     <Compile Include="Comentario.cs" />
