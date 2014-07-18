@@ -1,12 +1,12 @@
 ﻿@using Eva.Dominio
 @using PagedList
 @using PagedList.Mvc
-@model IPagedList<Eva.Dominio.NoticiaZona>
+@model IPagedList<Eva.Dominio.BannerZona>
 <div class="col-md-12">
     <!--breadcrumbs start -->
     <ul class="breadcrumb">
         <li><a href="@Url.Action("Index", "Home", new { Area = "Painel" })"><i class="fa fa-home"></i> Inicio</a></li>
-        <li class="active">Zona da Notícia</li>
+        <li class="active">Zona de Banner</li>
     </ul>
     <!--breadcrumbs end -->
 </div>
@@ -18,14 +18,14 @@
 <div class="col-sm-12">
     <section class="panel">
         <header class="panel-heading">
-            Zona da Notícia
+            Zona de Banner
         </header>
         <div class="panel-body">
             <div class="adv-table editable-table ">
                 <div class="clearfix" style="margin-bottom: 15px;">
                     <div class="btn-group">
                         <a href="@Url.Action("Editar")" class="btn btn-primary">
-                            Nova Zona de Notícia <i class="fa fa-plus"></i>
+                            Nova Zona de Banner <i class="fa fa-plus"></i>
                         </a>
                     </div>
                     <div class="btn-group pull-right">
@@ -65,16 +65,16 @@
                             </tr>
                             @if (Model.Any())
                             {
-                                foreach (var noticiaZona in Model)
+                                foreach (var bannerZona in Model)
                                 {
-                                    <tr id="@noticiaZona.Id" data-nome="@noticiaZona.Nome">
+                                    <tr id="@bannerZona.Id" data-nome="@bannerZona.Nome">
 
-                                        <td>@noticiaZona.Nome</td>
+                                        <td>@bannerZona.Nome</td>
                                         <td>
-                                            <a href="@Url.Action("Editar", new { Id = noticiaZona.Id })" class="btn btn-white active tooltips" data-original-title="Editar" data-toggle="tooltip">
+                                            <a href="@Url.Action("Editar", new { Id = bannerZona.Id })" class="btn btn-white active tooltips" data-original-title="Editar" data-toggle="tooltip">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
-                                            <a href="#" data-id="@noticiaZona.Id" class="btn btn-white active" data-toggle="modal" data-target="#confimarExclusao">
+                                            <a href="#" data-id="@bannerZona.Id" class="btn btn-white active" data-toggle="modal" data-target="#confimarExclusao">
                                                 <i class="fa fa-trash-o"></i>
                                             </a>
                                         </td>

@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnuncianteAplicacao.cs" />
+    <Compile Include="BannerZonaAplicacao.cs" />
     <Compile Include="LocalAplicacao.cs" />
     <Compile Include="LogoAplicacao.cs" />
     <Compile Include="EventoAplicacao.cs" />

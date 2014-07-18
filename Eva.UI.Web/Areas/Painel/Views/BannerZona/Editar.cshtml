@@ -1,10 +1,10 @@
-﻿@model Eva.UI.Web.Areas.Painel.Controllers.NoticiaZonaViewModel
+﻿@model Eva.UI.Web.Areas.Painel.Controllers.BannerZonaViewModel
 
 <div class="col-md-12">
     <!--breadcrumbs start -->
     <ul class="breadcrumb">
         <li><a href="@Url.Action("Index", "Home", new { Area = "Painel" })"><i class="fa fa-home"></i> Inicio</a></li>
-        <li><a href="@Url.Action("Index", "NoticiaZona", new { Area = "Painel" })"> Zona da Notícia</a></li>
+        <li><a href="@Url.Action("Index", "BannerZona", new { Area = "Painel" })"> Zona de Banner</a></li>
         <li class="active">Editar</li>
     </ul>
     <!--breadcrumbs end -->
@@ -13,7 +13,7 @@
 <div class="col-lg-12">
     <section class="panel">
         <header class="panel-heading">
-            @(string.IsNullOrEmpty(Model.Id) ? "Cadastrar nova zona da notícia" : "Editar zona da notícia: " + Model.Nome)
+            @(string.IsNullOrEmpty(Model.Id) ? "Cadastrar nova zona de banner" : "Editar zona de banner: " + Model.Nome)
         </header>
         <div class="panel-body">
             <div class="form">

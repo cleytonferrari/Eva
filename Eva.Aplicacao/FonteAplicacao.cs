@@ -1,20 +1,21 @@
-﻿using Eva.Dominio;
+﻿using System;
+using Eva.Dominio;
 using Eva.Dominio.Contratos;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Eva.Aplicacao
 {
-    public class FonteAplicacao
+    public class BannerZonaAplicacao
     {
-        private readonly IRepository<Fonte> contexto;
+        private readonly IRepository<BannerZona> contexto;
 
-        public FonteAplicacao(IRepository<Fonte> repositorio)
+        public BannerZonaAplicacao(IRepository<BannerZona> repositorio)
         {
             contexto = repositorio;
         }
 
-        public void Salvar(Fonte entidade)
+        public void Salvar(BannerZona entidade)
         {
             contexto.Save(entidade);
         }
@@ -23,17 +24,17 @@ namespace Eva.Aplicacao
             contexto.Remove(id);
         }
 
-        public IEnumerable<Fonte> ListarTodos()
+        public IEnumerable<BannerZona> ListarTodos()
         {
             return contexto.GetAll().OrderBy(x => x.Nome);
         }
 
-        public Fonte ListarPorNome(string nome)
+        public BannerZona ListarPorNome(string nome)
         {
-            return contexto.GetByFilter(x => x.Nome.ToLower() == nome.ToLower()).FirstOrDefault();
+            return contexto.GetByFilter(x => String.Equals(x.Nome, nome, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
         }
 
-        public Fonte ListarPorId(string id)
+        public BannerZona ListarPorId(string id)
         {
             return contexto.Get(id);
         }

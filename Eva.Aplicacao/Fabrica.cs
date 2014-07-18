@@ -55,5 +55,10 @@ namespace Eva.Aplicacao
         {
             return new AnuncianteAplicacao(new Repositorio.MongoDb.Repositorio<Anunciante>());
         }
+
+        public static BannerZonaAplicacao BannerZonaAplicacaoMongo()
+        {
+            return new BannerZonaAplicacao(new Repositorio.MongoDb.Repositorio<BannerZona>());
+        }
     }
 }

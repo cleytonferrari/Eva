@@ -515,6 +515,8 @@
     <Content Include="Areas\Painel\Views\Arquivos\listaImagens.cshtml" />
     <Content Include="Areas\Painel\Views\Anunciante\Index.cshtml" />
     <Content Include="Areas\Painel\Views\Anunciante\Editar.cshtml" />
+    <Content Include="Areas\Painel\Views\BannerZona\Editar.cshtml" />
+    <Content Include="Areas\Painel\Views\BannerZona\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.0.js" />
@@ -670,6 +672,7 @@
     <Compile Include="Areas\Painel\Controllers\ArquivosController.cs" />
     <Compile Include="Areas\Painel\Controllers\AnuncianteController.cs" />
     <Compile Include="Areas\Painel\Controllers\EventoController.cs" />
+    <Compile Include="Areas\Painel\Controllers\BannerZonaController.cs" />
     <Compile Include="Areas\Painel\Controllers\NoticiaController.cs" />
     <Compile Include="Areas\Painel\Controllers\NoticiaZonaController.cs" />
     <Compile Include="Areas\Painel\Controllers\FonteController.cs" />

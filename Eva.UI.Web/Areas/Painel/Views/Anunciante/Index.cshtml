@@ -46,7 +46,7 @@
                             <tr role="row">
                                 <th>Nome</th>
                                 <th>Email</th>
-                                <th style="width: 105px">Opções</th>
+                                <th style="width: 145px">Opções</th>
                             </tr>
                         </thead>
 
@@ -74,6 +74,9 @@
                                         <td>@anunciante.Nome</td>
                                         <td>@anunciante.Email</td>
                                         <td>
+                                            <a href="@Url.Action("Editar", new { Id = anunciante.Id })" class="btn btn-white active tooltips" data-original-title="Banners" data-toggle="tooltip">
+                                                <i class="fa fa-th"></i>
+                                            </a>
                                             <a href="@Url.Action("Editar", new { Id = anunciante.Id })" class="btn btn-white active tooltips" data-original-title="Editar" data-toggle="tooltip">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
