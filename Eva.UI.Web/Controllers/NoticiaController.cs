@@ -26,7 +26,7 @@ namespace Eva.UI.Web.Controllers
             return View(ultimas);
         }
 
-        [Route("{slugCategoria}/{slugNoticia},{slugLocal}")]
+        [Route("{slugCategoria}/{slugNoticia}/{slugLocal}")]
         public ActionResult Ler(string slugNoticia, string slugCategoria, string slugLocal)
         {
             //slugLocal, so para uso de SEO
