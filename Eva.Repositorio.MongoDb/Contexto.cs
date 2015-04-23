@@ -25,9 +25,6 @@ namespace Eva.Repositorio.MongoDb
             var database = server.GetDatabase(url.DatabaseName);
             Collection = database.GetCollection<T>(typeof(T).Name.ToLower());
 
-            //TODO: Metodo obsoleto, corrigir isto para setar a data correta no servidor
-            DateTimeSerializationOptions.Defaults = new DateTimeSerializationOptions(DateTimeKind.Local, BsonType.Document);
-
             var conventions = new ConvensoesMongo();
             ConventionRegistry.Register("Convensoes", conventions, t => true);
 
