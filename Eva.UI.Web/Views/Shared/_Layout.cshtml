@@ -1,269 +1,205 @@
 ﻿<!DOCTYPE html>
-<html lang="pt-br">
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7">
+<![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8">
+<![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="pt-br">
+<!--<![endif]-->
 <head>
-    <meta charset="UTF-8">
-    <title>Rondônia Vip</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="Magalla Magazine and News Template on Themeforest">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="~/Content/Site/css8b0d.css?file=bootstrap.min">
+    <link rel="stylesheet" href="~/Content/Site/css97f7.css?file=bootstrap-theme">
+    <link rel="stylesheet" href="~/Content/Site/css4610.css?file=normalize">
+    <link rel="stylesheet" href="~/Content/Site/fonts/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/Site/css35ad.css?file=main">
+    <link rel="stylesheet" href="~/Content/Site/css9a38.css?file=responsive">
+    <link rel="stylesheet" href="~/Content/Site/cssf83a.css?file=calendar">
+    <script src="~/Content/Site/jsde43.css?file=vendor/modernizr-2.6.2-respond-1.1.0.min"></script>
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="W7BR - Soluções em tecnologia">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="~/Content/Site/assets/css/estilo.css" />
-    <link rel="stylesheet" href="~/Content/Site/assets/css/colorbox.css" />
-
-    <!-- Fonts -->
-    <!-- <link href='http://fonts.googleapis.com/css?family=Sanchez' rel='stylesheet' type='text/css'> -->
-    <!-- Icone do Navegador -->
-    <link href="~/Content/Site/assets/ico/icon.png" rel="icon" type="image/x-icon" />
-    <link href="~/Content/Site/assets/ico/icon.png" rel="shortcut icon" type="image/x-icon" />
-    <link href="~/Content/Site/assets/ico/icon.png" rel="apple-touch-icon" type="image/x-icon" />
-
-    <!-- Redirecionamento -->
-    <!--[if lt IE 9]>
-        <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-        <script type="text/javascript">
-        //<![CDATA[
-            location.href="http://updateyourbrowser.net/pt/";
-        //]]>
-    </script>
-    <![endif]-->
 </head>
 <body>
-    <!-- plugin facebook -->
-    <div id="fb-root"></div>
-    <script>
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
-    <div id="container">
-        <header id="cabecalho">
-            <h1><a class="logo rpl" href="@Url.Action("Index","Home",new{Area=""})" title="Página inicial Rondônia Vip">Rondônia Vip</a></h1>
-            <div class="social mgn-top-10px left">
-                <a href="contato.html" title="Contato">
-                    <h2 class="fui-bubble-16px">Contato</h2>
-                </a>
-                <ul>
-                    <li><a class="face rpl" href="#" title="Curta nossa página no Facebook">Facebook</a></li>
-                    <li><a class="gplus rpl" href="#" title="Siga-nos no Google Plus">Google Plus</a></li>
-                    <li><a class="twitter rpl" href="#" title="Siga-nos no Twitter">Twitter</a></li>
-                    <li><a class="youtube rpl" href="#" title="Inscreva-se no nosso canal do YouTube">YouTube</a></li>
-                </ul>
-            </div>
-            <div class="topo right">
-                <nav class="menu">
-                    <ul>
-                        <li>
-                            <a class="fui-menu" href="@Url.Action("Index","Noticia",new{Area="",categoria="todas",page=1})" title="NOTÍCIAS">NOTÍCIAS</a>
-                        </li>
-                        <li>
-                            <a class="fui-calendar" href="" title="CLASSIFICADOS">CLASSIFICADOS</a>
-                        </li>
-                        <li>
-                            <a class="fui-camera" href="@Url.Action("Index","Evento",new{Area="",page=1})" title="EVENTOS">EVENTOS</a>
-                        </li>
-                        <li>
-                            <a class="fui-eye" href="" title="GUIA COMERCIAL">GUIA COMERCIAL</a>
-                        </li>
-                        <li>
-                            <a class="fui-video" href="" title="VÍDEOS">VÍDEOS</a>
-                        </li>
-                    </ul>
-                </nav>
-                <p class="data-atual">Bom dia! Rondônia, 00 de abril de 2013.</p>
-                <div class="tools-social">
-                    <div class="face left">
-                        <div class="fb-like" data-send="false" data-layout="button_count" data-width="120" data-show-faces="false"></div>
-                    </div>
-                    <div class="gplus left">
-                        <div class="g-plusone" data-size="medium"></div>
-                    </div>
-                    <div class="twitter right">
-                        <a href="https://twitter.com/share" class="twitter-share-button" data-via="twitterapi" data-lang="en">Tweet</a>
-                    </div>
+    <!-- Logo and Ad banner -->
+    <div class="logo-top-ad">
+        <div class="container">
+            <div class="row">
+                <!-- Logo -->
+                <div class="logo col-lg-4">
+                    <a href="@Url.Action("Index","Home",new{Area=""})"><img alt="" src="~/Content/Site/img/logo.png" /></a>
                 </div>
-                <form class="busca right" action="resultado-busca.html" method="get/post">
-                    <input placeholder="Busca" type="text" value="">
-                    <button class="rpl" type="submit" title="Clique para buscar!">Buscar</button>
-                </form>
+                <div class="top-banner col-lg-8">
+                    <!-- Top ad banner -->
+                    <a href="#"><img alt="" src="~/Content/Site/img/top-banner.jpg" /></a>
+                </div>
             </div>
-        </header><!-- fim cabeçalho -->
-        <div id="conteudo">
-            @RenderBody()
         </div>
-        <footer id="rodape" class="mgn-left-10px">
-            <h1><a class="logo-rodape mgn-top-17px rpl" href="@Url.Action("Index","Home",new{Area=""})" title="Página inicial Rondônia Vip">Rondônia Vip</a></h1>
-            <div class="social-rodape mgn-top-17px left">
-                <a href="contato.html" title="Contato">
-                    <h2 class="rodape fui-bubble-16px">Contato</h2>
-                </a>
-                <ul>
-                    <li><a class="face rpl" href="#" title="Curta nossa página no Facebook">Facebook</a></li>
-                    <li><a class="gplus rpl" href="#" title="Siga-nos no Google Plus">Google Plus</a></li>
-                    <li><a class="twitter rpl" href="#" title="Siga-nos no Twitter">Twitter</a></li>
-                    <li><a class="youtube rpl" href="#" title="Inscreva-se no nosso canal do YouTube">YouTube</a></li>
-                </ul>
-            </div>
-            <div class="topo right">
-                <nav class="menu">
-                    <ul>
+    </div>
+    <!-- Main Menu -->
+    <div class="main-menu">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Main Menu -->
+                    <ul id="main-menu-items" class="sm sm-menu menu-efct">
+                        <li><a href="@Url.Action("Index","Evento",new{Area="",page=1})">Eventos</a></li>
                         <li>
-                            <a class="fui-menu" href="@Url.Action("Index","Noticia",new{Area="",categoria="todas", page=1})" title="NOTÍCIAS">NOTÍCIAS</a>
+                            <a href="@Url.Action("Index", "Noticia", new {Area = "", categoria = "todas", page = 1})">Notícias</a>
+                            @Html.Action("CategoriasWidget", "Home", new { Area = "" })
                         </li>
-                        <li>
-                            <a class="fui-calendar" href="" title="CLASSIFICADOS">CLASSIFICADOS</a>
+
+                        <li class="mega-menu-li">
+                            <a href="#">Mega Menu</a>
+                            <!-- Main Menu - Mega Menu -->
+                            <ul class="mega-menu">
+                                <li>
+                                    <h3 class="sec-title">MUSIC NEWS</h3>
+                                    <div class="sec-1-sm">
+                                        <img alt="" class="blocky" src="~/Content/Site/img/samples/e5.jpg" />
+                                        <div class="sec-1-sm-text blocky">
+                                            <h3>TOP 10 Pop track list past year</h3>
+                                            <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
+                                            <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit...</p>
+                                        </div>
+                                    </div>
+                                    <div class="sec-1-sm">
+                                        <img alt="" class="blocky" src="~/Content/Site/img/samples/e6.jpg" />
+                                        <div class="sec-1-sm-text blocky">
+                                            <h3>Another Hip-Hop rising star</h3>
+                                            <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
+                                            <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit...</p>
+                                        </div>
+                                    </div>
+                                    <div class="sec-1-sm">
+                                        <img alt="" class="blocky" src="~/Content/Site/img/samples/e7.jpg" />
+                                        <div class="sec-1-sm-text blocky">
+                                            <h3>New MP3 tracks are coming </h3>
+                                            <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
+                                            <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit...</p>
+                                        </div>
+                                    </div>
+                                    <div class="sec-1-sm">
+                                        <img alt="" class="blocky" src="~/Content/Site/img/samples/e8.jpg" />
+                                        <div class="sec-1-sm-text blocky">
+                                            <h3>DJ Open Music Festival 2014</h3>
+                                            <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
+                                            <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit...</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </li>
-                        <li>
-                            <a class="fui-camera" href="@Url.Action("Index","Evento",new{Area="", page=1})" title="EVENTOS">EVENTOS</a>
-                        </li>
-                        <li>
-                            <a class="fui-eye" href="" title="GUIA COMERCIAL">GUIA COMERCIAL</a>
-                        </li>
-                        <li>
-                            <a class="fui-video" href="" title="VÍDEOS">VÍDEOS</a>
-                        </li>
+                        <li><a href="@Url.Action("Index","Evento",new{Area="",page=1})">A corrida de Jericos</a></li>
                     </ul>
-                </nav>
-                <form class="busca left mgn-left-20px" action="resultado-busca.html" method="get/post">
-                    <input placeholder="Busca" type="text" value="">
-                    <button class="rpl" type="submit" title="Clique para buscar!">Buscar</button>
-                </form>
-            </div>
-            <div class="bloco-esq">
-                <div class="copy-dev">
-                    <p class="copy">Copyright &copy; 2013 RondôniaVip. Todos os direitos reservados.</p>
-                    <a class="frame termos" href="termo-uso.html" title="Termos de uso">Termos de uso</a>
-                    <div class="dev right">
-                        <p>Desenvolvido por:</p>
-                        <a class="logo-dev rpl" target="_blank" href="http://www.w7br.com" title="W7BR Soluções em tecnologia">W7BR Soluções em tecnologia</a>
-                    </div>
                 </div>
-                <div class="categorias-rodape">
-                    <div class="lista-categ">
-                        @Html.Action("CategoriasWidget", "Home", new { Area = "" })
-                    </div>
+                <div class="col-lg-4 main-search-bar">
+                    <!-- Top Search bar -->
+                    <form class="navbar-form float-width" role="search">
+                        <div class="form-group float-width">
+                            <input type="text" class="form-control float-width" placeholder="Procure por notícias, vídeos e eventos">
+                        </div>
+                        <a href="#" type="submit"><i class="fa fa-search"></i></a>
+                    </form>
                 </div>
             </div>
-            <div class="plugin-social right">
-                <div class="fb-like-box" data-href="https://www.facebook.com/pages/Rond%C3%B4niaVip/333297310020094?fref=ts" data-width="660" data-height="270" data-show-faces="true" data-stream="false" data-show-border="false" data-header="true"></div>
+            <!-- Close the Fixed Menu button -->
+            <a class="fxd-mnu-x trans1" title="Close" id="hidemenu"><span class="fa-stack fa-lg"> <i class="fa fa-times fa-stack-1x fa-inverse"></i> </span></a>
+        </div>
+    </div>
+
+    @RenderBody()
+
+    <!-- Footer -->
+    <div class="main-footers">
+        <div class="container">
+            <!-- Category footer -->
+            <div class="cat-ftr-cont float-width">
+                <div class="cat-ftr-cont-sngl lefty cat-brd-1">
+                    <h3>News</h3>
+                    <ul>
+                        <li><a href="#">Nation</a></li>
+                        <li><a href="#">World</a></li>
+                        <li><a href="#">Politics</a></li>
+                        <li><a href="#">Funny</a></li>
+                        <li><a href="#">Weather</a></li>
+                    </ul>
+                </div>
+                <div class="cat-ftr-cont-sngl lefty cat-brd-2">
+                    <h3>Music</h3>
+                    <ul>
+                        <li><a href="#">Hip Hop / Rap</a></li>
+                        <li><a href="#">Latino</a></li>
+                        <li><a href="#">Electronic and Disco</a></li>
+                        <li><a href="#">R&B</a></li>
+                        <li><a href="#">Pop</a></li>
+                        <li><a href="#">Rock & Roll</a></li>
+                        <li><a href="#">Ragga</a></li>
+                        <li><a href="#">More...</a></li>
+                    </ul>
+                </div>
+                <div class="cat-ftr-cont-sngl lefty cat-brd-3">
+                    <h3>TV & Movies</h3>
+                    <ul>
+                        <li><a href="#">In Theaters</a></li>
+                        <li><a href="#">Showtimes & Tickets</a></li>
+                        <li><a href="#">Latest Trailers</a></li>
+                        <li><a href="#">Release Calendar</a></li>
+                        <li><a href="#">TV Home</a></li>
+                        <li><a href="#">On Tonight</a></li>
+                        <li><a href="#">DVD & Blu-Ray</a></li>
+                    </ul>
+                </div>
+                <div class="cat-ftr-cont-sngl lefty cat-brd-4">
+                    <h3>Tech</h3>
+                    <ul>
+                        <li><a href="#">Mobiles</a></li>
+                        <li><a href="#">Desktops</a></li>
+                        <li><a href="#">Outside Electronic</a></li>
+                        <li><a href="#">Sound Devices</a></li>
+                        <li><a href="#">AGD & RTV</a></li>
+                    </ul>
+                </div>
+                <div class="cat-ftr-cont-sngl lefty cat-brd-5">
+                    <h3>Games</h3>
+                    <ul>
+                        <li><a href="#">PC</a></li>
+                        <li><a href="#">PlayStation 4</a></li>
+                        <li><a href="#">Xbox One</a></li>
+                        <li><a href="#">Mobiles</a></li>
+                        <li><a href="#">Portable Consoles</a></li>
+                        <li><a href="#">Nintendo</a></li>
+                    </ul>
+                </div>
             </div>
-        </footer>
-    </div><!-- fim container -->
-    <!-- <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script> -->
-    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>  -->
-    <script src="~/Content/Site/assets/js/jquery.js"></script>
-    <script src="~/Content/Site/assets/js/cycle.js"></script>
-    <script src="~/Content/Site/assets/js/jcarousel.js"></script>
-    <script src="~/Content/Site/assets/js/colorbox.js"></script>
-    <script>
-        $(document).ready(function () {
-            $(".frame").colorbox();
-        });
-    </script>
+        </div>
+    </div>
+    <!-- Copy right footer -->
+    <div class="copy-rt-ftr">
+        <div class="container">
+            <a class="lefty">© 2005-2015 CapitalDoJerico.com.br</a>
+            <a href="http://w7br.com" class="righty">W7Br Soluções em tecnologia</a>
+        </div>
+    </div>
 
-    <script type="text/javascript">
-        $(function () {
-            $('.slideshow').cycle({
-                fx: 'fade',
-                speed: 2000,
-                timeout: 4000,
-                pager: '.miniatura',
-                pagerAnchorBuilder: function (idx, slide) {
-                    // return sel string for existing anchor
-                    return '.miniatura li:eq(' + (idx) + ') a';
-                }
-            });
-        });
-    </script>
-
-    <script type="text/javascript">
-        jQuery.fn.toggleText = function (a, b) {
-            return this.html(this.html().replace(new RegExp("(" + a + "|" + b + ")"), function (x) { return (x == a) ? b : a; }));
-        };
-
-        $(document).ready(function () {
-            $('.oculto').before('<span class="expandir">Expandir</span>');
-            $('span', '.categorias').click(function () {
-                $(this).next().slideToggle('slow')
-                    .siblings('.oculto:visible').slideToggle('slow');
-                // aqui começa o funcionamento do plugin
-                $(this).toggleText('Expandir', '<span class="recolhe">Recolher</span>')
-                    .siblings('span').next('.oculto:visible').prev()
-                    .toggleText('Expandir', 'Recolher');
-            });
-        });
-    </script>
-
-    <script>
-        // Wait until the DOM has loaded before querying the document
-        $(document).ready(function () {
-            $('ul.tabs').each(function () {
-                // For each set of tabs, we want to keep track of
-                // which tab is active and it's associated content
-                var $active, $content, $links = $(this).find('a');
-
-                // If the location.hash matches one of the links, use that as the active tab.
-                // If no match is found, use the first link as the initial active tab.
-                $active = $($links.filter('[href="' + location.hash + '"]')[0] || $links[0]);
-                $active.addClass('active');
-                $content = $($active.attr('href'));
-
-                // Hide the remaining content
-                $links.not($active).each(function () {
-                    $($(this).attr('href')).hide();
-                });
-
-                // Bind the click event handler
-                $(this).on('click', 'a', function (e) {
-                    // Make the old tab inactive.
-                    $active.removeClass('active');
-                    $content.hide();
-
-                    // Update the variables with the new link and content
-                    $active = $(this);
-                    $content = $($(this).attr('href'));
-
-                    // Make the tab active.
-                    $active.addClass('active');
-                    $content.show();
-
-                    // Prevent the anchor's default click action
-                    e.preventDefault();
-                });
-            });
-        });
-    </script>
-
-    <script>
-        $(function () {
-            $(".slide-classificados").jCarouselLite({
-                btnNext: ".prox",
-                btnPrev: ".anter",
-                speed: 1000,
-                vertical: false,
-                scroll: 4,
-                visible: 5,
-                auto: false
-            });
-        });
-    </script>
-
-    <!-- Gplus +1 button -->
-    <script type="text/javascript">
-        (function () {
-            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-            po.src = 'https://apis.google.com/js/plusone.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-        })();
-    </script>
-
-    <!--Twitter-->
-    <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = "https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+    <script src="~/Content/Site/js5a10.css?file=vendor/jquery-1.10.1.min"></script>
+    <script src="~/Content/Site/js9978.css?file=vendor/bootstrap.min"></script>
+    <script src="~/Content/Site/jsec26.css?file=jquery.smartmenus.min"></script>
+    <script src="~/Content/Site/js047d.css?file=jquery.flexslider-min"></script>
+    <script src="~/Content/Site/js288f.css?file=newsTicker"></script>
+    <script src="~/Content/Site/js6a7f.css?file=jquery.customSelect.min"></script>
+    <script src="~/Content/Site/jse3a4.css?file=retina-1.1.0.min"></script>
+    <script src="~/Content/Site/jsf0b3.css?file=jflickrfeed.min"></script>
+    <script src="~/Content/Site/jsf83a.css?file=calendar"></script>
+    <script src="~/Content/Site/js35ad.css?file=main"></script>
 </body>
 </html>

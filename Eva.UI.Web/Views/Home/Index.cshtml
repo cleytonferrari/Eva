@@ -1,42 +1,577 @@
 ﻿@using Eva.Dominio
 @model Eva.UI.Web.Controllers.HomeViewModel
+
+@{
+    ViewBag.Title = "Capital do Jerico";
+}
+
+<!-- Home Slider and Big news blocks -->
+<div class="container">
+    <div class="main-news-blks">
+        <div class="hm-slider-cont">
+            <!-- News slider -->
+            <div class="flex-container">
+                <div class="flexslider hm-slider">
+                    <ul class="slides">
+                        @foreach (var noticia in Model.Noticias.Destaques.Take(2))
+                        {
+                            <li>
+                                @{var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();}
+                                <img src="@Foto.Placehold(arquivo.Nome, "619x633", "Noticia" , "619x633_" )" />
+                                <h3 class="cat-label" style="background-color: @noticia.Categoria.CorFundo; color: @noticia.Categoria.CorTexto">
+                                    <a href="@Url.Action("Index", "Noticia", new {Area = "", categoria = noticia.Categoria.Slug})">@noticia.Categoria.Nome</a>
+                                </h3>
+                                <div class="hm-sldr-caption">
+                                    <h3>
+                                        <a href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = noticia.Slug, slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug})" title="@noticia.Titulo">@noticia.Titulo</a>
+                                    </h3>
+                                    <p>@noticia.Resumo.Limit(120) ...</p>
+                                </div>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Fixed Blocks -->
+        <div class="mid-blks-cont">
+            <!-- Block1 -->
+            <div class="mid-block-1 boxgrid caption">
+                <img alt="" src="~/Content/Site/img/samples/sample1.jpg" />
+                <h4 class="cat-label cat-label2"><a href="#">GAMES</a></h4>
+                <div class="cover boxcaption">
+                    <h3><a href="#single.html">Need for Speed Rivals is still a growing community</a><span class="topic-icn">81</span></h3>
+                    <p>Curabitur fringilla porttitor porta. Vivamus vel nulla ullamcorper, fringilla ligula nec, pellentesque nisl.</p>
+                    <a href="#">MORE <i class="fa fa-angle-double-right"></i></a>
+                </div>
+            </div>
+            <!-- Block2 -->
+            <div class="mid-block-2 boxgrid caption">
+                <img alt="" src="~/Content/Site/img/samples/sample3.jpg" />
+                <h4 class="cat-label cat-label3"><a href="#">TOURISM</a></h4>
+                <div class="cover boxcaption">
+                    <h3><a href="#single.html">20 best places to see weekly with your whole family</a><span class="topic-icn">36</span></h3>
+                    <p>Curabitur fringilla porttitor porta. Vivamus vel nulla ullamcorper, fringilla ligula nec, pellentesque nisl.</p>
+                    <a href="#">MORE <i class="fa fa-angle-double-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- Block3 -->
+        <div class="rt-bk-cont">
+            <div class="rt-block boxgrid2 caption">
+                <img alt="" src="~/Content/Site/img/samples/sample2.jpg" />
+                <h4 class="cat-label cat-label4"><a href="#">MUSIC</a></h4>
+                <div class="cover boxcaption2">
+                    <h3><a href="#single.html">Diana Krall - Jazz female vocalist going for a big wedding</a><span class="topic-icn">98</span></h3>
+                    <p>Curabitur fringilla porttitor porta. Vivamus vel nulla ullamcorper, fringilla ligula nec, pellentesque nisl.</p>
+                    <a href="#">MORE <i class="fa fa-angle-double-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- News Ticker -->
+<div class="container">
+    <div class="float-width ticker">
+        <h3 class="cat-label1">DESTAQUES</h3>
+        <ul class="newsticker">
+            <li>
+                <h4>Aliquam id dolor congue, volutpat sapien ac, iaculis purus. Vivamus hendrerit pretium rutrum.</h4>
+            </li>
+            <li>
+                <h4>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</h4>
+            </li>
+            <li>
+                <h4>Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure.</h4>
+            </li>
+        </ul>
+        <div class="ticker-ctrls">
+            <a id="tkr-prev">&#59237;</a>
+            <a id="tkr-nxt">&#59238;</a>
+        </div>
+    </div>
+</div>
+
+<!-- Main Body -->
+<div class="container">
+    <!-- Main Left side -->
+    <div class="main-left-side">
+        <!-- Top News Section -->
+        <div class="top-news float-width">
+            <div class="float-width sec-cont">
+                <h3 class="sec-title">Top news</h3>
+                <div class="top-big-two">
+                    <div class="big-two-1 blocky boxgrid3 caption">
+                        <img alt="" src="~/Content/Site/img/samples/sample4.jpg" />
+                        <div class="cover boxcaption3">
+                            <h3><a href="#single.html">Red hair just coming back to fashion</a></h3>
+                            <p class="artcl-time-1">
+                                <span><i class="fa fa-clock-o"></i>20 Jan 2014</span>
+                                <span><i class="fa fa-comment-o"></i>21 comments</span>
+                            </p>
+                            <p>Curabitur fringilla porttitor porta. Vivamus vel nulla ullamcorper, fringilla ligula nec, pellentesque nisl. Sed dol...</p>
+                        </div>
+                    </div>
+                    <div class="big-two-2 blocky boxgrid3 caption">
+                        <img alt="" src="~/Content/Site/img/samples/sample5.jpg" />
+                        <div class="cover boxcaption3">
+                            <h3><a href="#single.html">Arrows will be allowed in Olympic Sport</a></h3>
+                            <p class="artcl-time-1">
+                                <span><i class="fa fa-clock-o"></i>20 Jan 2014</span>
+                                <span><i class="fa fa-comment-o"></i>13 comments</span>
+                            </p>
+                            <p>Curabitur fringilla porttitor porta. Vivamus vel nulla ullamcorper, fringilla ligula nec, pellentesque nisl. Sed dol...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tn-small-1 blocky">
+                <a href="#"><img alt="" class="lefty" src="~/Content/Site/img/samples/e1.jpg" /></a>
+                <h4 class="lefty">After party of Blondi Concert will begin tomorrow</h4>
+                <a class="lefty cat-a cat-label4" href="#">MUSIC</a>
+                <p class="righty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></p>
+            </div>
+            <div class="tn-small-1 blocky">
+                <a href="#"><img alt="" class="lefty" src="~/Content/Site/img/samples/e2.jpg" /></a>
+                <h4 class="lefty">USA Games Studio will release sandbox new game</h4>
+                <a class="lefty cat-a cat-label2" href="#">GAMES</a>
+                <p class="righty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></p>
+            </div>
+            <div class="tn-small-1 blocky">
+                <a href="#"><img alt="" class="lefty" src="~/Content/Site/img/samples/e3.jpg" /></a>
+                <h4 class="lefty">The best place to see in Winter season this year</h4>
+                <a class="lefty cat-a cat-label3" href="#">TOURISM</a>
+                <p class="righty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></p>
+            </div>
+            <div class="tn-small-1 blocky">
+                <a href="#"><img alt="" class="lefty" src="~/Content/Site/img/samples/e4.jpg" /></a>
+                <h4 class="lefty">New phone - people love it and sales are closed</h4>
+                <a class="lefty cat-a cat-label5" href="#">tech</a>
+                <p class="righty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></p>
+            </div>
+        </div>
+        <!-- Sec 1 -->
+        <div class="news-sec-1 float-width">
+            <div class="float-width sec-cont2">
+                <h3 class="sec-title">MUSIC NEWS</h3>
+                <div class="sec-1-big float-width">
+                    <img alt="" class="blocky" src="~/Content/Site/img/samples/z1.jpg" />
+                    <div class="sec-1-big-text lefty">
+                        <h3>Famous artist share his tracks for free</h3>
+                        <h6><span><i class="fa fa-user"></i>John Doe</span><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
+                        <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit amet, lobortis hendrerit nunc. Curabitur pharetra in velit at ornare. Pellentesque vitae nibh volutpat velit feugiat euismod ut a elit. Donec in felis rutrum risus bibendum cursus. Aliquam interdum aliquam elementum ...</p>
+                    </div>
+                </div>
+                <div class="sec-1-sm">
+                    <img alt="" class="blocky" src="~/Content/Site/img/samples/e5.jpg" />
+                    <div class="sec-1-sm-text blocky">
+                        <h3>TOP 10 Pop track list past year</h3>
+                        <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
+                        <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit...</p>
+                    </div>
+                </div>
+                <div class="sec-1-sm">
+                    <img alt="" class="blocky" src="~/Content/Site/img/samples/e6.jpg" />
+                    <div class="sec-1-sm-text blocky">
+                        <h3>Another Hip-Hop rising star</h3>
+                        <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
+                        <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit...</p>
+                    </div>
+                </div>
+                <div class="sec-1-sm">
+                    <img alt="" class="blocky" src="~/Content/Site/img/samples/e7.jpg" />
+                    <div class="sec-1-sm-text blocky">
+                        <h3>New MP3 tracks are coming </h3>
+                        <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
+                        <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit...</p>
+                    </div>
+                </div>
+                <div class="sec-1-sm">
+                    <img alt="" class="blocky" src="~/Content/Site/img/samples/e8.jpg" />
+                    <div class="sec-1-sm-text blocky">
+                        <h3>DJ Open Music Festival 2014</h3>
+                        <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
+                        <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- News slider -->
+        <div class="qk-slider float-width">
+            <h3 class="sldr-title">slider</h3>
+            <div class="flexslider news-sldr">
+                <ul class="slides">
+                    <li>
+                        <div class="trans2 slide-sngl">
+                            <a class="text-center" href="#"><img alt="" src="~/Content/Site/img/samples/s1.jpg" /></a>
+                            <h4><a href="#">Listen during running</a></h4>
+                            <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit ...</p>
+                            <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></h6>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="trans2 slide-sngl">
+                            <a class="text-center" href="#"><img alt="" src="~/Content/Site/img/samples/s2.jpg" /></a>
+                            <h4><a href="#">Cinemas are closed</a></h4>
+                            <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit ...</p>
+                            <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></h6>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="trans2 slide-sngl">
+                            <a class="text-center" href="#"><img alt="" src="~/Content/Site/img/samples/s3.jpg" /></a>
+                            <h4><a href="#">Best time to marry</a></h4>
+                            <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit ...</p>
+                            <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></h6>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="trans2 slide-sngl">
+                            <a class="text-center" href="#"><img alt="" src="~/Content/Site/img/samples/s4.jpg" /></a>
+                            <h4><a href="#">Winter is coming</a></h4>
+                            <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit ...</p>
+                            <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></h6>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="trans2 slide-sngl">
+                            <a class="text-center" href="#"><img alt="" src="~/Content/Site/img/samples/s1.jpg" /></a>
+                            <h4><a href="#">Listen during running</a></h4>
+                            <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit ...</p>
+                            <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></h6>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="trans2 slide-sngl">
+                            <a class="text-center" href="#"><img alt="" src="~/Content/Site/img/samples/s2.jpg" /></a>
+                            <h4><a href="#">Cinemas are closed</a></h4>
+                            <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit ...</p>
+                            <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></h6>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="trans2 slide-sngl">
+                            <a class="text-center" href="#"><img alt="" src="~/Content/Site/img/samples/s3.jpg" /></a>
+                            <h4><a href="#">Best time to marry</a></h4>
+                            <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit ...</p>
+                            <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></h6>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="trans2 slide-sngl">
+                            <a class="text-center" href="#"><img alt="" src="~/Content/Site/img/samples/s4.jpg" /></a>
+                            <h4><a href="#">Winter is coming</a></h4>
+                            <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit ...</p>
+                            <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></h6>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- POLLS AND REVIEWS -->
+        <div class="news-sec-2 float-width">
+            <div class="float-width sec-cont3">
+                <h3 class="sec-title">TECHNOLOGY - POLLS AND REVIEWS</h3>
+                <div class="polls-cont">
+                    <div class="polls-left blocky">
+                        <a href="#"><img alt="" class="polls-bg-img" src="~/Content/Site/img/samples/z4.jpg" /></a>
+                        <div class="pol-lft-txt">
+                            <h4 class="float-width">Pizza will be delivered by Drons</h4>
+                            <a href="#" class="lefty"><img alt="" src="~/Content/Site/img/4-stars.png" /></a>
+                            <h6 class="righty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
+                            <p class="float-width">Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit amet, lobortis hendrerit nunc. Curabitur pharetra in velit at ornare. Pellentesque vitae nibh volutpat velit feugiat euismod ut a elit. Donec in felis rutrum risus bibendum cursus. Aliquam interdum aliquam elementum ...</p>
+                        </div>
+                    </div>
+                    <div class="polls-right lefty">
+                        <div class="pol-rt-sm float-width">
+                            <a href="#" class="lefty pol-rt-img"><img alt="" src="~/Content/Site/img/samples/m1.jpg" /></a>
+                            <h5>Pizza will be delivered by Drons</h5>
+                            <h6 class="lefty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
+                            <a href="#" class="lefty stars"><img alt="" src="~/Content/Site/img/4-stars.png" /></a>
+                        </div>
+                        <div class="pol-rt-sm float-width">
+                            <a href="#" class="lefty pol-rt-img"><img alt="" src="~/Content/Site/img/samples/m2.jpg" /></a>
+                            <h5>YouTube as a real Television?</h5>
+                            <h6 class="lefty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
+                            <a href="#" class="lefty stars"><img alt="" src="~/Content/Site/img/4-stars.png" /></a>
+                        </div>
+                        <div class="pol-rt-sm float-width">
+                            <a href="#" class="lefty pol-rt-img"><img alt="" src="~/Content/Site/img/samples/m3.jpg" /></a>
+                            <h5>Flying Mouse to your PC</h5>
+                            <h6 class="lefty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
+                            <a href="#" class="lefty stars"><img alt="" src="~/Content/Site/img/4-stars.png" /></a>
+                        </div>
+                        <div class="pol-rt-sm float-width">
+                            <a href="#" class="lefty pol-rt-img"><img alt="" src="~/Content/Site/img/samples/m4.jpg" /></a>
+                            <h5>Best gadget ever on your hand</h5>
+                            <h6 class="lefty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
+                            <a href="#" class="lefty stars"><img alt="" src="~/Content/Site/img/4-stars.png" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Images news with slider -->
+        <div class="sm-gal-cont float-width">
+            <h3 class="sec-title">TOURISM - GALLERY</h3>
+            <div class="sm-gal-bg">
+                <a href="#"><img alt="" src="~/Content/Site/img/samples/z5.jpg" /></a>
+            </div>
+            <div class="flexslider img-sm-gal righty">
+                <ul class="slides">
+                    <li>
+                        <img alt="" src="~/Content/Site/img/samples/r1.jpg" />
+                        <img alt="" src="~/Content/Site/img/samples/r5.jpg" />
+                    </li>
+                    <li>
+                        <img alt="" src="~/Content/Site/img/samples/r2.jpg" />
+                        <img alt="" src="~/Content/Site/img/samples/r6.jpg" />
+                    </li>
+                    <li>
+                        <img alt="" src="~/Content/Site/img/samples/r3.jpg" />
+                        <img alt="" src="~/Content/Site/img/samples/r7.jpg" />
+                    </li>
+                    <li>
+                        <img alt="" src="~/Content/Site/img/samples/r4.jpg" />
+                        <img alt="" src="~/Content/Site/img/samples/r8.jpg" />
+                    </li>
+                    <li>
+                        <img alt="" src="~/Content/Site/img/samples/r1.jpg" />
+                        <img alt="" src="~/Content/Site/img/samples/r5.jpg" />
+                    </li>
+                    <li>
+                        <img alt="" src="~/Content/Site/img/samples/r2.jpg" />
+                        <img alt="" src="~/Content/Site/img/samples/r6.jpg" />
+                    </li>
+                    <li>
+                        <img alt="" src="~/Content/Site/img/samples/r3.jpg" />
+                        <img alt="" src="~/Content/Site/img/samples/r7.jpg" />
+                    </li>
+                    <li>
+                        <img alt="" src="~/Content/Site/img/samples/r4.jpg" />
+                        <img alt="" src="~/Content/Site/img/samples/r8.jpg">
+                    </li>
+                    <li>
+                        <img alt="" src="~/Content/Site/img/samples/r1.jpg" />
+                        <img alt="" src="~/Content/Site/img/samples/r5.jpg" />
+                    </li>
+                    <li>
+                        <img alt="" src="~/Content/Site/img/samples/r2.jpg" />
+                        <img alt="" src="~/Content/Site/img/samples/r6.jpg" />
+                    </li>
+                    <li>
+                        <img alt="" src="~/Content/Site/img/samples/r3.jpg" />
+                        <img alt="" src="~/Content/Site/img/samples/r7.jpg">
+                    </li>
+                    <li>
+                        <img alt="" src="~/Content/Site/img/samples/r4.jpg" />
+                        <img alt="" src="~/Content/Site/img/samples/r8.jpg" />
+                    </li>
+                    <li>
+                        <img alt="" src="~/Content/Site/img/samples/r1.jpg" />
+                        <img alt="" src="~/Content/Site/img/samples/r5.jpg" />
+                    </li>
+                    <li>
+                        <img alt="" src="~/Content/Site/img/samples/r2.jpg" />
+                        <img alt="" src="~/Content/Site/img/samples/r6.jpg" />
+                    </li>
+                    <li>
+                        <img alt="" src="~/Content/Site/img/samples/r3.jpg" />
+                        <img alt="" src="~/Content/Site/img/samples/r7.jpg" />
+                    </li>
+                    <li>
+                        <img alt="" src="~/Content/Site/img/samples/r4.jpg" />
+                        <img alt="" src="~/Content/Site/img/samples/r8.jpg" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Videos Section -->
+        <div class="vid-gal float-width">
+            <h3 class="sec-title">TECHNOLOGY - VIDEOS</h3>
+            <div class="vid-gal-bg float-width">
+                <iframe src="http://player.vimeo.com/video/83714647" width="100%" height="387" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            </div>
+            <div class="vid-thmb">
+                <ul class="float-width">
+                    <li><img alt="" src="~/Content/Site/img/samples/b1.jpg" /></li>
+                    <li><img alt="" src="~/Content/Site/img/samples/b2.jpg" /></li>
+                    <li><img alt="" src="~/Content/Site/img/samples/b3.jpg" /></li>
+                    <li><img alt="" src="~/Content/Site/img/samples/b4.jpg" /></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Main Right side -->
+    <div class="main-right-side">
+        <!-- One image slider -->
+        <div class="sm-sldr-box float-width">
+            <div class="flexslider sm-sldr">
+                <ul class="slides">
+                    <li>
+                        <img alt="" src="~/Content/Site/img/samples/z2.jpg" />
+                    </li>
+                    <li>
+                        <img alt="" src="~/Content/Site/img/samples/z2.jpg" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Social Media Counter -->
+        <div class="smedia lefty">
+            <div class="w50 blocky"><a href="#"><img alt="" class="lefty" src="~/Content/Site/img/fb.png" /><span>6423</span></a></div>
+            <div class="w50 blocky"><a href="#"><img alt="" class="lefty" src="~/Content/Site/img/tw.png" /><span>12344</span></a></div>
+            <div class="w50 blocky"><a href="#"><img alt="" class="lefty" src="~/Content/Site/img/gplus.png" /><span>1846</span></a></div>
+            <div class="w50 blocky"><a href="#"><img alt="" class="lefty" src="~/Content/Site/img/drp.png" /><span>416</span></a></div>
+            <div class="w50 blocky"><a href="#"><img alt="" class="lefty" src="~/Content/Site/img/flkr.png" /><span>91</span></a></div>
+            <div class="w50 blocky"><a href="#"><img alt="" class="lefty" src="~/Content/Site/img/ig.png" /><span>3487</span></a></div>
+        </div>
+        <!-- Trending news right -->
+        <div class="trending lefty">
+            <h3 class="sec-title">TRENDING</h3>
+            <div class="trend-1">
+                <a href="#"><img alt="" src="~/Content/Site/img/samples/z3.jpg" /></a>
+                <a class="lefty cat-a cat-label2" href="#">GAMES</a>
+                <div class="trend-2">
+                    <h3><a href="#">Watch Dogs - First gameplay this year</a></h3>
+                    <p>Curabitur fringilla porttitor porta. Vivamus vel nulla ullamcorper, fringilla ligula nec, pellentesque nisl. Sed dolor..</p>
+                    <p class="artcl-time-1">
+                        <span><i class="fa fa-clock-o"></i>20 Jan 2014</span>
+                        <span><i class="fa fa-comment-o"></i>21 comments</span>
+                    </p>
+                </div>
+            </div>
+            <div class="float-width">
+                <div class="trend-sm float-width">
+                    <a href="#"><img alt="" class="lefty" src="~/Content/Site/img/samples/e2.jpg" /></a>
+                    <h4 class="lefty">USA Games Studio will release sandbox new game</h4>
+                    <a class="lefty cat-a cat-label2" href="#">GAMES</a>
+                    <p class="righty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></p>
+                </div>
+                <div class="trend-sm float-width">
+                    <a href="#"><img alt="" class="lefty" src="~/Content/Site/img/samples/e1.jpg" /></a>
+                    <h4 class="lefty">After party of Blondi Concert will begin tomorrow</h4>
+                    <a class="lefty cat-a cat-label4" href="#">MUSIC</a>
+                    <p class="righty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></p>
+                </div>
+                <div class="trend-sm float-width">
+                    <a href="#"><img alt="" class="lefty" src="~/Content/Site/img/samples/e3.jpg" /></a>
+                    <h4 class="lefty">The best place to see in Winter season this year</h4>
+                    <a class="lefty cat-a cat-label3" href="#">TOURISM</a>
+                    <p class="righty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></p>
+                </div>
+            </div>
+        </div>
+        <!-- Flicker Widget -->
+        <div class="flkr-cont lefty">
+            <h3 class="sec-title">FLICKR WIDGET</h3>
+            <div id="basicuse"></div>
+        </div>
+        <!-- News letter subscription -->
+        <div class="subscribe lefty">
+            <h3 class="sec-title">NEWSLETTER</h3>
+            <h6>Subscribe to our newsletter and be first to know about new game, music and movie releases.</h6>
+            <form role="form">
+                <div class="form-group">
+                    <input type="text" class="lefty" placeholder="Enter your email adress and hit enter">
+                    <a href="#" class="lefty trans1" type="submit">save</a>
+                </div>
+            </form>
+        </div>
+        <!-- Featured Video -->
+        <div class="ftrd-vd float-width">
+            <h3 class="sec-title">FEATURED VIDEO</h3>
+            <iframe src="http://player.vimeo.com/video/8170203?color=b3a07d" width="100%" height="300" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
+        <!-- Calender Widget -->
+        <div class="calendar-cont float-width">
+            <div id="cal">
+                <div class="header float-width">
+                    <h2 class="month-year lefty w50" id="label">
+                        <span id="month"> MAR </span> <span id="year"> 2014 </span>
+                    </h2>
+                    <h6 class="float-width">this is today's event details!</h6>
+                </div>
+                <table id="days">
+                    <tr>
+                        <td>sun</td>
+                        <td>mon</td>
+                        <td>tue</td>
+                        <td>wed</td>
+                        <td>thu</td>
+                        <td>fri</td>
+                        <td>sat</td>
+                    </tr>
+                </table>
+                <div id="cal-frame">
+                    <table class="curr">
+                        <tr>
+                            <td class="nil"></td>
+                            <td class="nil"></td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>7</td>
+                            <td>8</td>
+                            <td>9</td>
+                            <td>10</td>
+                            <td class="today">11</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>14</td>
+                            <td>15</td>
+                            <td>16</td>
+                            <td>17</td>
+                            <td>18</td>
+                            <td>19</td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                            <td>21</td>
+                            <td>22</td>
+                            <td>23</td>
+                            <td>24</td>
+                            <td>25</td>
+                            <td>26</td>
+                        </tr>
+                        <tr>
+                            <td>27</td>
+                            <td>28</td>
+                            <td>29</td>
+                            <td>30</td>
+                            <td class="nil"></td>
+                            <td class="nil"></td>
+                            <td class="nil"></td>
+                        </tr>
+                    </table>
+                    <a class="cal-btm-arw trans1 cal-pre">&#59237;</a>
+                    <a class="cal-btm-arw trans1 cal-nxt">&#59238;</a>
+                </div>
+            </div>
+        </div>
+        <!-- Ad banner right -->
+        <div class="lefty ad-rt">
+            <a href="#"><img alt="" src="~/Content/Site/img/samples/u1.jpg" /></a>
+        </div>
+    </div>
+</div>
+
+<!--AQUI PRA BAIXO-->
 <div class="categorias mgn-left-10px left">
     <div class="oculto">
         @Html.Action("CategoriasWidget", "Home", new { Area = "" })
     </div>
 </div>
-<div class="banner-1024px right mgn-right-10px">
-    <div class="banner-728px left">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="~/Content/Site/img/banners/728x90px/img1.png" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-    <div class="banner-230px right">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="~/Content/Site/img/banners/230x90px/img1.png" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-</div>
-<div class="banner-vertical left mgn-left-10px mgn-top-20px">
-    <div class="texto-vertical left"></div>
-    <div class="banner right">
-        <figure>
-            <a href="#" title="Título do banner">
-                <img src="~/Content/Site/img/banners/120x600px/img1.png" alt="">
-            </a>
-        </figure>
-    </div>
-</div>
+
 <article class="destaques right mgn-right-10px mgn-top-20px">
     <section class="noticia-urgente">
         <a class="fui-time" href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia = Model.Noticias.Urgente.Slug, slugCategoria = Model.Noticias.Urgente.Categoria.Slug, slugLocal = Model.Noticias.Urgente.Local.Slug })" title="@Model.Noticias.Urgente.Titulo" style="background-color:#E74B3B;">
@@ -125,28 +660,7 @@
         }
     </div>
 </article>
-<div class="banner-1024px right mgn-right-10px mgn-top-10px">
-    <div class="banner-728px left">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="~/Content/Site/img/banners/728x90px/img2.png" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-    <div class="banner-230px right">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="~/Content/Site/img/banners/230x90px/img2.png" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-</div>
+
 <div class="bloco-largura mgn-top-20px left">
     @foreach (var noticia in Model.Noticias.EmbaixoDoDestaque.Take(5))
     {
@@ -171,28 +685,7 @@
         </section>
     }
 </div>
-<div class="banner-1184px right mgn-right-10px mgn-top-20px">
-    <div class="banner-728px left">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="~/Content/Site/img/banners/728x90px/img3.png" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-    <div class="banner-417px right">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="~/Content/Site/img/banners/394x90px/img2.png" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-</div>
+
 <div class="bloco-largura-800px mgn-top-20px left">
     <div class="bloco-largura">
         @foreach (var noticia in Model.Noticias.Centro.Take(2))
@@ -349,175 +842,8 @@
         }
     </div>
 </section>
-<div class="banner-1184px right mgn-right-10px mgn-top-20px">
-    <div class="banner-728px left">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="~/Content/Site/img/banners/728x90px/img4.png" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-    <div class="banner-417px right">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="~/Content/Site/img/banners/394x90px/img3.png" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-</div>
-<section class="colunistas mgn-top-20px">
-    <a href="#" title="COLUNISTAS">
-        <h2 class="titulo mgn-left-10px fui-man">COLUNISTAS</h2>
-    </a>
-    <ul class="lista-colunistas">
-        <li>
-            <a href="#" title="Nome do colunista">
-                <figure>
-                    <img src="~/Content/Site/img/colunistas/img1.jpg" alt="">
-                </figure>
-                <h2 class="nome">Donec Suscipit</h2>
-                <p class="desc">Aliquam magna tortor, interdum</p>
-            </a>
-        </li>
-        <li>
-            <a href="#" title="Nome do colunista">
-                <figure>
-                    <img src="~/Content/Site/img/colunistas/img2.jpg" alt="">
-                </figure>
-                <h2 class="nome">Aenean Est Massa</h2>
-                <p class="desc">Proin nunc. Cum sociis natoque</p>
-            </a>
-        </li>
-        <li>
-            <a href="#" title="Nome do colunista">
-                <figure>
-                    <img src="~/Content/Site/img/colunistas/img3.jpg" alt="">
-                </figure>
-                <h2 class="nome">Nulla Cursus Metus </h2>
-                <p class="desc">Aliquam magna tortor, interdum</p>
-            </a>
-        </li>
-        <li>
-            <a href="#" title="Nome do colunista">
-                <figure>
-                    <img src="~/Content/Site/img/colunistas/img4.jpg" alt="">
-                </figure>
-                <h2 class="nome">Class Aptent Taciti</h2>
-                <p class="desc">Nunc aliquam est non</p>
-            </a>
-        </li>
-        <li>
-            <a href="#" title="Nome do colunista">
-                <figure>
-                    <img src="~/Content/Site/img/colunistas/img5.jpg" alt="">
-                </figure>
-                <h2 class="nome">Nunc Accumsan</h2>
-                <p class="desc">Aliquam sit amet nibh</p>
-            </a>
-        </li>
-        <li>
-            <a href="#" title="Nome do colunista">
-                <figure>
-                    <img src="~/Content/Site/img/colunistas/img6.jpg" alt="">
-                </figure>
-                <h2 class="nome">Maecenas Mattis</h2>
-                <p class="desc">Suspendisse potenti. Morbi ut</p>
-            </a>
-        </li>
-        <li>
-            <a href="#" title="Nome do colunista">
-                <figure>
-                    <img src="~/Content/Site/img/colunistas/img7.jpg" alt="">
-                </figure>
-                <h2 class="nome">Ut Vitae</h2>
-                <p class="desc">Fusce eleifend. Aliquam at</p>
-            </a>
-        </li>
-        <li>
-            <a href="#" title="Nome do colunista">
-                <figure>
-                    <img src="~/Content/Site/img/colunistas/img8.jpg" alt="">
-                </figure>
-                <h2 class="nome">Etiam Vitae</h2>
-                <p class="desc">Sed turpis arcu, luctus</p>
-            </a>
-        </li>
-        <li>
-            <a href="#" title="Nome do colunista">
-                <figure>
-                    <img src="~/Content/Site/img/colunistas/img9.jpg" alt="">
-                </figure>
-                <h2 class="nome">Ut Egestas Dolor</h2>
-                <p class="desc">Praesent at lectus. Maecenas</p>
-            </a>
-        </li>
-        <li>
-            <a href="#" title="Nome do colunista">
-                <figure>
-                    <img src="~/Content/Site/img/colunistas/img10.jpg" alt="">
-                </figure>
-                <h2 class="nome">Nam Fringilla</h2>
-                <p class="desc">Suspendisse augue. Aenean sit</p>
-            </a>
-        </li>
-        <li>
-            <a href="#" title="Nome do colunista">
-                <figure>
-                    <img src="~/Content/Site/img/colunistas/img11.jpg" alt="">
-                </figure>
-                <h2 class="nome">Nulla Facilisi</h2>
-                <p class="desc">Praesent lectus dui, facilisis</p>
-            </a>
-        </li>
-        <li>
-            <a href="#" title="Nome do colunista">
-                <figure>
-                    <img src="~/Content/Site/img/colunistas/img12.jpg" alt="">
-                </figure>
-                <h2 class="nome">Suspendisse Vitae</h2>
-                <p class="desc">Fusce quis nisl ac</p>
-            </a>
-        </li>
-    </ul>
-</section>
-<div class="banner-323px right mgn-top-20px mgn-right-10px">
-    <div class="texto-vertical left"></div>
-    <div class="banner right">
-        <figure>
-            <a href="#" title="Título do banner">
-                <img src="~/Content/Site/img/banners/300x250px/img1.png" alt="">
-            </a>
-        </figure>
-    </div>
-</div>
-<div class="banner-1184px right mgn-right-10px mgn-top-20px">
-    <div class="banner-728px left">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="~/Content/Site/img/banners/728x90px/img5.png" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-    <div class="banner-417px right">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="~/Content/Site/img/banners/394x90px/img4.png" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-</div>
+
+
 <section class="eventos mgn-top-20px">
     <a href="eventos.html" title="EVENTOS">
         <h2 class="titulo mgn-left-10px fui-camera">EVENTOS</h2>
@@ -531,52 +857,21 @@
                     <p class="quant-fotos right fui-camera">@evento.Arquivos.Count() fotos</p>
                 </div>
                 <a href="@Url.Action("Ler", "Evento", new { Area = "", slug = evento.Slug, ano = evento.Data.Year, mes = evento.Data.Month, dia = evento.Data.Day, page=1 })" title="@evento.Titulo">
-                <figure>
-                @{
+                    <figure>
+                        @{
             var arquivo = evento.Arquivos.FirstOrDefault() ?? new Arquivo();
-                }
-                <img src="@Foto.Placehold(arquivo.Nome, "180x102", "Evento", "180x102_")" width="180" height="102" />
-                </figure>
-                <p class="hora left fui-time">@evento.Data.ToShortTimeString()</p>
-                <p class="local right fui-location">@evento.Local</p>
-                <p class="desc left">@evento.Titulo</p>
+                        }
+                        <img src="@Foto.Placehold(arquivo.Nome, "180x102", "Evento", "180x102_")" width="180" height="102" />
+                    </figure>
+                    <p class="hora left fui-time">@evento.Data.ToShortTimeString()</p>
+                    <p class="local right fui-location">@evento.Local</p>
+                    <p class="desc left">@evento.Titulo</p>
                 </a>
             </li>
         }
     </ul>
 </section>
-<div class="banner-vertical right mgn-right-10px mgn-top-56px">
-    <div class="texto-vertical left"></div>
-    <div class="banner right">
-        <figure>
-            <a href="#" title="Título do banner">
-                <img src="~/Content/Site/img/banners/120x600px/img2.png" alt="">
-            </a>
-        </figure>
-    </div>
-</div>
-<div class="banner-1184px right mgn-right-10px mgn-top-20px">
-    <div class="banner-728px left">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="~/Content/Site/img/banners/728x90px/img6.png" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-    <div class="banner-417px right">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="~/Content/Site/img/banners/394x90px/img5.png" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-</div>
+
 <section class="bloco-largura largura-380px left mgn-left-10px mgn-top-20px">
     @foreach (var noticia in Model.Noticias.Categoria01.Take(1))
     {
@@ -775,238 +1070,7 @@
         </section>
     }
 </section>
-<div class="banner-1184px right mgn-right-10px mgn-top-20px">
-    <div class="banner-728px left">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="~/Content/Site/img/banners/728x90px/img7.png" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-    <div class="banner-417px right">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="~/Content/Site/img/banners/394x90px/img1.png" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-</div>
-<section class="slide-classificados mgn-top-20px">
-    <a href="classificados.html" title="CLASSIFICADOS">
-        <h2 class="titulo fui-calendar">CLASSIFICADOS</h2>
-    </a>
-    <span class="anter rpl">Anterior</span>
-    <span class="prox rpl">Próximo</span>
-    <span class="barra-left"></span>
-    <span class="barra-right"></span>
-    <ul class="lista-classificados mgn-left-10px">
-        <li>
-            <a href="#" title="Veículos">
-                <span class="categ" style="background-color: #7F8B8D;">Veículos</span>
-            </a>
-            <a href="classificado.html" title="Curabitur elementum placerat diam. Ut sodales sem scelerisque sem. Sed">
-                <figure>
-                    <img src="~/Content/Site/img/classificados/212x119px/img1.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Chupinguaia, RO</p>
-                <p class="desc left mgn-top-10px">Curabitur elementum placerat diam. Ut sodales sem scelerisque sem. Sed</p>
-            </a>
-        </li>
-        <li>
-            <a href="#" title="Eletrônicos">
-                <span class="categ" style="background-color: #3398DA;">Eletrônicos</span>
-            </a>
-            <a href="classificado.html" title="Integer id justo ut diam suscipit laoreet. Suspendisse commodo">
-                <figure>
-                    <img src="~/Content/Site/img/classificados/212x119px/img2.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Colorado, RO</p>
-                <p class="desc left">Integer id justo ut diam suscipit laoreet. Suspendisse commodo</p>
-            </a>
-        </li>
-        <li>
-            <a href="#" title="Informática">
-                <span class="categ" style="background-color: #2B3D4F;">Informática</span>
-            </a>
-            <a href="classificado.html" title="Curabitur enim lacus, gravida nec, varius nec, blandit id, libero">
-                <figure>
-                    <img src="~/Content/Site/img/classificados/212x119px/img3.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Corumbiara, RO</p>
-                <p class="desc left">Curabitur enim lacus, gravida nec, varius nec, blandit id, libero</p>
-            </a>
-        </li>
-        <li>
-            <a href="#" title="Imóveis">
-                <span class="categ" style="background-color: #8D43AD;">Imóveis</span>
-            </a>
-            <a href="classificado.html" title="Nunc aliquam. Fusce justo eros, dictum gravida, lacinia quis, aliquet">
-                <figure>
-                    <img src="~/Content/Site/img/classificados/212x119px/img4.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Espigão D’Oeste, RO</p>
-                <p class="desc left">Nunc aliquam. Fusce justo eros, dictum gravida, lacinia quis, aliquet</p>
-            </a>
-        </li>
-        <li>
-            <a href="#" title="Informática">
-                <span class="categ" style="background-color: #2B3D4F;">Informática</span>
-            </a>
-            <a href="classificado.html" title="Fusce tellus risus, tincidunt at, gravida id, vestibulum quis, nibh">
-                <figure>
-                    <img src="~/Content/Site/img/classificados/212x119px/img5.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Chupinguaia, RO</p>
-                <p class="desc left">Fusce tellus risus, tincidunt at, gravida id, vestibulum quis, nibh</p>
-            </a>
-        </li>
-        <li>
-            <a href="#" title="Veículos">
-                <span class="categ" style="background-color: #7F8B8D;">Veículos</span>
-            </a>
-            <a href="classificado.html" title="Curabitur elementum placerat diam. Ut sodales sem scelerisque sem. Sed">
-                <figure>
-                    <img src="~/Content/Site/img/classificados/212x119px/img1.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Chupinguaia, RO</p>
-                <p class="desc left mgn-top-10px">Curabitur elementum placerat diam. Ut sodales sem scelerisque sem. Sed</p>
-            </a>
-        </li>
-        <li>
-            <a href="#" title="Eletrônicos">
-                <span class="categ" style="background-color: #3398DA;">Eletrônicos</span>
-            </a>
-            <a href="classificado.html" title="Integer id justo ut diam suscipit laoreet. Suspendisse commodo">
-                <figure>
-                    <img src="~/Content/Site/img/classificados/212x119px/img2.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Colorado, RO</p>
-                <p class="desc left">Integer id justo ut diam suscipit laoreet. Suspendisse commodo</p>
-            </a>
-        </li>
-        <li>
-            <a href="#" title="Informática">
-                <span class="categ" style="background-color: #2B3D4F;">Informática</span>
-            </a>
-            <a href="classificado.html" title="Curabitur enim lacus, gravida nec, varius nec, blandit id, libero">
-                <figure>
-                    <img src="~/Content/Site/img/classificados/212x119px/img3.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Corumbiara, RO</p>
-                <p class="desc left">Curabitur enim lacus, gravida nec, varius nec, blandit id, libero</p>
-            </a>
-        </li>
-        <li>
-            <a href="#" title="Imóveis">
-                <span class="categ" style="background-color: #8D43AD;">Imóveis</span>
-            </a>
-            <a href="classificado.html" title="Nunc aliquam. Fusce justo eros, dictum gravida, lacinia quis, aliquet">
-                <figure>
-                    <img src="~/Content/Site/img/classificados/212x119px/img4.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Espigão D’Oeste, RO</p>
-                <p class="desc left">Nunc aliquam. Fusce justo eros, dictum gravida, lacinia quis, aliquet</p>
-            </a>
-        </li>
-        <li>
-            <a href="#" title="Informática">
-                <span class="categ" style="background-color: #2B3D4F;">Informática</span>
-            </a>
-            <a href="classificado.html" title="Fusce tellus risus, tincidunt at, gravida id, vestibulum quis, nibh">
-                <figure>
-                    <img src="~/Content/Site/img/classificados/212x119px/img5.jpg" alt="">
-                </figure>
-                <p class="hora left fui-time">00h00</p>
-                <p class="local right fui-location">Chupinguaia, RO</p>
-                <p class="desc left">Fusce tellus risus, tincidunt at, gravida id, vestibulum quis, nibh</p>
-            </a>
-        </li>
-    </ul>
-</section>
-<div id="featured" class="chamada-rotativa mgn-left-10px mgn-top-20px">
-    <ul class="lista-rotativa">
-        <li>
-            <a href="" title="">
-                <figure>
-                    <img src="~/Content/Site/img/eventos/444x250px/img1.jpg" alt="">
-                </figure>
-            </a>
-        </li>
-        <li>
-            <a href="" title="">
-                <figure>
-                    <img src="~/Content/Site/img/eventos/444x250px/img2.jpg" alt="">
-                </figure>
-            </a>
-        </li>
-        <li>
-            <a href="" title="">
-                <figure>
-                    <img src="~/Content/Site/img/eventos/444x250px/img3.jpg" alt="">
-                </figure>
-            </a>
-        </li>
-        <li>
-            <a href="" title="">
-                <figure>
-                    <img src="~/Content/Site/img/eventos/444x250px/img4.jpg" alt="">
-                </figure>
-            </a>
-        </li>
-        <li>
-            <a href="" title="">
-                <figure>
-                    <img src="~/Content/Site/img/eventos/444x250px/img5.jpg" alt="">
-                </figure>
-            </a>
-        </li>
-    </ul>
-</div>
-<div class="banner-323px left mgn-top-20px mgn-left-20px">
-    <div class="texto-vertical left"></div>
-    <div class="banner right">
-        <figure>
-            <a href="#" title="Título do banner">
-                <img src="~/Content/Site/img/banners/300x250px/img2.png" alt="">
-            </a>
-        </figure>
-    </div>
-</div>
-<section class="area-guia right mgn-top-20px mgn-right-10px">
-    <a href="guiacomercial.html" title="GUIA COMERCIAL">
-        <h2 class="titulo fui-eye">GUIA COMERCIAL</h2>
-    </a>
-    <a class="link-cadastro fui-new" href="guiacomercial-cadastrar" title="Cadastrar empresa">Cadastrar empresa</a>
-    <form class="form-guia" action="" method="">
-        <input placeholder="Busca" type="text" value="">
-        <button title="Buscar" type="submit"></button>
-    </form>
-</section>
-<div class="banner-377px right mgn-top-20px mgn-right-10px">
-    <div class="texto-vertical left"></div>
-    <div class="banner right">
-        <figure>
-            <a href="#" title="Título do banner">
-                <img src="~/Content/Site/img/banners/357x134px/img1.png" alt="">
-            </a>
-        </figure>
-    </div>
-</div>
+
 <div class="bloco-largura left mgn-top-20px">
     <a href="noticias.html" title="Brasil e mundo">
         <h2 class="titulo-secao fui-menu mgn-left-10px" style="color:#00668C;">Geral</h2>

@@ -1,0 +1,166 @@
+
+.calendar-cont {
+margin: 0 0 53px 0;
+}
+
+#cal {
+	margin:0 auto;
+	display:table;
+	background: #ffffff;
+}
+
+#cal table{
+	margin-bottom: 0 !important;
+}
+
+#cal .header {
+	padding: 18px;
+	cursor:default;
+	background: #626262;
+	position:relative;
+	text-transform: uppercase;
+	margin-bottom: 22px;
+}
+#cal .header span {
+	display:inline-block;
+}
+
+#days td{
+font-family: 'Raleway', sans-serif !important;
+text-transform: uppercase;
+font-size: 11px !important;
+color: #5aa628 !important;
+font-weight: 600 !important;
+}
+
+#cal table{
+background: #fff;
+border-collapse: collapse;
+margin: 0 auto;
+}
+
+#cal td{
+font-family: 'Lato', sans-serif;
+font-size: 13px;
+font-weight: bold;
+color: #555555;
+width: 34px;
+height: 30px;
+line-height: 30px;
+text-align: center;
+border: none;
+cursor: default;
+}
+
+#cal #day td {
+	height:26px;
+	line-height:26px;
+	text-transform:uppercase;
+	color:#9e9e9e;
+}
+
+#cal-frame{
+position: relative;
+padding-bottom: 20px;
+min-height: 170px;
+}
+
+#cal #cal-frame td.today{
+	position: relative;
+}
+
+#cal #cal-frame td.today:after{
+font-family: 'FontAwesome';
+content: "\f111";
+font-size: 5.5px;
+color: #5aa628;
+position: absolute;
+top: -6px;
+right: 5px;
+}
+
+#cal #cal-frame td:not(.nil):hover {
+background: #f2f2f2;
+}
+#cal #cal-frame td span {
+	font-size:80%;
+	position:relative;
+}
+#cal #cal-frame td span:first-child {
+	bottom:5px;
+}
+
+#cal #cal-frame td span:last-child {
+	top:5px;
+}
+
+#cal #cal-frame table.temp {
+	display: none;
+} 
+
+#cal #cal-frame table.curr{
+margin: 0 auto;
+}
+
+#cal .header .month-year{
+color: #fff;
+text-align: right;
+margin: 3px 0 10px 0;
+}
+
+#cal .header h6{
+font-size: 14px;
+font-weight: 500;
+background: #555555;
+color: #ffffff;
+padding: 18px;
+text-align: center;
+margin: 0;
+}
+
+span#month{
+font-size: 84px;
+font-weight: 700;
+width: 100%;
+margin: 0;
+line-height: 61px;
+float: right;
+}
+
+span#year{
+font-family: 'Lato', sans-serif;	
+font-size: 22px;
+font-weight: 300;
+opacity: 0.8;
+line-height: 26px;
+float: right;
+}
+
+.cal-btm-arw.cal-nxt, .cal-btm-arw.cal-pre{
+	position: absolute;
+	cursor: pointer;
+	font-family: 'entypo';
+	color: #adadad;
+	font-size: 80px;
+}
+
+.cal-nxt:hover, .cal-pre:hover{
+	color: #000000;
+	text-decoration: none;
+}
+
+
+.cal-btm-arw.cal-nxt{
+top: 0;
+right: 4.216216%;
+}
+
+.cal-btm-arw.cal-pre{
+top: 0;
+left: 4.216216%;
+}
+
+.clndr-vr .flex-viewport { height: 100px !important;}
+.clndr-vr  ul.slides{
+	width: 100px;
+}

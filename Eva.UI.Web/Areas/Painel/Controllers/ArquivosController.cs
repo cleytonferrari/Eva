@@ -98,7 +98,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 
                     arquivoCapa = noticia.Arquivos.FirstOrDefault(x => x.Ordem == 1);
                     if (arquivoCapa != null)
-                        Imagem.CropFile(arquivoCapa.Nome, plugin, ImagensLayout.Noticias);
+                        Imagem.GeraArquivosBaseadoEmListaDeTamanhos(arquivoCapa.Nome, plugin, ImagensLayout.Noticias);
 
                     Fabrica.NoticiaAplicacaoMongo().Salvar(noticia);
                     break;
@@ -113,7 +113,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 
                     arquivoCapa = evento.Arquivos.FirstOrDefault(x => x.Ordem == 1);
                     if (arquivoCapa != null)
-                        Imagem.CropFile(arquivoCapa.Nome, plugin, ImagensLayout.Eventos);
+                        Imagem.GeraArquivosBaseadoEmListaDeTamanhos(arquivoCapa.Nome, plugin, ImagensLayout.Eventos);
 
                     Fabrica.EventoAplicacaoMongo().Salvar(evento);
                     break;
@@ -148,7 +148,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                     Fabrica.NoticiaAplicacaoMongo().Salvar(noticia);
 
                     if (ordem == 1)
-                        Imagem.CropFile(name, plugin, ImagensLayout.Noticias);
+                        Imagem.GeraArquivosBaseadoEmListaDeTamanhos(name, plugin, ImagensLayout.Noticias);
 
                     break;
 
@@ -161,7 +161,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                     Fabrica.EventoAplicacaoMongo().Salvar(evento);
 
                     if (ordem == 1)
-                        Imagem.CropFile(name, plugin, ImagensLayout.Eventos);
+                        Imagem.GeraArquivosBaseadoEmListaDeTamanhos(name, plugin, ImagensLayout.Eventos);
 
                     break;
             }
@@ -284,7 +284,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 
                     arquivoCapa = noticia.Arquivos.FirstOrDefault(x => x.Ordem == 1);
                     if (arquivoCapa != null)
-                        Imagem.CropFile(arquivoCapa.Nome, plugin, ImagensLayout.Noticias);
+                        Imagem.GeraArquivosBaseadoEmListaDeTamanhos(arquivoCapa.Nome, plugin, ImagensLayout.Noticias);
 
                     Fabrica.NoticiaAplicacaoMongo().Salvar(noticia);
                     break;
@@ -300,7 +300,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 
                     arquivoCapa = evento.Arquivos.FirstOrDefault(x => x.Ordem == 1);
                     if (arquivoCapa != null)
-                        Imagem.CropFile(arquivoCapa.Nome, plugin, ImagensLayout.Eventos);
+                        Imagem.GeraArquivosBaseadoEmListaDeTamanhos(arquivoCapa.Nome, plugin, ImagensLayout.Eventos);
 
                     Fabrica.EventoAplicacaoMongo().Salvar(evento);
                     break;

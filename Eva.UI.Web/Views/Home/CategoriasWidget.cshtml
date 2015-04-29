@@ -1,14 +1,7 @@
 ﻿@model List<Eva.Dominio.Categoria>
-
-<h2>Categorias</h2>
-<ul>
+<ul class="main-menu-sub">
     @foreach (var item in Model)
     {
-        <li>
-            <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = item.Slug })" title="@item.Nome">
-                <span class="barra" style="background-color:@item.CorFundo"></span>
-                @item.Nome
-            </a>
-        </li>
+        <li><a href="@Url.Action("Index", "Noticia", new {Area = "", categoria = item.Slug})" title="@item.Nome">@item.Nome</a></li>
     }
 </ul>

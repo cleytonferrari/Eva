@@ -59,7 +59,7 @@ namespace Eva.UI.Web.Helpers
             return chunk + 1 == chunks;
         }
 
-        public static void CropFile(string name, string diretorio, List<ImagensLayout.Tamanho> tamanhos)
+        public static void GeraArquivosBaseadoEmListaDeTamanhos(string name, string diretorio, List<ImagensLayout.Tamanho> tamanhos)
         {
             var path = MontaPath(diretorio, name);
 
@@ -72,9 +72,42 @@ namespace Eva.UI.Web.Helpers
 
                 var imagem = new WebImage(path);
                 var pathFotoCropada = MontaPath(diretorio, item.Largura + "x" + item.Altura + "_" + name);
-                imagem.Resize(item.Largura+2, item.Altura+2).Crop(2,2);//crop(1,1) corrige o bug da borda
+                if (item.Cortar)
+                {
+                    imagem = CortaImagemMantendoRatio(imagem, item.Largura, item.Altura);
+                }
+                else
+                {
+                    imagem.Resize(item.Largura + 2, item.Altura + 2).Crop(2, 2); //crop(1,1) corrige o erro da borda
+                }
                 imagem.Save(pathFotoCropada);
             }
+        }
+
+
+        private static WebImage CortaImagemMantendoRatio(WebImage imagem, int largura, int altura)
+        {
+
+            float larguraIdeal = 0;
+            float alturaIdeal = 0;
+
+            if (largura / altura > imagem.Width / imagem.Height)
+            {
+                larguraIdeal = largura;
+                alturaIdeal = imagem.Height * ((float)largura / (float)imagem.Width);
+            }
+            else
+            {
+                larguraIdeal = imagem.Width * ((float)altura / (float)imagem.Height);
+                alturaIdeal = altura;
+            }
+
+            var imagemBox = imagem.Resize((int)larguraIdeal, (int)alturaIdeal);
+
+            //todo cropar ao centro
+            var buttom = (int)alturaIdeal - altura;
+            var right = (int)larguraIdeal - largura;
+            return imagemBox.Crop(0, 0, buttom, right);
         }
 
         private static string MontaPath(string diretorio, string fileName)
@@ -175,11 +208,11 @@ namespace Eva.UI.Web.Helpers
     {
         public static List<Tamanho> Noticias = new List<Tamanho>()
         {
-            new Tamanho() {Nome = "Original", Largura = 940, Altura = 529 },
-            new Tamanho() {Nome = "Foto01", Largura = 380, Altura = 214 },
-            new Tamanho() {Nome = "Foto02", Largura = 150, Altura = 85 },
-            new Tamanho() {Nome = "Foto03", Largura = 540, Altura = 304 },
-            new Tamanho() {Nome = "Foto04", Largura = 500, Altura = 282 }
+            new Tamanho() {Nome = "Original", Largura = 940, Altura = 529, Cortar = false},
+            new Tamanho() {Nome = "Foto01", Largura = 619, Altura = 633, Cortar = true },
+            new Tamanho() {Nome = "Foto02", Largura = 150, Altura = 85, Cortar = false },
+            new Tamanho() {Nome = "Foto03", Largura = 540, Altura = 304, Cortar = false },
+            new Tamanho() {Nome = "Foto04", Largura = 500, Altura = 282, Cortar = false }
         };
 
         public static List<Tamanho> Eventos = new List<Tamanho>()
@@ -193,6 +226,7 @@ namespace Eva.UI.Web.Helpers
             public string Nome { get; set; }
             public int Largura { get; set; }
             public int Altura { get; set; }
+            public bool Cortar { get; set; }
         }
     }
 }
