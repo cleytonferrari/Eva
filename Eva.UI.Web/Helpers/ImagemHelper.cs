@@ -90,7 +90,8 @@ namespace Eva.UI.Web.Helpers
             float larguraIdeal = 0;
             float alturaIdeal = 0;
 
-            if (imagem.Width < imagem.Height)
+            //if (imagem.Width < imagem.Height)
+            if ((float)largura / (float)altura > (float)imagem.Width / (float)imagem.Height)
             {
                 larguraIdeal = largura;
                 alturaIdeal = imagem.Height * ((float)largura / (float)imagem.Width);
@@ -208,10 +209,9 @@ namespace Eva.UI.Web.Helpers
         public static List<Tamanho> Noticias = new List<Tamanho>()
         {
             new Tamanho() {Nome = "Original", Largura = 940, Altura = 529, Cortar = false},
-            new Tamanho() {Nome = "Foto01", Largura = 619, Altura = 633, Cortar = true },
-            new Tamanho() {Nome = "Foto02", Largura = 150, Altura = 85, Cortar = false },
-            new Tamanho() {Nome = "Foto03", Largura = 540, Altura = 304, Cortar = false },
-            new Tamanho() {Nome = "Foto04", Largura = 500, Altura = 282, Cortar = false }
+            new Tamanho() {Nome = "Foto01", Largura = 464, Altura = 474, Cortar = true },
+            new Tamanho() {Nome = "Foto02", Largura = 391, Altura = 231, Cortar = true },
+            new Tamanho() {Nome = "Foto03", Largura = 289, Altura = 475, Cortar = true },
         };
 
         public static List<Tamanho> Eventos = new List<Tamanho>()

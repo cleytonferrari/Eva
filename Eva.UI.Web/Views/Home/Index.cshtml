@@ -17,7 +17,7 @@
                         {
                             <li>
                                 @{var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();}
-                                <img src="@Foto.Placehold(arquivo.Nome, "619x633", "Noticia" , "619x633_" )" />
+                                <img src="@Foto.Placehold(arquivo.Nome, "464x474", "Noticia" , "464x474_" )" alt="@arquivo.Legenda" />
                                 <h3 class="cat-label" style="background-color: @noticia.Categoria.CorFundo; color: @noticia.Categoria.CorTexto">
                                     <a href="@Url.Action("Index", "Noticia", new {Area = "", categoria = noticia.Categoria.Slug})">@noticia.Categoria.Nome</a>
                                 </h3>
@@ -37,37 +37,39 @@
         <!-- Fixed Blocks -->
         <div class="mid-blks-cont">
             <!-- Block1 -->
-            <div class="mid-block-1 boxgrid caption">
-                <img alt="" src="~/Content/Site/img/samples/sample1.jpg" />
-                <h4 class="cat-label cat-label2"><a href="#">GAMES</a></h4>
-                <div class="cover boxcaption">
-                    <h3><a href="#single.html">Need for Speed Rivals is still a growing community</a><span class="topic-icn">81</span></h3>
-                    <p>Curabitur fringilla porttitor porta. Vivamus vel nulla ullamcorper, fringilla ligula nec, pellentesque nisl.</p>
-                    <a href="#">MORE <i class="fa fa-angle-double-right"></i></a>
+            @foreach (var noticia in Model.Noticias.Destaques.Skip(2).Take(2))
+            {
+                <div class="mid-block-1 boxgrid caption">
+                    @{var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();}
+                    <img src="@Foto.Placehold(arquivo.Nome, "391x231", "Noticia" , "391x231_" )" alt="@arquivo.Legenda" />
+                    <h4 class="cat-label" style="background-color: @noticia.Categoria.CorFundo; color: @noticia.Categoria.CorTexto">
+                        <a href="@Url.Action("Index", "Noticia", new {Area = "", categoria = noticia.Categoria.Slug})">@noticia.Categoria.Nome</a>
+                    </h4>
+                    <div class="cover boxcaption">
+                        <h3><a href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = noticia.Slug, slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug})" title="@noticia.Titulo">@noticia.Titulo.Limit(40) ...</a></h3>
+                        <p>@noticia.Resumo.Limit(90) ...</p>
+                        <a href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = noticia.Slug, slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug})" title="@noticia.Titulo">Mais <i class="fa fa-angle-double-right"></i></a>
+                    </div>
                 </div>
-            </div>
-            <!-- Block2 -->
-            <div class="mid-block-2 boxgrid caption">
-                <img alt="" src="~/Content/Site/img/samples/sample3.jpg" />
-                <h4 class="cat-label cat-label3"><a href="#">TOURISM</a></h4>
-                <div class="cover boxcaption">
-                    <h3><a href="#single.html">20 best places to see weekly with your whole family</a><span class="topic-icn">36</span></h3>
-                    <p>Curabitur fringilla porttitor porta. Vivamus vel nulla ullamcorper, fringilla ligula nec, pellentesque nisl.</p>
-                    <a href="#">MORE <i class="fa fa-angle-double-right"></i></a>
-                </div>
-            </div>
+            }
         </div>
         <!-- Block3 -->
         <div class="rt-bk-cont">
-            <div class="rt-block boxgrid2 caption">
-                <img alt="" src="~/Content/Site/img/samples/sample2.jpg" />
-                <h4 class="cat-label cat-label4"><a href="#">MUSIC</a></h4>
-                <div class="cover boxcaption2">
-                    <h3><a href="#single.html">Diana Krall - Jazz female vocalist going for a big wedding</a><span class="topic-icn">98</span></h3>
-                    <p>Curabitur fringilla porttitor porta. Vivamus vel nulla ullamcorper, fringilla ligula nec, pellentesque nisl.</p>
-                    <a href="#">MORE <i class="fa fa-angle-double-right"></i></a>
+            @foreach (var noticia in Model.Noticias.Destaques.Skip(4).Take(1))
+            {
+                <div class="rt-block boxgrid2 caption">
+                    @{var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();}
+                    <img src="@Foto.Placehold(arquivo.Nome, "289x475", "Noticia" , "289x475_" )" alt="@arquivo.Legenda" />
+                    <h4 class="cat-label" style="background-color: @noticia.Categoria.CorFundo; color: @noticia.Categoria.CorTexto">
+                        <a href="@Url.Action("Index", "Noticia", new {Area = "", categoria = noticia.Categoria.Slug})">@noticia.Categoria.Nome</a>
+                    </h4>
+                    <div class="cover boxcaption2">
+                        <h3><a href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = noticia.Slug, slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug})" title="@noticia.Titulo">@noticia.Titulo.Limit(40) ...</a></h3>
+                        <p>@noticia.Resumo.Limit(90) ...</p>
+                        <a href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = noticia.Slug, slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug})" title="@noticia.Titulo">Mais <i class="fa fa-angle-double-right"></i></a>
+                    </div>
                 </div>
-            </div>
+            }
         </div>
     </div>
 </div>
