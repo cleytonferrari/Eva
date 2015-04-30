@@ -109,7 +109,7 @@ jQuery(document).ready(function() {
     });
 
     /* News ticker JQ */
-    $('.newsticker').newsTicker({
+    /*$('.newsticker').newsTicker({
         row_height: 40,
         max_rows: 1,
         speed: 500,
@@ -117,7 +117,7 @@ jQuery(document).ready(function() {
         prevButton: $('#tkr-prev'),
         nextButton: $('#tkr-nxt'),
         stopButton: $('#tkr-stop')
-    });
+    });*/
 
     /* Flickr Feed */
     $('#basicuse').jflickrfeed({
