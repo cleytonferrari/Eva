@@ -84,14 +84,13 @@ namespace Eva.UI.Web.Helpers
             }
         }
 
-
         private static WebImage CortaImagemMantendoRatio(WebImage imagem, int largura, int altura)
         {
 
             float larguraIdeal = 0;
             float alturaIdeal = 0;
 
-            if (largura / altura > imagem.Width / imagem.Height)
+            if (imagem.Width < imagem.Height)
             {
                 larguraIdeal = largura;
                 alturaIdeal = imagem.Height * ((float)largura / (float)imagem.Width);
