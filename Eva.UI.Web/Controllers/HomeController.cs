@@ -18,7 +18,7 @@ namespace Eva.UI.Web.Controllers
                 {
                     Urgente = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Urgente").FirstOrDefault() ?? new Noticia(),
                     Destaques = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Destaque").Take(5) ?? new List<Noticia>(),
-                    AoLadoDoDestaque = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Ao lado do destaque").Take(4) ?? new List<Noticia>(),
+                    AoLadoDoDestaque = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Ao lado do destaque").Take(6) ?? new List<Noticia>(),
                     EmbaixoDoDestaque = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Embaixo do destaque").Take(5) ?? new List<Noticia>(),
                     Centro = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Centro").Take(6) ?? new List<Noticia>(),
                     Categoria01 = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Categoria 01").Take(3) ?? new List<Noticia>(),

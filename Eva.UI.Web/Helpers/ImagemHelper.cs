@@ -206,12 +206,15 @@ namespace Eva.UI.Web.Helpers
 
     public struct ImagensLayout
     {
+        //todo: os formatos de imagens são usadas na sua maioria na pagina inicial, apos sair da pagina inicial excluir as fotos
         public static List<Tamanho> Noticias = new List<Tamanho>()
         {
             new Tamanho() {Nome = "Original", Largura = 940, Altura = 529, Cortar = false},
             new Tamanho() {Nome = "Foto01", Largura = 464, Altura = 474, Cortar = true },
             new Tamanho() {Nome = "Foto02", Largura = 391, Altura = 231, Cortar = true },
             new Tamanho() {Nome = "Foto03", Largura = 289, Altura = 475, Cortar = true },
+            new Tamanho() {Nome = "Foto04", Largura = 367, Altura = 269, Cortar = true },
+            new Tamanho() {Nome = "Foto05", Largura = 107, Altura = 85, Cortar = true },
         };
 
         public static List<Tamanho> Eventos = new List<Tamanho>()
