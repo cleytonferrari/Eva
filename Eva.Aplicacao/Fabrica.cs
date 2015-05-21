@@ -60,5 +60,15 @@ namespace Eva.Aplicacao
         {
             return new BannerZonaAplicacao(new Repositorio.MongoDb.Repositorio<BannerZona>());
         }
+
+        public static ExtratorNewsAplicacao ExtratorNewsAplicacaoMongo()
+        {
+            return new ExtratorNewsAplicacao(new Repositorio.MongoDb.Repositorio<ExtratorNews>());
+        }
+
+        public static ExtratorNewsItemAplicacao ExtratorNewsItemAplicacaoMongo()
+        {
+            return new ExtratorNewsItemAplicacao(new Repositorio.MongoDb.Repositorio<ExtratorNewsItem>());
+        }
     }
 }

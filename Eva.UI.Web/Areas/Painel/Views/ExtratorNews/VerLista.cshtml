@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Eva.UI.Web.Areas.Painel.Controllers.NoticiasCrawler>
+<div class="col-md-12">
+    <!--breadcrumbs start -->
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home", new {Area = "Painel"})"><i class="fa fa-home"></i> Inicio</a></li>
+        <li><a href="@Url.Action("Index", "ExtratorNews", new { Area = "Painel" })"> Extrator News</a></li>
+        <li class="active">Ver</li>
+    </ul>
+    <!--breadcrumbs end -->
+</div>
+
+<div class="col-md-12">
+    @Flash.FlashMessage(TempData)
+</div>
+
+<div class="col-sm-12">
+    <section class="panel">
+        <header class="panel-heading">
+            Extrator: <b>@ViewBag.ExtratorNews.Nome</b>
+        </header>
+        <div class="panel-body">
+            <div class="adv-table editable-table ">
+                
+                <div id="editable-sample_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                    <table class="table table-hover general-table">
+                        <thead>
+                            <tr role="row">
+                                <th>Titulo</th>
+                                <th style="width: 105px">Opções</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                        @if (Model.Any())
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td><a href="@Url.Action("VerNoticia", "ExtratorNews", new { url = item.Url, id = ViewBag.ExtratorNews.Id })">@item.Titulo</a> </td>
+                                        <td>
+                                            <a href="" class="btn btn-white active tooltips" data-original-title="Editar" data-toggle="tooltip">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                            <a href="#" data-id="" class="btn btn-white active" data-toggle="modal" data-target="#confimarExclusao">
+                                                <i class="fa fa-trash-o"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="5">Não foi encontrado dados para a exibição</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                   
+                </div>
+            </div>
+            
+        </div>
+    </section>
+</div>

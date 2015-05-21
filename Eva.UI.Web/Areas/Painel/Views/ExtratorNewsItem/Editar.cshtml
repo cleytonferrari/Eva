@@ -1,0 +1,95 @@
+﻿
+@model Eva.Dominio.ExtratorNewsItem
+
+<div class="col-md-12">
+    <!--breadcrumbs start -->
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home", new {Area = "Painel"})"><i class="fa fa-home"></i> Inicio</a></li>
+        <li><a href="@Url.Action("Index", "ExtratorNews", new { Area = "Painel" })"> Extrator News</a></li>
+        <li><a href="@Url.Action("Index", "ExtratorNewsItem", new { Area = "Painel", Id=ViewBag.ExtratorNews.Id })"> Extrator News Item</a></li>
+        <li class="active">Editar</li>
+    </ul>
+    <!--breadcrumbs end -->
+</div>
+
+<div class="col-lg-12">
+    <section class="panel">
+        <header class="panel-heading">
+            <b>@ViewBag.ExtratorNews.Nome</b>  @(string.IsNullOrEmpty(Model.Id) ? "Cadastrar novo item" : "Editar item: " + Model.Url)
+        </header>
+        <div class="panel-body">
+            <div>
+                <form class="cmxform form-horizontal " id="usuarioForm" method="POST" action="" novalidate="novalidate" enctype="multipart/form-data">
+
+                    <input type="hidden" value="@ViewBag.ExtratorNews.Id" name="IdExtratorNews" id="IdExtratorNews" />
+
+                    <div class="form-group ">
+                        <label for="Url" class="control-label col-lg-3">Url:</label>
+                        <div class="col-lg-6">
+                            <input class=" form-control" id="Url" name="Url" type="text" value="@Model.Url" required="" minlength="5">
+                            <label for="Url" class="error">@Html.ValidationMessageFor(x => x.Url)</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="SeletorTitulo" class="control-label col-lg-3">Seletor Título:</label>
+                        <div class="col-lg-6">
+                            <input class=" form-control" id="SeletorTitulo" name="SeletorTitulo" type="text" value="@Model.SeletorTitulo">
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="SeletorConteudo" class="control-label col-lg-3">Seletor Conteúdo:</label>
+                        <div class="col-lg-6">
+                            <input class=" form-control" id="SeletorConteudo" name="SeletorConteudo" type="text" value="@Model.SeletorConteudo">
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="SeletorFoto" class="control-label col-lg-3">Seletor Foto:</label>
+                        <div class="col-lg-6">
+                            <input class=" form-control" id="SeletorFoto" name="SeletorFoto" type="text" value="@Model.SeletorFoto">
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="SeletorAutor" class="control-label col-lg-3">Seletor Autor:</label>
+                        <div class="col-lg-6">
+                            <input class=" form-control" id="SeletorAutor" name="SeletorAutor" type="text" value="@Model.SeletorAutor">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-offset-3 col-lg-6">
+                            <button class="btn btn-primary" type="submit">Salvar</button>
+                            <a href="@Url.Action("Index", "ExtratorNewsItem", new { Area = "Painel", Id=ViewBag.ExtratorNews.Id })" class="btn btn-default">Cancelar</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script type="text/javascript" src="~/Scripts/bootstrap-fileupload.js"></script>
+
+<script type="text/javascript">
+    $("#usuarioForm").validate({
+        rules: {
+            Url: {
+                required: true,
+                minlength: 5
+            },
+            
+        },
+        messages: {
+            Url: {
+                required: "O campo url é obrigatorio.",
+                minlength: "O campo url deve conter no mínimo 5 caracteres."
+            }
+        }
+
+    });
+</script>

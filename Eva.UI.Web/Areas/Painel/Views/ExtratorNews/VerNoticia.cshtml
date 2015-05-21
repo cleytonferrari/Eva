@@ -1,0 +1,49 @@
+﻿@using PagedList.Mvc
+@model Eva.UI.Web.Areas.Painel.Controllers.NoticiasConteudoCrawler
+<div class="col-md-12">
+    <!--breadcrumbs start -->
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home", new { Area = "Painel" })"><i class="fa fa-home"></i> Inicio</a></li>
+        <li><a href="@Url.Action("Index", "ExtratorNews", new { Area = "Painel" })"> Extrator News</a></li>
+        <li class="active">Ver Noticia</li>
+    </ul>
+    <!--breadcrumbs end -->
+</div>
+
+<div class="col-md-12">
+    @Flash.FlashMessage(TempData)
+</div>
+
+<div class="col-sm-12">
+    <section class="panel">
+        <header class="panel-heading">
+            Extrator News: 
+        </header>
+        <div class="panel-body">
+            <div class="adv-table editable-table ">
+                <a href="@ViewBag.Url">@ViewBag.Url</a>
+                <div class="clearfix" style="margin-bottom: 15px;">
+                    <div class="btn-group">
+                        <a href="@Url.Action("Editar")" class="btn btn-primary">
+                            Novo Extrator <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="editable-sample_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1>@Model.Titulo</h1>
+                            <em>@Model.Autor</em>
+                            <div class="col-lg-12">
+                                <img src="@Model.UrlFoto" alt="" />
+                            </div>
+                            <p>@Model.Conteudo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
