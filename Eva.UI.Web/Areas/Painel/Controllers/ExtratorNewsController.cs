@@ -95,11 +95,36 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 
         public ActionResult VerNoticia(string url, string id)
         {
+            ViewBag.Url = url;
+            ViewBag.Id = id;
+
             var extrator = Fabrica.ExtratorNewsAplicacaoMongo().ListarPorId(id);
             var items = Fabrica.ExtratorNewsItemAplicacaoMongo().ListarTodosPorIdExtratorNews(extrator.Id);
-            
+
+            if (!items.Any())
+            {
+                return RedirectToAction("Index");
+            }
+
+            var dados = new ExtratorNewsItem();
             //items filtrar baseado no começo da url
-            var item = items.FirstOrDefault();
+            foreach (var item in items)
+            {
+                if (url.Contains(item.Url))
+                {
+                    dados = item;
+                    break;
+                }
+            }
+
+            //mostrar erro
+            if (string.IsNullOrEmpty(dados.Url))
+            {
+                this.Flash("Não foi possivel achar o item extrator para esta URL!", FlashEnum.Error);
+                return View(new NoticiasConteudoCrawler());
+            }
+
+            
 
 
             if (string.IsNullOrEmpty(url))
@@ -110,12 +135,12 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 
             var noticia = new NoticiasConteudoCrawler();
 
-            noticia.Autor = query.Select(item.SeletorAutor).Text();
-            noticia.Titulo = query.Select(item.SeletorTitulo).Text();
-            noticia.Conteudo = query.Select(item.SeletorConteudo).Text();
-            noticia.UrlFoto = query.Select(item.SeletorFoto).Attr("src");
+            noticia.Autor = query.Select(dados.SeletorAutor).Text();
+            noticia.Titulo = query.Select(dados.SeletorTitulo).Text();
+            noticia.Conteudo = query.Select(dados.SeletorConteudo).Text();
+            noticia.UrlFoto = query.Select(dados.SeletorFoto).Attr("src");
 
-            ViewBag.Url = url;
+            
 
             return View(noticia);
         }
