@@ -110,7 +110,7 @@ namespace Eva.UI.Web.Helpers
             return imagemBox.Crop(0, 0, buttom, right);
         }
 
-        private static string MontaPath(string diretorio, string fileName)
+        public static string MontaPath(string diretorio, string fileName)
         {
             var pathDiretorio = HttpContext.Current.Server.MapPath("~/Content/Uploads/" + diretorio);
             var dir = new DirectoryInfo(pathDiretorio);

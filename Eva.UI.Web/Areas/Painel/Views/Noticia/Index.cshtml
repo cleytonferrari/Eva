@@ -54,24 +54,7 @@
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <form method="GET" action="" novalidate="novalidate">
-                                    <td></td>
-                                    <td class=" "><input type="text" class="form-control small" id="nome" name="nome" type="text" value=""></td>
-                                    <td class=" "><input type="text" class="form-control small" id="email" name="email" type="text" value=""></td>
-                                    <td class=" "><input type="text" class="form-control small" id="grupo" name="grupo" type="text" value=""></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td class=" ">
-                                        <button class="btn btn-primary" type="submit" class="btn btn-white active tooltips" data-original-title="Filtrar" data-toggle="tooltip">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                        <a href="#" class="btn btn-white active tooltips" data-original-title="Limpar" data-toggle="tooltip">
-                                            <i class="fa fa-refresh"></i>
-                                        </a>
-                                    </td>
-                                </form>
-                            </tr>
+                         
                             @if (Model.Any())
                             {
                                 foreach (var noticia in Model)
@@ -86,7 +69,7 @@
                                         <td>@noticia.Titulo</td>
                                         <td>@noticia.Categoria.Nome</td>
                                         <td>@noticia.Zona.Nome</td>
-                                        <td>@noticia.Data.ToShortDateString()</td>
+                                        <td>@noticia.Data.ToString("dd/MM/yyyy HH:mm")</td>
                                         <td>@noticia.Publicado</td>
 
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -9,6 +10,7 @@ using CsQuery;
 using Eva.Aplicacao;
 using Eva.Dominio;
 using PagedList;
+using Eva.UI.Web.Helpers;
 
 namespace Eva.UI.Web.Areas.Painel.Controllers
 {
@@ -154,18 +156,44 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                 Conteudo = item.Conteudo,
                 Data = DateTime.Now,
                 Fonte = new Fonte() { Nome = item.Autor.UnHtml() },
-                Resumo = item.Conteudo.Limit(120," ..."),
+                Resumo = item.Conteudo.Limit(120, " ..."),
                 Publicado = false,
                 ExibirComentarios = false,
             };
 
             Fabrica.NoticiaAplicacaoMongo().Salvar(noticia);
 
+            if (!string.IsNullOrEmpty(item.UrlFoto))
+            {
+                GetImage(item.UrlFoto, noticia.Id);
+            }
+
+
+
             return RedirectToAction("Editar", "Noticia", new { id = noticia.Id });
+        }
+
+        private void GetImage(string url, string id)
+        {
+            var name = Guid.NewGuid().ToString("N") + ".jpg";
+
+            var imageStream = new WebClient().OpenRead(url);
+            var img = Image.FromStream(imageStream);
+
+            img.Save(Imagem.MontaPath("noticia", name));
+
+            var noticia = Fabrica.NoticiaAplicacaoMongo().ListarPorId(id);
+
+            noticia.Arquivos.Add(new Arquivo() { Nome = name, Legenda = noticia.Titulo, Ordem = 1 });
+            Fabrica.NoticiaAplicacaoMongo().Salvar(noticia);
+
+            Imagem.GeraArquivosBaseadoEmListaDeTamanhos(name, "noticia", ImagensLayout.Noticias);
+
         }
 
         private static string GetHtml(string url)
         {
+            //Todo: Adicionar timeout
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
             request.ContentType = "application/x-www-form-urlencoded";
             request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:19.0) Gecko/20100101 Firefox/19.0";
