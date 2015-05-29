@@ -18,16 +18,22 @@
 <div class="col-sm-12">
     <section class="panel">
         <header class="panel-heading">
-            Extrator News: 
+            Extrator News:
         </header>
         <div class="panel-body">
             <div class="adv-table editable-table ">
-                <a href="@ViewBag.Url">@ViewBag.Url</a>
+                <a href="@ViewBag.Url" target="_blank">@ViewBag.Url</a>
                 <div class="clearfix" style="margin-bottom: 15px;">
                     <div class="btn-group">
-                        <a href="" class="btn btn-primary">
-                            Publicar Noticia <i class="fa fa-plus"></i>
-                        </a>
+                        <form class="cmxform form-horizontal " id="grupoForm" method="POST" action="@Url.Action("SalvarNoticia")" novalidate="novalidate" enctype="multipart/form-data">
+
+                            <input type="hidden" name="Titulo" id="Titulo" value="@Model.Titulo"/>
+                            <input type="hidden" name="Autor" id="Autor" value="@Model.Autor"/>
+                            <input type="hidden" name="UrlFoto" id="UrlFoto" value="@Model.UrlFoto"/>
+                            <input type="hidden" name="Conteudo" id="Conteudo" value="@Model.Conteudo" />
+
+                            <button class="btn btn-primary" type="submit">Publicar Noticia <i class="fa fa-plus"></i></button>
+                        </form>
                     </div>
                 </div>
 

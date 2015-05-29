@@ -73,6 +73,35 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                 };
                 Fabrica.UsuarioAplicacaoMongo().Salvar(usuario);
 
+                var noticiasZona = new List<NoticiaZona>()
+                {
+                    new NoticiaZona(){Nome = "Destaque"},
+                    new NoticiaZona(){Nome = "Urgente"},
+                    new NoticiaZona(){Nome = "Ao lado do destaque"},
+                    new NoticiaZona(){Nome = "Embaixo do destaque"},
+                    new NoticiaZona(){Nome = "Centro"},
+                    new NoticiaZona(){Nome = "Categoria 01"},
+                    new NoticiaZona(){Nome = "Categoria 02"},
+                    new NoticiaZona(){Nome = "Categoria 03"},
+                    new NoticiaZona(){Nome = "Rodapé"},
+                };
+
+                foreach (var item in noticiasZona)
+                    Fabrica.NoticiaZonaAplicacaoMongo().Salvar(item);
+
+                var categorias = new List<Categoria>()
+                {
+                    new Categoria() {Nome = "Geral", CorFundo = "#FFFFFF", CorTexto = "#000000"},
+                    new Categoria() {Nome = "Esporte", CorFundo = "#FFFFFF", CorTexto = "#000000"},
+                    new Categoria() {Nome = "Política", CorFundo = "#FFFFFF", CorTexto = "#000000"},
+                    new Categoria() {Nome = "Polícial", CorFundo = "#FFFFFF", CorTexto = "#000000"},
+                    new Categoria() {Nome = "Tecnologia", CorFundo = "#FFFFFF", CorTexto = "#000000"}
+                };
+
+                foreach (var item in categorias)
+                    Fabrica.CategoriaAplicacaoMongo().Salvar(item);
+                
+
                 return "Usuario: eva@eva.com.br --- Senha: eva";
             }
             return "O sistema já foi instalado";

@@ -61,6 +61,8 @@ namespace Eva.Dominio
         /// <returns>A URL safe slug representation of the input <paramref name="value"/>.</returns>
         public static string ToSlug(this string value, int? maxLength = null)
         {
+            if (string.IsNullOrEmpty(value))
+                return string.Empty;
             // if it's already a valid slug, return it
             if (RegexUtils.SlugRegex.IsMatch(value))
                 return value;
@@ -150,6 +152,75 @@ namespace Eva.Dominio
         {
             var bytes = Encoding.GetEncoding("Cyrillic").GetBytes(value);
             return Encoding.ASCII.GetString(bytes);
+        }
+
+        //remove tag http://stackoverflow.com/questions/19523913/remove-html-tags-from-string-including-nbsp-in-c-sharp
+
+        private static readonly Regex _tags_ = new Regex(@"<[^>]+?>", RegexOptions.Multiline | RegexOptions.Compiled);
+
+        //add characters that are should not be removed to this regex
+        private static readonly Regex _notOkCharacter_ = new Regex(@"[^\w;&#@.:/\\?=|%!() -]", RegexOptions.Compiled);
+
+        public static string UnHtml(this string html)
+        {
+            html = HttpUtility.UrlDecode(html);
+            html = HttpUtility.HtmlDecode(html);
+
+            html = RemoveTag(html, "<!--", "-->");
+            html = RemoveTag(html, "<script", "</script>");
+            html = RemoveTag(html, "<style", "</style>");
+
+            //replace matches of these regexes with space
+            html = _tags_.Replace(html, " ");
+            html = _notOkCharacter_.Replace(html, " ");
+            html = SingleSpacedTrim(html);
+
+            return html;
+        }
+
+        private static string RemoveTag(string html, string startTag, string endTag)
+        {
+            bool bAgain;
+            do
+            {
+                bAgain = false;
+                var startTagPos = html.IndexOf(startTag, 0, StringComparison.CurrentCultureIgnoreCase);
+                if (startTagPos < 0)
+                    continue;
+                var endTagPos = html.IndexOf(endTag, startTagPos + 1, StringComparison.CurrentCultureIgnoreCase);
+                if (endTagPos <= startTagPos)
+                    continue;
+                html = html.Remove(startTagPos, endTagPos - startTagPos + endTag.Length);
+                bAgain = true;
+            } while (bAgain);
+            return html;
+        }
+
+        private static string SingleSpacedTrim(string inString)
+        {
+            var sb = new StringBuilder();
+            var inBlanks = false;
+            foreach (var c in inString)
+            {
+                switch (c)
+                {
+                    case '\r':
+                    case '\n':
+                    case '\t':
+                    case ' ':
+                        if (!inBlanks)
+                        {
+                            inBlanks = true;
+                            sb.Append(' ');
+                        }
+                        continue;
+                    default:
+                        inBlanks = false;
+                        sb.Append(c);
+                        break;
+                }
+            }
+            return sb.ToString().Trim();
         }
     }
 }

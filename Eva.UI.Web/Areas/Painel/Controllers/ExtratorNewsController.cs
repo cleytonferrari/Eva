@@ -89,7 +89,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             }
 
             ViewBag.ExtratorNews = extrator;
-            
+
             return View(listaNoticiaCrawler);
         }
 
@@ -124,7 +124,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                 return View(new NoticiasConteudoCrawler());
             }
 
-            
+
 
 
             if (string.IsNullOrEmpty(url))
@@ -140,9 +140,28 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             noticia.Conteudo = query.Select(dados.SeletorConteudo).Text();
             noticia.UrlFoto = query.Select(dados.SeletorFoto).Attr("src");
 
-            
+
 
             return View(noticia);
+        }
+
+        public ActionResult SalvarNoticia(NoticiasConteudoCrawler item)
+        {
+            item.Conteudo = item.Conteudo.UnHtml();
+            var noticia = new Noticia()
+            {
+                Titulo = item.Titulo.UnHtml(),
+                Conteudo = item.Conteudo,
+                Data = DateTime.Now,
+                Fonte = new Fonte() { Nome = item.Autor.UnHtml() },
+                Resumo = item.Conteudo.Limit(120," ..."),
+                Publicado = false,
+                ExibirComentarios = false,
+            };
+
+            Fabrica.NoticiaAplicacaoMongo().Salvar(noticia);
+
+            return RedirectToAction("Editar", "Noticia", new { id = noticia.Id });
         }
 
         private static string GetHtml(string url)
