@@ -68,7 +68,8 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                 FonteNome = noticia.Fonte.Nome,
                 Local = noticia.Local,
                 LocalNome = noticia.Local.Nome,
-                Resumo = noticia.Resumo
+                Resumo = noticia.Resumo,
+                Arquivos = noticia.Arquivos
             };
 
             return View(noticiaViewModel);
@@ -171,6 +172,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
         public string LocalNome { get; set; }
         public bool Publicado { get; set; }
         public bool ExibirComentarios { get; set; }
+        public List<Arquivo> Arquivos { get; set; }
 
     }
 }

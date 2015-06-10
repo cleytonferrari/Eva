@@ -106,7 +106,7 @@
                 <div class="top-big-two">
 
 
-                    @foreach (var noticia in Model.Noticias.AoLadoDoDestaque.Take(2))
+                    @foreach (var noticia in Model.Noticias.EmbaixoDoDestaque.Take(2))
                     {
                         var classe = (indice % 2 == 0) ? "big-two-1" : "big-two-2";
                         indice++;
@@ -127,7 +127,7 @@
 
                 </div>
             </div>
-            @foreach (var noticia in Model.Noticias.AoLadoDoDestaque.Skip(2).Take(4))
+            @foreach (var noticia in Model.Noticias.EmbaixoDoDestaque.Skip(2).Take(4))
             {
 
                 <div class="tn-small-1 blocky">
@@ -147,46 +147,34 @@
         <div class="news-sec-1 float-width">
             <div class="float-width sec-cont2">
                 <h3 class="sec-title">MUSIC NEWS</h3>
-                <div class="sec-1-big float-width">
-                    <img alt="" class="blocky" src="~/Content/Site/img/samples/z1.jpg" />
-                    <div class="sec-1-big-text lefty">
-                        <h3>Famous artist share his tracks for free</h3>
-                        <h6><span><i class="fa fa-user"></i>John Doe</span><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
-                        <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit amet, lobortis hendrerit nunc. Curabitur pharetra in velit at ornare. Pellentesque vitae nibh volutpat velit feugiat euismod ut a elit. Donec in felis rutrum risus bibendum cursus. Aliquam interdum aliquam elementum ...</p>
+                @foreach (var noticia in Model.Noticias.Centro.Take(1))
+                {
+                    <div class="sec-1-big float-width">
+                        <a href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = noticia.Slug, slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug})" title="@noticia.Titulo">
+                            @{var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();}
+                            <img class="blocky" src="@Foto.Placehold(arquivo.Nome, "367x269", "Noticia", "367x269_")" alt="@arquivo.Legenda" />
+                        </a>
+                        <div class="sec-1-big-text lefty">
+                            <h3>@noticia.Titulo</h3>
+                            <h6><span><i class="fa fa-user"></i>@noticia.Fonte</span><span><i class="fa fa-clock-o"></i>@noticia.Data.ToShortDateString()</span></h6>
+                            <p>@noticia.Resumo</p>
+                        </div>
                     </div>
-                </div>
-                <div class="sec-1-sm">
-                    <img alt="" class="blocky" src="~/Content/Site/img/samples/e5.jpg" />
-                    <div class="sec-1-sm-text blocky">
-                        <h3>TOP 10 Pop track list past year</h3>
-                        <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
-                        <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit...</p>
+                }
+                @foreach (var noticia in Model.Noticias.Centro.Skip(1).Take(4))
+                {
+                    <div class="sec-1-sm">
+                        <a href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = noticia.Slug, slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug})" title="@noticia.Titulo">
+                            @{var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();}
+                            <img class="blocky" src="@Foto.Placehold(arquivo.Nome, "143x113", "Noticia", "143x113_")" alt="@arquivo.Legenda" />
+                        </a>
+                        <div class="sec-1-sm-text blocky">
+                            <h3>@noticia.Titulo.Limit(26) ...</h3>
+                            <h6><span><i class="fa fa-clock-o"></i>@noticia.Data.ToShortDateString()</span></h6>
+                            <p>@noticia.Resumo.Limit(67) ...</p>
+                        </div>
                     </div>
-                </div>
-                <div class="sec-1-sm">
-                    <img alt="" class="blocky" src="~/Content/Site/img/samples/e6.jpg" />
-                    <div class="sec-1-sm-text blocky">
-                        <h3>Another Hip-Hop rising star</h3>
-                        <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
-                        <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit...</p>
-                    </div>
-                </div>
-                <div class="sec-1-sm">
-                    <img alt="" class="blocky" src="~/Content/Site/img/samples/e7.jpg" />
-                    <div class="sec-1-sm-text blocky">
-                        <h3>New MP3 tracks are coming </h3>
-                        <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
-                        <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit...</p>
-                    </div>
-                </div>
-                <div class="sec-1-sm">
-                    <img alt="" class="blocky" src="~/Content/Site/img/samples/e8.jpg" />
-                    <div class="sec-1-sm-text blocky">
-                        <h3>DJ Open Music Festival 2014</h3>
-                        <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
-                        <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit...</p>
-                    </div>
-                </div>
+                }
             </div>
         </div>
         <!-- News slider -->
@@ -194,70 +182,24 @@
             <h3 class="sldr-title">slider</h3>
             <div class="flexslider news-sldr">
                 <ul class="slides">
-                    <li>
-                        <div class="trans2 slide-sngl">
-                            <a class="text-center" href="#"><img alt="" src="~/Content/Site/img/samples/s1.jpg" /></a>
-                            <h4><a href="#">Listen during running</a></h4>
-                            <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit ...</p>
-                            <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></h6>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="trans2 slide-sngl">
-                            <a class="text-center" href="#"><img alt="" src="~/Content/Site/img/samples/s2.jpg" /></a>
-                            <h4><a href="#">Cinemas are closed</a></h4>
-                            <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit ...</p>
-                            <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></h6>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="trans2 slide-sngl">
-                            <a class="text-center" href="#"><img alt="" src="~/Content/Site/img/samples/s3.jpg" /></a>
-                            <h4><a href="#">Best time to marry</a></h4>
-                            <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit ...</p>
-                            <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></h6>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="trans2 slide-sngl">
-                            <a class="text-center" href="#"><img alt="" src="~/Content/Site/img/samples/s4.jpg" /></a>
-                            <h4><a href="#">Winter is coming</a></h4>
-                            <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit ...</p>
-                            <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></h6>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="trans2 slide-sngl">
-                            <a class="text-center" href="#"><img alt="" src="~/Content/Site/img/samples/s1.jpg" /></a>
-                            <h4><a href="#">Listen during running</a></h4>
-                            <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit ...</p>
-                            <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></h6>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="trans2 slide-sngl">
-                            <a class="text-center" href="#"><img alt="" src="~/Content/Site/img/samples/s2.jpg" /></a>
-                            <h4><a href="#">Cinemas are closed</a></h4>
-                            <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit ...</p>
-                            <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></h6>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="trans2 slide-sngl">
-                            <a class="text-center" href="#"><img alt="" src="~/Content/Site/img/samples/s3.jpg" /></a>
-                            <h4><a href="#">Best time to marry</a></h4>
-                            <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit ...</p>
-                            <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></h6>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="trans2 slide-sngl">
-                            <a class="text-center" href="#"><img alt="" src="~/Content/Site/img/samples/s4.jpg" /></a>
-                            <h4><a href="#">Winter is coming</a></h4>
-                            <p>Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit ...</p>
-                            <h6><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></h6>
-                        </div>
-                    </li>
+                    @foreach (var noticia in Model.Noticias.Slide)
+                    {
+                        <li>
+                            <div class="trans2 slide-sngl">
+                                <a class="text-center" href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = noticia.Slug, slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug})" title="@noticia.Titulo">
+                                    @{var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();}
+                                    <img src="@Foto.Placehold(arquivo.Nome, "220x145", "Noticia", "220x145_")" alt="@arquivo.Legenda" />
+                                </a>
+                                <h4>
+                                    <a href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = noticia.Slug, slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug})" title="@noticia.Titulo">
+                                        @noticia.Titulo.Limit(35) ...
+                                    </a>
+                                </h4>
+                                <p>@noticia.Resumo.Limit(95) ...</p>
+                                <h6><span><i class="fa fa-clock-o"></i>@noticia.Data.ToShortDateString()</span></h6>
+                            </div>
+                        </li>
+                    }
                 </ul>
             </div>
         </div>
@@ -270,7 +212,7 @@
                         <a href="#"><img alt="" class="polls-bg-img" src="~/Content/Site/img/samples/z4.jpg" /></a>
                         <div class="pol-lft-txt">
                             <h4 class="float-width">Pizza will be delivered by Drons</h4>
-                            <a href="#" class="lefty"><img alt="" src="~/Content/Site/img/4-stars.png" /></a>
+                            
                             <h6 class="righty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
                             <p class="float-width">Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit amet, lobortis hendrerit nunc. Curabitur pharetra in velit at ornare. Pellentesque vitae nibh volutpat velit feugiat euismod ut a elit. Donec in felis rutrum risus bibendum cursus. Aliquam interdum aliquam elementum ...</p>
                         </div>
@@ -280,25 +222,25 @@
                             <a href="#" class="lefty pol-rt-img"><img alt="" src="~/Content/Site/img/samples/m1.jpg" /></a>
                             <h5>Pizza will be delivered by Drons</h5>
                             <h6 class="lefty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
-                            <a href="#" class="lefty stars"><img alt="" src="~/Content/Site/img/4-stars.png" /></a>
+                            
                         </div>
                         <div class="pol-rt-sm float-width">
                             <a href="#" class="lefty pol-rt-img"><img alt="" src="~/Content/Site/img/samples/m2.jpg" /></a>
                             <h5>YouTube as a real Television?</h5>
                             <h6 class="lefty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
-                            <a href="#" class="lefty stars"><img alt="" src="~/Content/Site/img/4-stars.png" /></a>
+                            
                         </div>
                         <div class="pol-rt-sm float-width">
                             <a href="#" class="lefty pol-rt-img"><img alt="" src="~/Content/Site/img/samples/m3.jpg" /></a>
                             <h5>Flying Mouse to your PC</h5>
                             <h6 class="lefty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
-                            <a href="#" class="lefty stars"><img alt="" src="~/Content/Site/img/4-stars.png" /></a>
+                            
                         </div>
                         <div class="pol-rt-sm float-width">
                             <a href="#" class="lefty pol-rt-img"><img alt="" src="~/Content/Site/img/samples/m4.jpg" /></a>
                             <h5>Best gadget ever on your hand</h5>
                             <h6 class="lefty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
-                            <a href="#" class="lefty stars"><img alt="" src="~/Content/Site/img/4-stars.png" /></a>
+                            
                         </div>
                     </div>
                 </div>
@@ -410,15 +352,7 @@
                 </ul>
             </div>
         </div>
-        <!-- Social Media Counter -->
-        <div class="smedia lefty">
-            <div class="w50 blocky"><a href="#"><img alt="" class="lefty" src="~/Content/Site/img/fb.png" /><span>6423</span></a></div>
-            <div class="w50 blocky"><a href="#"><img alt="" class="lefty" src="~/Content/Site/img/tw.png" /><span>12344</span></a></div>
-            <div class="w50 blocky"><a href="#"><img alt="" class="lefty" src="~/Content/Site/img/gplus.png" /><span>1846</span></a></div>
-            <div class="w50 blocky"><a href="#"><img alt="" class="lefty" src="~/Content/Site/img/drp.png" /><span>416</span></a></div>
-            <div class="w50 blocky"><a href="#"><img alt="" class="lefty" src="~/Content/Site/img/flkr.png" /><span>91</span></a></div>
-            <div class="w50 blocky"><a href="#"><img alt="" class="lefty" src="~/Content/Site/img/ig.png" /><span>3487</span></a></div>
-        </div>
+       
         <!-- Trending news right -->
         <div class="trending lefty">
             <h3 class="sec-title">TRENDING</h3>
@@ -455,610 +389,16 @@
                 </div>
             </div>
         </div>
-        <!-- Flicker Widget -->
-        <div class="flkr-cont lefty">
-            <h3 class="sec-title">FLICKR WIDGET</h3>
-            <div id="basicuse"></div>
-        </div>
-        <!-- News letter subscription -->
-        <div class="subscribe lefty">
-            <h3 class="sec-title">NEWSLETTER</h3>
-            <h6>Subscribe to our newsletter and be first to know about new game, music and movie releases.</h6>
-            <form role="form">
-                <div class="form-group">
-                    <input type="text" class="lefty" placeholder="Enter your email adress and hit enter">
-                    <a href="#" class="lefty trans1" type="submit">save</a>
-                </div>
-            </form>
-        </div>
+       
         <!-- Featured Video -->
         <div class="ftrd-vd float-width">
             <h3 class="sec-title">FEATURED VIDEO</h3>
             <iframe src="http://player.vimeo.com/video/8170203?color=b3a07d" width="100%" height="300" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         </div>
-        <!-- Calender Widget -->
-        <div class="calendar-cont float-width">
-            <div id="cal">
-                <div class="header float-width">
-                    <h2 class="month-year lefty w50" id="label">
-                        <span id="month"> MAR </span> <span id="year"> 2014 </span>
-                    </h2>
-                    <h6 class="float-width">this is today's event details!</h6>
-                </div>
-                <table id="days">
-                    <tr>
-                        <td>sun</td>
-                        <td>mon</td>
-                        <td>tue</td>
-                        <td>wed</td>
-                        <td>thu</td>
-                        <td>fri</td>
-                        <td>sat</td>
-                    </tr>
-                </table>
-                <div id="cal-frame">
-                    <table class="curr">
-                        <tr>
-                            <td class="nil"></td>
-                            <td class="nil"></td>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>7</td>
-                            <td>8</td>
-                            <td>9</td>
-                            <td>10</td>
-                            <td class="today">11</td>
-                            <td>12</td>
-                        </tr>
-                        <tr>
-                            <td>13</td>
-                            <td>14</td>
-                            <td>15</td>
-                            <td>16</td>
-                            <td>17</td>
-                            <td>18</td>
-                            <td>19</td>
-                        </tr>
-                        <tr>
-                            <td>20</td>
-                            <td>21</td>
-                            <td>22</td>
-                            <td>23</td>
-                            <td>24</td>
-                            <td>25</td>
-                            <td>26</td>
-                        </tr>
-                        <tr>
-                            <td>27</td>
-                            <td>28</td>
-                            <td>29</td>
-                            <td>30</td>
-                            <td class="nil"></td>
-                            <td class="nil"></td>
-                            <td class="nil"></td>
-                        </tr>
-                    </table>
-                    <a class="cal-btm-arw trans1 cal-pre">&#59237;</a>
-                    <a class="cal-btm-arw trans1 cal-nxt">&#59238;</a>
-                </div>
-            </div>
-        </div>
+        
         <!-- Ad banner right -->
         <div class="lefty ad-rt">
             <a href="#"><img alt="" src="~/Content/Site/img/samples/u1.jpg" /></a>
         </div>
     </div>
-</div>
-
-<!--AQUI PRA BAIXO-->
-<div class="categorias mgn-left-10px left">
-    <div class="oculto">
-        @Html.Action("CategoriasWidget", "Home", new { Area = "" })
-    </div>
-</div>
-
-
-<div class="bloco-largura right">
-    @foreach (var noticia in Model.Noticias.AoLadoDoDestaque.Take(2))
-    {
-        <section class="noticia left largura-240px mgn-left-20px">
-            <h2 class="chamada mgn-bottom-10px" style="background-color: @noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-            <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = noticia.Categoria.Slug })" title="@noticia.Categoria.Nome">
-                <h3 class="categoria" style="color: @noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-            </a>
-            <p class="hora left fui-time" style="color: @noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
-            <p class="local right fui-location" style="color: @noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-            <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                <p class="desc left desc-14px mgn-top-5px" style="color: @noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-            </a>
-        </section>
-    }
-</div>
-<div class="bloco-largura mgn-top-10px right">
-    @foreach (var noticia in Model.Noticias.AoLadoDoDestaque.Skip(2).Take(2))
-    {
-        <section class="noticia left largura-240px mgn-left-20px">
-            <h2 class="chamada" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-            <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = noticia.Categoria.Slug })" title="@noticia.Categoria.Nome">
-                <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-            </a>
-            <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                <figure>
-                    @{
-        var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
-                    }
-                    <img src="@Foto.Placehold(arquivo.Nome, "380x214", "Noticia" , "380x214_" )" width="240" height="135" />
-                </figure>
-            </a>
-            <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
-            <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-            <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                <p class="desc left desc-14px mgn-top-5px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-            </a>
-        </section>
-    }
-</div>
-</article>
-
-<div class="bloco-largura mgn-top-20px left">
-    @foreach (var noticia in Model.Noticias.EmbaixoDoDestaque.Take(5))
-    {
-        <section class="noticia left largura-220px mgn-esq-dir-10px">
-            <h2 class="chamada" style="background-color: @noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-            <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = noticia.Categoria.Slug })" title="@noticia.Categoria.Nome">
-                <h3 class="categoria" style="color: @noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-            </a>
-            <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                <figure>
-                    @{
-        var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
-                    }
-                    <img src="@Foto.Placehold(arquivo.Nome, "220x124", "Noticia" , "380x214_" )" width="220" height="124" />
-                </figure>
-            </a>
-            <p class="hora left fui-time" style="color: @noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
-            <p class="local right fui-location" style="color: @noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-            <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                <p class="desc left mgn-top-5px" style="color: @noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-            </a>
-        </section>
-    }
-</div>
-
-<div class="bloco-largura-800px mgn-top-20px left">
-    <div class="bloco-largura">
-        @foreach (var noticia in Model.Noticias.Centro.Take(2))
-        {
-            <section class="noticia left largura-380px mgn-esq-dir-10px">
-                <h2 class="chamada" style="background-color: @noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-                <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = noticia.Categoria.Slug })" title="@noticia.Categoria.Nome">
-                    <h3 class="categoria" style="color: @noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-                </a>
-                <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                    <figure>
-                        @{
-            var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
-                        }
-                        <img src="@Foto.Placehold(arquivo.Nome, "380x214", "Noticia" , "380x214_" )" width="380" height="214" />
-                    </figure>
-                </a>
-                <p class="hora left fui-time" style="color: @noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
-                <p class="local right fui-location" style="color: @noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-                <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                    <p class="desc desc-18px left mgn-top-5px" style="color: @noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-                </a>
-            </section>
-        }
-    </div>
-    <div class="bloco-largura mgn-top-20px">
-        @foreach (var noticia in Model.Noticias.Centro.Skip(2).Take(2))
-        {
-            <section class="noticia left largura-380px mgn-esq-dir-10px">
-                <h2 class="chamada mgn-bottom-5px" style="background-color: @noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-                <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = noticia.Categoria.Slug })" title="@noticia.Categoria.Nome">
-                    <h3 class="categoria" style="color: @noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-                </a>
-                <p class="hora left fui-time" style="color: @noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
-                <p class="local right fui-location" style="color: @noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-                <div class="bloco-largura left mgn-top-10px">
-                    <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                        <figure class="left mgn-right-10px">
-                            @{
-            var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
-                            }
-                            <img src="@Foto.Placehold(arquivo.Nome, "150x85", "Noticia" , "150x85_" )" width="150" height="85" />
-                        </figure>
-                    </a>
-                    <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                        <p class="desc desc-14px" style="color: @noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-                    </a>
-                </div>
-            </section>
-        }
-    </div>
-    <div class="bloco-largura mgn-top-20px">
-        @foreach (var noticia in Model.Noticias.Centro.Skip(4).Take(2))
-        {
-            <section class="noticia left largura-380px mgn-esq-dir-10px">
-                <h2 class="chamada mgn-bottom-5px" style="background-color: @noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-                <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = noticia.Categoria.Slug })" title="@noticia.Categoria.Nome">
-                    <h3 class="categoria" style="color: @noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-                </a>
-                <p class="hora left fui-time" style="color: @noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
-                <p class="local right fui-location" style="color: @noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-                <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                    <p class="desc left mgn-top-5px" style="color: @noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-                </a>
-            </section>
-        }
-    </div>
-</div>
-<section class="mais-lidas mgn-top-20px mgn-right-10px right">
-    <div class="topo">
-        <h2 class="titulo">Notícias mais lidas</h2>
-        <ul class='tabs left'>
-            <li><a href='#tab1'>Do dia</a></li>
-            <li><a href='#tab2'>Da semana</a></li>
-            <li><a href='#tab3'>Do mês</a></li>
-        </ul>
-    </div>
-    <div id='tab1'>
-        @foreach (var noticia in Model.Noticias.MaisLidaDoDia.Take(4))
-        {
-            <section class="noticia left largura-380px mgn-top-10px">
-                <h2 class="chamada mgn-bottom-5px" style="background-color: @noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-                <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = noticia.Categoria.Slug })" title="@noticia.Categoria.Nome">
-                    <h3 class="categoria" style="color: @noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-                </a>
-                <p class="hora left fui-time" style="color: @noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
-                <p class="local right fui-location" style="color: @noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-                <div class="bloco-largura left mgn-top-10px">
-                    <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                        <figure class="left mgn-right-10px">
-                            @{
-            var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
-                            }
-                            <img src="@Foto.Placehold(arquivo.Nome, "150x85", "Noticia" , "150x85_" )" width="150" height="85" />
-                        </figure>
-                    </a>
-                    <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                        <p class="desc desc-14px" style="color: @noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-                    </a>
-                </div>
-            </section>
-        }
-    </div>
-    <div id='tab2'>
-        @foreach (var noticia in Model.Noticias.MaisLidaDaSemana.Take(4))
-        {
-            <section class="noticia left largura-380px mgn-top-10px">
-                <h2 class="chamada mgn-bottom-5px" style="background-color: @noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-                <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = noticia.Categoria.Slug })" title="@noticia.Categoria.Nome">
-                    <h3 class="categoria" style="color: @noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-                </a>
-                <p class="hora left fui-time" style="color: @noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
-                <p class="local right fui-location" style="color: @noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-                <div class="bloco-largura left mgn-top-10px">
-                    <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                        <figure class="left mgn-right-10px">
-                            @{
-            var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
-                            }
-                            <img src="@Foto.Placehold(arquivo.Nome, "150x85", "Noticia" , "150x85_" )" width="150" height="85" />
-                        </figure>
-                    </a>
-                    <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                        <p class="desc desc-14px" style="color: @noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-                    </a>
-                </div>
-            </section>
-        }
-    </div>
-    <div id='tab3'>
-        @foreach (var noticia in Model.Noticias.MaisLidaDoMes.Take(4))
-        {
-            <section class="noticia left largura-380px mgn-top-10px">
-                <h2 class="chamada mgn-bottom-5px" style="background-color: @noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-                <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = noticia.Categoria.Slug })" title="@noticia.Categoria.Nome">
-                    <h3 class="categoria" style="color: @noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-                </a>
-                <p class="hora left fui-time" style="color: @noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
-                <p class="local right fui-location" style="color: @noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-                <div class="bloco-largura left mgn-top-10px">
-                    <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                        <figure class="left mgn-right-10px">
-                            @{
-            var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
-                            }
-                            <img src="@Foto.Placehold(arquivo.Nome, "150x85", "Noticia" , "150x85_" )" width="150" height="85" />
-                        </figure>
-                    </a>
-                    <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                        <p class="desc desc-14px" style="color: @noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-                    </a>
-                </div>
-            </section>
-        }
-    </div>
-</section>
-
-
-<section class="eventos mgn-top-20px">
-    <a href="eventos.html" title="EVENTOS">
-        <h2 class="titulo mgn-left-10px fui-camera">EVENTOS</h2>
-    </a>
-    <ul class="lista-eventos mgn-left-10px">
-        @foreach (var evento in Model.Eventos.UltimosEventos)
-        {
-            <li>
-                <div class="topo-eventos">
-                    <p class="data left">@evento.Data.ToShortDateString()</p>
-                    <p class="quant-fotos right fui-camera">@evento.Arquivos.Count() fotos</p>
-                </div>
-                <a href="@Url.Action("Ler", "Evento", new { Area = "", slug = evento.Slug, ano = evento.Data.Year, mes = evento.Data.Month, dia = evento.Data.Day, page=1 })" title="@evento.Titulo">
-                    <figure>
-                        @{
-            var arquivo = evento.Arquivos.FirstOrDefault() ?? new Arquivo();
-                        }
-                        <img src="@Foto.Placehold(arquivo.Nome, "180x102", "Evento", "180x102_")" width="180" height="102" />
-                    </figure>
-                    <p class="hora left fui-time">@evento.Data.ToShortTimeString()</p>
-                    <p class="local right fui-location">@evento.Local</p>
-                    <p class="desc left">@evento.Titulo</p>
-                </a>
-            </li>
-        }
-    </ul>
-</section>
-
-<section class="bloco-largura largura-380px left mgn-left-10px mgn-top-20px">
-    @foreach (var noticia in Model.Noticias.Categoria01.Take(1))
-    {
-        <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = noticia.Categoria.Slug })" title="@noticia.Categoria.Nome">
-            <h2 class="fui-menu titulo-secao" style="color: @noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h2>
-        </a>
-
-        <section class="noticia left largura-380px">
-            <h2 class="chamada" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-            <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = noticia.Categoria.Slug })" title="@noticia.Categoria.Nome">
-                <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-            </a>
-            <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                <figure>
-                    @{
-        var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
-                    }
-                    <img src="@Foto.Placehold(arquivo.Nome, "380x214", "Noticia" , "380x214_" )" width="380" height="214" />
-                </figure>
-            </a>
-            <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
-            <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-            <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                <p class="desc desc-18px left mgn-top-5px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-            </a>
-        </section>
-    }
-    @foreach (var noticia in Model.Noticias.Categoria01.Skip(1).Take(1))
-    {
-        <section class="noticia left largura-380px mgn-top-20px">
-            <h2 class="chamada mgn-bottom-5px" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-            <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = noticia.Categoria.Slug })" title="@noticia.Categoria.Nome">
-                <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-            </a>
-            <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
-            <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-            <div class="bloco-largura left mgn-top-10px">
-                <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                    <figure class="left mgn-right-10px">
-                        @{
-        var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
-                        }
-                        <img src="@Foto.Placehold(arquivo.Nome, "150x85", "Noticia" , "150x85_" )" width="150" height="85" />
-                    </figure>
-                </a>
-                <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                    <p class="desc desc-14px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-                </a>
-            </div>
-        </section>
-    }
-    @foreach (var noticia in Model.Noticias.Categoria01.Skip(2).Take(1))
-    {
-        <section class="noticia left largura-380px mgn-top-20px">
-            <h2 class="chamada mgn-bottom-5px" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-            <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = noticia.Categoria.Slug })" title="@noticia.Categoria.Nome">
-                <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-            </a>
-            <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
-            <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-            <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                <p class="desc left mgn-top-5px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-            </a>
-        </section>
-    }
-</section>
-<section class="bloco-largura largura-380px left mgn-left-20px mgn-top-20px">
-    @foreach (var noticia in Model.Noticias.Categoria02.Take(1))
-    {
-        <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = noticia.Categoria.Slug })" title="@noticia.Categoria.Nome">
-            <h2 class="fui-menu titulo-secao" style="color: @noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h2>
-        </a>
-
-        <section class="noticia left largura-380px">
-            <h2 class="chamada" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-            <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = noticia.Categoria.Slug })" title="@noticia.Categoria.Nome">
-                <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-            </a>
-            <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                <figure>
-                    @{
-        var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
-                    }
-                    <img src="@Foto.Placehold(arquivo.Nome, "380x214", "Noticia" , "380x214_" )" width="380" height="214" />
-                </figure>
-            </a>
-            <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
-            <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-            <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                <p class="desc desc-18px left mgn-top-5px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-            </a>
-        </section>
-    }
-    @foreach (var noticia in Model.Noticias.Categoria02.Skip(1).Take(1))
-    {
-        <section class="noticia left largura-380px mgn-top-20px">
-            <h2 class="chamada mgn-bottom-5px" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-            <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = noticia.Categoria.Slug })" title="@noticia.Categoria.Nome">
-                <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-            </a>
-            <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
-            <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-            <div class="bloco-largura left mgn-top-10px">
-                <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                    <figure class="left mgn-right-10px">
-                        @{
-        var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
-                        }
-                        <img src="@Foto.Placehold(arquivo.Nome, "150x85", "Noticia" , "150x85_" )" width="150" height="85" />
-                    </figure>
-                </a>
-                <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                    <p class="desc desc-14px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-                </a>
-            </div>
-        </section>
-    }
-    @foreach (var noticia in Model.Noticias.Categoria02.Skip(2).Take(1))
-    {
-        <section class="noticia left largura-380px mgn-top-20px">
-            <h2 class="chamada mgn-bottom-5px" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-            <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = noticia.Categoria.Slug })" title="@noticia.Categoria.Nome">
-                <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-            </a>
-            <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
-            <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-            <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                <p class="desc left mgn-top-5px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-            </a>
-        </section>
-    }
-</section>
-<section class="bloco-largura largura-380px left mgn-left-20px mgn-top-20px">
-    @foreach (var noticia in Model.Noticias.Categoria03.Take(1))
-    {
-        <a href="noticias.html" title="Esportes">
-            <h2 class="fui-menu titulo-secao" style="color: @noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h2>
-        </a>
-
-        <section class="noticia left largura-380px">
-            <h2 class="chamada" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-            <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = noticia.Categoria.Slug })" title="@noticia.Categoria.Nome">
-                <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-            </a>
-            <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                <figure>
-                    @{
-        var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
-                    }
-                    <img src="@Foto.Placehold(arquivo.Nome, "380x214", "Noticia" , "380x214_" )" width="380" height="214" />
-                </figure>
-            </a>
-            <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
-            <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-            <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                <p class="desc desc-18px left mgn-top-5px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-            </a>
-        </section>
-    }
-    @foreach (var noticia in Model.Noticias.Categoria03.Skip(1).Take(1))
-    {
-        <section class="noticia left largura-380px mgn-top-20px">
-            <h2 class="chamada mgn-bottom-5px" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-            <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = noticia.Categoria.Slug })" title="@noticia.Categoria.Nome">
-                <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-            </a>
-            <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
-            <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-            <div class="bloco-largura left mgn-top-10px">
-                <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                    <figure class="left mgn-right-10px">
-                        @{
-        var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
-                        }
-                        <img src="@Foto.Placehold(arquivo.Nome, "150x85", "Noticia" , "150x85_" )" width="150" height="85" />
-                    </figure>
-                </a>
-                <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                    <p class="desc desc-14px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-                </a>
-            </div>
-        </section>
-    }
-    @foreach (var noticia in Model.Noticias.Categoria03.Skip(2).Take(1))
-    {
-        <section class="noticia left largura-380px mgn-top-20px">
-            <h2 class="chamada mgn-bottom-5px" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-            <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = noticia.Categoria.Slug })" title="@noticia.Categoria.Nome">
-                <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-            </a>
-            <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
-            <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-            <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                <p class="desc left mgn-top-5px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-            </a>
-        </section>
-    }
-</section>
-
-<div class="bloco-largura left mgn-top-20px">
-    <a href="noticias.html" title="Brasil e mundo">
-        <h2 class="titulo-secao fui-menu mgn-left-10px" style="color:#00668C;">Geral</h2>
-    </a>
-
-    @foreach (var noticia in Model.Noticias.Rodape.Take(3))
-    {
-        <section class="noticia left largura-380px mgn-esq-dir-10px">
-            <h2 class="chamada mgn-bottom-5px" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-            <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = noticia.Categoria.Slug })" title="@noticia.Categoria.Nome">
-                <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-            </a>
-            <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">@noticia.Data.ToShortTimeString()</p>
-            <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-            <div class="bloco-largura left mgn-top-10px">
-                <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                    <figure class="left mgn-right-10px">
-                        @{
-        var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
-                        }
-                        <img src="@Foto.Placehold(arquivo.Nome, "150x85", "Noticia" , "150x85_" )" width="150" height="85" />
-                    </figure>
-                </a>
-                <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                    <p class="desc desc-14px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-                </a>
-            </div>
-        </section>
-    }
-</div>
-<div class="bloco-largura left mgn-top-20px">
-    @foreach (var noticia in Model.Noticias.Rodape.Skip(3).Take(3))
-    {
-        <section class="noticia left largura-380px mgn-esq-dir-10px">
-            <h2 class="chamada mgn-bottom-5px" style="background-color:@noticia.Categoria.CorFundo;">@noticia.Antetitulo</h2>
-            <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = noticia.Categoria.Slug })" title="@noticia.Categoria.Nome">
-                <h3 class="categoria" style="color:@noticia.Categoria.CorFundo;">@noticia.Categoria.Nome</h3>
-            </a>
-            <p class="hora left fui-time" style="color:@noticia.Categoria.CorFundo;">00h00</p>
-            <p class="local right fui-location" style="color:@noticia.Categoria.CorFundo;">@noticia.Local.Nome</p>
-            <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">
-                <p class="desc left mgn-top-5px" style="color:@noticia.Categoria.CorFundo;">@noticia.Titulo</p>
-            </a>
-        </section>
-    }
 </div>

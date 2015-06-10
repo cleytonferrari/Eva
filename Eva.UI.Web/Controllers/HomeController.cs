@@ -12,18 +12,18 @@ namespace Eva.UI.Web.Controllers
     {
         public ActionResult Index()
         {
+            //todo: corrigir os takes apos finalizar o layout
             var vm = new HomeViewModel
             {
                 Noticias =
                 {
                     Urgente = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Urgente").FirstOrDefault() ?? new Noticia(),
                     Destaques = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Destaque").Take(5) ?? new List<Noticia>(),
-                    AoLadoDoDestaque = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Ao lado do destaque").Take(6) ?? new List<Noticia>(),
-                    EmbaixoDoDestaque = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Embaixo do destaque").Take(5) ?? new List<Noticia>(),
-                    Centro = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Centro").Take(6) ?? new List<Noticia>(),
-                    Categoria01 = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Categoria 01").Take(3) ?? new List<Noticia>(),
+                    AoLadoDoDestaque = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Ao lado do destaque").Take(10) ?? new List<Noticia>(),
+                    EmbaixoDoDestaque = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Embaixo do destaque").Take(10) ?? new List<Noticia>(),
+                    Centro = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Centro").Take(5) ?? new List<Noticia>(),
+                    Slide = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Slide").Take(6) ?? new List<Noticia>(),
                     Categoria02 = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Categoria 02").Take(3) ?? new List<Noticia>(),
-                    Categoria03 = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Categoria 03").Take(3) ?? new List<Noticia>(),
                     Rodape = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Rodapé").Take(6) ?? new List<Noticia>(),
 
                     //todo: implementar os metodos para as mais lidas na aplicacao
@@ -72,7 +72,7 @@ namespace Eva.UI.Web.Controllers
         public IEnumerable<Noticia> Centro { get; set; }
         public IEnumerable<Noticia> Categoria01 { get; set; }
         public IEnumerable<Noticia> Categoria02 { get; set; }
-        public IEnumerable<Noticia> Categoria03 { get; set; }
+        public IEnumerable<Noticia> Slide { get; set; }
         public IEnumerable<Noticia> Rodape { get; set; }
         public IEnumerable<Noticia> MaisLidaDoDia { get; set; }
         public IEnumerable<Noticia> MaisLidaDaSemana { get; set; }

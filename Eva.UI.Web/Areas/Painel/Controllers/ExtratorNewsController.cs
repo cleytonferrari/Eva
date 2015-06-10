@@ -127,8 +127,6 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             }
 
 
-
-
             if (string.IsNullOrEmpty(url))
                 return RedirectToAction("Index");
 
@@ -154,7 +152,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             {
                 Titulo = item.Titulo.UnHtml(),
                 Conteudo = item.Conteudo,
-                Data = DateTime.Now,
+                Data = DateTime.UtcNow.ToLocalTime(),
                 Fonte = new Fonte() { Nome = item.Autor.UnHtml() },
                 Resumo = item.Conteudo.Limit(120, " ..."),
                 Publicado = false,
@@ -163,18 +161,16 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 
             Fabrica.NoticiaAplicacaoMongo().Salvar(noticia);
 
-            if (!string.IsNullOrEmpty(item.UrlFoto))
-            {
-                GetImage(item.UrlFoto, noticia.Id);
-            }
-
-
+            GetImage(item.UrlFoto, noticia.Id);
 
             return RedirectToAction("Editar", "Noticia", new { id = noticia.Id });
         }
 
         private void GetImage(string url, string id)
         {
+            if (string.IsNullOrEmpty(url))
+                return;
+
             var name = Guid.NewGuid().ToString("N") + ".jpg";
 
             var imageStream = new WebClient().OpenRead(url);
@@ -193,18 +189,30 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 
         private static string GetHtml(string url)
         {
-            //Todo: Adicionar timeout
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
-            request.ContentType = "application/x-www-form-urlencoded";
-            request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:19.0) Gecko/20100101 Firefox/19.0";
-            request.Method = "GET";
-            // make request for web page
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            StreamReader htmlSource = new StreamReader(response.GetResponseStream());
-
             string htmlStringSource = string.Empty;
-            htmlStringSource = htmlSource.ReadToEnd();
-            response.Close();
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:19.0) Gecko/20100101 Firefox/19.0";
+                request.Method = "GET";
+                request.Timeout = 30000;
+                request.ReadWriteTimeout = 30000;
+                request.KeepAlive = false;
+                // make request for web page
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                StreamReader htmlSource = new StreamReader(response.GetResponseStream());
+
+                
+                htmlStringSource = htmlSource.ReadToEnd();
+                response.Close();
+            }
+            catch (Exception)
+            {
+                //Todo: mostrar o erro
+                htmlStringSource = string.Empty;
+            }
+
             return htmlStringSource;
         }
     }

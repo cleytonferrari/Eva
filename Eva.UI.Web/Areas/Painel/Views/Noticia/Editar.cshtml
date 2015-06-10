@@ -96,9 +96,9 @@
                             <input class="form-control " id="Data" type="text" name="Data" value="@Model.Data" required="">
                             <label for="Data" class="error">@Html.ValidationMessageFor(x => x.Data)</label>
                         </div>
-                        
+
                     </div>
-                    
+
                     <div class="form-group ">
                         <label for="LocalNome" class="control-label col-lg-3">Local:</label>
                         <div class="col-lg-6">
@@ -131,6 +131,17 @@
                             </div>
                         </div>
                     </div>
+
+                    @if (!string.IsNullOrEmpty(Model.Id))
+                    {
+                        <div class="form-group">
+                            <label for="" class="control-label col-lg-3">Foto Capa:</label>
+                            <div class="col-lg-6">
+                                @{var arquivo = Model.Arquivos.FirstOrDefault() ?? new Arquivo();}
+                                <img src="@Foto.Placehold(arquivo.Nome, "391x231", "Noticia", "391x231_")" width="391" height="231" />
+                            </div>
+                        </div>
+                    }
 
                     <div class="form-group">
                         <div class="col-lg-offset-3 col-lg-6">

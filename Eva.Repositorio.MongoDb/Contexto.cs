@@ -1,6 +1,5 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Conventions;
-using MongoDB.Bson.Serialization.Options;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -25,9 +24,11 @@ namespace Eva.Repositorio.MongoDb
             var database = server.GetDatabase(url.DatabaseName);
             Collection = database.GetCollection<T>(typeof(T).Name.ToLower());
 
+            //TODO: Metodo obsoleto, corrigir isto para setar a data correta no servidor
+            //DateTimeSerializationOptions.Defaults = new DateTimeSerializationOptions(DateTimeKind.Local, BsonType.Document);
+
             var conventions = new ConvensoesMongo();
             ConventionRegistry.Register("Convensoes", conventions, t => true);
-
         }
 
         public MongoCollection<T> Collection { get; private set; }
@@ -41,7 +42,7 @@ namespace Eva.Repositorio.MongoDb
             {
                 return new List<IConvention>
                              {
-                                 new IgnoreExtraElementsConvention(true)
+                                 new IgnoreExtraElementsConvention(true),
                              };
             }
         }
