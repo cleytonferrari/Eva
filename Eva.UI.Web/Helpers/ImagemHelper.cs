@@ -217,6 +217,7 @@ namespace Eva.UI.Web.Helpers
             new Tamanho() {Nome = "Foto05", Largura = 107, Altura = 85, Cortar = true },
             new Tamanho() {Nome = "Foto06", Largura = 143, Altura = 113, Cortar = true },
             new Tamanho() {Nome = "Foto07", Largura = 220, Altura = 145, Cortar = true },
+            new Tamanho() {Nome = "Foto07", Largura = 1000, Altura = 400, Cortar = true },
         };
 
         public static List<Tamanho> Eventos = new List<Tamanho>()
