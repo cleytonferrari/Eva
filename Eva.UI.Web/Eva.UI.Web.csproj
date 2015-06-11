@@ -613,7 +613,6 @@
     <Content Include="Scripts\wysihtml5-0.3.0.js" />
     <Content Include="Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -653,6 +652,7 @@
     <Content Include="Views\Noticia\Ler.cshtml" />
     <Content Include="Views\Evento\Index.cshtml" />
     <Content Include="Views\Evento\Ler.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
