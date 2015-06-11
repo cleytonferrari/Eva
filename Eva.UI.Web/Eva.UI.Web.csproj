@@ -653,6 +653,7 @@
     <Content Include="Views\Evento\Index.cshtml" />
     <Content Include="Views\Evento\Ler.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Layout - Copy.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
