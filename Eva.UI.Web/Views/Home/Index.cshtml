@@ -6,399 +6,1050 @@
     var indice = 0;
 }
 
-
-<!-- News Ticker -->
-@if (!string.IsNullOrEmpty(Model.Noticias.Urgente.Titulo))
-{
-    <div class="container">
-        <div class="float-width ticker">
-            <h3 class="cat-label4">DESTAQUES</h3>
-            <ul class="newsticker">
-                <li>
-                    <h4>
-                        <a class="fui-time" href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = Model.Noticias.Urgente.Slug, slugCategoria = Model.Noticias.Urgente.Categoria.Slug, slugLocal = Model.Noticias.Urgente.Local.Slug})" title="@Model.Noticias.Urgente.Titulo">
-                            @Model.Noticias.Urgente.Titulo
-                        </a>
-                    </h4>
-                </li>
-            </ul>
-
-        </div>
-    </div>
-}
-<!-- Home Slider and Big news blocks -->
+<!-- top sec start -->
 <div class="container">
-    <div class="main-news-blks">
-        <div class="hm-slider-cont">
-            <!-- News slider -->
-            <div class="flex-container">
-                <div class="flexslider hm-slider">
-                    <ul class="slides">
-                        @foreach (var noticia in Model.Noticias.Destaques.Take(2))
-                        {
-                            <li>
-                                @{var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();}
-                                <img src="@Foto.Placehold(arquivo.Nome, "464x474", "Noticia" , "464x474_" )" alt="@arquivo.Legenda" />
-                                <h3 class="cat-label" style="background-color: @noticia.Categoria.CorFundo; color: @noticia.Categoria.CorTexto">
-                                    <a href="@Url.Action("Index", "Noticia", new {Area = "", categoria = noticia.Categoria.Slug})">@noticia.Categoria.Nome</a>
-                                </h3>
-                                <div class="hm-sldr-caption">
-                                    <h3>
-                                        <a href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = noticia.Slug, slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug})" title="@noticia.Titulo">@noticia.Titulo</a>
-                                    </h3>
-                                    <p>@noticia.Resumo.Limit(120) ...</p>
-                                </div>
-                            </li>
-                        }
-
+    <div class="row">
+        <!-- hot news start -->
+        <div class="col-sm-16 hot-news hidden-xs">
+            <div class="row">
+                <div class="col-sm-15">
+                    <span class="ion-ios7-timer icon-news pull-left"></span>
+                    <ul id="js-news" class="js-hidden">
+                        <li class="news-item"><a href="#">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor</a></li>
+                        <li class="news-item"><a href="#">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</a></li>
+                        <li class="news-item"><a href="#">Donec quam felis, ultricies nec, pellentesque eu</a></li>
+                        <li class="news-item"><a href="#">Nulla consequat massa quis enim. Donec pede justo, fringilla</a></li>
+                        <li class="news-item"><a href="#"> Donec pede justo, fringilla vel, aliquet nec, vulputate eget ultricies nec, pellentesque</a></li>
+                        <li class="news-item"><a href="#">In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo</a></li>
+                        <li class="news-item"><a href="#">Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis </a></li>
                     </ul>
                 </div>
+                <div class="col-sm-1 shuffle text-right"><a href="#"><span class="ion-shuffle"></span></a></div>
             </div>
         </div>
-        <!-- Fixed Blocks -->
-        <div class="mid-blks-cont">
-            <!-- Block1 -->
-            @foreach (var noticia in Model.Noticias.Destaques.Skip(2).Take(2))
-            {
-                <div class="mid-block-1 boxgrid caption">
-                    @{var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();}
-                    <img src="@Foto.Placehold(arquivo.Nome, "391x231", "Noticia" , "391x231_" )" alt="@arquivo.Legenda" />
-                    <h4 class="cat-label" style="background-color: @noticia.Categoria.CorFundo; color: @noticia.Categoria.CorTexto">
-                        <a href="@Url.Action("Index", "Noticia", new {Area = "", categoria = noticia.Categoria.Slug})">@noticia.Categoria.Nome</a>
-                    </h4>
-                    <div class="cover boxcaption">
-                        <h3><a href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = noticia.Slug, slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug})" title="@noticia.Titulo">@noticia.Titulo.Limit(40) ...</a></h3>
-                        <p>@noticia.Resumo.Limit(90) ...</p>
-                        <a href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = noticia.Slug, slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug})" title="@noticia.Titulo">Mais <i class="fa fa-angle-double-right"></i></a>
-                    </div>
-                </div>
-            }
-        </div>
-        <!-- Block3 -->
-        <div class="rt-bk-cont">
-            @foreach (var noticia in Model.Noticias.Destaques.Skip(4).Take(1))
-            {
-                <div class="rt-block boxgrid2 caption">
-                    @{var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();}
-                    <img src="@Foto.Placehold(arquivo.Nome, "289x475", "Noticia" , "289x475_" )" alt="@arquivo.Legenda" />
-                    <h4 class="cat-label" style="background-color: @noticia.Categoria.CorFundo; color: @noticia.Categoria.CorTexto">
-                        <a href="@Url.Action("Index", "Noticia", new {Area = "", categoria = noticia.Categoria.Slug})">@noticia.Categoria.Nome</a>
-                    </h4>
-                    <div class="cover boxcaption2">
-                        <h3><a href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = noticia.Slug, slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug})" title="@noticia.Titulo">@noticia.Titulo.Limit(40) ...</a></h3>
-                        <p>@noticia.Resumo.Limit(90) ...</p>
-                        <a href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = noticia.Slug, slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug})" title="@noticia.Titulo">Mais <i class="fa fa-angle-double-right"></i></a>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-</div>
+        <!-- hot news end -->
+        <!-- banner outer start -->
+        <div class="col-sm-16 banner-outer wow fadeInLeft animated" data-wow-delay="1s" data-wow-offset="50">
+            <div class="row">
+                <div class="col-sm-16 col-md-10 col-lg-8">
 
-<!-- Main Body -->
-<div class="container">
-    <!-- Main Left side -->
-    <div class="main-left-side">
-        <!-- Top News Section -->
-        <div class="top-news float-width">
-            <div class="float-width sec-cont">
-                <h3 class="sec-title">Top news</h3>
-                <div class="top-big-two">
-
-
-                    @foreach (var noticia in Model.Noticias.EmbaixoDoDestaque.Take(2))
-                    {
-                        var classe = (indice % 2 == 0) ? "big-two-1" : "big-two-2";
-                        indice++;
-                        <div class="@classe blocky boxgrid3 caption">
-                            @{var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();}
-                            <img src="@Foto.Placehold(arquivo.Nome, "367x269", "Noticia", "367x269_")" alt="@arquivo.Legenda" />
-                            <div class="cover boxcaption3">
-                                <h3>
-                                    <a href="@Url.Action("Ler", "Noticia", new { Area = "", slugNoticia=noticia.Slug ,slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug })" title="@noticia.Titulo">@noticia.Titulo.Limit(34)...</a>
-                                </h3>
-                                <p class="artcl-time-1">
-                                    <span><i class="fa fa-clock-o"></i>@noticia.Data.ToShortDateString()</span>
-                                </p>
-                                <p>@noticia.Resumo.Limit(90) ...</p>
-                            </div>
+                    <!-- carousel start -->
+                    <div id="sync1" class="owl-carousel">
+                        <div class="box item">
+                            <a href="#">
+                                <div class="carousel-caption">
+                                    Republican budget leader Paul Ryan
+                                    faces key test in fiscal talks
+                                </div>
+                                <img src="~/Content/Site/images/banner-slider/slide-img-2.jpg" width="762" height="360" alt="" />
+                                <div class="overlay"></div>
+                                <div class="overlay-info">
+                                    <div class="cat">
+                                        <p class="cat-data"><span class="ion-flask"></span>business</p>
+                                    </div>
+                                    <div class="info">
+                                        <p><span class="ion-android-data"></span>Dec 16 2014<span class="ion-chatbubbles"></span>351</p>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    }
-
-                </div>
-            </div>
-            @foreach (var noticia in Model.Noticias.EmbaixoDoDestaque.Skip(2).Take(4))
-            {
-
-                <div class="tn-small-1 blocky">
-                    <a href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = noticia.Slug, slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug})" title="@noticia.Titulo">
-                        @{var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();}
-                        <img class="lefty" src="@Foto.Placehold(arquivo.Nome, "107x85", "Noticia", "107x85_")" alt="@arquivo.Legenda" />
-                    </a>
-                    <h4 class="lefty">@noticia.Titulo.Limit(60)</h4>
-                    <a class="lefty cat-a " style="background-color: @noticia.Categoria.CorFundo; color: @noticia.Categoria.CorTexto" href="@Url.Action("Index", "Noticia", new {Area = "", categoria = noticia.Categoria.Slug})">@noticia.Categoria.Nome</a>
-                    <p class="righty"><span><i class="fa fa-clock-o"></i>@noticia.Data.ToShortDateString()</span></p>
-                </div>
-            }
-
-
-        </div>
-        <!-- Sec 1 -->
-        <div class="news-sec-1 float-width">
-            <div class="float-width sec-cont2">
-                <h3 class="sec-title">MUSIC NEWS</h3>
-                @foreach (var noticia in Model.Noticias.Centro.Take(1))
-                {
-                    <div class="sec-1-big float-width">
-                        <a href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = noticia.Slug, slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug})" title="@noticia.Titulo">
-                            @{var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();}
-                            <img class="blocky" src="@Foto.Placehold(arquivo.Nome, "367x269", "Noticia", "367x269_")" alt="@arquivo.Legenda" />
-                        </a>
-                        <div class="sec-1-big-text lefty">
-                            <h3>@noticia.Titulo</h3>
-                            <h6><span><i class="fa fa-user"></i>@noticia.Fonte</span><span><i class="fa fa-clock-o"></i>@noticia.Data.ToShortDateString()</span></h6>
-                            <p>@noticia.Resumo</p>
+                        <div class="box item">
+                            <a href="#">
+                                <div class="carousel-caption">
+                                    Republican budget leader Paul Ryan
+                                    faces key test in fiscal talks
+                                </div>
+                                <img src="~/Content/Site/images/banner-slider/slide-img-3.jpg" width="762" height="360" alt="" />
+                                <div class="overlay"></div>
+                                <div class="overlay-info">
+                                    <div class="cat">
+                                        <p class="cat-data"><span class="ion-model-s"></span>travel</p>
+                                    </div>
+                                    <div class="info">
+                                        <p><span class="ion-android-data"></span>Dec 16 2014<span class="ion-chatbubbles"></span>351</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="box item">
+                            <a href="#">
+                                <div class="carousel-caption">
+                                    Republican budget leader Paul Ryan
+                                    faces key test in fiscal talks
+                                </div>
+                                <img src="~/Content/Site/images/banner-slider/slide-img-4.jpg" width="762" height="360" alt="" />
+                                <div class="overlay"></div>
+                                <div class="overlay-info">
+                                    <div class="cat">
+                                        <p class="cat-data"><span class="ion-model-s"></span>soprt</p>
+                                    </div>
+                                    <div class="info">
+                                        <p><span class="ion-android-data"></span>Dec 16 2014<span class="ion-chatbubbles"></span>351</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="box item">
+                            <a href="#">
+                                <div class="carousel-caption">
+                                    Republican budget leader Paul Ryan
+                                    faces key test in fiscal talks
+                                </div>
+                                <img src="~/Content/Site/images/banner-slider/slide-img-5.jpg" width="762" height="360" alt="" />
+                                <div class="overlay"></div>
+                                <div class="overlay-info">
+                                    <div class="cat">
+                                        <p class="cat-data"><span class="ion-model-s"></span>Lifestyle</p>
+                                    </div>
+                                    <div class="info">
+                                        <p><span class="ion-android-data"></span>Dec 16 2014<span class="ion-chatbubbles"></span>351</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="box item">
+                            <a href="#">
+                                <div class="carousel-caption">
+                                    Republican budget leader Paul Ryan
+                                    faces key test in fiscal talks
+                                </div>
+                                <img src="~/Content/Site/images/banner-slider/slide-img-6.jpg" width="762" height="360" alt="" />
+                                <div class="overlay"></div>
+                                <div class="overlay-info">
+                                    <div class="cat">
+                                        <p class="cat-data"><span class="ion-model-s"></span>sport</p>
+                                    </div>
+                                    <div class="info">
+                                        <p><span class="ion-android-data"></span>Dec 16 2014<span class="ion-chatbubbles"></span>351</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="box item">
+                            <a href="#">
+                                <div class="carousel-caption">
+                                    Republican budget leader Paul Ryan
+                                    faces key test in fiscal talks
+                                </div>
+                                <img src="~/Content/Site/images/banner-slider/slide-img-7.jpg" width="762" height="360" alt="" />
+                                <div class="overlay"></div>
+                                <div class="overlay-info">
+                                    <div class="cat">
+                                        <p class="cat-data"><span class="ion-model-s"></span>Lifestyle</p>
+                                    </div>
+                                    <div class="info">
+                                        <p><span class="ion-android-data"></span>Dec 16 2014<span class="ion-chatbubbles"></span>351</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="box item">
+                            <a href="#">
+                                <div class="carousel-caption">
+                                    Republican budget leader Paul Ryan
+                                    faces key test in fiscal talks
+                                </div>
+                                <img src="~/Content/Site/images/banner-slider/slide-img-8.jpg" width="762" height="360" alt="" />
+                                <div class="overlay"></div>
+                                <div class="overlay-info">
+                                    <div class="cat">
+                                        <p class="cat-data"><span class="ion-model-s"></span>business</p>
+                                    </div>
+                                    <div class="info">
+                                        <p><span class="ion-android-data"></span>Dec 16 2014<span class="ion-chatbubbles"></span>351</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="box item">
+                            <a href="#">
+                                <div class="carousel-caption">
+                                    Republican budget leader Paul Ryan
+                                    faces key test in fiscal talks
+                                </div>
+                                <img src="~/Content/Site/images/banner-slider/slide-img-1.jpg" width="762" height="360" alt="" />
+                                <div class="overlay"></div>
+                                <div class="overlay-info">
+                                    <div class="cat">
+                                        <p class="cat-data"><span class="ion-model-s"></span>lifestyle</p>
+                                    </div>
+                                    <div class="info">
+                                        <p><span class="ion-android-data"></span>Dec 16 2014<span class="ion-chatbubbles"></span>351</p>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                }
-                @foreach (var noticia in Model.Noticias.Centro.Skip(1).Take(4))
-                {
-                    <div class="sec-1-sm">
-                        <a href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = noticia.Slug, slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug})" title="@noticia.Titulo">
-                            @{var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();}
-                            <img class="blocky" src="@Foto.Placehold(arquivo.Nome, "143x113", "Noticia", "143x113_")" alt="@arquivo.Legenda" />
-                        </a>
-                        <div class="sec-1-sm-text blocky">
-                            <h3>@noticia.Titulo.Limit(26) ...</h3>
-                            <h6><span><i class="fa fa-clock-o"></i>@noticia.Data.ToShortDateString()</span></h6>
-                            <p>@noticia.Resumo.Limit(67) ...</p>
+                    <div class="row">
+                        <div id="sync2" class="owl-carousel">
+                            <div class="item"><img class="img-responsive" src="~/Content/Site/images/banner-slider/slide-img-2.jpg" width="762" height="360" alt="" /></div>
+                            <div class="item"><img class="img-responsive" src="~/Content/Site/images/banner-slider/slide-img-3.jpg" width="762" height="360" alt="" /></div>
+                            <div class="item"><img class="img-responsive " src="~/Content/Site/images/banner-slider/slide-img-4.jpg" width="762" height="360" alt="" /></div>
+                            <div class="item"><img class="img-responsive " src="~/Content/Site/images/banner-slider/slide-img-5.jpg" width="762" height="360" alt="" /></div>
+                            <div class="item"><img class="img-responsive " src="~/Content/Site/images/banner-slider/slide-img-6.jpg" width="762" height="360" alt="" /></div>
+                            <div class="item"><img class="img-responsive" src="~/Content/Site/images/banner-slider/slide-img-7.jpg" width="762" height="360" alt="" /></div>
+                            <div class="item"><img class="img-responsive " src="~/Content/Site/images/banner-slider/slide-img-8.jpg" width="762" height="360" alt="" /></div>
+                            <div class="item"><img class=" img-responsive" src="~/Content/Site/images/banner-slider/slide-img-1.jpg" width="762" height="360" alt="" /></div>
                         </div>
                     </div>
-                }
-            </div>
-        </div>
-        <!-- News slider -->
-        <div class="qk-slider float-width">
-            <h3 class="sldr-title">slider</h3>
-            <div class="flexslider news-sldr">
-                <ul class="slides">
-                    @foreach (var noticia in Model.Noticias.Slide)
-                    {
-                        <li>
-                            <div class="trans2 slide-sngl">
-                                <a class="text-center" href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = noticia.Slug, slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug})" title="@noticia.Titulo">
-                                    @{var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();}
-                                    <img src="@Foto.Placehold(arquivo.Nome, "220x145", "Noticia", "220x145_")" alt="@arquivo.Legenda" />
-                                </a>
-                                <h4>
-                                    <a href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = noticia.Slug, slugCategoria = noticia.Categoria.Slug, slugLocal = noticia.Local.Slug})" title="@noticia.Titulo">
-                                        @noticia.Titulo.Limit(35) ...
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-8 hidden-sm hidden-xs">
+                    <div class="row">
+                        <div class="col-lg-6 hidden-md">
+                            <a href="#">
+                                <div class="box">
+                                    <div class=" carousel-caption">
+                                        Extreme biking:
+                                        dangerous, dirty
+                                        and Fun
+                                    </div>
+                                    <img class="match-height" src="~/Content/Site/images/banner-static/bs-1.jpg" width="236" height="480" alt="" />
+                                    <div class="overlay"></div>
+                                    <div class="overlay-info">
+                                        <div class="cat">
+                                            <p class="cat-data"><span class="ion-model-s"></span>Lifestyle</p>
+                                        </div>
+                                        <div class="info">
+                                            <p><span class="ion-android-data"></span>Dec 16 2014<span class="ion-chatbubbles"></span>351</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-16 col-lg-10">
+                            <div class="row">
+                                <div class="col-sm-16 right-img-top ">
+                                    <a href="#">
+                                        <div class="box">
+                                            <div class="carousel-caption">
+                                                Best snack ever: mini mac and
+                                                cheese cupcakes
+                                            </div>
+                                            <img class="img-responsive" src="~/Content/Site/images/banner-static/bs-2.jpg" width="440" height="292" alt="" />
+                                            <div class="overlay"></div>
+                                            <div class="overlay-info">
+                                                <div class="cat">
+                                                    <p class="cat-data"><span class="ion-model-s"></span>Lifestyle</p>
+                                                </div>
+                                                <div class="info">
+                                                    <p><span class="ion-android-data"></span>Dec 16 2014<span class="ion-chatbubbles"></span>351</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </a>
-                                </h4>
-                                <p>@noticia.Resumo.Limit(95) ...</p>
-                                <h6><span><i class="fa fa-clock-o"></i>@noticia.Data.ToShortDateString()</span></h6>
+                                </div>
+                                <div class="col-sm-16 right-img-btm ">
+                                    <a href="#">
+                                        <div class="box">
+                                            <div class="carousel-caption">
+                                                Rolls Royce chicane phantom
+                                                coupé will terrify continental
+                                            </div>
+                                            <img class="img-responsive" src="~/Content/Site/images/banner-static/bs-3.jpg" width="440" height="292" alt="" />
+                                            <div class="overlay"></div>
+                                            <div class="overlay-info">
+                                                <div class="cat">
+                                                    <p class="cat-data"><span class="ion-model-s"></span>Lifestyle</p>
+                                                </div>
+                                                <div class="info">
+                                                    <p><span class="ion-android-data"></span>Dec 16 2014<span class="ion-chatbubbles"></span>351</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
-                        </li>
-                    }
-                </ul>
-            </div>
-        </div>
-        <!-- POLLS AND REVIEWS -->
-        <div class="news-sec-2 float-width">
-            <div class="float-width sec-cont3">
-                <h3 class="sec-title">TECHNOLOGY - POLLS AND REVIEWS</h3>
-                <div class="polls-cont">
-                    <div class="polls-left blocky">
-                        <a href="#"><img alt="" class="polls-bg-img" src="~/Content/Site/img/samples/z4.jpg" /></a>
-                        <div class="pol-lft-txt">
-                            <h4 class="float-width">Pizza will be delivered by Drons</h4>
-                            
-                            <h6 class="righty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
-                            <p class="float-width">Suspendisse dapibus blandit auctor. Aenean nisl felis, fermentum in ante sit amet, lobortis hendrerit nunc. Curabitur pharetra in velit at ornare. Pellentesque vitae nibh volutpat velit feugiat euismod ut a elit. Donec in felis rutrum risus bibendum cursus. Aliquam interdum aliquam elementum ...</p>
-                        </div>
-                    </div>
-                    <div class="polls-right lefty">
-                        <div class="pol-rt-sm float-width">
-                            <a href="#" class="lefty pol-rt-img"><img alt="" src="~/Content/Site/img/samples/m1.jpg" /></a>
-                            <h5>Pizza will be delivered by Drons</h5>
-                            <h6 class="lefty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
-                            
-                        </div>
-                        <div class="pol-rt-sm float-width">
-                            <a href="#" class="lefty pol-rt-img"><img alt="" src="~/Content/Site/img/samples/m2.jpg" /></a>
-                            <h5>YouTube as a real Television?</h5>
-                            <h6 class="lefty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
-                            
-                        </div>
-                        <div class="pol-rt-sm float-width">
-                            <a href="#" class="lefty pol-rt-img"><img alt="" src="~/Content/Site/img/samples/m3.jpg" /></a>
-                            <h5>Flying Mouse to your PC</h5>
-                            <h6 class="lefty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
-                            
-                        </div>
-                        <div class="pol-rt-sm float-width">
-                            <a href="#" class="lefty pol-rt-img"><img alt="" src="~/Content/Site/img/samples/m4.jpg" /></a>
-                            <h5>Best gadget ever on your hand</h5>
-                            <h6 class="lefty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span><span><i class="fa fa-comment-o"></i>21 comments</span></h6>
-                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Images news with slider -->
-        <div class="sm-gal-cont float-width">
-            <h3 class="sec-title">TOURISM - GALLERY</h3>
-            <div class="sm-gal-bg">
-                <a href="#"><img alt="" src="~/Content/Site/img/samples/z5.jpg" /></a>
-            </div>
-            <div class="flexslider img-sm-gal righty">
-                <ul class="slides">
-                    <li>
-                        <img alt="" src="~/Content/Site/img/samples/r1.jpg" />
-                        <img alt="" src="~/Content/Site/img/samples/r5.jpg" />
-                    </li>
-                    <li>
-                        <img alt="" src="~/Content/Site/img/samples/r2.jpg" />
-                        <img alt="" src="~/Content/Site/img/samples/r6.jpg" />
-                    </li>
-                    <li>
-                        <img alt="" src="~/Content/Site/img/samples/r3.jpg" />
-                        <img alt="" src="~/Content/Site/img/samples/r7.jpg" />
-                    </li>
-                    <li>
-                        <img alt="" src="~/Content/Site/img/samples/r4.jpg" />
-                        <img alt="" src="~/Content/Site/img/samples/r8.jpg" />
-                    </li>
-                    <li>
-                        <img alt="" src="~/Content/Site/img/samples/r1.jpg" />
-                        <img alt="" src="~/Content/Site/img/samples/r5.jpg" />
-                    </li>
-                    <li>
-                        <img alt="" src="~/Content/Site/img/samples/r2.jpg" />
-                        <img alt="" src="~/Content/Site/img/samples/r6.jpg" />
-                    </li>
-                    <li>
-                        <img alt="" src="~/Content/Site/img/samples/r3.jpg" />
-                        <img alt="" src="~/Content/Site/img/samples/r7.jpg" />
-                    </li>
-                    <li>
-                        <img alt="" src="~/Content/Site/img/samples/r4.jpg" />
-                        <img alt="" src="~/Content/Site/img/samples/r8.jpg">
-                    </li>
-                    <li>
-                        <img alt="" src="~/Content/Site/img/samples/r1.jpg" />
-                        <img alt="" src="~/Content/Site/img/samples/r5.jpg" />
-                    </li>
-                    <li>
-                        <img alt="" src="~/Content/Site/img/samples/r2.jpg" />
-                        <img alt="" src="~/Content/Site/img/samples/r6.jpg" />
-                    </li>
-                    <li>
-                        <img alt="" src="~/Content/Site/img/samples/r3.jpg" />
-                        <img alt="" src="~/Content/Site/img/samples/r7.jpg">
-                    </li>
-                    <li>
-                        <img alt="" src="~/Content/Site/img/samples/r4.jpg" />
-                        <img alt="" src="~/Content/Site/img/samples/r8.jpg" />
-                    </li>
-                    <li>
-                        <img alt="" src="~/Content/Site/img/samples/r1.jpg" />
-                        <img alt="" src="~/Content/Site/img/samples/r5.jpg" />
-                    </li>
-                    <li>
-                        <img alt="" src="~/Content/Site/img/samples/r2.jpg" />
-                        <img alt="" src="~/Content/Site/img/samples/r6.jpg" />
-                    </li>
-                    <li>
-                        <img alt="" src="~/Content/Site/img/samples/r3.jpg" />
-                        <img alt="" src="~/Content/Site/img/samples/r7.jpg" />
-                    </li>
-                    <li>
-                        <img alt="" src="~/Content/Site/img/samples/r4.jpg" />
-                        <img alt="" src="~/Content/Site/img/samples/r8.jpg" />
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <!-- Videos Section -->
-        <div class="vid-gal float-width">
-            <h3 class="sec-title">TECHNOLOGY - VIDEOS</h3>
-            <div class="vid-gal-bg float-width">
-                <iframe src="http://player.vimeo.com/video/83714647" width="100%" height="387" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-            </div>
-            <div class="vid-thmb">
-                <ul class="float-width">
-                    <li><img alt="" src="~/Content/Site/img/samples/b1.jpg" /></li>
-                    <li><img alt="" src="~/Content/Site/img/samples/b2.jpg" /></li>
-                    <li><img alt="" src="~/Content/Site/img/samples/b3.jpg" /></li>
-                    <li><img alt="" src="~/Content/Site/img/samples/b4.jpg" /></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- Main Right side -->
-    <div class="main-right-side">
-        <!-- One image slider -->
-        <div class="sm-sldr-box float-width">
-            <div class="flexslider sm-sldr">
-                <ul class="slides">
-                    <li>
-                        <img alt="" src="~/Content/Site/img/samples/z2.jpg" />
-                    </li>
-                    <li>
-                        <img alt="" src="~/Content/Site/img/samples/z2.jpg" />
-                    </li>
-                </ul>
-            </div>
-        </div>
-       
-        <!-- Trending news right -->
-        <div class="trending lefty">
-            <h3 class="sec-title">TRENDING</h3>
-            <div class="trend-1">
-                <a href="#"><img alt="" src="~/Content/Site/img/samples/z3.jpg" /></a>
-                <a class="lefty cat-a cat-label2" href="#">GAMES</a>
-                <div class="trend-2">
-                    <h3><a href="#">Watch Dogs - First gameplay this year</a></h3>
-                    <p>Curabitur fringilla porttitor porta. Vivamus vel nulla ullamcorper, fringilla ligula nec, pellentesque nisl. Sed dolor..</p>
-                    <p class="artcl-time-1">
-                        <span><i class="fa fa-clock-o"></i>20 Jan 2014</span>
-                        <span><i class="fa fa-comment-o"></i>21 comments</span>
-                    </p>
-                </div>
-            </div>
-            <div class="float-width">
-                <div class="trend-sm float-width">
-                    <a href="#"><img alt="" class="lefty" src="~/Content/Site/img/samples/e2.jpg" /></a>
-                    <h4 class="lefty">USA Games Studio will release sandbox new game</h4>
-                    <a class="lefty cat-a cat-label2" href="#">GAMES</a>
-                    <p class="righty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></p>
-                </div>
-                <div class="trend-sm float-width">
-                    <a href="#"><img alt="" class="lefty" src="~/Content/Site/img/samples/e1.jpg" /></a>
-                    <h4 class="lefty">After party of Blondi Concert will begin tomorrow</h4>
-                    <a class="lefty cat-a cat-label4" href="#">MUSIC</a>
-                    <p class="righty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></p>
-                </div>
-                <div class="trend-sm float-width">
-                    <a href="#"><img alt="" class="lefty" src="~/Content/Site/img/samples/e3.jpg" /></a>
-                    <h4 class="lefty">The best place to see in Winter season this year</h4>
-                    <a class="lefty cat-a cat-label3" href="#">TOURISM</a>
-                    <p class="righty"><span><i class="fa fa-clock-o"></i>20 Jan 2014</span></p>
-                </div>
-            </div>
-        </div>
-       
-        <!-- Featured Video -->
-        <div class="ftrd-vd float-width">
-            <h3 class="sec-title">FEATURED VIDEO</h3>
-            <iframe src="http://player.vimeo.com/video/8170203?color=b3a07d" width="100%" height="300" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        </div>
-        
-        <!-- Ad banner right -->
-        <div class="lefty ad-rt">
-            <a href="#"><img alt="" src="~/Content/Site/img/samples/u1.jpg" /></a>
-        </div>
+        <!-- banner outer end -->
+
     </div>
 </div>
+<!-- top sec end -->
+
+<!-- data start -->
+<div class="container ">
+    <div class="row ">
+        <!-- left sec start -->
+        <div class="col-md-11 col-sm-11">
+            <div class="row">
+                <!-- business start -->
+                <div class="col-sm-16 business  wow fadeInDown animated" data-wow-delay="1s" data-wow-offset="50">
+                    <div class="main-title-outer pull-left">
+                        <div class="main-title">business</div>
+                        <div class="span-outer"><span class="pull-right text-danger last-update"><span class="ion-android-data icon"></span>Last update: 2 days ago</span> </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-11 col-sm-16">
+                            <div class="row">
+                                <div class="col-md-8 col-sm-9 col-xs-16">
+                                    <div class="topic">
+                                        <a href="#">
+                                            <img class="img-thumbnail" src="~/Content/Site/images/business/business-main.jpg" width="600" height="398" alt="" />
+                                            <h3>Famous artist share his tracks for free</h3>
+                                            <div class="text-danger sub-info-bordered">
+                                                <div class="time"><span class="ion-android-data icon"></span>Dec 9 2014</div>
+                                                <div class="comments"><span class="ion-chatbubbles icon"></span>204</div>
+                                                <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                            </div>
+                                        </a>
+                                        <p>Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 col-sm-7 col-xs-16">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <a href="#">
+                                                <div class="row">
+                                                    <div class="col-sm-5 hidden-sm hidden-md"><img class="img-thumbnail pull-left" src="~/Content/Site/images/business/business-th-1.jpg" width="76" height="76" alt="" /> </div>
+                                                    <div class="col-sm-16 col-md-16 col-lg-11">
+                                                        <h4>
+                                                            Irish cream and chocolate
+                                                            cheesecake
+                                                        </h4>
+                                                        <div class="text-danger sub-info">
+                                                            <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                                                            <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                                                            <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="row">
+                                                    <div class="col-sm-5 hidden-sm hidden-md"><img class="img-thumbnail pull-left" src="~/Content/Site/images/business/business-th-2.jpg" width="76" height="76" alt="" /> </div>
+                                                    <div class="col-sm-16 col-md-16 col-lg-11">
+                                                        <h4>Nielsen forecasts smaller black friday </h4>
+                                                        <div class="text-danger sub-info">
+                                                            <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                                                            <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                                                            <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="row">
+                                                    <div class="col-sm-5 hidden-sm hidden-md"><img class="img-thumbnail pull-left" src="~/Content/Site/images/business/business-th-3.jpg" width="76" height="76" alt="" /> </div>
+                                                    <div class="col-sm-16 col-md-16 col-lg-11">
+                                                        <h4>Nielsen forecasts smaller black friday </h4>
+                                                        <div class="text-danger sub-info">
+                                                            <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                                                            <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                                                            <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="row">
+                                                    <div class="col-sm-5 hidden-sm hidden-md"><img class="img-thumbnail pull-left" src="~/Content/Site/images/business/business-th-4.jpg" width="76" height="76" alt="" /> </div>
+                                                    <div class="col-sm-16 col-md-16 col-lg-11">
+                                                        <h4>The evolution of the apple mouse</h4>
+                                                        <div class="text-danger sub-info">
+                                                            <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                                                            <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                                                            <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-16 hidden-sm hidden-xs  left-bordered">
+                            <div id="vid-thumbs" class="owl-carousel">
+                                <div class="item">
+                                    <div class="vid-thumb-outer">
+                                        <div class="vid-thumb">
+                                            <a class="popup-youtube" href="https://www.youtube.com/watch?v=TEnNaUg6Vm4">
+                                                <div class="vid-box"><span class="ion-ios7-film"></span><img class="img-thumbnail img-responsive" src="~/Content/Site/images/business/business-vid-1.jpg" width="250" height="143" alt="" /> </div>
+                                                <h4>Perspiciatis unde omnis iste natus</h4>
+                                            </a>
+                                        </div>
+                                        <div class="vid-thumb">
+                                            <a class="popup-youtube" href="http://vimeo.com/7396421">
+                                                <div class="vid-box"><span class="ion-ios7-film"></span><img class="img-thumbnail img-responsive" src="~/Content/Site/images/business/business-vid-2.jpg" width="250" height="143" alt="" /> </div>
+                                                <h4>Cras tincidunt enim non metus ultricies.</h4>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="vid-thumb-outer">
+                                        <div class="vid-thumb">
+                                            <a href="#">
+                                                <div class="vid-box"><span class="ion-ios7-film"></span><img class="img-thumbnail img-responsive" src="~/Content/Site/images/business/business-vid-1.jpg" width="250" height="143" alt="" /> </div>
+                                                <h4>Perspiciatis unde omnis iste natus</h4>
+                                            </a>
+                                        </div>
+                                        <div class="vid-thumb">
+                                            <a href="#">
+                                                <div class="vid-box"><span class="ion-ios7-film"></span><img class="img-thumbnail img-responsive" src="~/Content/Site/images/business/business-vid-2.jpg" width="250" height="143" alt="" /> </div>
+                                                <h4>Cras tincidunt enim non metus ultricies.</h4>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="vid-thumb-outer">
+                                        <div class="vid-thumb">
+                                            <a href="#">
+                                                <div class="vid-box"><span class="ion-ios7-film"></span><img class="img-thumbnail img-responsive" src="~/Content/Site/images/business/business-vid-1.jpg" width="250" height="143" alt="" /> </div>
+                                                <h4>Perspiciatis unde omnis iste natus</h4>
+                                            </a>
+                                        </div>
+                                        <div class="vid-thumb">
+                                            <a href="#">
+                                                <div class="vid-box"><span class="ion-ios7-film"></span><img class="img-thumbnail img-responsive" src="~/Content/Site/images/business/business-vid-2.jpg" width="250" height="143" alt="" /> </div>
+                                                <h4>Cras tincidunt enim non metus ultricies.</h4>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!-- business end -->
+                <!-- Science & Travel start -->
+                <div class="col-sm-16">
+                    <div class="row">
+                        <div class="col-xs-16 col-sm-8  wow fadeInLeft animated science" data-wow-delay="0.5s" data-wow-offset="130">
+                            <div class="main-title-outer pull-left">
+                                <div class="main-title">science</div>
+                                <div class="span-outer"><span class="pull-right text-danger last-update"><span class="ion-android-data icon"></span>Last update: 2 days ago</span> </div>
+                            </div>
+                            <div class="row">
+                                <div class="topic col-sm-16">
+                                    <a href="#">
+                                        <img class=" img-thumbnail" src="~/Content/Site/images/science/sci-main.jpg" width="600" height="227" alt="" />
+                                        <h3> Curabitur ullamcorper ultricies nisi nam eget dui</h3>
+                                        <div class="text-danger sub-info-bordered ">
+                                            <div class="time"><span class="ion-android-data icon"></span>Dec 9 2014</div>
+                                            <div class="comments"><span class="ion-chatbubbles icon"></span>204</div>
+                                            <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                        </div>
+                                    </a>
+                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
+                                </div>
+                                <div class="col-sm-16">
+                                    <ul class="list-unstyled  top-bordered ex-top-padding">
+                                        <li>
+                                            <a href="#">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 hidden-sm  "><img width="76" height="76" alt="" src="~/Content/Site/images/science/sci-th-1.jpg" class="img-thumbnail pull-left"> </div>
+                                                    <div class="col-lg-13 col-md-12">
+                                                        <h4>
+                                                            Irish cream and chocolate
+                                                            cheesecake
+                                                        </h4>
+                                                        <div class="text-danger sub-info">
+                                                            <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                                                            <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                                                            <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="row ">
+                                                    <div class="col-lg-3 col-md-4 hidden-sm  "><img width="76" height="76" alt="" src="~/Content/Site/images/science/sci-th-2.jpg" class="img-thumbnail pull-left"> </div>
+                                                    <div class="col-lg-13 col-md-12">
+                                                        <h4>
+                                                            Irish cream and chocolate
+                                                            cheesecake
+                                                        </h4>
+                                                        <div class="text-danger sub-info">
+                                                            <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                                                            <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                                                            <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-xs-16 wow fadeInRight animated" data-wow-delay="0.5s" data-wow-offset="130">
+                            <div class="main-title-outer pull-left">
+                                <div class="main-title">travel</div>
+                                <div class="span-outer"><span class="pull-right text-danger last-update"><span class="ion-android-data icon"></span>Last update: 2 days ago</span> </div>
+                            </div>
+                            <div class="row left-bordered">
+                                <div class="topic col-sm-16">
+                                    <a href="#">
+                                        <img class="img-thumbnail" src="~/Content/Site/images/travel/travel-main.jpg" width="600" height="227" alt="" />
+                                        <h3>
+                                            Feds open formal probe into tesla
+                                            electric ship
+                                        </h3>
+                                        <div class="text-danger sub-info-bordered">
+                                            <div class="time"><span class="ion-android-data icon"></span>Dec 9 2014</div>
+                                            <div class="comments"><span class="ion-chatbubbles icon"></span>204</div>
+                                            <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                        </div>
+                                    </a>
+                                    <p>Lorem Ipsum has been the standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+                                </div>
+                                <div class="col-sm-16">
+                                    <ul class="list-unstyled top-bordered ex-top-padding">
+                                        <li>
+                                            <a href="#">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 hidden-sm  "><img width="76" height="76" alt="" src="~/Content/Site/images/travel/travel-th-1.jpg" class="img-thumbnail pull-left"> </div>
+                                                    <div class="col-lg-13 col-md-12">
+                                                        <h4>
+                                                            Irish cream and chocolate
+                                                            cheesecake
+                                                        </h4>
+                                                        <div class="text-danger sub-info">
+                                                            <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                                                            <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                                                            <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="row ">
+                                                    <div class="col-lg-3 col-md-4 hidden-sm  "><img width="76" height="76" alt="" src="~/Content/Site/images/travel/travel-th-2.jpg" class="img-thumbnail pull-left"> </div>
+                                                    <div class="col-lg-13 col-md-12">
+                                                        <h4>
+                                                            Irish cream and chocolate
+                                                            cheesecake
+                                                        </h4>
+                                                        <div class="text-danger sub-info">
+                                                            <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                                                            <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                                                            <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!-- Scince & Travel end -->
+                <!-- lifestyle start-->
+                <div class="col-sm-16 wow fadeInUp animated " data-wow-delay="0.5s" data-wow-offset="100">
+                    <div class="main-title-outer pull-left">
+                        <div class="main-title">lifestyle</div>
+                        <div class="span-outer"><span class="pull-right text-danger last-update"><span class="ion-android-data icon"></span>Last update: 3 days ago</span> </div>
+                    </div>
+                    <div class="row">
+                        <div id="owl-lifestyle" class="owl-carousel owl-theme lifestyle pull-left">
+                            <div class="item topic">
+                                <a href="#">
+                                    <img class="img-thumbnail" src="~/Content/Site/images/lifestyle/lifestyle-slide-1.jpg" width="300" height="132" alt="" />
+                                    <h4>Etiam rhoncus. Maecenas tempus, tellus eget condimentum</h4>
+                                    <div class="text-danger sub-info-bordered remove-borders">
+                                        <div class="time"><span class="ion-android-data icon"></span>Dec 9 2014</div>
+                                        <div class="comments"><span class="ion-chatbubbles icon"></span>204</div>
+                                        <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item topic">
+                                <a href="#">
+                                    <img class="img-thumbnail" src="~/Content/Site/images/lifestyle/lifestyle-slide-2.jpg" width="300" height="132" alt="" />
+                                    <h4>Etiam rhoncus. Maecenas tempus, tellus eget condimentum</h4>
+                                    <div class="text-danger sub-info-bordered remove-borders">
+                                        <div class="time"><span class="ion-android-data icon"></span>Dec 9 2014</div>
+                                        <div class="comments"><span class="ion-chatbubbles icon"></span>204</div>
+                                        <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item topic">
+                                <a href="#">
+                                    <img class="img-thumbnail" src="~/Content/Site/images/lifestyle/lifestyle-slide-3.jpg" width="300" height="132" alt="" />
+                                    <h4>Etiam rhoncus. Maecenas tempus, tellus eget condimentum</h4>
+                                    <div class="text-danger sub-info-bordered remove-borders">
+                                        <div class="time"><span class="ion-android-data icon"></span>Dec 9 2014</div>
+                                        <div class="comments"><span class="ion-chatbubbles icon"></span>204</div>
+                                        <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item topic">
+                                <a href="#">
+                                    <img class="img-thumbnail" src="~/Content/Site/images/lifestyle/lifestyle-slide-1.jpg" width="300" height="132" alt="" />
+                                    <h4>Etiam rhoncus. Maecenas tempus, tellus eget condimentum</h4>
+                                    <div class="text-danger sub-info-bordered remove-borders">
+                                        <div class="time"><span class="ion-android-data icon"></span>Dec 9 2014</div>
+                                        <div class="comments"><span class="ion-chatbubbles icon"></span>204</div>
+                                        <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item topic">
+                                <a href="#">
+                                    <img class="img-thumbnail" src="~/Content/Site/images/lifestyle/lifestyle-slide-2.jpg" width="300" height="132" alt="" />
+                                    <h4>Etiam rhoncus. Maecenas tempus, tellus eget condimentum</h4>
+                                    <div class="text-danger sub-info-bordered remove-borders">
+                                        <div class="time"><span class="ion-android-data icon"></span>Dec 9 2014</div>
+                                        <div class="comments"><span class="ion-chatbubbles icon"></span>204</div>
+                                        <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item topic">
+                                <a href="#">
+                                    <img class="img-thumbnail" src="~/Content/Site/images/lifestyle/lifestyle-slide-3.jpg" width="300" height="132" alt="" />
+                                    <h4>Etiam rhoncus. Maecenas tempus, tellus eget condimentum</h4>
+                                    <div class="text-danger sub-info-bordered remove-borders">
+                                        <div class="time"><span class="ion-android-data icon"></span>Dec 9 2014</div>
+                                        <div class="comments"><span class="ion-chatbubbles icon"></span>204</div>
+                                        <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!-- lifestyle end -->
+                <!--Recent videos start-->
+                <div class="col-sm-16 recent-vid wow fadeInDown animated " data-wow-delay="0.5s" data-wow-offset="50">
+                    <div class="main-title-outer pull-left">
+                        <div class="main-title">recent videos</div>
+                        <div class="span-outer"><span class="pull-right text-danger last-update"><span class="ion-android-data icon"></span>Last update: 1 day ago</span> </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11 col-xs-16">
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div id="vid-first" class="tab-pane embed-responsive embed-responsive-16by9 active">
+                                    <iframe width="514" height="289" src="http://www.youtube.com/embed/OFDAGiPJHL8?showinfo=0" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                                <div id="vid-second" class="tab-pane embed-responsive embed-responsive-16by9">
+                                    <iframe width="514" height="289" frameborder="0" allowfullscreen="" src="http://www.youtube.com/embed/TEnNaUg6Vm4?rel=0&amp;showinfo=0"></iframe>
+                                </div>
+                                <div id="vid-third" class="tab-pane embed-responsive embed-responsive-16by9">
+                                    <iframe width="514" height="289" src="http://www.youtube.com/embed/rDZ1AjDJjFI?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-5 col-xs-2">
+                            <!-- required for floating -->
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs tabs-right hidden-xs">
+                                <li class="active">
+                                    <a data-toggle="tab" href="#vid-first">
+                                        <div class="vid-thumb">
+                                            <div class="vid-box"><span class="ion-eye"></span><img class="img-thumbnail" src="~/Content/Site/images/recent-videos/re-vid-1.jpg" width="234" height="87" alt="" /> </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a data-toggle="tab" href="#vid-second">
+                                        <div class="vid-thumb">
+                                            <div class="vid-box"><span class="ion-eye"></span><img class="img-thumbnail" src="~/Content/Site/images/recent-videos/re-vid-2.jpg" width="234" height="87" alt="" /> </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a data-toggle="tab" href="#vid-third">
+                                        <div class="vid-thumb">
+                                            <div class="vid-box"><span class="ion-eye"></span><img class="img-thumbnail" src="~/Content/Site/images/recent-videos/re-vid-3.jpg" width="234" height="87" alt="" /> </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!--Recent videos end-->
+                <!--wide ad start-->
+                <div class="col-sm-16 wow fadeInDown animated " data-wow-delay="0.5s" data-wow-offset="25"><img class="img-responsive" src="~/Content/Site/images/ads/728-90-ad.gif" width="728" height="90" alt="" /></div>
+                <!--wide ad end-->
+
+            </div>
+        </div>
+        <!-- left sec end -->
+        <!-- right sec start -->
+        <div class="col-sm-5 hidden-xs right-sec">
+            <div class="bordered top-margin">
+                <div class="row ">
+                    <div class="col-sm-16 bt-space wow fadeInUp animated" data-wow-delay="1s" data-wow-offset="50"> <img class="img-responsive" src="~/Content/Site/images/ads/336-280-ad.gif" width="336" height="280" alt="" /> <a href="#" class="sponsored">sponsored advert</a> </div>
+                    <div class="col-sm-16 bt-spac wow fadeInUp animated" data-wow-delay="1s" data-wow-offset="150">
+                        <div class="table-responsive">
+                            <table class="table table-bordered social">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <a class="rss" href="#">
+                                                <p>
+                                                    <span class="ion-social-rss"></span> subscribe<br>
+                                                    to rss
+                                                </p>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="twitter" href="#">
+                                                <p>
+                                                    <span class="ion-social-twitter"></span> 811,6
+                                                    followers
+                                                </p>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="facebook" href="#">
+                                                <p>
+                                                    <span class="ion-social-facebook"></span> 6958,56<br>
+                                                    fans
+                                                </p>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a class="youtube" href="#">
+                                                <p>
+                                                    <span class="ion-social-youtube"></span> 6954,55
+                                                    subscribers
+                                                </p>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="vimeo" href="#">
+                                                <p>
+                                                    <span class="ion-social-vimeo"></span> 896,7
+                                                    subscribers
+                                                </p>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="dribbble" href="#">
+                                                <p>
+                                                    <span class="ion-social-dribbble-outline"></span> 6321,56
+                                                    followers
+                                                </p>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a class="googleplus" href="#">
+                                                <p>
+                                                    <span class="ion-social-googleplus"></span> 9625.56
+                                                    followers
+                                                </p>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="pinterest" href="#">
+                                                <p>
+                                                    <span class="ion-social-pinterest"></span> 741,9
+                                                    followers
+                                                </p>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="instagram" href="#">
+                                                <p>
+                                                    <span class="ion-social-instagram"></span> 3548,7
+                                                    followers
+                                                </p>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- activities start -->
+                    <div class="col-sm-16 bt-space wow fadeInUp animated" data-wow-delay="1s" data-wow-offset="130">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs nav-justified " role="tablist">
+                            <li class="active"><a href="#popular" role="tab" data-toggle="tab">popular</a></li>
+                            <li><a href="#recent" role="tab" data-toggle="tab">recent</a></li>
+                            <li><a href="#comments" role="tab" data-toggle="tab">comments</a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="popular">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="#">
+                                            <div class="row">
+                                                <div class="col-sm-5 col-md-4"><img class="img-thumbnail pull-left" src="~/Content/Site/images/popular/pop-1.jpg" width="164" height="152" alt="" /> </div>
+                                                <div class="col-sm-11 col-md-12">
+                                                    <h4>Tellus. Phasellus viverra nulla ut metus</h4>
+                                                    <div class="text-danger sub-info">
+                                                        <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                                                        <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                                                        <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="row">
+                                                <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="~/Content/Site/images/popular/pop-2.jpg" width="164" height="152" alt="" /> </div>
+                                                <div class="col-sm-11 col-md-12">
+                                                    <h4>The evolution of the apple ..</h4>
+                                                    <div class="text-danger sub-info">
+                                                        <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                                                        <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                                                        <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="row">
+                                                <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="~/Content/Site/images/popular/pop-3.jpg" width="164" height="152" alt="" /> </div>
+                                                <div class="col-sm-11 col-md-12">
+                                                    <h4>The evolution of the apple ..</h4>
+                                                    <div class="text-danger sub-info">
+                                                        <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                                                        <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                                                        <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="row">
+                                                <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="~/Content/Site/images/popular/pop-4.jpg" width="164" height="152" alt="" /> </div>
+                                                <div class="col-sm-11 col-md-12">
+                                                    <h4>The evolution of the apple ..</h4>
+                                                    <div class="text-danger sub-info">
+                                                        <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                                                        <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                                                        <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="row">
+                                                <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="~/Content/Site/images/popular/pop-5.jpg" width="164" height="152" alt="" /> </div>
+                                                <div class="col-sm-11 col-md-12">
+                                                    <h4>The evolution of the apple ..</h4>
+                                                    <div class="text-danger sub-info">
+                                                        <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                                                        <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                                                        <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane" id="recent">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="#">
+                                            <div class="row">
+                                                <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="~/Content/Site/images/popular/pop-5.jpg" width="164" height="152" alt="" /> </div>
+                                                <div class="col-sm-11  col-md-12 ">
+                                                    <h4>The evolution of the apple ..</h4>
+                                                    <div class="text-danger sub-info">
+                                                        <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                                                        <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                                                        <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="row">
+                                                <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="~/Content/Site/images/popular/pop-4.jpg" width="164" height="152" alt="" /> </div>
+                                                <div class="col-sm-11  col-md-12 ">
+                                                    <h4>The evolution of the apple ..</h4>
+                                                    <div class="text-danger sub-info">
+                                                        <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                                                        <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                                                        <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="row">
+                                                <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="~/Content/Site/images/popular/pop-3.jpg" width="164" height="152" alt="" /> </div>
+                                                <div class="col-sm-11  col-md-12 ">
+                                                    <h4>The evolution of the apple ..</h4>
+                                                    <div class="text-danger sub-info">
+                                                        <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                                                        <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                                                        <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="row">
+                                                <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="~/Content/Site/images/popular/pop-2.jpg" width="164" height="152" alt="" /> </div>
+                                                <div class="col-sm-11  col-md-12 ">
+                                                    <h4>The evolution of the apple ..</h4>
+                                                    <div class="text-danger sub-info">
+                                                        <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                                                        <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                                                        <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="row">
+                                                <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="~/Content/Site/images/popular/pop-1.jpg" width="164" height="152" alt="" /> </div>
+                                                <div class="col-sm-11  col-md-12 ">
+                                                    <h4>The evolution of the apple ..</h4>
+                                                    <div class="text-danger sub-info">
+                                                        <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                                                        <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                                                        <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane" id="comments">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="#">
+                                            <div class="row">
+                                                <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="~/Content/Site/images/comments/com-1.jpg" width="164" height="152" alt="" /> </div>
+                                                <div class="col-sm-11  col-md-12 ">
+                                                    <h4>Tellus Phasellus viverra nulla</h4>
+                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes..</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="row">
+                                                <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="~/Content/Site/images/comments/com-2.jpg" width="164" height="152" alt="" /> </div>
+                                                <div class="col-sm-11  col-md-12 ">
+                                                    <h4>The evolution of the apple ..</h4>
+                                                    <p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo..</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="row">
+                                                <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="~/Content/Site/images/comments/com-3.jpg" width="164" height="152" alt="" /> </div>
+                                                <div class="col-sm-11  col-md-12 ">
+                                                    <h4>The evolution of the apple ..</h4>
+                                                    <p>Donec pede justo, fringilla vel, aliquet nec vulputate..</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="row">
+                                                <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="~/Content/Site/images/comments/com-4.jpg" width="164" height="152" alt="" /> </div>
+                                                <div class="col-sm-12">
+                                                    <h4>The evolution of the apple ..</h4>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="row">
+                                                <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="~/Content/Site/images/comments/com-5.jpg" width="164" height="152" alt="" /> </div>
+                                                <div class="col-sm-11  col-md-12 ">
+                                                    <h4>The evolution of the apple ..</h4>
+                                                    <p>Beatae vitae dicta sunt.explicabo ipsam..</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- activities end -->
+                    <!-- radio start -->
+                    <div class="col-sm-16 bt-space wow fadeInUp animated" data-wow-delay="1s" data-wow-offset="100">
+                        <div class="main-title-outer pull-left">
+                            <div class="main-title">globalnews radio</div>
+                        </div>
+                        <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/172078992&amp;color=e74c3c&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+                    </div>
+                    <!-- radio end -->
+                    <!-- calendar start -->
+                    <div class="col-sm-16 bt-space wow fadeInUp animated" data-wow-delay="1s" data-wow-offset="50">
+                        <div class="single pull-left"></div>
+                    </div>
+                    <!-- calendar end -->
+                    <!-- flicker imgs start -->
+                    <div class="col-sm-16 bt-space wow fadeInUp animated" data-wow-delay="1s" data-wow-offset="35">
+                        <div class="main-title-outer pull-left">
+                            <div class="main-title">flicker images</div>
+                        </div>
+                        <ul class="list-inline">
+                            <li><a href="https://flic.kr/p/pGKEzR" target="_blank"><img class="img-responsive" src="http://farm4.staticflickr.com/3944/15557385115_2d191a5cc7_s.jpg" width="55" height="55" alt="" /></a></li>
+                            <li><a href="https://flic.kr/p/pq5PiE" target="_blank"><img class="img-responsive" src="http://farm4.staticflickr.com/3956/15368741148_ef02d92a65_s.jpg" width="55" height="55" alt="" /></a></li>
+                            <li><a href="https://flic.kr/p/pq9rDD" target="_blank"><img class="img-responsive" src="http://farm6.staticflickr.com/5608/15369448747_fd3f69cbb7_s.jpg" width="55" height="55" alt="" /></a></li>
+                            <li><a href="https://flic.kr/p/pGM4yz" target="_blank"><img class="img-responsive" src="http://farm4.staticflickr.com/3946/15557657525_da199f6917_s.jpg" width="55" height="55" alt="" /></a></li>
+                            <li><a href="https://flic.kr/p/pH6FJ4" target="_blank"><img class="img-responsive" src="http://farm4.staticflickr.com/3953/15561291195_e7ecf7d3a1_s.jpg" width="55" height="55" alt="" /></a></li>
+                            <li><a href="https://flic.kr/p/pqoKFn" target="_blank"><img class="img-responsive" src="http://farm4.staticflickr.com/3953/15372240967_9ee086188c_s.jpg" width="55" height="55" alt="" /></a></li>
+                            <li><a href="https://flic.kr/p/pGHh6g" target="_blank"><img class="img-responsive" src="http://farm4.staticflickr.com/3944/15556919225_c7d99f9667_s.jpg" width="55" height="55" alt="" /></a></li>
+                            <li><a href="https://flic.kr/p/pqxJZC" target="_blank"><img class="img-responsive" src="http://farm4.staticflickr.com/3939/15373994670_8c756abcb0_s.jpg" width="55" height="55" alt="" /></a></li>
+                            <li><a href="https://flic.kr/p/pEPtj9" target="_blank"><img class="img-responsive" src="http://farm4.staticflickr.com/3938/15535494656_d04ef318a0_s.jpg" width="55" height="55" alt="" /></a></li>
+                            <li><a href="https://flic.kr/p/pqjpxX" target="_blank"><img class="img-responsive" src="http://farm6.staticflickr.com/5605/15371392809_5069f8772d_s.jpg" width="55" height="55" alt="" /></a></li>
+                        </ul>
+                    </div>
+                    <!-- flicker imgs end -->
+                </div>
+            </div>
+        </div>
+        <!-- right sec end -->
+    </div>
+</div>
+<!-- data end -->
