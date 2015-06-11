@@ -6,7 +6,7 @@
         <div class="single-page-artical">
             <div class="artical-content">
                 @{var arquivo = Model.Noticia.Arquivos.FirstOrDefault() ?? new Arquivo();}
-                <img src="@Foto.Placehold(arquivo.Nome, "1000x400", "Noticia", "1000x400")" alt="@arquivo.Legenda" />
+                <img src="@Foto.Placehold(arquivo.Nome, "1000x400", "Noticia", "1000x400_")" alt="@arquivo.Legenda" />
                 
                 <h3>
                     <a>@Model.Noticia.Titulo</a>
