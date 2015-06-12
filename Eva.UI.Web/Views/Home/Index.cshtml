@@ -3,7 +3,6 @@
 
 @{
     ViewBag.Title = "Capital do Jerico";
-    var indice = 0;
 }
 
 <!-- top sec start -->
@@ -24,9 +23,6 @@
                             </li>
                         </ul>
                     </div>
-                    @*<div class="col-sm-1 shuffle text-right">
-                            <a href="#"><span class="ion-shuffle"></span></a>
-                        </div>*@
                 </div>
             </div>
         }
@@ -46,7 +42,7 @@
                                         @noticia.Titulo
                                     </div>
                                     @{var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();}
-                                    <img src="@Foto.Placehold(arquivo.Nome, "391x231", "Noticia", "391x231_")" alt="@arquivo.Legenda" width="565" height="355" />
+                                    <img src="@Foto.Placehold(arquivo.Nome, "565x355", "Noticia", "565x355_")" alt="@arquivo.Legenda" width="565" height="355" />
                                     <div class="overlay"></div>
                                     <div class="overlay-info">
                                         <div class="cat">
@@ -56,7 +52,7 @@
                                         </div>
                                         <div class="info">
                                             <p>
-                                                <span class="ion-android-data"></span>@noticia.Data.ToString("dd/MM/yyyy")
+                                                <span class="ion-android-data"></span>@noticia.Data.ToString("dd/MM/yyyy HH:mm")
                                             </p>
                                         </div>
                                     </div>
@@ -70,7 +66,7 @@
                             {
                                 <div class="item">
                                     @{var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();}
-                                    <img src="@Foto.Placehold(arquivo.Nome, "391x231", "Noticia", "391x231_")" alt="@arquivo.Legenda"  class="img-responsive" width="130" height="70" />
+                                    <img src="@Foto.Placehold(arquivo.Nome, "565x355", "Noticia", "565x355_")" alt="@arquivo.Legenda" class="img-responsive" width="130" height="70" />
                                 </div>
                             }
                         </div>
@@ -79,67 +75,84 @@
                 <div class="col-sm-6 col-md-6 col-lg-8 hidden-sm hidden-xs">
                     <div class="row">
                         <div class="col-lg-6 hidden-md">
-                            <a href="#">
-                                <div class="box">
-                                    <div class=" carousel-caption">
-                                        Extreme biking:
-                                        dangerous, dirty
-                                        and Fun
-                                    </div>
-                                    <img class="match-height" src="~/Content/Site/images/banner-static/bs-1.jpg" width="236" height="480" alt="" />
-                                    <div class="overlay"></div>
-                                    <div class="overlay-info">
-                                        <div class="cat">
-                                            <p class="cat-data"><span class="ion-model-s"></span>Lifestyle</p>
+                            @foreach (var noticia in Model.Noticias.AoLadoDoDestaque.Take(1))
+                            {
+                                <a  href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = Model.Noticias.Urgente.Slug, slugCategoria = Model.Noticias.Urgente.Categoria.Slug, slugLocal = Model.Noticias.Urgente.Local.Slug})" title="@Model.Noticias.Urgente.Titulo">
+                                    <div class="box">
+                                        <div class=" carousel-caption">
+                                            @noticia.Titulo
                                         </div>
-                                        <div class="info">
-                                            <p><span class="ion-android-data"></span>Dec 16 2014<span class="ion-chatbubbles"></span>351</p>
+                                        @{ var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo(); }
+                                        <img src="@Foto.Placehold(arquivo.Nome, "205x443", "Noticia", "205x443_")" alt="@arquivo.Legenda" class="match-height" width="205" height="443" />
+                                        <div class="overlay"></div>
+                                        <div class="overlay-info">
+                                            <div class="cat">
+                                                <p class="cat-data">
+                                                    <span class="ion-model-s"></span>@noticia.Categoria.Nome
+                                                </p>
+                                            </div>
+                                            <div class="info">
+                                                <p><span class="ion-android-data"></span>@noticia.Data.ToString("dd/MM/yyyy HH:mm")
+                                            </div>
                                         </div>
+
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            }
                         </div>
                         <div class="col-md-16 col-lg-10">
                             <div class="row">
                                 <div class="col-sm-16 right-img-top ">
-                                    <a href="#">
+                                   @foreach (var noticia in Model.Noticias.AoLadoDoDestaque.Skip(1).Take(1))
+                                   {
+                                    <a href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = Model.Noticias.Urgente.Slug, slugCategoria = Model.Noticias.Urgente.Categoria.Slug, slugLocal = Model.Noticias.Urgente.Local.Slug})" title="@Model.Noticias.Urgente.Titulo">
                                         <div class="box">
-                                            <div class="carousel-caption">
-                                                Best snack ever: mini mac and
-                                                cheese cupcakes
+                                            <div class=" carousel-caption">
+                                                @noticia.Titulo
                                             </div>
-                                            <img class="img-responsive" src="~/Content/Site/images/banner-static/bs-2.jpg" width="440" height="292" alt="" />
+                                            @{ var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo(); }
+                                            <img src="@Foto.Placehold(arquivo.Nome, "350x216", "Noticia", "350x216_")" alt="@arquivo.Legenda" width="349" height="216" />
                                             <div class="overlay"></div>
                                             <div class="overlay-info">
                                                 <div class="cat">
-                                                    <p class="cat-data"><span class="ion-model-s"></span>Lifestyle</p>
+                                                    <p class="cat-data">
+                                                        <span class="ion-model-s"></span>@noticia.Categoria.Nome
+                                                    </p>
                                                 </div>
                                                 <div class="info">
-                                                    <p><span class="ion-android-data"></span>Dec 16 2014<span class="ion-chatbubbles"></span>351</p>
+                                                    <p><span class="ion-android-data"></span>@noticia.Data.ToString("dd/MM/yyyy HH:mm")
                                                 </div>
                                             </div>
+
                                         </div>
                                     </a>
+                                   }
                                 </div>
                                 <div class="col-sm-16 right-img-btm ">
-                                    <a href="#">
-                                        <div class="box">
-                                            <div class="carousel-caption">
-                                                Rolls Royce chicane phantom
-                                                coupé will terrify continental
-                                            </div>
-                                            <img class="img-responsive" src="~/Content/Site/images/banner-static/bs-3.jpg" width="440" height="292" alt="" />
-                                            <div class="overlay"></div>
-                                            <div class="overlay-info">
-                                                <div class="cat">
-                                                    <p class="cat-data"><span class="ion-model-s"></span>Lifestyle</p>
+                                    @foreach (var noticia in Model.Noticias.AoLadoDoDestaque.Skip(2).Take(1))
+                                    {
+                                        <a href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = Model.Noticias.Urgente.Slug, slugCategoria = Model.Noticias.Urgente.Categoria.Slug, slugLocal = Model.Noticias.Urgente.Local.Slug})" title="@Model.Noticias.Urgente.Titulo">
+                                            <div class="box">
+                                                <div class=" carousel-caption">
+                                                    @noticia.Titulo
                                                 </div>
-                                                <div class="info">
-                                                    <p><span class="ion-android-data"></span>Dec 16 2014<span class="ion-chatbubbles"></span>351</p>
+                                                @{ var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo(); }
+                                                <img src="@Foto.Placehold(arquivo.Nome, "350x216", "Noticia", "350x216_")" alt="@arquivo.Legenda" width="349" height="216" />
+                                                <div class="overlay"></div>
+                                                <div class="overlay-info">
+                                                    <div class="cat">
+                                                        <p class="cat-data">
+                                                            <span class="ion-model-s"></span>@noticia.Categoria.Nome
+                                                        </p>
+                                                    </div>
+                                                    <div class="info">
+                                                        <p><span class="ion-android-data"></span>@noticia.Data.ToString("dd/MM/yyyy HH:mm")
+                                                    </div>
                                                 </div>
+
                                             </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -161,7 +174,7 @@
                 <!-- business start -->
                 <div class="col-sm-16 business  wow fadeInDown animated" data-wow-delay="1s" data-wow-offset="50">
                     <div class="main-title-outer pull-left">
-                        <div class="main-title">business</div>
+                        <div class="main-title">Últimas</div>
                         <div class="span-outer"><span class="pull-right text-danger last-update"><span class="ion-android-data icon"></span>Last update: 2 days ago</span> </div>
                     </div>
                     <div class="row">

@@ -138,7 +138,7 @@
                             <label for="" class="control-label col-lg-3">Foto Capa:</label>
                             <div class="col-lg-6">
                                 @{var arquivo = Model.Arquivos.FirstOrDefault() ?? new Arquivo();}
-                                <img src="@Foto.Placehold(arquivo.Nome, "391x231", "Noticia", "391x231_")" width="391" height="231" />
+                                <img src="@Foto.Placehold(arquivo.Nome, "350x216", "Noticia", "350x216_")" width="350" height="216" />
                             </div>
                         </div>
                     }

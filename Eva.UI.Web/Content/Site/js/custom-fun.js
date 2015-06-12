@@ -1,31 +1,7 @@
 $(document).ready(function () {
     "use strict";
 
-    /* -------------------------------------------------------------------------*
-     * PRE LOADER
-     * -------------------------------------------------------------------------*/
-    /*$(window).load(function() {
-        $('#status').delay(300).fadeOut();
-        $('#preloader').delay(300).fadeOut('slow');
-        $('body').delay(550).css({
-            'overflow': 'hidden'
-        });
-    });*/
-    /* -------------------------------------------------------------------------*
-     * ADD ANIMATION TO SPECIFIC ELEMENTS
-     * -------------------------------------------------------------------------*/
-    /* $('.tags li').hover(function() {
-       $(this).find('a').toggleClass("wow flipInY animated");
-     });
-     $('.f-social li').hover(function() {
-       $(this).find('a').toggleClass("wow swing animated");
-     });
-     $('.social a').hover(function() {
-       $(this).find('p').toggleClass("wow fadeInDown animated");
-     });
-     $('a.read-more').hover(function() {
-       $(this).find('span').toggleClass("wow flipInY animated");
-     });*/
+    
 
     /* -------------------------------------------------------------------------*
      * GO TO TOP
@@ -91,7 +67,7 @@ $(document).ready(function () {
     /* -------------------------------------------------------------------------*
      * SCROLL BAR
      * -------------------------------------------------------------------------*/
-    var seq = 0;
+    /*var seq = 0;
     $("html").niceScroll({
         styler: "fb",
         cursorcolor: "#ff6600"
@@ -102,13 +78,9 @@ $(document).ready(function () {
                 'top': 60
             }, 1500, "easeOutElastic");
         }, 1500);
-    });
+    });*/
 
-    /* -------------------------------------------------------------------------*
-     * WOW ANIMATION
-     * -------------------------------------------------------------------------*/
-    // new WOW().init();
-
+  
     /* -------------------------------------------------------------------------*
      * CALENDAR
      * -------------------------------------------------------------------------*/
@@ -130,13 +102,7 @@ $(document).ready(function () {
     update();
     setInterval(update, 1000);
 
-    /* -------------------------------------------------------------------------*
-     * STYLE SWITCHER
-     * -------------------------------------------------------------------------*/
-    /* $('#switcher').styleSwitcher({
-         useCookie: true
-     });*/
-
+   
     /* -------------------------------------------------------------------------*
      * SEARCH BAR
      * -------------------------------------------------------------------------*/
@@ -192,19 +158,7 @@ $(document).ready(function () {
      * HOT NEWS
      * -------------------------------------------------------------------------*/
     $('#js-news').ticker();
-    // hide the release history when the page loads
-    //$('#release-wrapper').css('margin-top', '-' + ($('#release-wrapper').height() + 20) + 'px');
-
-    // show/hide the release history on click
-    /*$('a[href="#release-history"]').toggle(function () {
-        $('#release-wrapper').animate({ marginTop: '0px'}, 600, 'linear');
-    }, function () {
-        $('#release-wrapper').animate({
-            marginTop: '-' + ($('#release-wrapper').height() + 20) + 'px'}, 600, 'linear');
-    });*/
-    /*$('#download a').mousedown(function () {
-        _gaq.push(['_trackEvent', 'download-button', 'clicked']);
-    });*/
+    
 
     /* -------------------------------------------------------------------------*
      * OWL CAROUSEL
@@ -232,12 +186,8 @@ $(document).ready(function () {
     });
     sync2.owlCarousel({
         items: 4,
-        itemsDesktop: [1199,
-          4
-        ],
-        itemsDesktopSmall: [
-          979, 3
-        ],
+        itemsDesktop: [1199,4],
+        itemsDesktopSmall: [979, 3],
         itemsTablet: [768, 3],
         itemsMobile: [479, 3],
         pagination: false,
@@ -249,10 +199,9 @@ $(document).ready(function () {
 
     function syncPosition(el) {
         var current = this.currentItem;
-        $("#sync2").find(".owl-item").removeClass("synced").eq(current).addClass(
-          "synced")
+        $("#sync2").find(".owl-item").removeClass("synced").eq(current).addClass("synced");
         if ($("#sync2").data("owlCarousel") !== undefined) {
-            center(current)
+            center(current);
         }
     }
     $("#sync2").on("click", ".owl-item", function (e) {
@@ -282,10 +231,10 @@ $(document).ready(function () {
             }
         }
         else if (num === sync2visible[sync2visible.length - 1]) {
-            sync2.trigger("owl.goTo", sync2visible[1])
+            sync2.trigger("owl.goTo", sync2visible[1]);
         }
         else if (num === sync2visible[0]) {
-            sync2.trigger("owl.goTo", num - 1)
+            sync2.trigger("owl.goTo", num - 1);
         }
     }
     //Init progressBar where elem is $("#owl-demo")
@@ -318,13 +267,11 @@ $(document).ready(function () {
     function interval() {
         if (isPause === false) {
             percentTime += 1 / time;
-            $bar.css({
-                width: percentTime + "%"
-            });
+            $bar.css({width: percentTime + "%"});
             //if percentTime is equal or greater than 100
             if (percentTime >= 100) {
                 //slide to next item
-                $elem.trigger('owl.next')
+                $elem.trigger('owl.next');
             }
         }
     }
@@ -340,39 +287,31 @@ $(document).ready(function () {
         start();
     }
     //pause on mouseover
-    $elem.on('mouseover', function () {
-        isPause = true;
-    })
-    $elem.on('mouseout', function () {
-        isPause = false;
-    })
+    $elem.on('mouseover', function() {isPause = true;});
+    $elem.on('mouseout', function() { isPause = false; });
     $("#vid-thumbs").owlCarousel({
         navigation: false,
         pagination: true,
         slideSpeed: 300,
         paginationSpeed: 400,
-        singleItem: true,
+        singleItem: true
     });
     $("#owl-lifestyle").owlCarousel({
         autoPlay: false, //Set AutoPlay to 3 seconds
         navigation: true,
         pagination: false,
         items: 3,
-        itemsDesktop: [1199,
-          3
-        ],
-        itemsDesktopSmall: [
-          979, 2
-        ],
+        itemsDesktop: [1199,3],
+        itemsDesktopSmall: [979, 2],
         itemsTablet: [768, 2],
-        itemsMobile: [479, 1],
+        itemsMobile: [479, 1]
     });
     $("#owl-blog").owlCarousel({
         navigation: true,
         pagination: false,
         slideSpeed: 300,
         paginationSpeed: 400,
-        singleItem: true,
+        singleItem: true
     });
 
 });
