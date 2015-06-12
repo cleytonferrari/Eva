@@ -273,6 +273,7 @@
     <Content Include="Content\Site\css\custom-blue.css" />
     <Content Include="Content\Site\css\custom-green.css" />
     <Content Include="Content\Site\css\custom-purple.css" />
+    <Content Include="Content\Site\css\custom-orange.css" />
     <Content Include="Content\Site\css\custom-red.css" />
     <Content Include="Content\Site\css\ionicons.min.css" />
     <Content Include="Content\Site\css\magnific-popup.css" />

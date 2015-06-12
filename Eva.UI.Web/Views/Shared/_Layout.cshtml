@@ -16,7 +16,7 @@
     <!-- animation styles -->
     <link rel="stylesheet" href="~/Content/Site/css/animate.css" />
     <!-- custom styles -->
-    <link href="~/Content/Site/css/custom-red.css" rel="stylesheet" id="style">
+    <link href="~/Content/Site/css/custom-orange.css" rel="stylesheet" id="style">
     <!-- owl carousel styles-->
     <link rel="stylesheet" href="~/Content/Site/css/owl.carousel.css">
     <link rel="stylesheet" href="~/Content/Site/css/owl.transitions.css">
@@ -31,23 +31,11 @@
 </head>
 <body>
     <!-- preloader start -->
-    <div id="preloader">
-        <div id="status"></div>
-    </div>
+    @*<div id="preloader">
+            <div id="status"></div>
+        </div>*@
     <!-- preloader end -->
-
-    <div class="switcher" style="left:-50px;">
-        <a id="switch-panel" class="hide-panel"> <i class="ion-gear-a"></i> </a>
-        <div id="switcher">
-            <ul class="colors-list">
-                <li><a href="#" class="red" id="custom-red"></a></li>
-                <li><a href="#" class="green" id="custom-green"></a></li>
-                <li><a href="#" class="purple" id="custom-purple"></a></li>
-                <li><a href="#" class="blue" id="custom-blue"></a></li>
-            </ul>
-        </div>
-    </div>
-    <!-- /END THEME SWITCHER--> <!-- wrapper start -->
+    <!-- wrapper start -->
     <div class="wrapper">
         <!-- header toolbar start -->
         <div class="header-toolbar">
@@ -78,7 +66,7 @@
         <!-- header start -->
         <div class="container header">
             <div class="row">
-                <div class="col-sm-5 col-md-5 wow fadeInUpLeft animated"><a class="navbar-brand" href="#">globalnews</a></div>
+                <div class="col-sm-5 col-md-5 wow fadeInUpLeft animated"><a class="navbar-brand" href="@Url.Action("Index","Home",new { Area = ""})">globalnews</a></div>
                 <div class="col-sm-11 col-md-11 hidden-xs text-right"><img src="~/Content/Site/images/ads/468-60-ad.gif" width="468" height="60" alt="" /></div>
             </div>
         </div>
@@ -96,7 +84,7 @@
                             </div>
                             <div class="collapse navbar-collapse" id="navbar-collapse">
                                 <ul class="nav navbar-nav text-uppercase main-nav ">
-                                    <li class="active"><a href="#">home</a></li>
+                                    <li class="active"><a href="@Url.Action("Index","Home",new { Area = ""})">home</a></li>
                                     <li> <a href="javascript:void(0)">business</a></li>
                                     <li class="dropdown">
                                         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">lifestyle<span class="ion-ios7-arrow-down nav-icn"></span></a>
@@ -181,7 +169,7 @@
                 <!-- nav end -->
                 <!-- search start -->
 
-                <div class="search-container ">
+                <div class="search-container" style="display: none;">
                     <div class="container">
                         <form action="#" method="GET" role="search">
                             <input id="search-bar" placeholder="Digite e aperte Enter.." autocomplete="off">

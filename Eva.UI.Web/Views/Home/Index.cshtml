@@ -10,23 +10,26 @@
 <div class="container">
     <div class="row">
         <!-- hot news start -->
-        <div class="col-sm-16 hot-news hidden-xs">
-            <div class="row">
-                <div class="col-sm-15">
-                    <span class="ion-ios7-timer icon-news pull-left"></span>
-                    <ul id="js-news" class="js-hidden">
-                        <li class="news-item"><a href="#">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor</a></li>
-                        <li class="news-item"><a href="#">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</a></li>
-                        <li class="news-item"><a href="#">Donec quam felis, ultricies nec, pellentesque eu</a></li>
-                        <li class="news-item"><a href="#">Nulla consequat massa quis enim. Donec pede justo, fringilla</a></li>
-                        <li class="news-item"><a href="#"> Donec pede justo, fringilla vel, aliquet nec, vulputate eget ultricies nec, pellentesque</a></li>
-                        <li class="news-item"><a href="#">In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo</a></li>
-                        <li class="news-item"><a href="#">Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis </a></li>
-                    </ul>
+        @if (!string.IsNullOrEmpty(Model.Noticias.Urgente.Titulo))
+        {
+            <div class="col-sm-16 hot-news hidden-xs">
+                <div class="row">
+                    <div class="col-sm-15">
+                        <span class="ion-ios7-timer icon-news pull-left"></span>
+                        <ul id="js-news" class="js-hidden">
+                            <li class="news-item">
+                                <a class="fui-time" href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = Model.Noticias.Urgente.Slug, slugCategoria = Model.Noticias.Urgente.Categoria.Slug, slugLocal = Model.Noticias.Urgente.Local.Slug})" title="@Model.Noticias.Urgente.Titulo">
+                                    @Model.Noticias.Urgente.Titulo
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    @*<div class="col-sm-1 shuffle text-right">
+                            <a href="#"><span class="ion-shuffle"></span></a>
+                        </div>*@
                 </div>
-                <div class="col-sm-1 shuffle text-right"><a href="#"><span class="ion-shuffle"></span></a></div>
             </div>
-        </div>
+        }
         <!-- hot news end -->
         <!-- banner outer start -->
         <div class="col-sm-16 banner-outer wow fadeInLeft animated" data-wow-delay="1s" data-wow-offset="50">
@@ -35,161 +38,41 @@
 
                     <!-- carousel start -->
                     <div id="sync1" class="owl-carousel">
-                        <div class="box item">
-                            <a href="#">
-                                <div class="carousel-caption">
-                                    Republican budget leader Paul Ryan
-                                    faces key test in fiscal talks
-                                </div>
-                                <img src="~/Content/Site/images/banner-slider/slide-img-2.jpg" width="762" height="360" alt="" />
-                                <div class="overlay"></div>
-                                <div class="overlay-info">
-                                    <div class="cat">
-                                        <p class="cat-data"><span class="ion-flask"></span>business</p>
+                        @foreach (var noticia in Model.Noticias.Destaques.Take(5))
+                        {
+                            <div class="box item">
+                                <a class="fui-time" href="@Url.Action("Ler", "Noticia", new {Area = "", slugNoticia = Model.Noticias.Urgente.Slug, slugCategoria = Model.Noticias.Urgente.Categoria.Slug, slugLocal = Model.Noticias.Urgente.Local.Slug})" title="@Model.Noticias.Urgente.Titulo">
+                                    <div class="carousel-caption">
+                                        @noticia.Titulo
                                     </div>
-                                    <div class="info">
-                                        <p><span class="ion-android-data"></span>Dec 16 2014<span class="ion-chatbubbles"></span>351</p>
+                                    @{var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();}
+                                    <img src="@Foto.Placehold(arquivo.Nome, "391x231", "Noticia", "391x231_")" alt="@arquivo.Legenda" width="565" height="355" />
+                                    <div class="overlay"></div>
+                                    <div class="overlay-info">
+                                        <div class="cat">
+                                            <p class="cat-data">
+                                                <span class="ion-flask"></span>@noticia.Categoria.Nome
+                                            </p>
+                                        </div>
+                                        <div class="info">
+                                            <p>
+                                                <span class="ion-android-data"></span>@noticia.Data.ToString("dd/MM/yyyy")
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="box item">
-                            <a href="#">
-                                <div class="carousel-caption">
-                                    Republican budget leader Paul Ryan
-                                    faces key test in fiscal talks
-                                </div>
-                                <img src="~/Content/Site/images/banner-slider/slide-img-3.jpg" width="762" height="360" alt="" />
-                                <div class="overlay"></div>
-                                <div class="overlay-info">
-                                    <div class="cat">
-                                        <p class="cat-data"><span class="ion-model-s"></span>travel</p>
-                                    </div>
-                                    <div class="info">
-                                        <p><span class="ion-android-data"></span>Dec 16 2014<span class="ion-chatbubbles"></span>351</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="box item">
-                            <a href="#">
-                                <div class="carousel-caption">
-                                    Republican budget leader Paul Ryan
-                                    faces key test in fiscal talks
-                                </div>
-                                <img src="~/Content/Site/images/banner-slider/slide-img-4.jpg" width="762" height="360" alt="" />
-                                <div class="overlay"></div>
-                                <div class="overlay-info">
-                                    <div class="cat">
-                                        <p class="cat-data"><span class="ion-model-s"></span>soprt</p>
-                                    </div>
-                                    <div class="info">
-                                        <p><span class="ion-android-data"></span>Dec 16 2014<span class="ion-chatbubbles"></span>351</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="box item">
-                            <a href="#">
-                                <div class="carousel-caption">
-                                    Republican budget leader Paul Ryan
-                                    faces key test in fiscal talks
-                                </div>
-                                <img src="~/Content/Site/images/banner-slider/slide-img-5.jpg" width="762" height="360" alt="" />
-                                <div class="overlay"></div>
-                                <div class="overlay-info">
-                                    <div class="cat">
-                                        <p class="cat-data"><span class="ion-model-s"></span>Lifestyle</p>
-                                    </div>
-                                    <div class="info">
-                                        <p><span class="ion-android-data"></span>Dec 16 2014<span class="ion-chatbubbles"></span>351</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="box item">
-                            <a href="#">
-                                <div class="carousel-caption">
-                                    Republican budget leader Paul Ryan
-                                    faces key test in fiscal talks
-                                </div>
-                                <img src="~/Content/Site/images/banner-slider/slide-img-6.jpg" width="762" height="360" alt="" />
-                                <div class="overlay"></div>
-                                <div class="overlay-info">
-                                    <div class="cat">
-                                        <p class="cat-data"><span class="ion-model-s"></span>sport</p>
-                                    </div>
-                                    <div class="info">
-                                        <p><span class="ion-android-data"></span>Dec 16 2014<span class="ion-chatbubbles"></span>351</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="box item">
-                            <a href="#">
-                                <div class="carousel-caption">
-                                    Republican budget leader Paul Ryan
-                                    faces key test in fiscal talks
-                                </div>
-                                <img src="~/Content/Site/images/banner-slider/slide-img-7.jpg" width="762" height="360" alt="" />
-                                <div class="overlay"></div>
-                                <div class="overlay-info">
-                                    <div class="cat">
-                                        <p class="cat-data"><span class="ion-model-s"></span>Lifestyle</p>
-                                    </div>
-                                    <div class="info">
-                                        <p><span class="ion-android-data"></span>Dec 16 2014<span class="ion-chatbubbles"></span>351</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="box item">
-                            <a href="#">
-                                <div class="carousel-caption">
-                                    Republican budget leader Paul Ryan
-                                    faces key test in fiscal talks
-                                </div>
-                                <img src="~/Content/Site/images/banner-slider/slide-img-8.jpg" width="762" height="360" alt="" />
-                                <div class="overlay"></div>
-                                <div class="overlay-info">
-                                    <div class="cat">
-                                        <p class="cat-data"><span class="ion-model-s"></span>business</p>
-                                    </div>
-                                    <div class="info">
-                                        <p><span class="ion-android-data"></span>Dec 16 2014<span class="ion-chatbubbles"></span>351</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="box item">
-                            <a href="#">
-                                <div class="carousel-caption">
-                                    Republican budget leader Paul Ryan
-                                    faces key test in fiscal talks
-                                </div>
-                                <img src="~/Content/Site/images/banner-slider/slide-img-1.jpg" width="762" height="360" alt="" />
-                                <div class="overlay"></div>
-                                <div class="overlay-info">
-                                    <div class="cat">
-                                        <p class="cat-data"><span class="ion-model-s"></span>lifestyle</p>
-                                    </div>
-                                    <div class="info">
-                                        <p><span class="ion-android-data"></span>Dec 16 2014<span class="ion-chatbubbles"></span>351</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                                </a>
+                            </div>
+                        }
                     </div>
                     <div class="row">
                         <div id="sync2" class="owl-carousel">
-                            <div class="item"><img class="img-responsive" src="~/Content/Site/images/banner-slider/slide-img-2.jpg" width="762" height="360" alt="" /></div>
-                            <div class="item"><img class="img-responsive" src="~/Content/Site/images/banner-slider/slide-img-3.jpg" width="762" height="360" alt="" /></div>
-                            <div class="item"><img class="img-responsive " src="~/Content/Site/images/banner-slider/slide-img-4.jpg" width="762" height="360" alt="" /></div>
-                            <div class="item"><img class="img-responsive " src="~/Content/Site/images/banner-slider/slide-img-5.jpg" width="762" height="360" alt="" /></div>
-                            <div class="item"><img class="img-responsive " src="~/Content/Site/images/banner-slider/slide-img-6.jpg" width="762" height="360" alt="" /></div>
-                            <div class="item"><img class="img-responsive" src="~/Content/Site/images/banner-slider/slide-img-7.jpg" width="762" height="360" alt="" /></div>
-                            <div class="item"><img class="img-responsive " src="~/Content/Site/images/banner-slider/slide-img-8.jpg" width="762" height="360" alt="" /></div>
-                            <div class="item"><img class=" img-responsive" src="~/Content/Site/images/banner-slider/slide-img-1.jpg" width="762" height="360" alt="" /></div>
+                            @foreach (var noticia in Model.Noticias.Destaques.Take(5))
+                            {
+                                <div class="item">
+                                    @{var arquivo = noticia.Arquivos.FirstOrDefault() ?? new Arquivo();}
+                                    <img src="@Foto.Placehold(arquivo.Nome, "391x231", "Noticia", "391x231_")" alt="@arquivo.Legenda"  class="img-responsive" width="130" height="70" />
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -269,7 +152,6 @@
     </div>
 </div>
 <!-- top sec end -->
-
 <!-- data start -->
 <div class="container ">
     <div class="row ">
