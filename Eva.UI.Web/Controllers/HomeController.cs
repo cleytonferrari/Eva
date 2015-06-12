@@ -13,6 +13,8 @@ namespace Eva.UI.Web.Controllers
         public ActionResult Index()
         {
             //todo: corrigir os takes apos finalizar o layout
+            //todo: implementar o graph do facebook
+            //todo: arrumar o SEO, title, alt, meta tags
             var vm = new HomeViewModel
             {
                 Noticias =
@@ -29,7 +31,8 @@ namespace Eva.UI.Web.Controllers
                     //todo: implementar os metodos para as mais lidas na aplicacao
                     MaisLidaDoDia = Fabrica.NoticiaAplicacaoMongo().MaisLidas().Take(4) ?? new List<Noticia>(),
                     MaisLidaDaSemana = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas().Take(4) ?? new List<Noticia>(),
-                    MaisLidaDoMes = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas().Take(4) ?? new List<Noticia>()
+                    MaisLidaDoMes = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas().Take(4) ?? new List<Noticia>(),
+                    Ultimas = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas().Take(11) ?? new List<Noticia>(),
                 },
                 Eventos =
                 {
@@ -77,6 +80,7 @@ namespace Eva.UI.Web.Controllers
         public IEnumerable<Noticia> MaisLidaDoDia { get; set; }
         public IEnumerable<Noticia> MaisLidaDaSemana { get; set; }
         public IEnumerable<Noticia> MaisLidaDoMes { get; set; }
+        public IEnumerable<Noticia> Ultimas { get; set; }
     }
 
     public class EventoViewModel
