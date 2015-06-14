@@ -3,7 +3,8 @@
 <div class="col-md-12">
     <!--breadcrumbs start -->
     <ul class="breadcrumb">
-        <li><a href="@Url.Action("Index", "Home", new { Area = "Painel" })"><i class="fa fa-home"></i> Inicio</a></li>
+        <li><a href="@Url.Action("Index", "Home", new {Area = "Painel"})"><i class="fa fa-home"></i> Inicio</a></li>
+        <li><a href="@ViewBag.urlVoltar"><i class="fa fa-home"></i> @ViewBag.urlTitulo</a></li>
         <li class="active">Arquivos</li>
     </ul>
     <!--breadcrumbs end -->

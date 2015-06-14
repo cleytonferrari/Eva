@@ -19,6 +19,9 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(plugin))
                 return RedirectToAction("Index", "Home", new { area = "Painel" });
 
+            ViewBag.urlVoltar = string.Empty;
+            ViewBag.urlTitulo = string.Empty;
+
             var arquivoViewModel = new ArquivoViewModel();
 
             var page = pagina ?? 0;
@@ -33,6 +36,8 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                     arquivoViewModel.Id = noticia.Id;
                     arquivoViewModel.Titulo = noticia.Titulo;
                     arquivoViewModel.Plugin = plugin;
+                    ViewBag.urlTitulo = "Notícias";
+                    ViewBag.urlVoltar = Url.Action("Index", "Noticia");
                     break;
 
                 case "evento":
@@ -41,6 +46,8 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                     arquivoViewModel.Id = evento.Id;
                     arquivoViewModel.Titulo = evento.Titulo;
                     arquivoViewModel.Plugin = plugin;
+                    ViewBag.urlTitulo = "Eventos";
+                    ViewBag.urlVoltar = Url.Action("Index", "Evento");
                     break;
             }
 
@@ -57,6 +64,9 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(plugin))
                 return RedirectToAction("Index", "Home", new { area = "Painel" });
 
+            ViewBag.urlVoltar = string.Empty;
+            ViewBag.urlTitulo = string.Empty;
+
             var arquivoViewModel = new ArquivoViewModel();
 
             switch (plugin.ToLower())
@@ -67,6 +77,8 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                     arquivoViewModel.Id = noticia.Id;
                     arquivoViewModel.Titulo = noticia.Titulo;
                     arquivoViewModel.Plugin = plugin;
+                    ViewBag.urlTitulo = "Notícias";
+                    ViewBag.urlVoltar = Url.Action("Index", "Noticia");
                     break;
                 case "evento":
                     var evento = Fabrica.EventoAplicacaoMongo().ListarPorId(id);
@@ -74,6 +86,8 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
                     arquivoViewModel.Id = evento.Id;
                     arquivoViewModel.Titulo = evento.Titulo;
                     arquivoViewModel.Plugin = plugin;
+                    ViewBag.urlTitulo = "Eventos";
+                    ViewBag.urlVoltar = Url.Action("Index", "Evento");
                     break;
             }
 
