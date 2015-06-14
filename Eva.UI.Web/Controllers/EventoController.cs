@@ -18,9 +18,7 @@ namespace Eva.UI.Web.Controllers
             //todo: checar se categoria existe ou notFound
             var numeroDaPagina = page ?? 1;
             var ultimas = Fabrica.EventoAplicacaoMongo().ListarPublicadas();
-
-            ultimas = ultimas.OrderByDescending(x => x.Data).ToPagedList(numeroDaPagina, 10);
-            return View(ultimas);
+            return View(ultimas.OrderByDescending(x => x.Data).ToPagedList(numeroDaPagina, 10));
         }
 
         [Route("{ano}/{mes}/{dia}/{slug}/{page:int?}")]

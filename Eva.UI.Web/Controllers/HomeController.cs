@@ -27,17 +27,10 @@ namespace Eva.UI.Web.Controllers
                     Categoria01 = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Categoria 01").Take(3) ?? new List<Noticia>(),
                     Categoria02 = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Categoria 02").Take(3) ?? new List<Noticia>(),
 
-                    EmbaixoDoDestaque = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Embaixo do destaque").Take(10) ?? new List<Noticia>(),
-                    
-                    Slide = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Slide").Take(6) ?? new List<Noticia>(),
-                    
-                    Rodape = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas("Rodapé").Take(6) ?? new List<Noticia>(),
-
                     //todo: implementar os metodos para as mais lidas na aplicacao
-                    MaisLidaDoDia = Fabrica.NoticiaAplicacaoMongo().MaisLidas().Take(4) ?? new List<Noticia>(),
-                    MaisLidaDaSemana = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas().Take(4) ?? new List<Noticia>(),
-                    MaisLidaDoMes = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas().Take(4) ?? new List<Noticia>(),
-                    Ultimas = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas().Take(11) ?? new List<Noticia>(),
+                    MaisLidaDoDia = Fabrica.NoticiaAplicacaoMongo().MaisLidas().Take(5) ?? new List<Noticia>(),
+
+                    Ultimas = Fabrica.NoticiaAplicacaoMongo().ListarPublicadas().Take(5) ?? new List<Noticia>(),
                 },
                 Eventos =
                 {

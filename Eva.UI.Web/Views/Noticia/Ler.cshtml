@@ -1,38 +1,8 @@
 ﻿@using Eva.Dominio
 @model Eva.UI.Web.Controllers.NoticiaLerViewModel
-<div class="banner-1184px right mgn-right-10px mgn-top-20px">
-    <div class="banner-728px left">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="img/banners/728x90px/img1.png" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-    <div class="banner-417px right">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="img/banners/394x90px/img2.png" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-</div>
+
 <div class="bloco-largura-940px left mgn-left-10px mgn-top-20px">
-    <div class="banner-vertical left">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="img/banners/120x600px/img3.jpg" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
+    
     <section class="bloco-largura-540px mgn-left-20px left">
         <a href="@Url.Action("Index", "Noticia", new { Area = "", categoria = Model.Noticia.Categoria.Slug })" title="@Model.Noticia.Categoria.Nome">
             <p class="titulo-28px fui-menu" style="color:@Model.Noticia.Categoria.CorFundo;">@Model.Noticia.Categoria.Nome</p>
@@ -47,7 +17,7 @@
             @{
                 var arquivo = Model.Noticia.Arquivos.FirstOrDefault() ?? new Arquivo();
             }
-            <img src="@Foto.Placehold(arquivo.Nome, "540x304", "Noticia" , "540x304_" )" width="540" height="304" />
+            <img src="@Foto.Placehold(arquivo.Nome, "100x606", "Noticia" , "" )"  class="img-responsive"/>
         </figure>
         <div class="desc-noticia">
             <p style="white-space: pre-line">@Model.Noticia.Conteudo</p>
@@ -148,97 +118,4 @@
         }
     </div>
 </div><!--fim bloco-largura-940px-->
-<div class="bloco-largura-223px right">
-    <div class="banner-223px right mgn-top-20px mgn-right-10px">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="img/banners/200x375px/img1.jpg" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-    <div class="banner-223px right mgn-top-20px mgn-right-10px">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="img/banners/200x375px/img2.jpg" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-    <div class="banner-223px right mgn-top-20px mgn-right-10px">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="img/banners/200x375px/img3.jpg" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-    <div class="banner-223px right mgn-top-20px mgn-right-10px">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="img/banners/200x375px/img1.jpg" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-    <div class="banner-223px right mgn-top-20px mgn-right-10px">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="img/banners/200x375px/img2.jpg" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-    <div class="banner-223px right mgn-top-20px mgn-right-10px">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="img/banners/200x375px/img3.jpg" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-    <div class="banner-223px right mgn-top-20px mgn-right-10px">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="img/banners/200x375px/img3.jpg" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-</div><!--fim bloco largura-->
-<div class="banner-1184px right mgn-right-10px mgn-top-20px">
-    <div class="banner-728px left">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="img/banners/728x90px/img4.png" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-    <div class="banner-417px right">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="img/banners/394x90px/img3.png" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-</div>
+

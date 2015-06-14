@@ -1,28 +1,7 @@
 ﻿@using Eva.Dominio
 @using PagedList.Mvc
 @model PagedList.IPagedList<Eva.Dominio.Evento>
-<div class="banner-1184px right mgn-right-10px mgn-top-20px">
-    <div class="banner-728px left">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="img/banners/728x90px/img1.png" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-    <div class="banner-417px right">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="img/banners/394x90px/img2.png" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-</div>
+
 <section class="bloco-largura left mgn-top-20px">
     <h2 class="titulo-28px mgn-left-10px fui-camera">EVENTOS</h2>
     <ul class="eventos-lista left">
@@ -50,26 +29,4 @@
 </section>
 <div class="paginacao left mgn-top-20px">
    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
-</div>
-<div class="banner-1184px right mgn-right-10px mgn-top-20px">
-    <div class="banner-728px left">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="img/banners/728x90px/img4.png" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
-    <div class="banner-417px right">
-        <div class="texto-vertical left"></div>
-        <div class="banner right">
-            <figure>
-                <a href="#" title="Título do banner">
-                    <img src="img/banners/394x90px/img3.png" alt="">
-                </a>
-            </figure>
-        </div>
-    </div>
 </div>
