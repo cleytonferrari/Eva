@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -9,18 +10,22 @@ using System.Web.Mvc;
 using Eva.Aplicacao;
 using Eva.Dominio;
 using Eva.UI.Web.Helpers;
+using System.Net;
 
 namespace Eva.UI.Web.Areas.Painel.Controllers
 {
     public class ArquivosController : Controller
     {
-        public ActionResult Index(string id, string plugin, int? pagina)
+        public ActionResult Index(string id, string plugin, int? pagina, string query, string urlImagemSalvar)
         {
             if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(plugin))
                 return RedirectToAction("Index", "Home", new { area = "Painel" });
 
             ViewBag.urlVoltar = string.Empty;
             ViewBag.urlTitulo = string.Empty;
+
+            //salva imagem buscada na web, se for o caso
+            GetImage(urlImagemSalvar, id, plugin.ToLower());
 
             var arquivoViewModel = new ArquivoViewModel();
 
@@ -54,8 +59,14 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             if (Request.IsAjaxRequest())
                 return PartialView("listaImagens", arquivoViewModel);
 
+            //busca bing
+            arquivoViewModel.Query = query;
+            arquivoViewModel.RetornoBusca = Imagem.BuscarImagemNaWeb(query);
+
             return View(arquivoViewModel);
         }
+
+
 
         public ActionResult Enviar(string id, string plugin)
         {
@@ -322,6 +333,44 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 
             return Json("", JsonRequestBehavior.AllowGet);
         }
+
+        private void GetImage(string url, string id, string plugin)
+        {
+            if (string.IsNullOrEmpty(url))
+                return;
+
+            var name = Guid.NewGuid().ToString("N") + ".jpg";
+            try
+            {
+                var imageStream = new WebClient().OpenRead(url);
+                var img = Image.FromStream(imageStream);
+
+                img.Save(Imagem.MontaPath(plugin, name));
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            
+            switch (plugin.ToLower())
+            {
+                //todo: verificar a ordenacao
+                case "noticia":
+                    var noticia = Fabrica.NoticiaAplicacaoMongo().ListarPorId(id);
+                    noticia.Arquivos.Add(new Arquivo() { Nome = name, Legenda = noticia.Titulo, Ordem = 1 });
+                    Fabrica.NoticiaAplicacaoMongo().Salvar(noticia);
+                    Imagem.GeraArquivosBaseadoEmListaDeTamanhos(name, plugin, ImagensLayout.Noticias);
+                    break;
+
+                case "evento":
+                    var evento = Fabrica.EventoAplicacaoMongo().ListarPorId(id);
+                    evento.Arquivos.Add(new Arquivo() { Nome = name, Legenda = evento.Titulo, Ordem = 1 });
+                    Fabrica.EventoAplicacaoMongo().Salvar(evento);
+                    Imagem.GeraArquivosBaseadoEmListaDeTamanhos(name, plugin, ImagensLayout.Eventos);
+                    break;
+            }
+
+        }
     }
 
     public class ArquivoViewModel
@@ -330,6 +379,9 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
         public string Titulo { get; set; }
         public string Plugin { get; set; }
         public IEnumerable<Arquivo> Arquivos { get; set; }
+        //busca bing de imagens
+        public string Query { get; set; }
+        public IEnumerable<Bing.ImageResult> RetornoBusca { get; set; }
     }
 
     public class LogoAplicarViewModel

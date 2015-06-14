@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Helpers;
 using Eva.Aplicacao;
 using Eva.Dominio;
+using System.Net;
 
 namespace Eva.UI.Web.Helpers
 {
@@ -194,7 +195,24 @@ namespace Eva.UI.Web.Helpers
             return arquivosRetorno;
         }
 
+        public static IEnumerable<Bing.ImageResult> BuscarImagemNaWeb(string query)
+        {
+            if (string.IsNullOrEmpty(query))
+                return new List<Bing.ImageResult>();
 
+            var rootUri = "https://api.datamarket.azure.com/Bing/Search";
+            var bingContainer = new Bing.BingSearchContainer(new Uri(rootUri));
+
+            //acessar esse site para gerar uma https://datamarket.azure.com/dataset/bing/search
+            var accountKey = "informe aqui sua account key do bing";
+
+            bingContainer.Credentials = new NetworkCredential(accountKey, accountKey);
+
+            var imageQuery = bingContainer.Image(query, null, null, "Off", null, null, "Size:Large");
+            imageQuery = imageQuery.AddQueryOption("$top", 12);
+
+            return imageQuery.Execute().ToList();
+        }
     }
 
     public class PosicaoLogo

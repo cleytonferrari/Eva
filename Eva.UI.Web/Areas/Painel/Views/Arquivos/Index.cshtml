@@ -19,6 +19,47 @@
 <div class="col-sm-12">
     <section class="panel">
         <header class="panel-heading">
+            <form method="GET" action="@Url.Action("Index")">
+                <div class="input-group m-bot15">
+                    <input type="text" class="form-control" id="query" name="query" value="@Model.Query" placeholder="Buscar uma imagem na internet">
+                    <input type="hidden" name="id" id="id" value="@Model.Id"/>
+                    <input type="hidden" name="plugin" id="plugin" value="@Model.Plugin"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-success" type="submit">Buscar!</button>
+                    </span>
+                </div>
+            </form>
+        </header>
+        @if (Model.RetornoBusca.Any())
+        {
+            <div class="panel-body">
+                <em class="pull-right text-muted">Clique nas imagens para salva-las</em>
+                <ul class="media-gal">
+                    @foreach (var item in Model.RetornoBusca)
+                    {
+                        <li class="images item" style="background-color: #ffffff">
+                            <img src="@item.Thumbnail.MediaUrl" alt="@item.Title" class="handler"/>
+                            <p>Tamanho: @item.Width x @item.Height px</p>
+
+                            <div class="row prd-row menuimagem">
+                                <div class="action" style="right: 23px; bottom: 35px;">
+                                    <a href="@item.MediaUrl" class="part1" target="_blank"><i class="fa fa-picture-o"></i></a>
+                                    <a href="@Url.Action("Index",new{id=Model.Id,plugin=Model.Plugin,query=Model.Query,urlImagemSalvar=item.MediaUrl})" class="part1 yellow-bg-prd"><i class="fa fa-save"></i></a>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+
+    </section>
+</div>
+
+
+<div class="col-sm-12">
+    <section class="panel">
+        <header class="panel-heading">
             Gerenciar Arquivos: <b class="text-danger">@Model.Titulo</b>
         </header>
         <div class="panel-body">
