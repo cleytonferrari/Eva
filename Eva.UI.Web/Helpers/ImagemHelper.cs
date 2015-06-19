@@ -204,14 +204,22 @@ namespace Eva.UI.Web.Helpers
             var bingContainer = new Bing.BingSearchContainer(new Uri(rootUri));
 
             //acessar esse site para gerar uma https://datamarket.azure.com/dataset/bing/search
-            var accountKey = "informe aqui sua account key do bing";
+            //TODO: pegar esses dados do cadastro do site (criar um cadastro para o site com essas informações: titulo, codigo analytics, api bing ...
+            var accountKey = "";
 
             bingContainer.Credentials = new NetworkCredential(accountKey, accountKey);
 
             var imageQuery = bingContainer.Image(query, null, null, "Off", null, null, "Size:Large");
             imageQuery = imageQuery.AddQueryOption("$top", 12);
-
-            return imageQuery.Execute().ToList();
+            try
+            {
+                return imageQuery.Execute().ToList();
+            }
+            catch (Exception)
+            {
+                return new List<Bing.ImageResult>();
+            }
+            
         }
     }
 

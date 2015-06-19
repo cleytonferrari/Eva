@@ -61,7 +61,13 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
 
             //busca bing
             arquivoViewModel.Query = query;
-            arquivoViewModel.RetornoBusca = Imagem.BuscarImagemNaWeb(query);
+
+            var retornoBusca = Imagem.BuscarImagemNaWeb(query);
+            if (!retornoBusca.Any())
+                this.Flash("Sua busca por imagens não retornou nenhum resultado!", FlashEnum.Error);
+            arquivoViewModel.RetornoBusca = retornoBusca;
+
+
 
             return View(arquivoViewModel);
         }
@@ -351,7 +357,7 @@ namespace Eva.UI.Web.Areas.Painel.Controllers
             {
                 return;
             }
-            
+
             switch (plugin.ToLower())
             {
                 //todo: verificar a ordenacao
